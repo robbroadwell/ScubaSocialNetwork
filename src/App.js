@@ -1,21 +1,17 @@
-import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import scubaApp from './redux/reducers'
+import Root from './components/Root'
 
-class App extends React.Component {
-	render() {
-		return (
-			<View>
-				<Text style={styles.text}>Hello, world!</Text>
-			</View>
-		)
-	}
+const store = createStore(scubaApp)
+
+function App() {
+  return (
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  );
 }
 
-const styles = StyleSheet.create({
-	text: {
-		fontWeight: "bold",
-		fontSize: 30
-	}
-})
-
-export default App
+export default App;
