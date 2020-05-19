@@ -6,12 +6,22 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.14",
+    "expo": "^37.0.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-native": "^0.62.2",
+    "react-native-web": "^0.12.2",
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node backend/server.js",
+    "develop": "react-scripts start",
+    "postinstall": "npm --prefix client install",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -30,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0"
+  },
+  "proxy": "http://localhost:5000"
 }
