@@ -8,7 +8,7 @@ class Root extends Component {
             <View style={{height: '100vh', flexDirection: 'column'}}>
                 <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center'}}>
                     <Image style={{width: 40, height: 28, margin: 10, marginLeft: 15}} source={require('../assets/flag.png')} />
-                    <Image style={{width: 200, height: 38, margin: 5, tintColor: 'white'}} source={require('../assets/logo.svg')} />
+                    <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
                     
                     <View style={{flex: 1}}>
                         <TouchableOpacity>
