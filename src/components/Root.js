@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import ScubaMap from "./ScubaMap";
+import GoogleMap from './GoogleMap';
 
 class Root extends Component {
     render() {
@@ -17,7 +17,7 @@ class Root extends Component {
                 </View>
                 <View style={{flex: 1, flexDirection: 'row'}}>
                     <View style={{flex: 1}}>
-                        <ScubaMap />
+                        <GoogleMap />
                     </View>
                     <View style={{width: '25%', backgroundColor: "#FEFEFE"}}>
                         <ScrollView>
