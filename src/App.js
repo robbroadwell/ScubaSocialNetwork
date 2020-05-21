@@ -8,7 +8,7 @@ const store = createStore(scubaApp)
 
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
       <Root />
     </Provider>
   );
