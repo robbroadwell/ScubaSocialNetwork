@@ -8,7 +8,7 @@ function Stars({rating}) {
         <StarImage filled={1} />
         <StarImage filled={1} />
         <StarImage filled={1} />
-        <StarImage filled={rating % 4} />
+        <StarImage filled={1} />
       </View>
     );
   }
@@ -27,9 +27,9 @@ function Stars({rating}) {
     return (
       <Image
                 style={{
-                  width: 15,
-                  height: 15,
-                  tintColor: '#FF9900',
+                  width: 22,
+                  height: 22,
+                  tintColor: '#A00000',
                 }}
                 source={image}
               />

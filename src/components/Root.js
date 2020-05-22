@@ -69,56 +69,8 @@ class Root extends Component {
                     <View style={{flex: 1}}>
                         <GoogleMap data={diveSites} select={(diveSite) => this.selectDiveSite(diveSite)} />
                     </View>
-                    {!isDiveSiteSelected ? <View></View> : 
-                    <View style={{position: 'absolute', right: 20, top: 20, width: 400, backgroundColor: '#FEFEFE', shadowColor: '#000',
-                    borderRadius: 10,
-                    shadowOffset: { width: 0, height: 3 },
-                    shadowOpacity: 0.4,
-                    shadowRadius: 5}}>
-                        <ScrollView>
-                            <View style={{padding: 20}}>
-                                <View style={{justifyContent: 'center', alignItems: 'center', margin: 20}}>
-                                    <Text style={{fontSize: 24, fontWeight: 'bold'}}>{selectedSite.name}</Text>
-                                    <Text style={{fontSize: 20}}>{selectedSite.country}</Text>
-                                    {/* <Text style={{fontSize: 15, margin: 10}}>{selectedSite.latitude}, {selectedSite.longitude}</Text> */}
-                                </View>
-                                <Text style={{fontSize: 18}}>{selectedSite.description}</Text>
-                                <View style={{marginVertical: 30, paddingHorizontal: 60}}>
-                                    <View style={{padding: 7, backgroundColor: '#111111', flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={{color: 'white'}}>Depth</Text>
-                                        <Text style={{color: 'white', fontWeight: '700'}}>22-48 feet</Text>
-                                    </View>
-                                    <View style={{padding: 7, backgroundColor: '#000000', flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={{color: 'white'}}>Visibility</Text>
-                                        <Text style={{color: 'white', fontWeight: '700'}}>100 feet</Text>
-                                    </View>
-                                    <View style={{padding: 7, backgroundColor: '#111111', flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={{color: 'white'}}>Currents</Text>
-                                        <Text style={{color: 'white', fontWeight: '700'}}>None</Text>
-                                    </View>
-                                    <View style={{padding: 7, backgroundColor: '#000000', flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={{color: 'white'}}>Difficulty</Text>
-                                        <Text style={{color: 'white', fontWeight: '700'}}>Novice</Text>
-                                    </View>
-                                    <View style={{padding: 7, backgroundColor: '#111111', flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={{color: 'white'}}>Access</Text>
-                                        <Text style={{color: 'white', fontWeight: '700'}}>Shore</Text>
-                                    </View>
-                                </View>
-                                {/* <View style={{flex: 1, margin: 10, justifyContent: 'center', alignItems: 'center'}}>
-                                    <Stars rating={selectedSite.rating} />
-                                    <Text>(1 review)</Text>
-                                </View> */}
-                            </View>
-                        </ScrollView>
-                        <View style={{position: 'absolute', top: 20, right: 20}}>
-                            <TouchableOpacity onPress={this.closeDiveSite}>
-                                <Image style={{width: 30, height: 30}} source={require('../assets/close.png')} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                        }
-                    {/* <View style={{width: '25%', backgroundColor: "#FEFEFE"}}>
+                    
+                    <View style={{width: '33%', backgroundColor: "#CCCCCC"}}>
                         <ScrollView>
                             {isLoading ? <View style={{flex: 1}}><ActivityIndicator/></View> : 
                             
@@ -132,7 +84,7 @@ class Root extends Component {
 
                             }
                         </ScrollView>
-                    </View> */}
+                    </View>
                 </View>
                 
             </View>
@@ -142,10 +94,42 @@ class Root extends Component {
 
 function DiveSiteCard({ site }) {
     return (
-        <View style={{margin: 10, padding: 10, marginBottom: 0, backgroundColor: '#DDDDDD', borderRadius: 7, justifyContent: 'center'}}>
-            <Text>{site.name}</Text>
-            <Text>{site.rating}</Text>
-            <Text>{site.description}</Text>
+        <View style={{margin: 10, padding: 20, backgroundColor: '#FEFEFE'}}>
+            <View style={{marginBottom: 20, flexDirection: 'row'}}>
+                <View>
+                    <Text style={{fontSize: 24, fontWeight: 'bold'}}>{site.name}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
+                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{site.country}, </Text>
+                        <Text style={{fontSize: 16}}>{site.latitude}, {site.longitude}</Text>
+                    </View>
+                </View>
+                <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <View style={{alignItems: 'center'}}>
+                        <Stars rating={site.score} />
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={{color: '#000000', fontSize: 18, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text>
+                            <Text style={{marginLeft: 5}}>(1 review)</Text>
+                        </View>
+                    </View>
+                </View>
+                
+                {/* <Text style={{fontSize: 15, margin: 10}}>{selectedSite.latitude}, {selectedSite.longitude}</Text> */}
+            </View>
+            <Text style={{fontSize: 18}}>{site.description}</Text>
+            <View style={{marginTop: 20}}>
+                <View style={{padding: 7, backgroundColor: '#DEDEDE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
+                    <Text style={{fontSize: 16, color: 'black'}}>30 - 50 meters</Text>
+                </View>
+                <View style={{padding: 7, backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
+                    <Text style={{fontSize: 16, color: 'black'}}>~ 30 meters</Text>
+                </View>
+                <View style={{padding: 7, backgroundColor: '#DEDEDE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
+                    <Text style={{fontSize: 16, color: 'black'}}>Boat</Text>
+                </View>
+            </View>
         </View>
     )
 }
