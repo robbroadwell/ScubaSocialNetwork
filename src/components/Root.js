@@ -95,10 +95,10 @@ class Root extends Component {
                                         <Text style={{color: 'white', fontWeight: '700'}}>Shore</Text>
                                     </View>
                                 </View>
-                                <View style={{flex: 1, margin: 10, justifyContent: 'center', alignItems: 'center'}}>
+                                {/* <View style={{flex: 1, margin: 10, justifyContent: 'center', alignItems: 'center'}}>
                                     <Stars rating={selectedSite.rating} />
                                     <Text>(1 review)</Text>
-                                </View>
+                                </View> */}
                             </View>
                         </ScrollView>
                         <View style={{position: 'absolute', top: 20, right: 20}}>
