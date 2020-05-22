@@ -11,6 +11,9 @@ app.use(cors());
 const users = require('./api/users');
 app.use('/api/users', users);
 
+const diveSites = require('./api/diveSites');
+app.use('/api/dive-sites', diveSites);
+
 app.use(express.static(path.join(__dirname, '../build')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build'))
