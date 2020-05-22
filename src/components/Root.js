@@ -16,7 +16,7 @@ class Root extends Component {
       }
 
       componentDidMount() {
-        fetch('http://localhost:8080/api/dive-sites')
+        fetch('http://www.divingscore.com/api/dive-sites')
           .then((response) => response.json())
           .then((json) => {
             this.setState({ diveSites: json });
