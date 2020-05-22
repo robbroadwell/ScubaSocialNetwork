@@ -29,25 +29,25 @@ class GoogleMap extends Component {
     })
 
   createMarkers = () => {
-    const { data, select } = this.props;
+    if (window.google) {
+      const { data, select } = this.props;
 
-    var i, marker;
+      var i, marker;
 
-    for (i = 0; i < data.length; i++) {  
-      console.log(data[i]);
-      marker = new window.google.maps.Marker({
-        position: { lat: data[i].latitude, lng: data[i].longitude },
-        map: this.googleMap,
-      })
+      for (i = 0; i < data.length; i++) {  
+        marker = new window.google.maps.Marker({
+          position: { lat: data[i].latitude, lng: data[i].longitude },
+          map: this.googleMap,
+        })
 
-      window.google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          console.log(data[i]);
-          select(data[i]);
-            // infowindow.setContent(locations[i][0]);
-            // infowindow.open(map, marker);
-        }
-      })(marker, i));
+        window.google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            select(data[i]);
+              // infowindow.setContent(locations[i][0]);
+              // infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
     }
   }
 
