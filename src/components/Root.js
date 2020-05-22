@@ -70,7 +70,7 @@ class Root extends Component {
                         <GoogleMap data={diveSites} select={(diveSite) => this.selectDiveSite(diveSite)} />
                     </View>
                     
-                    <View style={{width: '33%', backgroundColor: "#CCCCCC"}}>
+                    <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
                         <ScrollView>
                             {isLoading ? <View style={{flex: 1}}><ActivityIndicator/></View> : 
                             
