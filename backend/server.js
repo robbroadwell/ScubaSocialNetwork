@@ -14,6 +14,14 @@ app.use('/api/users', users);
 const diveSites = require('./api/diveSites');
 app.use('/api/dive-sites', diveSites);
 
+app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    } else {
+      next();
+    }
+  });
+
 app.use(express.static(path.join(__dirname, '../build')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build'))
