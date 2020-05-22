@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { ActivityIndicator, FlatList, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import GoogleMap from './GoogleMap';
 import Stars from './Stars';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-88100612-2');
 
 class Root extends Component {
     constructor(props) {
@@ -16,6 +19,8 @@ class Root extends Component {
       }
 
       componentDidMount() {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
         fetch('https://www.divingscore.com/api/dive-sites')
           .then((response) => response.json())
           .then((json) => {
@@ -29,6 +34,11 @@ class Root extends Component {
       }
 
       selectDiveSite = (diveSite) => {
+        ReactGA.event({
+            category: 'Dive Site',
+            action: 'Viewed [' + diveSite.id + ']'
+          });
+          
         this.setState({ 
             selectedSite: diveSite,
             isDiveSiteSelected: true
