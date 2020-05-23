@@ -1,14 +1,35 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import debounce from '../utility/debounce';
 
 class GoogleMap extends Component {
   googleMapRef = React.createRef()
 
   componentDidMount() {
+    const { mapMoved } = this.props;
+
     const googleMapScript = document.createElement("script");
     googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E&libraries=places`;
     window.document.body.appendChild(googleMapScript);
     googleMapScript.addEventListener("load", () => {
     this.googleMap = this.createGoogleMap();
+    
+    window.google.maps.event.addListener(this.googleMap, 'bounds_changed', debounce(() => { 
+      var bounds = this.googleMap.getBounds();
+
+      var NECorner = bounds.getNorthEast()
+      var SWCorner = bounds.getSouthWest()
+
+      var coordinates = [
+          [SWCorner.lng(), NECorner.lat()],
+          [NECorner.lng(), NECorner.lat()],
+          [NECorner.lng(), SWCorner.lat()],
+          [SWCorner.lng(), SWCorner.lat()],
+          [SWCorner.lng(), NECorner.lat()]
+        ]
+
+      mapMoved(coordinates)
+
+    }, 250));
     })
   }
 
@@ -21,10 +42,6 @@ class GoogleMap extends Component {
         },
         disableDefaultUI: true,
         zoomControl: true,
-        // mapTypeControlOptions: {
-        //     position: 3,
-        // },
-        // mapTypeControl: true,
         mapTypeId: window.google.maps.MapTypeId.HYBRID,
     })
 
@@ -36,7 +53,7 @@ class GoogleMap extends Component {
 
       for (i = 0; i < data.length; i++) {  
         marker = new window.google.maps.Marker({
-          position: { lat: data[i].latitude, lng: data[i].longitude },
+          position: { lat: data[i].location.coordinates[1], lng: data[i].location.coordinates[0] },
           map: this.googleMap,
         })
 
@@ -52,7 +69,7 @@ class GoogleMap extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    
     this.createMarkers()
   
     return (

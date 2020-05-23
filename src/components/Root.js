@@ -19,16 +19,6 @@ class Root extends Component {
 
       componentDidMount() {
         ReactGA.pageview(window.location.pathname + window.location.search);
-
-        fetch('https://www.divingscore.com/api/dive-sites')
-          .then((response) => response.json())
-          .then((json) => {
-            this.setState({ diveSites: json });
-          })
-          .catch((error) => console.error(error))
-          .finally(() => {
-            this.setState({ isLoading: false });
-          });
       }
 
       selectDiveSite = (diveSite) => {
@@ -43,13 +33,33 @@ class Root extends Component {
 
       }
 
+      getQueryString = (queries) => {
+        return Object.keys(queries).reduce((result, key) => {
+            return [...result, `polygon=${queries[key]}`]
+        }, []).join('&');
+    };
+
+      searchForDiveSites = (coordinates) => {
+          console.log(coordinates);
+
+        fetch('http://localhost:8080/api/dive-sites?polygon='+`${coordinates}`)
+          .then((response) => response.json())
+          .then((json) => {
+            this.setState({ diveSites: json });
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      }
+
     render() {
         const { diveSites, isLoading, selectedSite } = this.state;
 
         return (
             <View style={{height: '100vh', flexDirection: 'column'}}>
                 <Header />
-                <Body diveSites={diveSites} isLoading={isLoading} selectDiveSite={this.selectDiveSite} selectedSite={selectedSite}  />
+                <Body diveSites={diveSites} isLoading={isLoading} selectDiveSite={this.selectDiveSite} selectedSite={selectedSite} searchForDiveSites={this.searchForDiveSites} />
             </View>
         );
     }
@@ -70,12 +80,12 @@ function Header() {
     )
 }
 
-function Body({ diveSites, isLoading, selectDiveSite, selectedSite }) {
-    
+function Body({ diveSites, isLoading, selectDiveSite, selectedSite, searchForDiveSites }) {
+
     return (
         <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={{flex: 1}}>
-                <GoogleMap data={diveSites} select={(diveSite) => selectDiveSite(diveSite)} />
+                <GoogleMap data={diveSites} select={(diveSite) => selectDiveSite(diveSite)} mapMoved={(geometry) => searchForDiveSites(geometry)} />
             </View>
             
             <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
@@ -121,7 +131,7 @@ function DiveSiteCardCollapsed({ site }) {
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>{site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
                         <Text style={{fontSize: 16, fontWeight: 'bold'}}>{site.country}, </Text>
-                        <Text style={{fontSize: 16}}>{site.latitude}, {site.longitude}</Text>
+                        <Text style={{fontSize: 16}}>{site.location.coordinates[1]}, {site.location.coordinates[0]}</Text>
                     </View>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
