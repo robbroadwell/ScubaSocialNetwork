@@ -42,7 +42,7 @@ class Root extends Component {
       searchForDiveSites = (coordinates) => {
           console.log(coordinates);
 
-        fetch('http://localhost:8080/api/dive-sites?polygon='+`${coordinates}`)
+        fetch('https://www.divingscore.com/api/dive-sites?polygon='+`${coordinates}`)
           .then((response) => response.json())
           .then((json) => {
             this.setState({ diveSites: json });
