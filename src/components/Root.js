@@ -61,11 +61,11 @@ function Header() {
             <Image style={{width: 40, height: 28, margin: 15, marginLeft: 15}} source={require('../assets/flag.png')} />
             <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
             
-            {/* <View style={{flex: 1}}>
+            <View style={{flex: 1}}>
                 <TouchableOpacity>
-                    <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Add Dive Site</Text>
+                    <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
                 </TouchableOpacity>
-            </View> */}
+            </View>
         </View>
     )
 }
@@ -118,7 +118,7 @@ function DiveSiteCardCollapsed({ site }) {
         <View>
             <View style={{flexDirection: 'row'}}>
                 <View>
-                    <Text style={{fontSize: 24, fontWeight: 'bold'}}>{site.name}</Text>
+                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
                         <Text style={{fontSize: 16, fontWeight: 'bold'}}>{site.country}, </Text>
                         <Text style={{fontSize: 16}}>{site.latitude}, {site.longitude}</Text>
@@ -128,7 +128,7 @@ function DiveSiteCardCollapsed({ site }) {
                     <View style={{alignItems: 'center'}}>
                         <Stars rating={site.score} />
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{color: '#000000', fontSize: 18, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text>
+                            <Text style={{color: '#000000', fontSize: 16, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text>
                             <Text style={{marginLeft: 5}}>(1 review)</Text>
                         </View>
                     </View>
