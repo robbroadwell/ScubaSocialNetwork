@@ -14,7 +14,6 @@ class Root extends Component {
           diveSites: [],
           selectedSite: [],
           isLoading: true,
-          isDiveSiteSelected: true
         };
       }
 
@@ -25,7 +24,6 @@ class Root extends Component {
           .then((response) => response.json())
           .then((json) => {
             this.setState({ diveSites: json });
-            this.selectDiveSite(json[0])
           })
           .catch((error) => console.error(error))
           .finally(() => {
@@ -40,62 +38,85 @@ class Root extends Component {
           });
           
         this.setState({ 
-            selectedSite: diveSite,
-            isDiveSiteSelected: true
+            selectedSite: (this.state.selectedSite._id == diveSite._id) ? [] : diveSite
         })
-      }
 
-      closeDiveSite = () => {
-          this.setState({
-            isDiveSiteSelected: false
-          })
       }
 
     render() {
-        const { diveSites, isLoading, selectedSite, isDiveSiteSelected } = this.state;
+        const { diveSites, isLoading, selectedSite } = this.state;
+
         return (
             <View style={{height: '100vh', flexDirection: 'column'}}>
-                <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center'}}>
-                    <Image style={{width: 40, height: 28, margin: 15, marginLeft: 15}} source={require('../assets/flag.png')} />
-                    <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
-                    
-                    {/* <View style={{flex: 1}}>
-                        <TouchableOpacity>
-                            <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Add Dive Site</Text>
-                        </TouchableOpacity>
-                    </View> */}
-                </View>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: 1}}>
-                        <GoogleMap data={diveSites} select={(diveSite) => this.selectDiveSite(diveSite)} />
-                    </View>
-                    
-                    <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
-                        <ScrollView>
-                            {isLoading ? <View style={{flex: 1}}><ActivityIndicator/></View> : 
-                            
-                            <FlatList
-                                data={diveSites}
-                                keyExtractor={({ id }, index) => id}
-                                renderItem={({ item }) => (
-                                <DiveSiteCard site={item} />
-                                )}
-                            />
-
-                            }
-                        </ScrollView>
-                    </View>
-                </View>
-                
+                <Header />
+                <Body diveSites={diveSites} isLoading={isLoading} selectDiveSite={this.selectDiveSite} selectedSite={selectedSite}  />
             </View>
         );
     }
 }
 
-function DiveSiteCard({ site }) {
+function Header() {
     return (
-        <View style={{margin: 10, padding: 20, backgroundColor: '#FEFEFE'}}>
-            <View style={{marginBottom: 20, flexDirection: 'row'}}>
+        <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center'}}>
+            <Image style={{width: 40, height: 28, margin: 15, marginLeft: 15}} source={require('../assets/flag.png')} />
+            <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
+            
+            {/* <View style={{flex: 1}}>
+                <TouchableOpacity>
+                    <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Add Dive Site</Text>
+                </TouchableOpacity>
+            </View> */}
+        </View>
+    )
+}
+
+function Body({ diveSites, isLoading, selectDiveSite, selectedSite }) {
+    
+    return (
+        <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{flex: 1}}>
+                <GoogleMap data={diveSites} select={(diveSite) => selectDiveSite(diveSite)} />
+            </View>
+            
+            <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
+                <ScrollView>
+                    {isLoading ? <View style={{flex: 1}}><ActivityIndicator/></View> : 
+                    <FlatList
+                        style={{paddingBottom: 10}}
+                        data={diveSites}
+                        keyExtractor={({ id }, index) => id}
+                        extraData={selectedSite}
+                        renderItem={({ item }) => (
+                        <DiveSiteCard site={item} onPress={() => selectDiveSite(item)} selected={selectedSite._id === item._id} />
+                        )}
+                    />
+                    }
+                </ScrollView>
+            </View>
+        </View>
+    )
+}
+
+function DiveSiteCard({ site, selected, onPress }) {
+    return (
+        <TouchableOpacity onPress={onPress} activeOpacity={1.0}>
+            <View style={{margin: 5, marginBottom: 0, padding: 20, backgroundColor: '#FEFEFE', shadowColor: '#000',
+                borderColor: "#A00000",
+                borderRadius: 3,
+                // borderWidth: selected ? 2 : 0,
+                shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.3,
+                shadowRadius: 5}}>
+                {selected ? <DiveSiteCardExpanded site={site} /> : <DiveSiteCardCollapsed site={site} />}
+            </View>
+        </TouchableOpacity>   
+    )
+}
+
+function DiveSiteCardCollapsed({ site }) {
+    return (
+        <View>
+            <View style={{flexDirection: 'row'}}>
                 <View>
                     <Text style={{fontSize: 24, fontWeight: 'bold'}}>{site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
@@ -112,23 +133,39 @@ function DiveSiteCard({ site }) {
                         </View>
                     </View>
                 </View>
-                
-                {/* <Text style={{fontSize: 15, margin: 10}}>{selectedSite.latitude}, {selectedSite.longitude}</Text> */}
             </View>
-            <Text style={{fontSize: 18}}>{site.description}</Text>
+        </View>
+    );
+}
+
+function DiveSiteCardExpanded({ site }) {
+    return (
+        <View>
+            <DiveSiteCardCollapsed site={site} />
+            
+            {!site.description ? <View></View> : 
+                <Text style={{fontSize: 18, marginTop: 20}}>{site.description}</Text>
+            }
+
             <View style={{marginTop: 20}}>
-                <View style={{padding: 7, backgroundColor: '#DEDEDE', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
-                    <Text style={{fontSize: 16, color: 'black'}}>30 - 50 meters</Text>
-                </View>
-                <View style={{padding: 7, backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
-                    <Text style={{fontSize: 16, color: 'black'}}>~ 30 meters</Text>
-                </View>
-                <View style={{padding: 7, backgroundColor: '#DEDEDE', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
-                    <Text style={{fontSize: 16, color: 'black'}}>Boat</Text>
-                </View>
+                {!site.depth ? <View></View> : 
+                    <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
+                        <Text style={{fontSize: 16, color: 'black'}}>{site.depth}</Text>
+                    </View>
+                }
+                {!site.visibility ? <View></View> : 
+                    <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
+                        <Text style={{fontSize: 16, color: 'black'}}>{site.visibility}</Text>
+                    </View>
+                }
+                {!site.access ? <View></View> : 
+                    <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
+                        <Text style={{fontSize: 16, color: 'black'}}>{site.access}</Text>
+                    </View>
+                }
             </View>
         </View>
     )

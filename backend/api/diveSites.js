@@ -10,12 +10,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const { name, country, description, latitude, longitude, rating } = req.body;
+    const { name, country, description, latitude, longitude, depth, visibility, access, rating } = req.body;
     const newDiveSite = new DiveSite({
         name: name, 
         country: country,
         latitude: latitude,
         longitude: longitude,
+        depth: depth,
+        visibility: visibility,
+        access: access,
         description: description,
         rating: rating
     })
