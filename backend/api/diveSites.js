@@ -26,30 +26,38 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const { name, country, description, latitude, longitude, depth, visibility, access, rating } = req.body;
-    const newDiveSite = new DiveSite({
-        name: name, 
-        country: country,
-        location: {
-            type: "Point",
-            coordinates: [
-                latitude, longitude
-            ]
-        },
-        depth: depth,
-        visibility: visibility,
-        access: access,
-        description: description,
-        rating: rating
-    })
-    newDiveSite.save()
-        .then(() => res.json({
-            message: "Created dive site successfully"
-        }))
-        .catch(err => res.status(400).json({
-            "error": err,
-            "message": "Error creating dive site"
-        }))
+    console.log(req.isAuthenticated());
+
+    if (!req.isAuthenticated()) {
+        res.status(401).json({
+            "error": "You are not authenticated."
+        })
+    } else {
+        const { name, country, description, latitude, longitude, depth, visibility, access, rating } = req.body;
+        const newDiveSite = new DiveSite({
+            name: name, 
+            country: country,
+            location: {
+                type: "Point",
+                coordinates: [
+                    latitude, longitude
+                ]
+            },
+            depth: depth,
+            visibility: visibility,
+            access: access,
+            description: description,
+            rating: rating
+        })
+        newDiveSite.save()
+            .then(() => res.json({
+                message: "Created dive site successfully"
+            }))
+            .catch(err => res.status(400).json({
+                "error": err,
+                "message": "Error creating dive site"
+            }))
+    }
 })
 
 module.exports = router 

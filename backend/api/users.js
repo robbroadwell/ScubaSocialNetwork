@@ -9,10 +9,12 @@ router.get('/', (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
-    const { name, email } = req.body;
+router.post('/register', (req, res) => {
+    const { username, password, email } = req.body;
     const newUser = new User({
-        name: name, email: email
+        username: username, 
+        password: password,
+        email: email
     })
     newUser.save()
         .then(() => res.json({
@@ -22,6 +24,34 @@ router.post('/', (req, res) => {
             "error": err,
             "message": "Error creating account"
         }))
+})
+
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+router.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+      if (req.user) {
+        res.json({
+            message: "Logged in successfully.",
+            user: req.user
+        })
+      }
 })
 
 module.exports = router 
