@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router()
+const passport = require('passport');
 
 const DiveSite = require('../models/diveSite');
 
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
         if (err) {
           console.error(err);
