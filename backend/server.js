@@ -1,37 +1,17 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
-const { v4: uuidv4 } = require('uuid');
-const session = require('express-session');
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
-const FileStore = require('session-file-store')(session);
+require('./api/passport'); // run config
 
 const cors = require('cors');
 const path = require('path')
 const app = express();
 require('./database');
 
-const cookie_name = "divingscore";
-const cookie_secret = "dirtbike";
-
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({
-    genid: (req) => {
-        console.log('Inside session middleware genid function')
-        console.log(`Request object sessionID from client: ${req.sessionID}`)
-        return uuidv4() // use UUIDs for session IDs
-      },
-    store: new FileStore(),
-    secret: cookie_secret,
-    name: cookie_name,
-    resave: false,
-    saveUninitialized: true
-}));
 app.use(passport.initialize());
-app.use(passport.session());
 app.use(cors());
 
 passport.serializeUser(function(user, done) {
