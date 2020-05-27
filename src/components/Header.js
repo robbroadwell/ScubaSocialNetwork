@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-
+import { connect } from "react-redux";
+import { setSelectedDiveSite } from '../redux/actions';
 
 class Header extends Component {
     render() {
@@ -10,7 +11,7 @@ class Header extends Component {
                 <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
                 
                 <View style={{flex: 1}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.props.enableLoginMode}>
                         <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
                     </TouchableOpacity>
                 </View>

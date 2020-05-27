@@ -7,10 +7,17 @@ import Login from './Login';
 import Map from './Map';
 
 class Root extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            loginMode: false
+        };
+      }
+
     render() {
         return (
             <View style={{height: '100vh', flexDirection: 'column'}}>
-                <Header />
+                <Header enableLoginMode={() => this.setState({ loginMode: true })} />
                 <View style={{flex: 1, flexDirection: 'row'}}>
                     <View style={{flex: 1}}>
                         <Map />
@@ -20,7 +27,7 @@ class Root extends Component {
                         <List />
                     </View>
                 </View>
-                {/* <Login /> */}
+                <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
             </View>
         );
     }
