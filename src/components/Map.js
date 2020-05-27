@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import debounce from '../utility/debounce';
+import { connect } from "react-redux";
+import { setDiveSites } from "../redux/actions";
+import { getDiveSites } from "../redux/selectors";
 
-class GoogleMap extends Component {
+
+class Map extends Component {
   googleMapRef = React.createRef()
 
   componentDidMount() {
-    const { mapMoved } = this.props;
-
     const googleMapScript = document.createElement("script");
     googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E&libraries=places`;
     window.document.body.appendChild(googleMapScript);
@@ -27,10 +29,23 @@ class GoogleMap extends Component {
           [SWCorner.lng(), NECorner.lat()]
         ]
 
-      mapMoved(coordinates)
+      this.searchForDiveSites(coordinates)
 
     }, 250));
     })
+  }
+
+  searchForDiveSites = (coordinates) => {
+  
+  fetch('https://www.divingscore.com/api/dive-sites?polygon='+`${coordinates}`)
+    .then((response) => response.json())
+    .then((json) => {
+      this.props.setDiveSites(json);
+    })
+    .catch((error) => console.error(error))
+    .finally(() => {
+      // this.setState({ isLoading: false });
+    });
   }
 
   createGoogleMap = () =>
@@ -47,19 +62,19 @@ class GoogleMap extends Component {
 
   createMarkers = () => {
     if (window.google) {
-      const { data, select } = this.props;
+      const { diveSites } = this.props;
 
       var i, marker;
 
-      for (i = 0; i < data.length; i++) {  
+      for (i = 0; i < diveSites.length; i++) {  
         marker = new window.google.maps.Marker({
-          position: { lat: data[i].location.coordinates[1], lng: data[i].location.coordinates[0] },
+          position: { lat: diveSites[i].location.coordinates[1], lng: diveSites[i].location.coordinates[0] },
           map: this.googleMap,
         })
 
         window.google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            select(data[i]);
+            // select(data[i]);
               // infowindow.setContent(locations[i][0]);
               // infowindow.open(map, marker);
           }
@@ -70,6 +85,7 @@ class GoogleMap extends Component {
 
   render() {
     
+    console.log(this.props.diveSites);
     this.createMarkers()
   
     return (
@@ -82,4 +98,12 @@ class GoogleMap extends Component {
   }
 }
 
-export default GoogleMap;
+const mapStateToProps = state => {
+  const diveSites = getDiveSites(state);
+  return { diveSites };
+};
+
+export default connect(
+  mapStateToProps,
+  { setDiveSites }
+)(Map);

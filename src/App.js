@@ -1,10 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import scubaApp from './redux/reducers'
 import Root from './components/Root'
+import ReactGA from 'react-ga';
+import store from "./redux/store";
 
-const store = createStore(scubaApp)
+ReactGA.initialize('UA-88100612-2');
 
 function App() {
   return (
