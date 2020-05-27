@@ -24,7 +24,11 @@ function diveSites(state = [], action) {
 function selectedDiveSite(state = [], action) {
   switch (action.type) {
     case SET_SELECTED_DIVE_SITE:
-      return action.diveSite
+      if (state && state._id && state._id === action.diveSite._id) {
+        return [];
+      } else {
+        return action.diveSite;
+      }
     default:
       return state
   }
