@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import debounce from '../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites } from "../redux/actions";
+import { setDiveSites, setSelectedDiveSite } from "../redux/actions";
 import { getDiveSites } from "../redux/selectors";
 
 
@@ -62,7 +62,7 @@ class Map extends Component {
 
   createMarkers = () => {
     if (window.google) {
-      const { diveSites } = this.props;
+      const { diveSites, setSelectedDiveSite } = this.props;
 
       var i, marker;
 
@@ -74,7 +74,7 @@ class Map extends Component {
 
         window.google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            // select(data[i]);
+            setSelectedDiveSite(diveSites[i])
               // infowindow.setContent(locations[i][0]);
               // infowindow.open(map, marker);
           }
@@ -85,7 +85,6 @@ class Map extends Component {
 
   render() {
     
-    console.log(this.props.diveSites);
     this.createMarkers()
   
     return (
@@ -105,5 +104,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setDiveSites }
+  { setDiveSites, setSelectedDiveSite }
 )(Map);
