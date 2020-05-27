@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ActivityIndicator, FlatList, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, FlatList, View, Text, Image, ScrollView, TouchableOpacity, TextInput, Button } from 'react-native';
 import GoogleMap from './GoogleMap';
 import Stars from './Stars';
 import ReactGA from 'react-ga';
@@ -14,6 +14,7 @@ class Root extends Component {
           diveSites: [],
           selectedSite: [],
           isLoading: true,
+          user: null
         };
       }
 
@@ -32,12 +33,6 @@ class Root extends Component {
         })
 
       }
-
-      getQueryString = (queries) => {
-        return Object.keys(queries).reduce((result, key) => {
-            return [...result, `polygon=${queries[key]}`]
-        }, []).join('&');
-    };
 
       searchForDiveSites = (coordinates) => {
           console.log(coordinates);
@@ -58,14 +53,47 @@ class Root extends Component {
 
         return (
             <View style={{height: '100vh', flexDirection: 'column'}}>
-                <Header />
+                <Header user={this.state.user} />
                 <Body diveSites={diveSites} isLoading={isLoading} selectDiveSite={this.selectDiveSite} selectedSite={selectedSite} searchForDiveSites={this.searchForDiveSites} />
+                {/* <Login /> */}
             </View>
         );
     }
 }
 
-function Header() {
+function Login({ hidden }) {
+    const [valueUsername, onChangeTextUsername] = React.useState('Username');
+    const [valuePassword, onChangeTextPassword] = React.useState('Password');
+
+    if (hidden) {
+        return <View></View>
+    }
+
+
+
+    return (
+        <View style={{opacity: 1, position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{position: 'absolute', width: '100%', height: '100%', left: 0, right: 0, backgroundColor: 'black', opacity: 0.8}} />
+            <View style={{position: 'absolute', backgroundColor: 'white', padding: 100, paddingBottom: 60}}>
+                <TextInput
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                    onChangeText={text => onChangeTextUsername(text)}
+                    value={valueUsername}
+                    />
+                <TextInput
+                    style={{ height: 40, borderColor: 'gray', padding: 10, borderWidth: 1 }}
+                    onChangeText={text => onChangeTextPassword(text)}
+                    value={valuePassword}
+                />
+                <TouchableOpacity>
+                    <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
+}
+
+function Header({ user }) {
     return (
         <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center'}}>
             <Image style={{width: 40, height: 28, margin: 15, marginLeft: 15}} source={require('../assets/flag.png')} />
@@ -73,7 +101,7 @@ function Header() {
             
             <View style={{flex: 1}}>
                 <TouchableOpacity>
-                    <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+                    <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>{ user ? user.username : "Login"}</Text>
                 </TouchableOpacity>
             </View>
         </View>
