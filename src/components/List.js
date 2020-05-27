@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { FlatList, ScrollView } from 'react-native';
 import DiveSiteCard from './DiveSiteCard';
 import { connect } from "react-redux";
+import { setSelectedDiveSite } from '../redux/actions';
+import { getDiveSites, getSelectedDiveSite } from '../redux/selectors';
 
 class List extends Component {
     render() {
-
-        console.log(this.props.diveSites);
-
         return (
             <ScrollView>
                 
@@ -19,8 +18,8 @@ class List extends Component {
                     renderItem={({ item }) => (
                     <DiveSiteCard 
                         site={item} 
-                        // onPress={() => selectDiveSite(item)} 
-                        // selected={this.props.selectedSite._id === item._id} 
+                        onPress={() => this.props.setSelectedDiveSite(item)} 
+                        selected={this.props.selectedSite._id === item._id} 
                     />
                     )}
                 />
@@ -31,13 +30,12 @@ class List extends Component {
 }
 
 const mapStateToProps = state => {
-    return { 
-        diveSites: state.diveSites,
-        selectedSite: state.selectedSite
-     };
+    const diveSites = getDiveSites(state);
+    const selectedSite = getSelectedDiveSite(state);
+    return { diveSites, selectedSite };
   };
   
 export default connect(
     mapStateToProps,
-    {  }
+    { setSelectedDiveSite }
 )(List);

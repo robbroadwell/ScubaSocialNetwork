@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SET_USER, SET_DIVE_SITES
+  SET_USER, SET_DIVE_SITES, SET_SELECTED_DIVE_SITE
 } from './actions'
 
 function user(state = null, action) {
@@ -21,9 +21,19 @@ function diveSites(state = [], action) {
   }
 }
 
+function selectedDiveSite(state = [], action) {
+  switch (action.type) {
+    case SET_SELECTED_DIVE_SITE:
+      return action.diveSite
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   user,
-  diveSites
+  diveSites,
+  selectedDiveSite
 })
 
 export default rootReducer
