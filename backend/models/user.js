@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    name: {
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -11,5 +15,9 @@ const userSchema = new Schema({
         required: true
     }
 })
+
+userSchema.methods.validPassword = function( pwd ) {
+    return ( this.password === pwd );
+};
 
 module.exports = mongoose.model("User", userSchema, "users")

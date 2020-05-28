@@ -10,17 +10,25 @@ const diveSiteSchema = new Schema({
         type: String,
         required: true
     },
-    latitude: {
-        type: Number,
-        required: true
-    },
-    longitude: {
-        type: Number,
+    location: {
+        type: Object,
         required: true
     },
     description: {
         type: String,
-        required: true
+        required: false
+    },
+    depth: {
+        type: String,
+        required: false
+    },
+    visibility: {
+        type: String,
+        required: false
+    },
+    access: {
+        type: String,
+        required: false
     },
     rating: {
         type: Number,
