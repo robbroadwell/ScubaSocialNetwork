@@ -56,6 +56,8 @@ class Login extends Component {
                     {this.props.user.username ? 
                     
                     <View>
+                        <Text style={{textAlign: 'center', fontSize: 18}}>{this.props.user.username}</Text>
+                        <Text style={{textAlign: 'center', fontSize: 18}}>{this.props.user.email}</Text>
                         <TouchableOpacity onPress={() => this.onPressLogout()}>
                             <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
                         </TouchableOpacity>
