@@ -51,6 +51,7 @@ class Map extends Component {
   createGoogleMap = () =>
     new window.google.maps.Map(this.googleMapRef.current, {
         zoom: 5,
+        minZoom: 4,
         center: {
             lat: 25.618760268337972,
             lng: -79.08256345614791
