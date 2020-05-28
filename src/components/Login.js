@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import { connect } from "react-redux";
 import { setUser } from "../redux/actions";
+const axios = require('axios')
 
 class Login extends Component {
     constructor(props) {
@@ -19,6 +20,21 @@ class Login extends Component {
     onChangeTextPassword = input => {
         this.setState({ password: input });
     };
+
+    onPressSubmit = () => {
+        const { setUser, disableLoginMode } = this.props;
+
+        if (this.state.username !== "" && this.state.password !== "") {
+            axios.post('https://www.divingscore.com/api/users/login', {
+                username: this.state.username,
+                password: this.state.password
+              })
+              .then(function (response) {
+                    setUser(response.data.user);
+                    disableLoginMode();
+              })
+        }
+    }
     
     render() {
         if (!this.props.visible) {
@@ -41,7 +57,7 @@ class Login extends Component {
                         onChangeText={text => this.onChangeTextPassword(text)}
                         value={this.state.password}
                     />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.onPressSubmit()}>
                         <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Login</Text>
                     </TouchableOpacity>
                 </View>

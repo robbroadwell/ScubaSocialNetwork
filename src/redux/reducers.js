@@ -3,7 +3,7 @@ import {
   SET_USER, SET_DIVE_SITES, SET_SELECTED_DIVE_SITE
 } from './actions'
 
-function user(state = null, action) {
+function user(state = [], action) {
   switch (action.type) {
     case SET_USER:
       return action.user

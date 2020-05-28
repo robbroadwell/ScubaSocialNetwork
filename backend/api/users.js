@@ -34,8 +34,11 @@ router.post('/login', (req, res, next) => {
           });
           res.status(200).send({
             auth: true,
-            user: user,
-            token,
+            user: {
+              username: user.username,
+              email: user.email,
+              token: token
+            },
             message: 'user found & logged in',
           });
     }

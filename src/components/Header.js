@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
-import { setSelectedDiveSite } from '../redux/actions';
+import { getUser } from "../redux/selectors";
 
 class Header extends Component {
     render() {
@@ -12,7 +12,9 @@ class Header extends Component {
                 
                 <View style={{flex: 1}}>
                     <TouchableOpacity onPress={this.props.enableLoginMode}>
-                        <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+                        <Text style={{textAlign: 'right', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>{
+                            this.props.user.username ? this.props.user.username : 'Login'
+                        }</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -20,4 +22,12 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    const user = getUser(state);
+    return { user };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {  }
+  )(Header);
