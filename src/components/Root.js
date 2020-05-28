@@ -19,6 +19,7 @@ class Root extends Component {
             <View style={{height: '100vh', flexDirection: 'column'}}>
                 <Header enableLoginMode={() => this.setState({ loginMode: true })} />
                 <View style={{flex: 1, flexDirection: 'row'}}>
+                    
                     <View style={{flex: 1}}>
                         <Map />
                     </View>
@@ -26,6 +27,7 @@ class Root extends Component {
                     <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
                         <List />
                     </View>
+                    
                 </View>
                 <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
             </View>
