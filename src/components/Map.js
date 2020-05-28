@@ -29,8 +29,10 @@ class Map extends Component {
           [SWCorner.lng(), SWCorner.lat()],
           [SWCorner.lng(), NECorner.lat()]
         ]
+      
+      var center = new window.google.maps.LatLng(this.googleMap.getCenter().lat(), this.googleMap.getCenter().lng(), false);
 
-      this.props.setMapCoordinates([this.googleMap.getCenter().lat(), this.googleMap.getCenter().lng()])
+      this.props.setMapCoordinates([center.lat(), center.lng()])
       this.searchForDiveSites(coordinates)
 
     }, 250));
