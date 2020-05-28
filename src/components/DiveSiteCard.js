@@ -5,7 +5,7 @@ import Stars from './Stars';
 function DiveSiteCard({ site, selected, onPress }) {
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={1.0}>
-            <View style={{margin: 5, marginBottom: 0, padding: 20, backgroundColor: '#FEFEFE', shadowColor: '#000',
+            <View style={{margin: 5, marginBottom: 0, padding: 15, backgroundColor: '#FEFEFE', shadowColor: '#000',
                 borderColor: "#A00000",
                 borderRadius: 3,
                 // borderWidth: selected ? 2 : 0,
