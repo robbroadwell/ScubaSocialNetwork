@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
+
 import debounce from '../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setSelectedDiveSite } from "../redux/actions";
-import { getDiveSites } from "../redux/selectors";
-
+import { setDiveSites, setSelectedDiveSite, setMapCoordinates } from "../redux/actions";
+import { getDiveSites, getAddDiveSiteMode } from "../redux/selectors";
 
 class Map extends Component {
   googleMapRef = React.createRef()
@@ -29,6 +30,7 @@ class Map extends Component {
           [SWCorner.lng(), NECorner.lat()]
         ]
 
+      this.props.setMapCoordinates([this.googleMap.getCenter().lat(), this.googleMap.getCenter().lng()])
       this.searchForDiveSites(coordinates)
 
     }, 250));
@@ -89,21 +91,30 @@ class Map extends Component {
     this.createMarkers()
   
     return (
-      <div
-        id="google-map"
-        ref={this.googleMapRef}
-        style={{ flex: 1 }}
-      />
+      <View style={{flex: 1}}>
+        <div
+          id="google-map"
+          ref={this.googleMapRef}
+          style={{ flex: 1 }}
+        />
+        {!this.props.addDiveSiteMode ? <View></View> : 
+        <View pointerEvents={"none"} style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{position: 'absolute', width: '100%', height: 2, backgroundColor: 'white'}} />
+          <View style={{position: 'absolute', width: 2, height: '100%', backgroundColor: 'white'}} />
+        </View>
+        }
+      </View>
     )
   }
 }
 
 const mapStateToProps = state => {
   const diveSites = getDiveSites(state);
-  return { diveSites };
+  const addDiveSiteMode = getAddDiveSiteMode(state);
+  return { diveSites, addDiveSiteMode };
 };
 
 export default connect(
   mapStateToProps,
-  { setDiveSites, setSelectedDiveSite }
+  { setDiveSites, setSelectedDiveSite, setMapCoordinates }
 )(Map);

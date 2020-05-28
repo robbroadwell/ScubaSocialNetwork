@@ -31,25 +31,31 @@ router.post('/', (req, res, next) => {
         if (err) {
           console.error(err);
         }
+
+        console.log(user);
+
         if (info !== undefined) {
           console.error(info.message);
           res.status(403).send(info.message);
+        } else if (!user) {
+          console.error('user authorizing the JWT not found');
+          res.status(403).send('user authorizing the JWT not found');
         } else {
-            const { name, country, description, latitude, longitude, depth, visibility, access, rating } = req.body;
+            const { name, country, latitude, longitude } = req.body;
             const newDiveSite = new DiveSite({
                 name: name, 
                 country: country,
                 location: {
                     type: "Point",
                     coordinates: [
-                        latitude, longitude
+                        longitude, latitude
                     ]
                 },
-                depth: depth,
-                visibility: visibility,
-                access: access,
-                description: description,
-                rating: rating
+                // depth: depth,
+                // visibility: visibility,
+                // access: access,
+                // description: description,
+                // rating: rating
         })
         newDiveSite.save()
             .then(() => res.json({
