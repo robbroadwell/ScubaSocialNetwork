@@ -32,7 +32,7 @@ const diveSiteSchema = new Schema({
     },
     rating: {
         type: Number,
-        required: true
+        required: false
     },
 })
 

@@ -17,6 +17,9 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
 
+    console.log("users.js")
+    console.log(user.id);
+
     if (err) {
       console.error(`error ${err}`);
     }
@@ -28,7 +31,6 @@ router.post('/login', (req, res, next) => {
         res.status(403).send(info.message);
       }
     } else {
-        
         const token = jwt.sign({ id: user.id }, jwtSecret.secret, {
             expiresIn: 60 * 60,
           });

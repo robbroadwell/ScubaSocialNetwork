@@ -26,15 +26,15 @@ function DiveSiteCardCollapsed({ site }) {
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>{site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
                         <Text style={{fontSize: 16, fontWeight: 'bold'}}>{site.country}, </Text>
-                        <Text style={{fontSize: 16}}>{site.location.coordinates[1]}, {site.location.coordinates[0]}</Text>
+                        <Text style={{fontSize: 16}}>{ Number((site.location.coordinates[1]).toFixed(5))}, {Number((site.location.coordinates[0]).toFixed(5))}</Text>
                     </View>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
                     <View style={{alignItems: 'center'}}>
                         <Stars rating={site.score} />
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{color: '#000000', fontSize: 16, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text>
-                            <Text style={{marginLeft: 5}}>(1 review)</Text>
+                            {site.rating ? <Text style={{color: '#000000', fontSize: 16, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text> : <View />}
+                            <Text style={{marginLeft: 5}}>(0 reviews)</Text>
                         </View>
                     </View>
                 </View>

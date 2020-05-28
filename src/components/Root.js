@@ -25,11 +25,11 @@ class Root extends Component {
                     </View>
                     
                     <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
-                        <List />
+                        <List openLogin={() => this.setState({ loginMode: true })} />
                     </View>
                     
                 </View>
-                
+
                 <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
             </View>
         );
