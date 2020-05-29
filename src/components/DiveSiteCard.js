@@ -58,6 +58,13 @@ class DiveSiteCardCollapsed extends Component {
           return total / this.props.site.reviews.length
       }
 
+      reviews = () => {
+          if (!this.props || !this.props.site || !this.props.site.reviews) {
+              return 0
+          }
+          return this.props.site.reviews.length
+      }
+
       render() {
         return (
             <View>
@@ -85,7 +92,7 @@ class DiveSiteCardCollapsed extends Component {
                                 <Ratings.Widget widgetHoverColor="black"  />
                             </Ratings>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Text style={{marginLeft: 5}}>( {this.props.site.reviews ? this.props.site.reviews.length : 0} reviews )</Text>
+                                <Text style={{marginLeft: 5}}>( {this.reviews()} review )</Text>
                             </View>
                         </View>
                     </View>
