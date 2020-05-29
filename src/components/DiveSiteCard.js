@@ -44,18 +44,18 @@ class DiveSiteCardCollapsed extends Component {
       }
 
       rating = () => {
-        if (this.props.site.reviews && this.props.site.reviews.length > 0) {
-            var total = 0;
-            var x;
-    
-            for (x in this.props.site.reviews) {
-                total = total + this.props.site.reviews[x].rating
-            }
-    
-            return total / this.props.site.reviews.length
-        } else {
-            return 0
-        }
+          if (!this.props || !this.props.site || !this.props.site.reviews) {
+              return 0
+          } 
+        
+          var total = 0;
+          var x;
+  
+          for (x in this.props.site.reviews) {
+              total = total + this.props.site.reviews[x].rating
+          }
+  
+          return total / this.props.site.reviews.length
       }
 
       render() {
