@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import Stars from './Stars';
-import Ratings from 'react-ratings-declarative';
+// import Ratings from 'react-ratings-declarative';
 
 function DiveSiteCard({ site, selected, onPress }) {
     return (
@@ -78,7 +78,7 @@ class DiveSiteCardCollapsed extends Component {
                     </View>
                     <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
                         <View style={{alignItems: 'center'}}>
-                            <Ratings
+                            {/* <Ratings
                                 rating={this.state.rating}
                                 widgetRatedColors={this.state.userModified ? "black" : "A00000"}
                                 widgetDimensions="15px"
@@ -90,7 +90,7 @@ class DiveSiteCardCollapsed extends Component {
                                 <Ratings.Widget widgetHoverColor="black"  />
                                 <Ratings.Widget widgetHoverColor="black"  />
                                 <Ratings.Widget widgetHoverColor="black"  />
-                            </Ratings>
+                            </Ratings> */}
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                 <Text style={{marginLeft: 5}}>( {this.reviews()} review )</Text>
                             </View>
