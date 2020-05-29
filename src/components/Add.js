@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, ScrollView, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
 import { getUser, getMapCoordinates } from '../redux/selectors';
@@ -27,7 +27,7 @@ class Add extends Component {
   }
 
   onPressSubmit = () => {
-    if (this.state.name == "") {
+    if (this.state.name === "") {
       return
     }
 
@@ -85,8 +85,8 @@ class Add extends Component {
         </View>
 
         <View>
-          <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, opacity: (this.state.name == "" || this.state.country == "") ? 0.4 : 1.0}}>
-            <TouchableOpacity onPress={this.onPressSubmit} disabled={this.state.name == "" || this.state.country == ""}>
+          <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, opacity: (this.state.name === "" || this.state.country === "") ? 0.4 : 1.0}}>
+            <TouchableOpacity onPress={this.onPressSubmit} disabled={this.state.name === "" || this.state.country === ""}>
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
             </TouchableOpacity>
           </View>

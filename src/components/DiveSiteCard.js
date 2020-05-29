@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 
 function DiveSiteCard({ site, selected, onPress }) {
@@ -43,7 +43,7 @@ class DiveSiteCardCollapsed extends Component {
   }
 
   rating = () => {
-    if (!this.props || !this.props.site || !this.props.site.reviews || this.props.site.reviews.length == 0) {
+    if (!this.props || !this.props.site || !this.props.site.reviews || this.props.site.reviews.length === 0) {
       return 0
     }
 
