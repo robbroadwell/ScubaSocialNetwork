@@ -58,43 +58,43 @@ class Add extends Component {
   }
 
   render() {
-      return (
-          <View style={{flex: 1}}>
-            <View style={{flex: 1}}>
-              <View style={{margin: 5, marginBottom: 0, padding: 20, paddingTop: 16, backgroundColor: '#FEFEFE', shadowColor: '#000',
-                borderColor: "#A00000",
-                borderRadius: 3,
-                // borderWidth: selected ? 2 : 0,
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: 0.3,
-                shadowRadius: 5}}>
-                  <Text style={{fontSize: 16, paddingBottom: 16}}>{Number((this.props.mapCoordinates[0]).toFixed(5))}, {Number((this.props.mapCoordinates[1]).toFixed(5))} </Text>
-                    <TextInput
-                      style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-                      onChangeText={text => this.onChangeTextName(text)}
-                      placeholder={'Name*'}
-                      value={this.state.name}
-                      />
-                    <TextInput
-                      style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-                      onChangeText={text => this.onChangeTextDescription(text)}
-                      placeholder={'Description'}
-                      value={this.state.description}
-                      />
-              </View>
+    return (
+      <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          <View style={{margin: 5, marginBottom: 0, padding: 20, paddingTop: 16, backgroundColor: '#FEFEFE', shadowColor: '#000',
+            borderColor: "#A00000",
+            borderRadius: 3,
+            // borderWidth: selected ? 2 : 0,
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.3,
+            shadowRadius: 5}}>
+            <Text style={{fontSize: 16, paddingBottom: 16}}>{Number((this.props.mapCoordinates[0]).toFixed(5))}, {Number((this.props.mapCoordinates[1]).toFixed(5))} </Text>
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextName(text)}
+                placeholder={'Name*'}
+                value={this.state.name}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextDescription(text)}
+                placeholder={'Description'}
+                value={this.state.description}
+                />
           </View>
+        </View>
 
-          <View>
-            <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, opacity: (this.state.name == "" || this.state.country == "") ? 0.4 : 1.0}}>
-              <TouchableOpacity onPress={this.onPressSubmit} disabled={this.state.name == "" || this.state.country == ""}>
-                <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
-              </TouchableOpacity>
-            </View>
+        <View>
+          <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, opacity: (this.state.name == "" || this.state.country == "") ? 0.4 : 1.0}}>
+            <TouchableOpacity onPress={this.onPressSubmit} disabled={this.state.name == "" || this.state.country == ""}>
+              <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
+            </TouchableOpacity>
           </View>
+        </View>
 
-          <TouchableOpacity style={{position: 'absolute', top: 12, right: 10}} onPress={this.onPressClose}>
-            <Image style={{height: 25, width: 25, margin: 5, tintColor: 'black'}} source={require('../assets/close.png')} />
-          </TouchableOpacity>
+        <TouchableOpacity style={{position: 'absolute', top: 12, right: 10}} onPress={this.onPressClose}>
+          <Image style={{height: 25, width: 25, margin: 5, tintColor: 'black'}} source={require('../assets/close.png')} />
+        </TouchableOpacity>
       </View>
     );
   }
