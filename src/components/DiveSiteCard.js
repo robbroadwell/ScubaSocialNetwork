@@ -44,7 +44,7 @@ class DiveSiteCardCollapsed extends Component {
       }
 
       rating = () => {
-          if (!this.props || !this.props.site || !this.props.site.reviews) {
+          if (!this.props || !this.props.site || !this.props.site.reviews || this.props.site.reviews.length == 0) {
               return 0
           } 
         
