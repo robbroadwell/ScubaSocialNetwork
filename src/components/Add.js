@@ -10,7 +10,7 @@ class Add extends Component {
       super(props);
       this.state = { 
           name: "",
-          country: ""
+          description: ""
       };
     }
 
@@ -18,8 +18,8 @@ class Add extends Component {
       this.setState({ name: input });
   };
 
-  onChangeTextCountry = input => {
-      this.setState({ country: input });
+  onChangeTextDescription = input => {
+      this.setState({ description: input });
   };
 
   onPressClose = () => {
@@ -28,27 +28,32 @@ class Add extends Component {
 
   onPressSubmit = () => {
     
-      if (this.state.name !== "" && this.state.country !== "") {
-        axios({
-          method: 'post',
-          url: 'https://www.divingscore.com/api/dive-sites',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT ' + this.props.user.token
-          },
-          data: {
-            name: this.state.name,
-              country: this.state.country,
-              latitude: this.props.mapCoordinates[0],
-              longitude: this.props.mapCoordinates[1]
-          }
-        }).then(function (response) {
-              console.log(response);
-              this.setState({ name: "", country: "" });
-              this.props.setAddDiveSiteMode(false);
-                  // this.props.setUser(response.data.user);
-                  // this.props.disableLoginMode();
-            }.bind(this));
+      if (this.state.name !== "") {
+        var path = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.mapCoordinates[0] + ',' + this.props.mapCoordinates[1] + '&key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E' + '&result_type=country'
+        axios.get(path)
+        .then(function (response) {
+          var country = (response.data.results && response.data.results[0]) ? response.data.results[0].formatted_address : "Ocean"
+
+          axios({
+            method: 'post',
+            url: 'https://www.divingscore.com/api/dive-sites',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'JWT ' + this.props.user.token
+            },
+            data: {
+                name: this.state.name,
+                country: country,
+                latitude: this.props.mapCoordinates[0],
+                longitude: this.props.mapCoordinates[1]
+            }
+          }).then(function (response) {
+                console.log(response)
+                this.setState({ name: "" });
+                this.props.setAddDiveSiteMode(false);
+              }.bind(this));
+
+        }.bind(this))
       }
   }
 
@@ -72,9 +77,9 @@ class Add extends Component {
                               />
                           <TextInput
                               style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-                              onChangeText={text => this.onChangeTextCountry(text)}
-                              placeholder={'Country*'}
-                              value={this.state.country}
+                              onChangeText={text => this.onChangeTextDescription(text)}
+                              placeholder={'Description'}
+                              value={this.state.description}
                               />
                       
                   </View>
