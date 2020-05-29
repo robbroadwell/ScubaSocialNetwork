@@ -14,24 +14,16 @@ const diveSiteSchema = new Schema({
         type: Object,
         required: true
     },
-    description: {
-        type: String,
-        required: false
-    },
-    depth: {
-        type: String,
-        required: false
-    },
-    visibility: {
-        type: String,
-        required: false
-    },
-    access: {
-        type: String,
-        required: false
-    },
     rating: {
         type: Number,
+        required: false
+    },
+    reviews: {
+        type: Array,
+        required: false
+    },
+    details: {
+        type: Object,
         required: false
     },
 })

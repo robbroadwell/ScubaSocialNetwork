@@ -8,12 +8,6 @@ const bcrypt = require('bcrypt');
 
 const BCRYPT_SALT_ROUNDS = 12;
 
-router.get('/', (req, res) => {
-    User.find()
-        .then(users => res.json(users))
-        .catch(err => console.log(err))
-})
-
 router.post('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
 

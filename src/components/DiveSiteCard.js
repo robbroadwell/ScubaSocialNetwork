@@ -22,8 +22,8 @@ class DiveSiteCardCollapsed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        rating: this.rating(),
-        userModified: false
+      rating: this.rating(),
+      userModified: false
     };
   }
 

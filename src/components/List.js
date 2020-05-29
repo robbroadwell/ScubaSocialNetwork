@@ -32,7 +32,7 @@ class List extends Component {
               renderItem={({ item }) => (
                 <DiveSiteCard
                 site={item}
-                // onPress={() => this.props.setSelectedDiveSite(item)}
+                onPress={() => this.props.setSelectedDiveSite(item)}
                 selected={this.props.selectedSite._id === item._id}
                 />
               )}

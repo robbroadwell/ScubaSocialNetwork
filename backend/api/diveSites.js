@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
       console.error('user authorizing the JWT not found');
       res.status(403).send('user authorizing the JWT not found');
     } else {
-        const { name, country, latitude, longitude } = req.body;
+        const { name, country, latitude, longitude, description, access, depth } = req.body;
         const newDiveSite = new DiveSite({
           name: name,
           country: country,
@@ -49,12 +49,12 @@ router.post('/', (req, res, next) => {
                 longitude, latitude
             ]
           },
-          reviews: []
-          // depth: depth,
-          // visibility: visibility,
-          // access: access,
-          // description: description,
-          // rating: rating
+          reviews: [],
+          details: {
+            description: description,
+            accesss: access,
+            depth: depth
+          }
     })
     newDiveSite.save()
       .then(() => res.json({
@@ -68,5 +68,37 @@ router.post('/', (req, res, next) => {
   })(req, res, next);
 });
 
+router.put('/', (req, res, next) => {
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+    }
+
+    if (info !== undefined) {
+      console.error(info.message);
+      res.status(403).send(info.message);
+
+    } else if (!user) {
+      console.error('user authorizing the JWT not found');
+      res.status(403).send('user authorizing the JWT not found');
+
+    } else {
+        DiveSite.findById(req.body.id).then(diveSite => {
+          diveSite.details = {
+            description: req.body.description ? req.body.description : diveSite.details.description,
+            access: req.body.access ? req.body.access : diveSite.details.access,
+            depth: req.body.depth ? req.body.depth : diveSite.details.depth
+          }
+          diveSite.save().then(() => res.json({
+              message: "Updated dive site successfully"
+            }))
+            .catch(err => res.status(400).json({
+              "error": err,
+              "message": "Error updating dive site"
+            }))
+          })
+        }
+      })(req, res, next);
+});
 
 module.exports = router
