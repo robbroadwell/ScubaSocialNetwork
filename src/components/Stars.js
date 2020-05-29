@@ -4,11 +4,11 @@ import { View, Image } from 'react-native';
 function Stars({rating}) {
     return (
       <View style={{flexDirection: 'row'}}>
-        <StarImage filled={1} />
-        <StarImage filled={1} />
-        <StarImage filled={1} />
-        <StarImage filled={1} />
-        <StarImage filled={1} />
+        <StarImage filled={0} />
+        <StarImage filled={0} />
+        <StarImage filled={0} />
+        <StarImage filled={0} />
+        <StarImage filled={0} />
       </View>
     );
   }
@@ -27,8 +27,8 @@ function Stars({rating}) {
     return (
       <Image
                 style={{
-                  width: 22,
-                  height: 22,
+                  width: 18,
+                  height: 18,
                   tintColor: '#A00000',
                 }}
                 source={image}

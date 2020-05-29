@@ -32,7 +32,7 @@ class List extends Component {
                                 renderItem={({ item }) => (
                                 <DiveSiteCard 
                                     site={item} 
-                                    onPress={() => this.props.setSelectedDiveSite(item)} 
+                                    // onPress={() => this.props.setSelectedDiveSite(item)} 
                                     selected={this.props.selectedSite._id === item._id} 
                                 />
                                 )}
@@ -41,9 +41,11 @@ class List extends Component {
                         </ScrollView>
                     </View>
                     <View>
-                        <View style={{backgroundColor: '#A00000'}}>
+                        <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, shadowOffset: { width: 0, height: 3 },
+                      shadowOpacity: 0.4,
+                      shadowRadius: 5}}>
                             <TouchableOpacity onPress={this.onPressAdd}>
-                                <Text style={{fontSize: 22, fontWeight: 'bold', textAlign: 'center', padding: 10, margin: 20, color: 'white'}}>Add Dive Site</Text>
+                                <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

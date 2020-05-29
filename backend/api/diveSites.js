@@ -51,6 +51,7 @@ router.post('/', (req, res, next) => {
                         longitude, latitude
                     ]
                 },
+                reviews: []
                 // depth: depth,
                 // visibility: visibility,
                 // access: access,

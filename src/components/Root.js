@@ -24,7 +24,7 @@ class Root extends Component {
                         <Map />
                     </View>
                     
-                    <View style={{width: '33%', minWidth: 450, backgroundColor: "#CCCCCC"}}>
+                    <View style={{width: '25%', minWidth: 350, backgroundColor: "#CCCCCC"}}>
                         <List openLogin={() => this.setState({ loginMode: true })} />
                     </View>
                     

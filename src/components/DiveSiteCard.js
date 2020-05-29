@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import Stars from './Stars';
+import Ratings from 'react-ratings-declarative';
 
 function DiveSiteCard({ site, selected, onPress }) {
     return (
@@ -18,29 +19,80 @@ function DiveSiteCard({ site, selected, onPress }) {
     )
 }
 
-function DiveSiteCardCollapsed({ site }) {
-    return (
-        <View>
-            <View style={{flexDirection: 'row'}}>
-                <View>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{site.name}</Text>
-                    <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 5}}>
-                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{site.country}, </Text>
-                        <Text style={{fontSize: 16}}>{ Number((site.location.coordinates[1]).toFixed(5))}, {Number((site.location.coordinates[0]).toFixed(5))}</Text>
+class DiveSiteCardCollapsed extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            rating: this.rating(),
+            userModified: false
+        };
+      }
+
+      componentWillReceiveProps() {
+        this.setState({
+            rating: this.rating(),
+            userModified: false
+          });
+      }
+
+    changeRating = (newRating) => {
+        console.log(newRating)
+        this.setState({
+          rating: newRating,
+          userModified: true
+        });
+      }
+
+      rating = () => {
+        if (this.props.site.reviews && this.props.site.reviews.length > 0) {
+            var total = 0;
+            var x;
+    
+            for (x in this.props.site.reviews) {
+                total = total + this.props.site.reviews[x].rating
+            }
+    
+            return total / this.props.site.reviews.length
+        } else {
+            return 0
+        }
+      }
+
+      render() {
+        return (
+            <View>
+                <View style={{flexDirection: 'row'}}>
+                    <View>
+                        <Text style={{fontSize: 17, fontWeight: 'bold'}}>{this.props.site.name}</Text>
+                        <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
+                            <Text style={{fontSize: 15, fontWeight: 'bold'}}>{this.props.site.country}, </Text>
+                            <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <View style={{alignItems: 'center'}}>
-                        <Stars rating={site.score} />
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            {site.rating ? <Text style={{color: '#000000', fontSize: 16, fontWeight: 'bold'}}>{(Math.round(site.rating * 100) / 100).toFixed(2)}</Text> : <View />}
-                            <Text style={{marginLeft: 5}}>(0 reviews)</Text>
+                    <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
+                        <View style={{alignItems: 'center'}}>
+                            <Ratings
+                                rating={this.state.rating}
+                                widgetRatedColors={this.state.userModified ? "black" : "A00000"}
+                                widgetDimensions="15px"
+                                widgetSpacings="2px"
+                                changeRating={this.changeRating}
+                            >
+                                <Ratings.Widget widgetHoverColor="black"  />
+                                <Ratings.Widget widgetHoverColor="black"  />
+                                <Ratings.Widget widgetHoverColor="black"  />
+                                <Ratings.Widget widgetHoverColor="black"  />
+                                <Ratings.Widget widgetHoverColor="black"  />
+                            </Ratings>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Text style={{marginLeft: 5}}>( {this.props.site.reviews ? this.props.site.reviews.length : 0} reviews )</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
             </View>
-        </View>
-    );
+        );
+      }
 }
 
 function DiveSiteCardExpanded({ site }) {
