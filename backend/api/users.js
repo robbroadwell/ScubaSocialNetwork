@@ -17,9 +17,6 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
 
-    console.log("users.js")
-    console.log(user.id);
-
     if (err) {
       console.error(`error ${err}`);
     }
@@ -60,11 +57,11 @@ router.post('/register', (req, res, next) => {
           } else {
             bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
                 const newUser = new User({
-                username: username, 
+                username: username,
                 password: hashedPassword,
                 email: email
             })
-    
+
             newUser.save()
                 .then(() => res.json({
                     message: "Created account successfully"
@@ -78,4 +75,4 @@ router.post('/register', (req, res, next) => {
     })(req, res, next);
 })
 
-module.exports = router 
+module.exports = router
