@@ -2,23 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 
-function DiveSiteCard({ site, selected, onPress }) {
-  return (
-    <TouchableOpacity onPress={onPress} activeOpacity={1.0}>
-      <View style={{margin: 5, marginBottom: 0, padding: 15, backgroundColor: '#FEFEFE', shadowColor: '#000',
-        borderColor: "#A00000",
-        borderRadius: 3,
-        // borderWidth: selected ? 2 : 0,
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5}}>
-        {selected ? <DiveSiteCardExpanded site={site} /> : <DiveSiteCardCollapsed site={site} />}
-      </View>
-    </TouchableOpacity>
-  )
-}
-
-class DiveSiteCardCollapsed extends Component {
+class DiveSiteCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,68 +51,84 @@ class DiveSiteCardCollapsed extends Component {
   render() {
     return (
       <View>
-        <View style={{flexDirection: 'row'}}>
-          <View>
-            <Text style={{fontSize: 17, fontWeight: 'bold'}}>{this.props.site.name}</Text>
-            <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
-              <Text style={{fontSize: 15, fontWeight: 'bold'}}>{this.props.site.country}, </Text>
-              <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
-            </View>
-          </View>
-          <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-            <View style={{alignItems: 'center'}}>
-              <Ratings
-                rating={this.state.rating}
-                widgetRatedColors={this.state.userModified ? "black" : "A00000"}
-                widgetDimensions="15px"
-                widgetSpacings="2px"
-                changeRating={this.changeRating}>
-                <Ratings.Widget widgetHoverColor="black"  />
-                <Ratings.Widget widgetHoverColor="black"  />
-                <Ratings.Widget widgetHoverColor="black"  />
-                <Ratings.Widget widgetHoverColor="black"  />
-                <Ratings.Widget widgetHoverColor="black"  />
-              </Ratings>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Text style={{marginLeft: 5}}>( {this.reviews()} review )</Text>
+
+          <View style={{margin: 5, marginBottom: 0, padding: 15, backgroundColor: '#FEFEFE', shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.3,
+            shadowRadius: 5}}>
+            <View>
+              <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
+                  <View>
+                    <Text style={{fontSize: 17, fontWeight: 'bold'}}>{this.props.site.name}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
+                      <Text style={{fontSize: 15, fontWeight: 'bold'}}>{this.props.site.country}, </Text>
+                      <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <DiveSiteReviews reviews={this.reviews} rating={this.state.rating} changeRating={(rating) => this.changeRating(rating)} userModified={this.state.userModified} />
               </View>
             </View>
+            {this.props.selected ? <DiveSiteCardExpanded site={this.props.site} /> : <View></View>}
           </View>
-        </View>
+
       </View>
     );
   }
 }
 
+function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
+  return (
+    <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
+      <View style={{alignItems: 'center'}}>
+        <Ratings
+          rating={rating}
+          widgetRatedColors={userModified ? "black" : "A00000"}
+          widgetDimensions="15px"
+          widgetSpacings="2px"
+          changeRating={(rating) => changeRating(rating)}>
+          <Ratings.Widget widgetHoverColor="black"  />
+          <Ratings.Widget widgetHoverColor="black"  />
+          <Ratings.Widget widgetHoverColor="black"  />
+          <Ratings.Widget widgetHoverColor="black"  />
+          <Ratings.Widget widgetHoverColor="black"  />
+        </Ratings>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={{marginLeft: 5}}>( {reviews()} review )</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
 function DiveSiteCardExpanded({ site }) {
   return (
     <View>
-      <DiveSiteCardCollapsed site={site} />
-
-      {!site.description ? <View></View> :
-        <Text style={{fontSize: 18, marginTop: 20}}>{site.description}</Text>
+      {!site.details.description ? <View></View> :
+        <Text style={{fontSize: 18, marginTop: 20}}>{site.details.description}</Text>
       }
 
       <View style={{marginTop: 20}}>
-          {!site.depth ? <View></View> :
-            <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
-              <Text style={{fontSize: 16, color: 'black'}}>{site.depth}</Text>
-            </View>
-          }
-          {!site.visibility ? <View></View> :
-            <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
-              <Text style={{fontSize: 16, color: 'black'}}>{site.visibility}</Text>
-            </View>
-          }
-          {!site.access ? <View></View> :
-            <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
-              <Text style={{fontSize: 16, color: 'black'}}>{site.access}</Text>
-            </View>
-          }
-        </View>
+        {!site.details.depth ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.depth}</Text>
+          </View>
+        }
+        {!site.details.visibility ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.visibility}</Text>
+          </View>
+        }
+        {!site.details.access ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.access}</Text>
+          </View>
+        }
+      </View>
     </View>
   )
 }
