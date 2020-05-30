@@ -54,7 +54,7 @@ class DiveSiteCard extends Component {
 
           <View style={{margin: 5, marginBottom: 0, padding: 15, backgroundColor: '#FEFEFE', shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.3,
+            shadowOpacity: 0.4,
             shadowRadius: 5}}>
             <View>
               <View style={{flexDirection: 'row'}}>

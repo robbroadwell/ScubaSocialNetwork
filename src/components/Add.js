@@ -10,7 +10,14 @@ class Add extends Component {
       super(props);
       this.state = {
           name: "",
-          description: ""
+          description: "",
+          depth: "",
+          access: "",
+          visibility: "",
+          currents: "",
+          airTemperature: "",
+          waterTemperature: "",
+          experienceLevel: ""
       };
     }
 
@@ -20,6 +27,34 @@ class Add extends Component {
 
   onChangeTextDescription = input => {
     this.setState({ description: input });
+  };
+
+  onChangeTextDepth = input => {
+    this.setState({ depth: input });
+  };
+
+  onChangeTextAccess = input => {
+    this.setState({ access: input });
+  };
+
+  onChangeTextVisibility = input => {
+    this.setState({ visibility: input });
+  };
+
+  onChangeTextCurrents = input => {
+    this.setState({ currents: input });
+  };
+
+  onChangeTextAirTemperature = input => {
+    this.setState({ airTemperature: input });
+  };
+
+  onChangeTextWaterTemperature = input => {
+    this.setState({ waterTemperature: input });
+  };
+
+  onChangeTextExperienceLevel = input => {
+    this.setState({ experienceLevel: input });
   };
 
   onPressClose = () => {
@@ -47,7 +82,16 @@ class Add extends Component {
             name: this.state.name,
             country: country,
             latitude: this.props.mapCoordinates[0],
-            longitude: this.props.mapCoordinates[1]
+            longitude: this.props.mapCoordinates[1],
+            description: this.state.description,
+            depth: this.state.depth,
+            access: this.state.access,
+            visibility: this.state.visibility,
+            currents: this.state.currents,
+            airTemperature: this.state.airTemperature,
+            waterTemperature: this.state.waterTemperature,
+            experienceLevel: this.state.experienceLevel
+
         }
 
       }).then(function (response) {
@@ -76,10 +120,53 @@ class Add extends Component {
                 value={this.state.name}
                 />
               <TextInput
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                style={{ height: 120, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
                 onChangeText={text => this.onChangeTextDescription(text)}
                 placeholder={'Description'}
+                multiline={true}
                 value={this.state.description}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextDepth(text)}
+                placeholder={'Depth'}
+                value={this.state.depth}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextAccess(text)}
+                placeholder={'Access'}
+                value={this.state.access}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextVisibility(text)}
+                placeholder={'Visibility'}
+                value={this.state.visibility}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextCurrents(text)}
+                placeholder={'Currents'}
+                value={this.state.currents}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextWaterTemperature(text)}
+                placeholder={'Water Temperature'}
+                value={this.state.waterTemperature}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextAirTemperature(text)}
+                placeholder={'Air Temperature'}
+                value={this.state.airTemperature}
+                />
+              <TextInput
+                style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+                onChangeText={text => this.onChangeTextExperienceLevel(text)}
+                placeholder={'Experience Level'}
+                value={this.state.experienceLevel}
                 />
           </View>
         </View>

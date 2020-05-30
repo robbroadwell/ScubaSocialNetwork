@@ -19,11 +19,12 @@ class Root extends Component {
       <View style={{height: '100vh', flexDirection: 'column'}}>
         <Header enableLoginMode={() => this.setState({ loginMode: true })} />
         <View style={{flex: 1, flexDirection: 'row'}}>
+          <View style={{width: '25%', minWidth: 350, backgroundColor: "#FEFEFE"}}>
+              <List openLogin={() => this.setState({ loginMode: true })} />
+          </View>
+
           <View style={{flex: 1}}>
               <Map />
-          </View>
-          <View style={{width: '25%', minWidth: 350, backgroundColor: "#CCCCCC"}}>
-              <List openLogin={() => this.setState({ loginMode: true })} />
           </View>
         </View>
         <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>

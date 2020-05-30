@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
       console.error('user authorizing the JWT not found');
       res.status(403).send('user authorizing the JWT not found');
     } else {
-        const { name, country, latitude, longitude, description, access, depth } = req.body;
+        const { name, country, latitude, longitude, description, depth, access, visibility, currents, airTemperature, waterTemperature, experienceLevel } = req.body;
         const newDiveSite = new DiveSite({
           name: name,
           country: country,
@@ -52,8 +52,13 @@ router.post('/', (req, res, next) => {
           reviews: [],
           details: {
             description: description,
-            accesss: access,
-            depth: depth
+            depth: depth,
+            access: access,
+            visibility: visibility,
+            currents: currents,
+            airTemperature: airTemperature,
+            waterTemperature: waterTemperature,
+            experienceLevel: experienceLevel
           }
     })
     newDiveSite.save()
