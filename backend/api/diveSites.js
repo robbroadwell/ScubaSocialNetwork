@@ -88,12 +88,21 @@ router.put('/', (req, res, next) => {
       res.status(403).send('user authorizing the JWT not found');
 
     } else {
+
+      console.log(req.body);
+
         DiveSite.findById(req.body.id).then(diveSite => {
           diveSite.details = {
-            description: req.body.description ? req.body.description : diveSite.details.description,
-            access: req.body.access ? req.body.access : diveSite.details.access,
-            depth: req.body.depth ? req.body.depth : diveSite.details.depth
+            description: req.body.description,
+            access: req.body.access,
+            depth: req.body.depth,
+            visibility: req.body.visibility,
+            currents: req.body.currents,
+            airTemperature: req.body.airTemperature,
+            waterTemperature: req.body.waterTemperature,
+            experienceLevel: req.body.experienceLevel,
           }
+          console.log(diveSite)
           diveSite.save().then(() => res.json({
               message: "Updated dive site successfully"
             }))

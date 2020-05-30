@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
 import { getUser, getMapCoordinates } from '../redux/selectors';
 import DiveSiteCard from './DiveSiteCard';
+import Edit from './Edit';
 const axios = require('axios')
 
 
@@ -120,13 +121,13 @@ class Add extends Component {
   render() {
       switch (this.state.step) {
         case ADD_STEPS.LOCATION:
-          return (<LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />);
+          return <LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
         case ADD_STEPS.NAME:
-          return (<NameMode onPressNameBack={this.onPressNameBack} onCreateDiveSite={this.onCreateDiveSite}/>);
+          return <NameMode onPressNameBack={this.onPressNameBack} onCreateDiveSite={this.onCreateDiveSite}/>;
         case ADD_STEPS.ADDITIONAL:
-          return (<AdditionalMode newDiveSite={this.state.newDiveSite} onPressClose={this.onPressClose} />);
+          return <Edit site={this.state.newDiveSite} closeEditing={this.onPressClose} sourceAdd={true} />;
         default:
-          return (<LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />);
+          return <LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
       }
   }
 }

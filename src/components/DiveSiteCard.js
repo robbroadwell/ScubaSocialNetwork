@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 
 class DiveSiteCard extends Component {
@@ -7,7 +7,8 @@ class DiveSiteCard extends Component {
     super(props);
     this.state = {
       rating: this.rating(),
-      userModified: false
+      userModified: false,
+      editMode: false
     };
   }
 
@@ -51,14 +52,14 @@ class DiveSiteCard extends Component {
   render() {
     return (
       <View>
-
+        <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
           <View style={{margin: 3, marginBottom: 0, padding: 13, backgroundColor: '#FEFEFE', shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },
             shadowOpacity: 0.4,
             shadowRadius: 5}}>
             <View>
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
+
                   <View>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>{this.props.site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
@@ -66,13 +67,15 @@ class DiveSiteCard extends Component {
                       <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
                     </View>
                   </View>
-                </TouchableOpacity>
+
                 <DiveSiteReviews reviews={this.reviews} rating={this.state.rating} changeRating={(rating) => this.changeRating(rating)} userModified={this.state.userModified} />
+
               </View>
             </View>
-            {this.props.selected ? <DiveSiteCardExpanded site={this.props.site} /> : <View></View>}
+            {!this.props.selected ? <View></View> :
+              <DiveSiteCardExpanded site={this.props.site} editMode={() => this.props.editMode(this.props.site)} />}
           </View>
-
+        </TouchableOpacity>
       </View>
     );
   }
@@ -102,7 +105,7 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
   )
 }
 
-function DiveSiteCardExpanded({ site }) {
+function DiveSiteCardExpanded({ site, editMode }) {
   return (
     <View>
       {!site.details || !site.details.description ? <View></View> :
@@ -116,18 +119,47 @@ function DiveSiteCardExpanded({ site }) {
             <Text style={{fontSize: 16, color: 'black'}}>{site.details.depth}</Text>
           </View>
         }
-        {!site.details || !site.details.visibility ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{site.details.visibility}</Text>
-          </View>
-        }
         {!site.details || !site.details.access ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{site.details.access}</Text>
           </View>
         }
+        {!site.details || !site.details.visibility ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.visibility}</Text>
+          </View>
+        }
+        {!site.details || !site.details.currents ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Currents</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.currents}</Text>
+          </View>
+        }
+        {!site.details || !site.details.airTemperature ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Air Temperature</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.airTemperature}</Text>
+          </View>
+        }
+        {!site.details || !site.details.waterTemperature ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Water Temperature</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.waterTemperature}</Text>
+          </View>
+        }
+        {!site.details || !site.details.experienceLevel ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Experience Level</Text>
+            <Text style={{fontSize: 16, color: 'black'}}>{site.details.experienceLevel}</Text>
+          </View>
+        }
+
+        <TouchableOpacity onPress={editMode} style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
+          <Image style={{height: 20, width: 20, margin: 10, marginRight: 5, marginTop: 20, tintColor: '#A00000'}} source={require('../assets/create.svg')} />
+          <Text style={{color: '#A00000', fontWeight: 'bold', marginTop: 8, marginRight: 5}}>Edit</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
