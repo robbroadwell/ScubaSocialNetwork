@@ -105,24 +105,24 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
 function DiveSiteCardExpanded({ site }) {
   return (
     <View>
-      {!site.details.description ? <View></View> :
+      {!site.details || !site.details.description ? <View></View> :
         <Text style={{fontSize: 18, marginTop: 20}}>{site.details.description}</Text>
       }
 
       <View style={{marginTop: 20}}>
-        {!site.details.depth ? <View></View> :
+        {!site.details || !site.details.depth ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{site.details.depth}</Text>
           </View>
         }
-        {!site.details.visibility ? <View></View> :
+        {!site.details || !site.details.visibility ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{site.details.visibility}</Text>
           </View>
         }
-        {!site.details.access ? <View></View> :
+        {!site.details || !site.details.access ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{site.details.access}</Text>
