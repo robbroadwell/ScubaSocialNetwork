@@ -63,7 +63,7 @@ router.post('/', (req, res, next) => {
     })
     newDiveSite.save()
       .then(() => res.json({
-        message: "Created dive site successfully"
+        newDiveSite
       }))
       .catch(err => res.status(400).json({
         "error": err,

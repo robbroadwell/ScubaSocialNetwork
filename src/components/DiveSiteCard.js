@@ -52,7 +52,7 @@ class DiveSiteCard extends Component {
     return (
       <View>
 
-          <View style={{margin: 5, marginBottom: 0, padding: 15, backgroundColor: '#FEFEFE', shadowColor: '#000',
+          <View style={{margin: 3, marginBottom: 0, padding: 13, backgroundColor: '#FEFEFE', shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },
             shadowOpacity: 0.4,
             shadowRadius: 5}}>
@@ -60,9 +60,9 @@ class DiveSiteCard extends Component {
               <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
                   <View>
-                    <Text style={{fontSize: 17, fontWeight: 'bold'}}>{this.props.site.name}</Text>
+                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>{this.props.site.name}</Text>
                     <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
-                      <Text style={{fontSize: 15, fontWeight: 'bold'}}>{this.props.site.country}, </Text>
+                      <Text style={{fontSize: 14, fontWeight: 'bold'}}>{this.props.site.country}, </Text>
                       <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
                     </View>
                   </View>
@@ -85,8 +85,8 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
         <Ratings
           rating={rating}
           widgetRatedColors={userModified ? "black" : "A00000"}
-          widgetDimensions="15px"
-          widgetSpacings="2px"
+          widgetDimensions="14px"
+          widgetSpacings="1px"
           changeRating={(rating) => changeRating(rating)}>
           <Ratings.Widget widgetHoverColor="black"  />
           <Ratings.Widget widgetHoverColor="black"  />
@@ -95,7 +95,7 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
           <Ratings.Widget widgetHoverColor="black"  />
         </Ratings>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{marginLeft: 5}}>( {reviews()} review )</Text>
+            <Text style={{marginLeft: 5}}>({reviews()} review)</Text>
         </View>
       </View>
     </View>

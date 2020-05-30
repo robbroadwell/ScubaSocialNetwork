@@ -21,11 +21,11 @@ class List extends Component {
     } else {
       return (
         <View style={{flex: 1}}>
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, backgroundColor: '#DDDDDD'}}>
             <ScrollView>
 
               <FlatList
-              style={{paddingBottom: 10}}
+              style={{paddingBottom: 4}}
               data={this.props.diveSites}
               keyExtractor={({ id }, index) => id}
               extraData={this.props.selectedSite}
@@ -41,9 +41,7 @@ class List extends Component {
             </ScrollView>
           </View>
           <View>
-            <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5, shadowOffset: { width: 0, height: 3 },
-              shadowOpacity: 0.4,
-              shadowRadius: 5}}>
+            <View style={{backgroundColor: '#A00000', margin: 10, borderRadius: 5}}>
               <TouchableOpacity onPress={this.onPressAdd}>
                 <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
               </TouchableOpacity>
