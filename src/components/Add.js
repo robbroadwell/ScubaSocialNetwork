@@ -204,7 +204,7 @@ class NameMode extends Component {
         <View>
           <View style={{ flexDirection: 'row', margin: 5}}>
             <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, flex: 1, borderRadius: 5}} onPress={this.props.onPressNameBack} >
-              <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Cancel</Text>
+              <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Back</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, flex: 1, borderRadius: 5}} onPress={() => this.props.onCreateDiveSite(this.state.name)}>
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Confirm</Text>
