@@ -25,7 +25,11 @@ class List extends Component {
   }
 
   onPressEdit = (site) => {
-    this.setState({ editing: site });
+    if (!this.props.user.username) {
+      this.props.openLogin()
+    } else {
+      this.setState({ editing: site });
+    }
   }
 
   closeEditing = () => {

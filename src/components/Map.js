@@ -66,10 +66,11 @@ class Map extends Component {
         } else {
           this.markers.push(diveSites[i]._id)
         }
-        
+
         marker = new window.google.maps.Marker({
           position: { lat: diveSites[i].location.coordinates[1], lng: diveSites[i].location.coordinates[0] },
           map: this.googleMap,
+          // icon: require('../assets/dot.png')
         })
 
         window.google.maps.event.addListener(marker, 'click', (function(marker, i) {

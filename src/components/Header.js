@@ -6,9 +6,9 @@ import { getUser } from "../redux/selectors";
 class Header extends Component {
   render() {
     return (
-      <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center'}}>
-        <Image style={{width: 40, height: 28, margin: 15, marginLeft: 15}} source={require('../assets/flag.png')} />
-        <Image style={{width: 200, height: 38, margin: 5}} source={require('../assets/logo_alt.svg')} />
+      <View style={{backgroundColor: "#1d1d1e", flexDirection: 'row', alignItems: 'center', height: 80}}>
+        <Image style={{width: 50, height: 32, margin: 15, marginLeft: 20}} source={require('../assets/flag2.svg')} />
+        <Image style={{width: 130, height: 55, margin: 5}} source={require('../assets/logo_alt5.svg')} />
 
         <View style={{flex: 1}}>
           <TouchableOpacity onPress={this.props.enableLoginMode}>
