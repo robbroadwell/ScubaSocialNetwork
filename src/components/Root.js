@@ -18,7 +18,7 @@ class Root extends Component {
   render() {
     return (
       <View style={{height: '100vh', flexDirection: 'column'}}>
-        <Header enableLoginMode={() => this.setState({ loginMode: true })} openLogin={() => this.setState({ loginMode: true })} />
+        <Header openLogin={() => this.setState({ loginMode: true })} />
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{width: '25%', minWidth: 350, backgroundColor: "#FEFEFE"}}>
               <List openLogin={() => this.setState({ loginMode: true })}/>
@@ -28,7 +28,7 @@ class Root extends Component {
               <Map />
           </View>
         </View>
-        <Footer />
+        <Footer openLogin={() => this.setState({ loginMode: true })} />
         <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
       </View>
     );

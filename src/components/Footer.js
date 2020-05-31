@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-
+import { connect } from "react-redux";
+import { getUser } from "../redux/selectors";
+import { setAddDiveSiteMode } from '../redux/actions';
 
 class Footer extends Component {
+  onPressAdd = () => {
+    if (!this.props.user.username) {
+      this.props.openLogin()
+    } else {
+      this.props.setAddDiveSiteMode(true);
+    }
+  }
+
   render() {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 30, borderTopWidth: 1, borderColor: "#DDDDDD"}}>
@@ -25,4 +35,12 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+const mapStateToProps = state => {
+  const user = getUser(state);
+  return { user };
+};
+
+export default connect(
+  mapStateToProps,
+  { setAddDiveSiteMode }
+)(Footer);
