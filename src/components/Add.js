@@ -134,10 +134,10 @@ function LocationMode({ mapCenter, onPressClose, onSubmitCoordinates }) {
 
       <View>
         <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
-          <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={onPressClose} >
+          <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={onPressClose} >
             <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={onSubmitCoordinates}>
+          <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={onSubmitCoordinates}>
             <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Confirm</Text>
           </TouchableOpacity>
         </View>
@@ -177,10 +177,10 @@ class NameMode extends Component {
 
         <View>
           <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={this.props.onPressNameBack} >
+            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={this.props.onPressNameBack} >
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Back</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={() => this.props.onCreateDiveSite(this.state.name)}>
+            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={() => this.props.onCreateDiveSite(this.state.name)}>
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Confirm</Text>
             </TouchableOpacity>
           </View>

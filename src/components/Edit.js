@@ -149,12 +149,12 @@ class Edit extends Component {
           <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
 
           {this.props.sourceAdd ? <View></View> :
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={this.props.closeEditing} >
+            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={this.props.closeEditing} >
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Cancel</Text>
             </TouchableOpacity>
           }
 
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={this.onPressSubmit}>
+            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={this.onPressSubmit}>
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>{this.props.sourceAdd ? 'Done' : 'Confirm'}</Text>
             </TouchableOpacity>
           </View>
