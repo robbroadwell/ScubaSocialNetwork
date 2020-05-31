@@ -53,9 +53,11 @@ class DiveSiteCard extends Component {
     return (
       <View>
         <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
-          <View style={{margin: 3, marginBottom: 0, padding: 13, backgroundColor: '#FEFEFE', shadowColor: '#000',
+          <View style={{margin: 5, marginBottom: 0, padding: 13, backgroundColor: '#FEFEFE', shadowColor: '#000',
+            borderColor: '#cccccc',
+            borderWidth: 1,
             shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.4,
+            shadowOpacity: 0,
             shadowRadius: 5}}>
             <View>
               <View style={{flexDirection: 'row'}}>

@@ -15,15 +15,6 @@ class List extends Component {
       };
     }
 
-
-  onPressAdd = () => {
-    if (!this.props.user.username) {
-      this.props.openLogin()
-    } else {
-      this.props.setAddDiveSiteMode(true);
-    }
-  }
-
   onPressEdit = (site) => {
     if (!this.props.user.username) {
       this.props.openLogin()
@@ -42,7 +33,7 @@ class List extends Component {
     } else if (!this.state.editing) {
       return (
         <View style={{flex: 1}}>
-          <View style={{flex: 1, backgroundColor: '#DDDDDD'}}>
+          <View style={{flex: 1, backgroundColor: '#FEFEFE'}}>
             <ScrollView>
 
               <FlatList
@@ -62,14 +53,6 @@ class List extends Component {
 
             </ScrollView>
           </View>
-          <View>
-            <View style={{backgroundColor: '#A00000', margin: 10, marginBottom: 0, borderRadius: 5}}>
-              <TouchableOpacity onPress={this.onPressAdd}>
-                <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Add Dive Site</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <Text style={{color: 'black', fontSize: 12, margin: 10, textAlign: 'center'}}>© 2020 Richard Broadwell, All Rights Reserved</Text>
         </View>
       )
     } else {

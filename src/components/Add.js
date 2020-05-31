@@ -133,7 +133,7 @@ function LocationMode({ mapCenter, onPressClose, onSubmitCoordinates }) {
       </View>
 
       <View>
-        <View style={{ flexDirection: 'row', margin: 5, marginBottom: 0}}>
+        <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
           <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={onPressClose} >
             <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Cancel</Text>
           </TouchableOpacity>
@@ -141,7 +141,6 @@ function LocationMode({ mapCenter, onPressClose, onSubmitCoordinates }) {
             <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Confirm</Text>
           </TouchableOpacity>
         </View>
-        <Text style={{color: 'black', fontSize: 12, margin: 10, textAlign: 'center'}}>© 2020 Richard Broadwell, All Rights Reserved</Text>
       </View>
     </View>
   );
@@ -177,7 +176,7 @@ class NameMode extends Component {
         </View>
 
         <View>
-          <View style={{ flexDirection: 'row', margin: 5, marginBottom: 0}}>
+          <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
             <TouchableOpacity style={{backgroundColor: '#A00000', margin: 5, marginBottom: 0, flex: 1, borderRadius: 5}} onPress={this.props.onPressNameBack} >
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Back</Text>
             </TouchableOpacity>
@@ -185,7 +184,6 @@ class NameMode extends Component {
               <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Confirm</Text>
             </TouchableOpacity>
           </View>
-          <Text style={{color: 'black', fontSize: 12, margin: 10, textAlign: 'center'}}>© 2020 Richard Broadwell, All Rights Reserved</Text>
         </View>
       </View>
     )
