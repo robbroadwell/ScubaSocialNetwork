@@ -17,9 +17,10 @@ class Footer extends Component {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 30, borderTopWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{width: '25%', minWidth: 350, justifyContent: 'center'}}>
-          <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Image style={{height: 20, width: 20, tintColor: '#333333', marginLeft: 5, marginRight: 3}} source={require('../assets/add.svg')} />
-            <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center',color: '#333333'}}>Add Dive Site</Text>
+          <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+            <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+            <Image style={{height: 20, width: 20, tintColor: '#333333', marginLeft: 10, marginRight: 3}} source={require('../assets/add.svg')} />
+            <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center',color: '#333333'}}>Add a Dive Site</Text>
 
           </TouchableOpacity>
         </View>

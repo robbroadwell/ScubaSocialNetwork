@@ -46,7 +46,7 @@ class List extends Component {
                 site={item}
                 onPress={() => this.props.setSelectedDiveSite(item)}
                 editMode={() => this.onPressEdit(item)}
-                selected={this.props.selectedSite._id === item._id}
+                selected={this.props.selectedSite && this.props.selectedSite._id === item._id}
                 />
               )}
               />

@@ -53,7 +53,7 @@ class DiveSiteCard extends Component {
     return (
       <View>
         <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0}>
-          <View style={{margin: 5, marginBottom: 0, padding: 13, backgroundColor: '#FEFEFE', shadowColor: '#000',
+          <View style={{margin: 5, marginBottom: 0, padding: 13, backgroundColor: this.props.selected ? '#EAEAEA' : '#FEFEFE', shadowColor: '#000',
             borderColor: '#cccccc',
             borderWidth: 1,
             shadowOffset: { width: 0, height: 1 },
@@ -74,8 +74,8 @@ class DiveSiteCard extends Component {
 
               </View>
             </View>
-            {!this.props.selected ? <View></View> :
-              <DiveSiteCardExpanded site={this.props.site} editMode={() => this.props.editMode(this.props.site)} />}
+            {/* {!this.props.selected ? <View></View> :
+              <DiveSiteCardExpanded site={this.props.site} editMode={() => this.props.editMode(this.props.site)} />} */}
           </View>
         </TouchableOpacity>
       </View>

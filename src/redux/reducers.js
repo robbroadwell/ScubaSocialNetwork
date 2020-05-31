@@ -39,11 +39,11 @@ function diveSites(state = [], action) {
   }
 }
 
-function selectedDiveSite(state = [], action) {
+function selectedDiveSite(state = null, action) {
   switch (action.type) {
     case SET_SELECTED_DIVE_SITE:
       if (state && state._id && state._id === action.diveSite._id) {
-        return [];
+        return null;
       } else {
         return action.diveSite;
       }
