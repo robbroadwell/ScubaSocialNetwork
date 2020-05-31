@@ -21,7 +21,7 @@ class Root extends Component {
         <Header enableLoginMode={() => this.setState({ loginMode: true })} openLogin={() => this.setState({ loginMode: true })} />
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{width: '25%', minWidth: 350, backgroundColor: "#FEFEFE"}}>
-              <List />
+              <List openLogin={() => this.setState({ loginMode: true })}/>
           </View>
 
           <View style={{flex: 1}}>
