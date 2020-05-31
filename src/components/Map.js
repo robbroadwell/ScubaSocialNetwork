@@ -53,13 +53,20 @@ class Map extends Component {
       mapTypeId: window.google.maps.MapTypeId.HYBRID,
   })
 
+  markers = []; // prevent duplicates
   createMarkers = () => {
     if (window.google) {
       const { diveSites, setSelectedDiveSite } = this.props;
 
       var i, marker;
-
       for (i = 0; i < diveSites.length; i++) {
+
+        if (this.markers.includes(diveSites[i]._id)) {
+          continue
+        } else {
+          this.markers.push(diveSites[i]._id)
+        }
+        
         marker = new window.google.maps.Marker({
           position: { lat: diveSites[i].location.coordinates[1], lng: diveSites[i].location.coordinates[0] },
           map: this.googleMap,
