@@ -102,15 +102,6 @@ class Add extends Component {
           country: this.state.country,
           latitude: this.props.mapCoordinates[0],
           longitude: this.props.mapCoordinates[1],
-          // description: this.state.description,
-          // depth: this.state.depth,
-          // access: this.state.access,
-          // visibility: this.state.visibility,
-          // currents: this.state.currents,
-          // airTemperature: this.state.airTemperature,
-          // waterTemperature: this.state.waterTemperature,
-          // experienceLevel: this.state.experienceLevel
-
       }
 
     }).then(function (response) {
