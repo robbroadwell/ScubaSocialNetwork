@@ -23,14 +23,14 @@ class Header extends Component {
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20}}>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
+            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
               <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Dive Sites</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
+            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
               <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Destinations</Text>
               <Image style={{height: 20, width: 20, tintColor: '#333333'}} source={require('../assets/drop_down.svg')} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <TouchableOpacity onPress={this.props.enableLoginMode} style={{flexDirection: 'row', alignItems: 'center'}}>
