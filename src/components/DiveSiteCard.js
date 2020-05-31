@@ -91,11 +91,11 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
           widgetDimensions="14px"
           widgetSpacings="1px"
           changeRating={(rating) => changeRating(rating)}>
-          <Ratings.Widget widgetHoverColor="black"  />
-          <Ratings.Widget widgetHoverColor="black"  />
-          <Ratings.Widget widgetHoverColor="black"  />
-          <Ratings.Widget widgetHoverColor="black"  />
-          <Ratings.Widget widgetHoverColor="black"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
         </Ratings>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={{marginLeft: 5}}>({reviews()} review)</Text>
