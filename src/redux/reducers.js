@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SET_USER, SET_DIVE_SITES, SET_SELECTED_DIVE_SITE, SET_MAP_COORDINATES, SET_ADD_DIVE_SITE_MODE
+  SET_USER, SET_DIVE_SITES, SET_SELECTED_DIVE_SITE, SET_MAP_CENTER, SET_MAP_RECT, SET_ADD_DIVE_SITE_MODE
 } from './actions'
 
 function user(state = [], action) {
@@ -12,9 +12,18 @@ function user(state = [], action) {
   }
 }
 
-function mapCoordinates(state = [], action) {
+function mapCenter(state = [], action) {
   switch (action.type) {
-    case SET_MAP_COORDINATES:
+    case SET_MAP_CENTER:
+      return action.coordinates
+    default:
+      return state
+  }
+}
+
+function mapRect(state = [], action) {
+  switch (action.type) {
+    case SET_MAP_RECT:
       return action.coordinates
     default:
       return state
@@ -54,7 +63,8 @@ function addDiveSiteMode(state = false, action) {
 
 const rootReducer = combineReducers({
   user,
-  mapCoordinates,
+  mapCenter,
+  mapRect,
   diveSites,
   selectedDiveSite,
   addDiveSiteMode

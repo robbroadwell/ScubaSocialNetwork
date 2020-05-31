@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
-import { getUser, getDiveSites, getSelectedDiveSite, getMapCoordinates, getAddDiveSiteMode } from '../redux/selectors';
+import { getUser, getDiveSites, getSelectedDiveSite, getAddDiveSiteMode } from '../redux/selectors';
 import Add from './Add';
 import Edit from './Edit';
 import DiveSiteCard from './DiveSiteCard';
@@ -78,9 +78,8 @@ const mapStateToProps = state => {
   const user = getUser(state);
   const diveSites = getDiveSites(state);
   const selectedSite = getSelectedDiveSite(state);
-  const mapCoordinates = getMapCoordinates(state);
   const addDiveSiteMode = getAddDiveSiteMode(state);
-  return { user, diveSites, selectedSite, mapCoordinates, addDiveSiteMode };
+  return { user, diveSites, selectedSite, addDiveSiteMode };
 };
 
 export default connect(

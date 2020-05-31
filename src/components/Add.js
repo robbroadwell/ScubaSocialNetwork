@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
-import { getUser, getMapCoordinates } from '../redux/selectors';
+import { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
+import { getUser, getMapCenter } from '../redux/selectors';
 import DiveSiteCard from './DiveSiteCard';
 import Edit from './Edit';
 const axios = require('axios')
@@ -80,7 +80,7 @@ class Add extends Component {
   }
 
   onSubmitCoordinates = () => {
-    var path = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.mapCoordinates[0] + ',' + this.props.mapCoordinates[1] + '&key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E' + '&result_type=country'
+    var path = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.props.mapCenter[0] + ',' + this.props.mapCenter[1] + '&key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E' + '&result_type=country'
 
     axios.get(path).then(function (response) {
       var country = (response.data.results && response.data.results[0]) ? response.data.results[0].formatted_address : "Ocean"
@@ -100,35 +100,36 @@ class Add extends Component {
       data: {
           name: name,
           country: this.state.country,
-          latitude: this.props.mapCoordinates[0],
-          longitude: this.props.mapCoordinates[1],
+          latitude: this.props.mapCenter[0],
+          longitude: this.props.mapCenter[1],
       }
 
     }).then(function (response) {
-        this.setState({ step: ADD_STEPS.ADDITIONAL, newDiveSite: response.data.newDiveSite });
-      }.bind(this));
+      this.props.fetchDiveSites()
+      this.setState({ step: ADD_STEPS.ADDITIONAL, newDiveSite: response.data.newDiveSite });
+    }.bind(this));
   }
 
   render() {
       switch (this.state.step) {
         case ADD_STEPS.LOCATION:
-          return <LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
+          return <LocationMode mapCenter={this.props.mapCenter} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
         case ADD_STEPS.NAME:
           return <NameMode onPressNameBack={this.onPressNameBack} onCreateDiveSite={this.onCreateDiveSite}/>;
         case ADD_STEPS.ADDITIONAL:
           return <Edit site={this.state.newDiveSite} closeEditing={this.onPressClose} sourceAdd={true} />;
         default:
-          return <LocationMode mapCoordinates={this.props.mapCoordinates} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
+          return <LocationMode mapCenter={this.props.mapCenter} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
       }
   }
 }
 
-function LocationMode({ mapCoordinates, onPressClose, onSubmitCoordinates }) {
+function LocationMode({ mapCenter, onPressClose, onSubmitCoordinates }) {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 16}}>Location</Text>
-        <Text style={{fontSize: 20, paddingBottom: 16, margin: 5, textAlign: 'center'}}>{Number((mapCoordinates[0]).toFixed(5))}, {Number((mapCoordinates[1]).toFixed(5))} </Text>
+        <Text style={{fontSize: 20, paddingBottom: 16, margin: 5, textAlign: 'center'}}>{Number((mapCenter[0]).toFixed(5))}, {Number((mapCenter[1]).toFixed(5))} </Text>
       </View>
 
       <View>
@@ -193,11 +194,11 @@ class NameMode extends Component {
 
 const mapStateToProps = state => {
   const user = getUser(state);
-  const mapCoordinates = getMapCoordinates(state);
-  return { user, mapCoordinates };
+  const mapCenter = getMapCenter(state);
+  return { user, mapCenter };
 };
 
 export default connect(
   mapStateToProps,
-  { setSelectedDiveSite, setAddDiveSiteMode }
+  { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites }
 )(Add);

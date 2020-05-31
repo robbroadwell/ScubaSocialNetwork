@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import debounce from '../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setSelectedDiveSite, setMapCoordinates } from "../redux/actions";
+import { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites } from "../redux/actions";
 import { getDiveSites, getAddDiveSiteMode } from "../redux/selectors";
 
 class Map extends Component {
@@ -32,24 +32,12 @@ class Map extends Component {
 
       var center = new window.google.maps.LatLng(this.googleMap.getCenter().lat(), this.googleMap.getCenter().lng(), false);
 
-      this.props.setMapCoordinates([center.lat(), center.lng()])
-      this.searchForDiveSites(coordinates)
+      this.props.setMapCenter([center.lat(), center.lng()])
+      this.props.setMapRect(coordinates)
+      this.props.fetchDiveSites()
 
     }, 250));
     })
-  }
-
-  searchForDiveSites = (coordinates) => {
-
-  fetch('https://www.divingscore.com/api/dive-sites?polygon='+`${coordinates}`)
-    .then((response) => response.json())
-    .then((json) => {
-      this.props.setDiveSites(json);
-    })
-    .catch((error) => console.error(error))
-    .finally(() => {
-      // this.setState({ isLoading: false });
-    });
   }
 
   createGoogleMap = () =>
@@ -118,5 +106,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setDiveSites, setSelectedDiveSite, setMapCoordinates }
+  { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites }
 )(Map);

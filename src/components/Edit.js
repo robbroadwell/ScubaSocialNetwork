@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
 import { connect } from "react-redux";
-import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
-import { getUser, getMapCoordinates } from '../redux/selectors';
+import { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
+import { getUser } from '../redux/selectors';
 import DiveSiteCard from './DiveSiteCard';
 const axios = require('axios')
 
@@ -77,7 +77,7 @@ class Edit extends Component {
       }
 
     }).then(function (response) {
-
+      this.props.fetchDiveSites()
       this.props.closeEditing()
     }.bind(this));
   }
@@ -168,11 +168,10 @@ class Edit extends Component {
 
 const mapStateToProps = state => {
   const user = getUser(state);
-  const mapCoordinates = getMapCoordinates(state);
-  return { user, mapCoordinates };
+  return { user };
 };
 
 export default connect(
   mapStateToProps,
-  { setSelectedDiveSite, setAddDiveSiteMode }
+  { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites }
 )(Edit);
