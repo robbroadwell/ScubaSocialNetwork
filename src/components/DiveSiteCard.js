@@ -74,8 +74,6 @@ class DiveSiteCard extends Component {
 
               </View>
             </View>
-            {/* {!this.props.selected ? <View></View> :
-              <DiveSiteCardExpanded site={this.props.site} editMode={() => this.props.editMode(this.props.site)} />} */}
           </View>
         </TouchableOpacity>
       </View>

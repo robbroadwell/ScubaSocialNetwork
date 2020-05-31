@@ -3,7 +3,6 @@
  */
 
 export const SET_DIVE_SITES = 'SET_DIVE_SITES'
-export const SET_SELECTED_DIVE_SITE = 'SET_SELECTED_DIVE_SITE'
 export const SET_USER = 'SET_USER'
 export const SET_MAP_CENTER = 'SET_MAP_CENTER'
 export const SET_MAP_RECT = 'SET_MAP_RECT'
@@ -15,10 +14,6 @@ export const SET_ADD_DIVE_SITE_MODE = 'SET_ADD_DIVE_SITE_MODE'
 
 export function setDiveSites(diveSites) {
   return { type: SET_DIVE_SITES, diveSites }
-}
-
-export function setSelectedDiveSite(diveSite) {
-  return { type: SET_SELECTED_DIVE_SITE, diveSite }
 }
 
 export function setUser(user) {

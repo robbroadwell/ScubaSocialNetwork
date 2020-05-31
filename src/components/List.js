@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
-import { setSelectedDiveSite, setAddDiveSiteMode } from '../redux/actions';
-import { getUser, getDiveSites, getSelectedDiveSite, getAddDiveSiteMode } from '../redux/selectors';
+import {  setAddDiveSiteMode } from '../redux/actions';
+import { getUser, getDiveSites, getAddDiveSiteMode } from '../redux/selectors';
 import Add from './Add';
 import Edit from './Edit';
 import DiveSiteCard from './DiveSiteCard';
+import { withRouter } from 'react-router-dom'
+import qs from 'qs';
 
 class List extends Component {
   constructor(props) {
@@ -27,7 +29,16 @@ class List extends Component {
     this.setState({ editing: null });
   }
 
+  selectDiveSite = (site) => {
+    if (qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id === site._id) {
+      this.props.history.push(`/`)
+    } else {
+      this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
+    }
+  }
+
   render() {
+    const selectedID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
     if (this.props.addDiveSiteMode) {
       return <Add />
     } else if (!this.state.editing) {
@@ -44,9 +55,9 @@ class List extends Component {
               renderItem={({ item }) => (
                 <DiveSiteCard
                 site={item}
-                onPress={() => this.props.setSelectedDiveSite(item)}
+                onPress={() => this.selectDiveSite(item)}
                 editMode={() => this.onPressEdit(item)}
-                selected={this.props.selectedSite && this.props.selectedSite._id === item._id}
+                selected={selectedID === item._id}
                 />
               )}
               />
@@ -64,12 +75,11 @@ class List extends Component {
 const mapStateToProps = state => {
   const user = getUser(state);
   const diveSites = getDiveSites(state);
-  const selectedSite = getSelectedDiveSite(state);
   const addDiveSiteMode = getAddDiveSiteMode(state);
-  return { user, diveSites, selectedSite, addDiveSiteMode };
+  return { user, diveSites, addDiveSiteMode };
 };
 
 export default connect(
   mapStateToProps,
-  { setSelectedDiveSite, setAddDiveSiteMode }
-)(List);
+  { setAddDiveSiteMode }
+)(withRouter(List));

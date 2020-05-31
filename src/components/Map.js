@@ -5,6 +5,7 @@ import debounce from '../utility/debounce';
 import { connect } from "react-redux";
 import { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites } from "../redux/actions";
 import { getDiveSites, getAddDiveSiteMode } from "../redux/selectors";
+import { withRouter } from 'react-router-dom'
 
 class Map extends Component {
   googleMapRef = React.createRef()
@@ -74,14 +75,14 @@ class Map extends Component {
         })
 
         window.google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            setSelectedDiveSite(diveSites[i])
-              // infowindow.setContent(locations[i][0]);
-              // infowindow.open(map, marker);
-          }
-        })(marker, i));
+          return () => {this.selectDiveSite(diveSites[i]) }
+        }.bind(this))(marker, i));
       }
     }
+  }
+
+  selectDiveSite = (site) => {
+    this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
   }
 
   render() {
@@ -114,5 +115,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites }
-)(Map);
+  { setDiveSites, setMapCenter, setMapRect, fetchDiveSites }
+)(withRouter(Map));

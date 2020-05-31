@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
+import { setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
 import { getUser, getMapCenter } from '../redux/selectors';
 import DiveSiteCard from './DiveSiteCard';
 import Edit from './Edit';
@@ -198,5 +198,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setSelectedDiveSite, setAddDiveSiteMode, fetchDiveSites }
+  { setAddDiveSiteMode, fetchDiveSites }
 )(Add);

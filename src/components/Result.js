@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import qs from 'qs';
 
 class Result extends Component {
   render() {
-    if (!this.props.site) {
-      return <View></View>
-    } else {
-      return (
-        <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#EAEAEA'}}>
-  
-        </View>
-      )
-    }
+    return (
+      <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#EAEAEA'}}>
+        <Text>{qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}</Text>
+      </View>
+    )
   }
 }
 
