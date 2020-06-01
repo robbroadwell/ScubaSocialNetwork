@@ -8,8 +8,8 @@ class Header extends Component {
   render() {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 70, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
-        <View style={{width: '25%', minWidth: 350, justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row'}}>
-          <Image style={{width: 50, height: 32, marginHorizontal: 20}} source={require('../assets/flag2.svg')} />
+        <View style={{width: '25%', minWidth: 350, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+          <Image style={{width: 45, height: 28, marginRight: 15}} source={require('../assets/flag2.svg')} />
           <Image style={{width: 250, height: 40, marginTop: 5}} source={require('../assets/logo_23.svg')} />
         </View>
 

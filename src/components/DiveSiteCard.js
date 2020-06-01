@@ -87,7 +87,7 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
       <View style={{alignItems: 'center'}}>
         <Ratings
           rating={rating}
-          widgetRatedColors={userModified ? "black" : "DD0000"}
+          widgetRatedColors={userModified ? "#FFB400" : "DD0000"}
           widgetDimensions="14px"
           widgetSpacings="1px"
           changeRating={(rating) => changeRating(rating)}>
@@ -98,7 +98,8 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
           <Ratings.Widget widgetHoverColor="#FFB400"  />
         </Ratings>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{marginLeft: 5}}>({reviews()} review)</Text>
+            <Text>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
+            <Text style={{marginLeft: 5}}>({reviews()} review{reviews() == 1 ? '' : 's'})</Text>
         </View>
       </View>
     </View>
