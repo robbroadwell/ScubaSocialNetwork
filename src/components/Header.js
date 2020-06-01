@@ -20,8 +20,11 @@ class Header extends Component {
             </TouchableOpacity> */}
 
             {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
-              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Destinations</Text>
-              <Image style={{height: 20, width: 20, tintColor: '#333333'}} source={require('../assets/drop_down.svg')} />
+              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Leaders</Text>
+            </TouchableOpacity> */}
+
+            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
+              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Shop</Text>
             </TouchableOpacity> */}
           </View>
 

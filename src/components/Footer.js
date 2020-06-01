@@ -5,13 +5,6 @@ import { getUser } from "../redux/selectors";
 import { setAddDiveSiteMode } from '../redux/actions';
 
 class Footer extends Component {
-  onPressAdd = () => {
-    if (!this.props.user.username) {
-      this.props.openLogin()
-    } else {
-      this.props.setAddDiveSiteMode(true);
-    }
-  }
 
   render() {
     return (
@@ -21,7 +14,6 @@ class Footer extends Component {
             <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
             <Image style={{height: 20, width: 20, tintColor: '#333333', marginLeft: 10, marginRight: 3}} source={require('../assets/add.svg')} />
             <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333', marginLeft: 5}}>Add a Dive Site</Text>
-
           </TouchableOpacity>
         </View>
         <View style={{flex: 1}} />
