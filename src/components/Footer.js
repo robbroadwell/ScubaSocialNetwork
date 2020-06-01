@@ -30,7 +30,6 @@ class Footer extends Component {
         <Text style={{color: '#333333', fontSize: 12, marginHorizontal: 10}}>Privacy</Text>
         <Text style={{color: '#333333', fontSize: 12, marginHorizontal: 10}}>Terms of Use</Text>
         <Text style={{color: '#333333', fontSize: 12, marginHorizontal: 10}}>© 2020, ScubaSoft Inc., or its affiliates</Text>
-        <Text style={{color: '#333333', fontSize: 12, marginHorizontal: 10}}>Version 0.4.0 (40)</Text>
       </View>
     )
   }
