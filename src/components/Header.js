@@ -9,8 +9,8 @@ class Header extends Component {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 70, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{width: '25%', minWidth: 350, justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row'}}>
-          <Image style={{width: 50, height: 32, margin: 15}} source={require('../assets/flag2.svg')} />
-          <Image style={{width: 130, height: 55}} source={require('../assets/logo_dark.svg')} />
+          <Image style={{width: 50, height: 32, marginHorizontal: 20}} source={require('../assets/flag2.svg')} />
+          <Image style={{width: 230, height: 45, marginTop: 5}} source={require('../assets/logo_21.svg')} />
         </View>
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20}}>

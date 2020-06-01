@@ -87,7 +87,7 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
       <View style={{alignItems: 'center'}}>
         <Ratings
           rating={rating}
-          widgetRatedColors={userModified ? "black" : "A00000"}
+          widgetRatedColors={userModified ? "black" : "DD0000"}
           widgetDimensions="14px"
           widgetSpacings="1px"
           changeRating={(rating) => changeRating(rating)}>
