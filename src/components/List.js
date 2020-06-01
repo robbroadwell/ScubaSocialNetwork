@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { FlatList, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from "react-redux";
 import {  setAddDiveSiteMode } from '../redux/actions';
 import { getUser, getDiveSites, getAddDiveSiteMode } from '../redux/selectors';
@@ -16,6 +16,14 @@ class List extends Component {
           editing: null
       };
     }
+
+  onPressAdd = () => {
+    if (!this.props.user.username) {
+      this.props.openLogin()
+    } else {
+      this.props.setAddDiveSiteMode(true);
+    }
+  }
 
   onPressEdit = (site) => {
     if (!this.props.user.username) {
@@ -61,7 +69,11 @@ class List extends Component {
                 />
               )}
               />
-
+              <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'row', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+                <Image style={{height: 15, width: 15, tintColor: '#333333', marginLeft: 10, marginRight: 3}} source={require('../assets/add.svg')} />
+                <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
+              </TouchableOpacity>
             </ScrollView>
           </View>
         </View>

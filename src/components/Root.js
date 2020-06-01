@@ -44,7 +44,6 @@ class Root extends Component {
             </View>
 
           </View>
-          <Footer openLogin={() => this.setState({ loginMode: true })} />
           <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
         </View>
       </Router>
