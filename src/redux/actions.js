@@ -40,7 +40,6 @@ export function fetchDiveSites() {
     return fetch('https://www.divingscore.com/api/dive-sites?polygon='+`${coordinates}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json)
         dispatch(setDiveSites(json));
       })
       .catch((error) => console.error(error))

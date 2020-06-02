@@ -12,7 +12,7 @@ const persistConfig = {
 }
 
 const checkTokenExpiration = store => next => action => {
-  console.log(action);
+  // console.log(action);
   if (action.type !== SET_USER && store.getState().user && store.getState().user.token && jwt_decode(store.getState().user.token).exp < Date.now() / 1000) {
     store.dispatch(setUser([]))
   }

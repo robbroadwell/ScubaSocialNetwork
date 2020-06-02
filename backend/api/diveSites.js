@@ -5,8 +5,14 @@ const passport = require('passport');
 const DiveSite = require('../models/diveSite');
 
 router.get('/', (req, res) => {
+  if (!req || !req.query || !req.query.polygon) {
+    DiveSite.find({}, ['name', 'country', 'location', 'reviews'])
+    .then(diveSites => res.json(diveSites))
+    .catch(err => console.log(err))
+    return
+  }
+  
   const polygon = req.query.polygon.split(',')
-
   DiveSite.find({
     location: {
       $geoWithin: {
@@ -21,9 +27,17 @@ router.get('/', (req, res) => {
           ]]
         }
     }}
-  })
+  }, ['name', 'country', 'location', 'reviews'])
   .then(diveSites => res.json(diveSites))
   .catch(err => console.log(err))
+})
+
+router.get('/details/:id', (req, res) => {
+  DiveSite.findById(req.params.id).then(diveSite => {
+    res.json({
+      diveSite
+    })
+  })
 })
 
 router.post('/', (req, res, next) => {
