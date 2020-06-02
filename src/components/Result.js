@@ -54,9 +54,14 @@ class Result extends Component {
               <PrimaryButton title={"Review"} icon={require('../assets/review.svg')} />
               <PrimaryButton title={"Edit"}icon={require('../assets/create.svg')}  />
             </View>
-            <View style={{marginTop: 20, marginBottom: 10}}>
-              <Text>If conditions are right for the dive, the trip down the swim-through will bring you face-to-face with soldierfish, squirrelfish and fairy basslets. A lot depends on hitting the site at the right times for the current and tidal changes. Prior to descent, you may look down and see sharks swimming at a depth of approximately 18 m. The dive begins with a descent to a tubular cave starting at 15 m deep. This swim-through is coated in hard and soft corals, as well as colorful sponges and crinoids. There may be a few resident lionfish and morays greeting you as you cruise along. </Text>
-            </View>
+            
+            {
+              !diveSite.details.description ? <View></View> :
+              <View style={{marginTop: 20, marginBottom: 10}}>
+                <Text>{diveSite.details.description}</Text>
+              </View>
+            }
+            
             <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
 
             </View>
