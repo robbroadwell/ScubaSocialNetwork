@@ -45,18 +45,32 @@ class Result extends Component {
       return <Loading />
     } else {
       return (
-        <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-          <View style={{flex: 1}}>
-            <View style={{flexDirection: 'row', marginRight: 30}} >
-              <Text>{diveSite.name}, {diveSite.country}</Text>
+        <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+          <View style={{flex: 1, margin: 20, marginRight: 0}}>
+            <View style={{flexDirection: 'row'}} >
+              <Text style={{fontSize: 28, fontWeight: '200'}}>{diveSite.name}, {diveSite.country}</Text>
               <View style={{flex: 1}}></View>
-              <PrimaryButton title={"Add Photo"} icon={require('../assets/flag2.svg')} />
-              <PrimaryButton title={"Comment"} icon={require('../assets/flag2.svg')} />
-              <PrimaryButton title={"Edit"}icon={require('../assets/flag2.svg')}  />
+              <PrimaryButton title={"Add Photo"} icon={require('../assets/add_photo.svg')} />
+              <PrimaryButton title={"Review"} icon={require('../assets/review.svg')} />
+              <PrimaryButton title={"Edit"}icon={require('../assets/create.svg')}  />
+            </View>
+            <View style={{marginTop: 20, marginBottom: 10}}>
+              <Text>If conditions are right for the dive, the trip down the swim-through will bring you face-to-face with soldierfish, squirrelfish and fairy basslets. A lot depends on hitting the site at the right times for the current and tidal changes. Prior to descent, you may look down and see sharks swimming at a depth of approximately 18 m. The dive begins with a descent to a tubular cave starting at 15 m deep. This swim-through is coated in hard and soft corals, as well as colorful sponges and crinoids. There may be a few resident lionfish and morays greeting you as you cruise along. </Text>
+            </View>
+            <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+
+            </View>
+            <View style={{marginBottom: 20, flexDirection: 'row'}}>
+              <View style={{flex: 1, backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 200, marginBottom: 20, marginRight: 10}}>
+
+              </View>
+              <View style={{flex: 1, backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 200, marginBottom: 20, marginLeft: 10}}>
+                
+              </View>
             </View>
           
           </View>
-          <View style={{width: 300}}>
+          <View style={{width: 300, margin: 20}}>
             <View style={{height: 300, padding: 20, borderColor: "#DDDDDD", borderWidth: 1}}>
               
             </View>

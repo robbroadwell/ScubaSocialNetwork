@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 import { getUser } from "../redux/selectors";
+import PrimaryButton from './PrimaryButton';
 
 class Header extends Component {
 
@@ -28,12 +29,7 @@ class Header extends Component {
             </TouchableOpacity> */}
           </View>
 
-          <TouchableOpacity onPress={this.props.openLogin} style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>{
-                this.props.user.username ? this.props.user.username : 'Login'
-            }</Text>
-            <Image style={{height: 20, width: 20, tintColor: '#333333'}} source={require('../assets/drop_down.svg')} />
-          </TouchableOpacity>
+          <PrimaryButton action={this.props.openLogin} title={this.props.user.username ? this.props.user.username : 'Login'} icon={require('../assets/drop_down.svg')} />
 
         </View>
       </View>

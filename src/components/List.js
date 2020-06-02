@@ -51,8 +51,8 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <View style={{flex: 1}}>
-          <View style={{flex: 1, backgroundColor: '#FEFEFE'}}>
+        <View style={{flex: 1, backgroundColor: '#FEFEFE'}}>
+          <View style={{flex: 1}}>
             <ScrollView>
 
               <FlatList

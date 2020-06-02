@@ -28,7 +28,7 @@ class Root extends Component {
   render() {
     return (
       <Router>
-        <View style={{height: '100vh', flexDirection: 'column'}}>
+        <View style={{minHeight: '100vh', flexDirection: 'column'}}>
           <Header openLogin={() => this.setState({ loginMode: true })} />
           <View style={{flex: 1, flexDirection: 'row'}}>
 
