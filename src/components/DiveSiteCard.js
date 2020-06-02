@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, TouchableOpacityBase } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Ratings from 'react-ratings-declarative';
-import HoverableView from './HoverableView';
+import BaseHoverableView from './BaseHoverableView';
 
 class DiveSiteCard extends Component {
   constructor(props) {
@@ -54,8 +54,8 @@ class DiveSiteCard extends Component {
     return (
       <View>
           <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0} >
-            <HoverableView
-              style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', margin: 5, marginBottom: 0, paddingHorizontal: this.props.selected ? 11 : 12, paddingVertical: this.props.selected ? 9 : 10, backgroundColor: '#FEFEFE', borderColor: this.props.selected ? '#555555' : '#cccccc', borderWidth: this.props.selected ? 2 : 1 }}
+            <BaseHoverableView
+              style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', margin: 5, marginBottom: 0, paddingHorizontal: this.props.selected ? 11 : 12, paddingVertical: this.props.selected ? 9 : 10, backgroundColor: this.props.selected ? "21313C" : '#FEFEFE', borderColor: this.props.selected ? '#555555' : '#cccccc', borderWidth: this.props.selected ? 2 : 1 }}
               onHover={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', margin: 5, marginBottom: 0, paddingHorizontal: this.props.selected ? 11 : 12, paddingVertical: this.props.selected ? 9 : 10, backgroundColor: '#FEFEFE', borderColor: this.props.selected ? '#555555' : '#aaaaaa', borderWidth: this.props.selected ? 2 : 1 }}
             >
 
@@ -70,7 +70,7 @@ class DiveSiteCard extends Component {
 
               <DiveSiteReviews reviews={this.reviews} rating={this.state.rating} changeRating={(rating) => this.changeRating(rating)} userModified={this.state.userModified} />
             </View>
-          </HoverableView>
+          </BaseHoverableView>
         </TouchableOpacity>
       </View>
     );

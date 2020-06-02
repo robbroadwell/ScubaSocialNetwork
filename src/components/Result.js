@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, Text, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import qs from 'qs';
+import PrimaryButton from './PrimaryButton';
 
 class Result extends Component {
   constructor(props) {
@@ -40,11 +41,55 @@ class Result extends Component {
   render() {
     const {diveSite} = this.state.data
 
-    if (this.state.isLoading) {
+    if (this.state.isLoading || !diveSite || !diveSite.details) {
       return <Loading />
     } else {
       return (
-        <View style={{position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+        <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+          <View style={{flex: 1}}>
+            <View style={{flexDirection: 'row', marginRight: 30}} >
+              <Text>{diveSite.name}, {diveSite.country}</Text>
+              <View style={{flex: 1}}></View>
+              <PrimaryButton title={"Add Photo"} icon={require('../assets/flag2.svg')} />
+              <PrimaryButton title={"Comment"} icon={require('../assets/flag2.svg')} />
+              <PrimaryButton title={"Edit"}icon={require('../assets/flag2.svg')}  />
+            </View>
+          
+          </View>
+          <View style={{width: 300}}>
+            <View style={{height: 300, padding: 20, borderColor: "#DDDDDD", borderWidth: 1}}>
+              
+            </View>
+            <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
+              
+            </View>
+            <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
+              
+            </View>
+            <View style={{height: 200, padding: 20, marginTop: 20, marginBottom: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
+              
+            </View>
+          </View>
+        </View>
+      )
+    }
+  }
+}
+
+function Loading() {
+ return (
+  <View style={{position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator />
+    </View>
+  </View>
+  )
+}
+
+export default Result
+
+
+{/* <View style={{position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
         {!diveSite.details || !diveSite.details.description ? <View></View> :
           <Text style={{fontSize: 18, marginTop: 20}}>{diveSite.details.description}</Text>
         }
@@ -97,20 +142,4 @@ class Result extends Component {
             <Text style={{color: '#A00000', fontWeight: 'bold', marginTop: 8, marginRight: 5}}>Edit</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      )
-    }
-  }
-}
-
-function Loading() {
- return (
-  <View style={{position: 'absolute', width: '100%', height: '100%', padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <ActivityIndicator />
-    </View>
-  </View>
-  )
-}
-
-export default Result
+      </View> */}

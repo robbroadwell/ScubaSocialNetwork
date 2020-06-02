@@ -32,7 +32,7 @@ class Root extends Component {
           <Header openLogin={() => this.setState({ loginMode: true })} />
           <View style={{flex: 1, flexDirection: 'row'}}>
 
-            <View style={{width: '25%', minWidth: 350, backgroundColor: "#FEFEFE"}}>
+            <View style={{width: 400, backgroundColor: "#FEFEFE"}}>
               <Route path="/" >
                 <List openLogin={() => this.setState({ loginMode: true })}/>
               </Route>
