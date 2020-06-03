@@ -113,7 +113,8 @@ class Standard extends Component {
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
 
-          <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+          <View style={{backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'flex-end', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+            
             <Details diveSite={diveSite} />
           </View>
           
@@ -160,47 +161,35 @@ class Standard extends Component {
 
 function Details({ diveSite }) {
   return (
-    <View style={{padding: 20, backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-      <View style={{marginTop: 20}}>
+    <View style={{backgroundColor: '#FEFEFE'}}>
+      <View>
         {!diveSite.details || !diveSite.details.depth ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
+            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.depth}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.access ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
+            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.access}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.visibility ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
+            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.visibility}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.currents ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Currents</Text>
+            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Currents</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.currents}</Text>
-          </View>
-        }
-        {!diveSite.details || !diveSite.details.airTemperature ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Air Temperature</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.airTemperature}</Text>
-          </View>
-        }
-        {!diveSite.details || !diveSite.details.waterTemperature ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Water Temperature</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.waterTemperature}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.experienceLevel ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 16, color: 'black', fontWeight: 'bold'}}>Experience Level</Text>
+            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Difficulty</Text>
             <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.experienceLevel}</Text>
           </View>
         }
