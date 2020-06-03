@@ -30,7 +30,7 @@ class Result extends Component {
 
 
   fetchDiveSite = () => {
-    fetch('http://localhost:8080/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+    fetch('https://www.divingscore.com/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
