@@ -117,9 +117,8 @@ class Standard extends Component {
             <Details diveSite={diveSite} />
           </View>
           
-
           {
-            !diveSite.details || !diveSite.details ? <View></View> :
+            !diveSite.details || !diveSite.details.description ? <View></View> :
             <View style={{marginTop: 20, marginBottom: 10}}>
               <Text>{diveSite.details.description}</Text>
             </View>
