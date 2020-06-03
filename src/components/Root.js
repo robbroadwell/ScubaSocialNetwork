@@ -18,23 +18,16 @@ import {
 } from "react-router-dom";
 
 class Root extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        loginMode: false
-    };
-  }
-
   render() {
     return (
       <Router>
-        <View style={{minHeight: '100vh', flexDirection: 'column'}}>
-          <Header openLogin={() => this.setState({ loginMode: true })} />
+        <View style={{minHeight: '100vh', flexDirection: 'column-reverse'}}>
+          
           <View style={{flex: 1, flexDirection: 'row'}}>
 
             <View style={{width: 400, backgroundColor: "#FEFEFE"}}>
               <Route path="/" >
-                <List openLogin={() => this.setState({ loginMode: true })}/>
+                <List />
               </Route>
             </View>
 
@@ -44,7 +37,7 @@ class Root extends Component {
             </View>
 
           </View>
-          <Login visible={this.state.loginMode} disableLoginMode={() => this.setState({ loginMode: false })}/>
+          <Header />
         </View>
       </Router>
       

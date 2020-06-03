@@ -2,9 +2,21 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 import { getUser } from "../redux/selectors";
-import PrimaryButton from './PrimaryButton';
+import PopoverButton from './buttons/PopoverButton';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        loginVisible: false
+    };
+  }
+
+  toggleLogin = () => {
+    this.setState(prevState => ({
+      loginVisible: !prevState.loginVisible
+    }));
+  };
 
   render() {
     return (
@@ -14,23 +26,14 @@ class Header extends Component {
           <Image style={{width: 250, height: 40, marginTop: 1}} source={require('../assets/logo_23.svg')} />
         </View>
 
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20}}>
-          <View style={{flexDirection: 'row'}}>
-            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
-              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Dive Sites</Text>
-            </TouchableOpacity> */}
-
-            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
-              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Leaders</Text>
-            </TouchableOpacity> */}
-
-            {/* <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', marginRight: 40}}>
-              <Text style={{textAlign: 'right', color: '#333333', fontWeight: 'bold', fontSize: 16}}>Shop</Text>
-            </TouchableOpacity> */}
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 20}}>
+          <View>
+            <PopoverButton action={this.toggleLogin} popover={this.state.loginVisible} title={this.props.user.username ? this.props.user.username : 'Login'} icon={this.state.loginVisible ? require('../assets/drop_up.svg') : require('../assets/drop_down.svg')} >
+              <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                <Text>Test</Text>
+              </View>
+            </PopoverButton>
           </View>
-
-          <PrimaryButton action={this.props.openLogin} title={this.props.user.username ? this.props.user.username : 'Login'} icon={require('../assets/drop_down.svg')} />
-
         </View>
       </View>
     )

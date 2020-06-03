@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import { View, Text, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
 import qs from 'qs';
-import PrimaryButton from './PrimaryButton';
+import PrimaryButton from './buttons/PrimaryButton';
+import PopoverButton from './buttons/PopoverButton';
+import DiveSiteReviews from './DiveSiteReviews';
 
 class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
         isLoading: true,
-        data: []
+        isAddPhoto: false,
+        isReview: false,
+        data: [],
     };
   }
 
@@ -36,35 +40,59 @@ class Result extends Component {
         this.setState({ isLoading: false });
     })
   }
+
+  rating = () => {
+    const {diveSite} = this.state.data
+
+    if (!diveSite.reviews || diveSite.reviews.length === 0) {
+      return 0
+    }
+
+    var total = 0;
+    var x;
+
+    for (x in diveSite.reviews) {
+      total = total + diveSite.reviews[x].rating
+    }
+
+    return total / diveSite.reviews.length
+  }
+
+  reviews = () => {
+    const {diveSite} = this.state.data
+
+    if (!diveSite || !diveSite.reviews) {
+      return 0
+    }
+    return diveSite.reviews.length
+  }
+
+  toggleAddPhoto = () => {
+    this.setState(prevState => ({
+      isAddPhoto: !prevState.isAddPhoto,
+      isReview: false
+    }));
+  };
+
+  toggleReview = () => {
+    this.setState(prevState => ({
+      isReview: !prevState.isReview,
+      isAddPhoto: false
+    }));
+  };
   
 
   render() {
     const {diveSite} = this.state.data
+
+    console.log(diveSite)
 
     if (this.state.isLoading || !diveSite || !diveSite.details) {
       return <Loading />
     } else {
       return (
         <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-          <View style={{flex: 1, margin: 20, marginRight: 0}}>
-            <View style={{flexDirection: 'row'}} >
-              <Text style={{fontSize: 28, fontWeight: '200'}}>{diveSite.name}, {diveSite.country}</Text>
-              <View style={{flex: 1}}></View>
-              <PrimaryButton title={"Add Photo"} icon={require('../assets/add_photo.svg')} />
-              <PrimaryButton title={"Review"} icon={require('../assets/review.svg')} />
-              <PrimaryButton title={"Edit"}icon={require('../assets/create.svg')}  />
-            </View>
-            
-            {
-              !diveSite.details.description ? <View></View> :
-              <View style={{marginTop: 20, marginBottom: 10}}>
-                <Text>{diveSite.details.description}</Text>
-              </View>
-            }
-            
-            <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
-
-            </View>
+          <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
             <View style={{marginBottom: 20, flexDirection: 'row'}}>
               <View style={{flex: 1, backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 200, marginBottom: 20, marginRight: 10}}>
 
@@ -73,12 +101,43 @@ class Result extends Component {
                 
               </View>
             </View>
+
+            <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+
+            </View>
+            
+
+            {
+              !diveSite.details.description ? <View></View> :
+              <View style={{marginTop: 20, marginBottom: 10}}>
+                <Text>{diveSite.details.description}</Text>
+              </View>
+            }
+
+            <View style={{flexDirection: 'row'}} >
+              <Text style={{fontSize: 28, fontWeight: '200'}}>{diveSite.name}, {diveSite.country}</Text>
+              <View style={{flex: 1}}></View>
+              <PopoverButton popover={this.state.isAddPhoto} action={this.toggleAddPhoto} title={"Add Photo"} icon={this.state.isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
+                <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                  <Text>Test</Text>
+                </View>
+              </PopoverButton>
+              <PopoverButton popover={this.state.isReview} action={this.toggleReview} title={"Review"} icon={this.state.isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
+                <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                  <Text>Test</Text>
+                </View>
+              </PopoverButton>
+              <PrimaryButton title={"Edit"}icon={require('../assets/create.svg')}  />
+            </View>
+            
+            
           
           </View>
           <View style={{width: 300, margin: 20}}>
-            <View style={{height: 300, padding: 20, borderColor: "#DDDDDD", borderWidth: 1}}>
-              
+            <View style={{height: 280, borderColor: "#DDDDDD", borderWidth: 1}}>
+              <Image style={{height: 275, width: 298}} source={require('../assets/weather_placeholder.png')} />
             </View>
+            
             <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
               
             </View>
