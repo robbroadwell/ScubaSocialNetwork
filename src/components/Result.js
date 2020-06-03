@@ -91,14 +91,6 @@ class Result extends Component {
       return (
         <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
           <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
-            <View style={{marginBottom: 20, flexDirection: 'row'}}>
-              <View style={{flex: 1, backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 200, marginBottom: 20, marginRight: 10}}>
-
-              </View>
-              <View style={{flex: 1, backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 200, marginBottom: 20, marginLeft: 10}}>
-                
-              </View>
-            </View>
 
             <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
 
@@ -137,12 +129,6 @@ class Result extends Component {
             </View>
             
             <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
-              
-            </View>
-            <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
-              
-            </View>
-            <View style={{height: 200, padding: 20, marginTop: 20, marginBottom: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
               
             </View>
           </View>
