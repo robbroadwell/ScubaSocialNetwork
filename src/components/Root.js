@@ -25,7 +25,7 @@ class Root extends Component {
           
           <View style={{flex: 1, flexDirection: 'row'}}>
 
-            <View style={{width: 400, backgroundColor: "#FEFEFE"}}>
+            <View style={{width: 375, backgroundColor: "#FEFEFE"}}>
               <Route path="/" >
                 <List />
               </Route>

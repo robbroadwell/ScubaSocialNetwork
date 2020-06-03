@@ -21,7 +21,7 @@ class Header extends Component {
   render() {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 65, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
-        <View style={{width: 400, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+        <View style={{width: 375, marginLeft: 15, alignItems: 'center', flexDirection: 'row'}}>
           <Image style={{width: 45, height: 28, marginRight: 15}} source={require('../assets/flag2.svg')} />
           <Image style={{width: 250, height: 40, marginTop: 1}} source={require('../assets/logo_23.svg')} />
         </View>
