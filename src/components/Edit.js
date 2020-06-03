@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
 import { getUser } from '../redux/selectors';
 import DiveSiteCard from './DiveSiteCard';
+import PrimaryButton from './buttons/PrimaryButton';
 const axios = require('axios')
 
 class Edit extends Component {
@@ -78,28 +79,30 @@ class Edit extends Component {
 
     }).then(function (response) {
       this.props.fetchDiveSites()
-      this.props.closeEditing()
+      this.props.toggleEdit()
     }.bind(this));
   }
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <DiveSiteCard
-          site={this.props.site}
-          />
-          {!this.props.sourceAdd ? <View></View> :
-            <Text style={{marginTop: 20, textAlign: 'center'}}>Excellent! Do you have any more details?</Text>
-          }
-          <ScrollView style={{margin: 10}}>
-            <TextInput
-              style={{ height: 120, borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}
-              onChangeText={text => this.onChangeTextDescription(text)}
-              placeholder={'Description'}
-              multiline={true}
-              value={this.state.description}
-              />
+      <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+        <View style={{flex: 1, flexDirection: 'column', margin: 20, marginRight: 0}}>
+          <View style={{flexDirection: 'row'}} >
+            <Text style={{fontSize: 28, fontWeight: '300', marginRight: 20}}>{this.props.site.name}, {this.props.site.country}</Text>
+            <PrimaryButton action={this.onPressSubmit} title={"Submit"} />
+            <PrimaryButton action={this.props.toggleEdit} title={"Cancel"} />
+          </View>
+          <TextInput
+            style={{ height: 340, borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}
+            onChangeText={text => this.onChangeTextDescription(text)}
+            placeholder={'Description'}
+            multiline={true}
+            value={this.state.description}
+            />
+          <TextInput/>
+        </View>
+        <View style={{width: 320, margin: 20, marginTop: 45, marginLeft: 0}}>
+          <View style={{borderColor: "#DDDDDD", padding: 20}}>
             <TextInput
               style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextDepth(text)}
@@ -142,24 +145,10 @@ class Edit extends Component {
               placeholder={'Experience Level'}
               value={this.state.experienceLevel}
               />
-          </ScrollView>
-        </View>
-
-        <View>
-          <View style={{ flexDirection: 'row', margin: 5, marginBottom: 10}}>
-
-          {this.props.sourceAdd ? <View></View> :
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={this.props.closeEditing} >
-              <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>Cancel</Text>
-            </TouchableOpacity>
-          }
-
-            <TouchableOpacity style={{backgroundColor: '#A00000', margin: 10, marginBottom: 5, flex: 1, borderRadius: 5}} onPress={this.onPressSubmit}>
-              <Text style={{fontSize: 16, fontWeight: 'bold', textAlign: 'center', padding: 5, margin: 10, color: 'white'}}>{this.props.sourceAdd ? 'Done' : 'Confirm'}</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </View>
+
     );
   }
 }

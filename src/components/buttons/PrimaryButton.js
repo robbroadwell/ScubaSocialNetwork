@@ -12,7 +12,10 @@ class PrimaryButton extends React.Component {
           onHover={{ flexDirection: 'row', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', backgroundColor: this.props.popover ? "#21313C" : "FEFEFE", borderColor: this.props.selected ? '#555555' : '#aaaaaa', borderWidth: this.props.selected ? 2 : 1 }}
           >
           <Text style={{color: this.props.popover ? '#FFFFFF' : '#333333'}}>{title}</Text>
+          {!icon ? <View></View> :
           <Image style={{width: 18, height: 18, marginLeft: 8, tintColor: this.props.popover ? '#FFFFFF' : '#333333'}} source={icon} />
+        }
+          
         </BaseHoverableView>
       </TouchableOpacity>
     )
