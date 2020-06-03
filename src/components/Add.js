@@ -106,7 +106,7 @@ class Add extends Component {
 
     }).then(function (response) {
       this.props.fetchDiveSites()
-      this.setState({ step: ADD_STEPS.ADDITIONAL, newDiveSite: response.data.newDiveSite });
+      this.onPressClose()
     }.bind(this));
   }
 
@@ -116,8 +116,6 @@ class Add extends Component {
           return <LocationMode mapCenter={this.props.mapCenter} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
         case ADD_STEPS.NAME:
           return <NameMode onPressNameBack={this.onPressNameBack} onCreateDiveSite={this.onCreateDiveSite}/>;
-        case ADD_STEPS.ADDITIONAL:
-          return <Edit site={this.state.newDiveSite} closeEditing={this.onPressClose} sourceAdd={true} />;
         default:
           return <LocationMode mapCenter={this.props.mapCenter} onPressClose={this.onPressClose} onSubmitCoordinates={this.onSubmitCoordinates} />;
       }

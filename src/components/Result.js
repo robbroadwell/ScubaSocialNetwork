@@ -95,7 +95,7 @@ class Result extends Component {
   render() {
     const {diveSite} = this.state.data
 
-    if (this.state.isLoading || !diveSite || !diveSite.details) {
+    if (this.state.isLoading || !diveSite) {
       return <Loading />
     } else if (this.state.isEditing) {
       return <Edit site={diveSite} toggleEdit={this.toggleEdit} />
@@ -114,13 +114,12 @@ class Standard extends Component {
         <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
 
           <View style={{backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'flex-end', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
-            
             <Details diveSite={diveSite} />
           </View>
           
 
           {
-            !diveSite.details.description ? <View></View> :
+            !diveSite.details || !diveSite.details ? <View></View> :
             <View style={{marginTop: 20, marginBottom: 10}}>
               <Text>{diveSite.details.description}</Text>
             </View>
@@ -160,6 +159,9 @@ class Standard extends Component {
 }
 
 function Details({ diveSite }) {
+  if (!diveSite || !diveSite.details) {
+    return <View></View>
+  }
   return (
     <View style={{backgroundColor: '#FEFEFE'}}>
       <View>
