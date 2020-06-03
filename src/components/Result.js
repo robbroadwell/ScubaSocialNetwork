@@ -163,34 +163,35 @@ function Details({ diveSite }) {
   return (
     <View style={{backgroundColor: '#FEFEFE'}}>
       <View>
+        <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: 'black', opacity: 0.5}} />
         {!diveSite.details || !diveSite.details.depth ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Depth</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.depth}</Text>
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Depth</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.depth}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.access ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Access</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.access}</Text>
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Access</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.access}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.visibility ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Visibility</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.visibility}</Text>
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Visibility</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.visibility}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.currents ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Currents</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.currents}</Text>
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Currents</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.currents}</Text>
           </View>
         }
         {!diveSite.details || !diveSite.details.experienceLevel ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', backgroundColor: '#EEEEEE', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 20, fontSize: 16, color: 'black', fontWeight: 'bold'}}>Difficulty</Text>
-            <Text style={{fontSize: 16, color: 'black'}}>{diveSite.details.experienceLevel}</Text>
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Difficulty</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.experienceLevel}</Text>
           </View>
         }
       </View>
