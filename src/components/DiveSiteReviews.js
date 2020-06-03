@@ -19,8 +19,8 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
           <Ratings.Widget widgetHoverColor="#FFB400"  />
         </Ratings>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
-            <Text style={{marginLeft: 5}}>({reviews} review{reviews == 1 ? '' : 's'})</Text>
+            <Text style={{fontSize: 13, fontWeight: '600'}}>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
+            <Text style={{marginLeft: 5, fontSize: 13}}>({reviews} review{reviews == 1 ? '' : 's'})</Text>
         </View>
       </View>
     </View>
