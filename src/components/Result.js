@@ -85,8 +85,6 @@ class Result extends Component {
   render() {
     const {diveSite} = this.state.data
 
-    console.log(diveSite)
-
     if (this.state.isLoading || !diveSite || !diveSite.details) {
       return <Loading />
     } else {
@@ -115,7 +113,7 @@ class Result extends Component {
             }
 
             <View style={{flexDirection: 'row'}} >
-              <Text style={{fontSize: 28, fontWeight: '200'}}>{diveSite.name}, {diveSite.country}</Text>
+              <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}, {diveSite.country}</Text>
               <View style={{flex: 1}}></View>
               <PopoverButton popover={this.state.isAddPhoto} action={this.toggleAddPhoto} title={"Add Photo"} icon={this.state.isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
                 <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
