@@ -158,7 +158,7 @@ class Standard extends Component {
           <View style={{flexDirection: 'row'}} >
             <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}, {diveSite.country}</Text>
             <View style={{flex: 1}}></View>
-            <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photo"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
+            <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
               <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                 <FileList />
               </View>
@@ -219,6 +219,7 @@ class FileList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedIndex: 0,
       files: [
 
       ]
@@ -234,17 +235,40 @@ class FileList extends Component {
     this.setState({files: fileList})
   }
 
+  previewBack = () => {
+    this.setState(prevState => ({
+      selectedIndex: prevState.selectedIndex > 0 ? prevState.selectedIndex = (prevState.selectedIndex - 1) : 0
+    }));
+  }
+
+  previewForward = () => {
+    this.setState(prevState => ({
+      selectedIndex: (prevState.selectedIndex >= (prevState.files.length - 1)) ? prevState.selectedIndex : (prevState.selectedIndex + 1)
+    }));
+  }
+
   render() {
+    if (this.state.files.length === 0) {
+      return (
+        <DragAndDrop handleDrop={this.handleDrop}>
+          <View style={{width: 300, height: 300}}></View>
+        </DragAndDrop>
+      )
+    }
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
-        {this.state.files.length === 0 ? <View></View> :
-        <Image style={{height: 275, width: 298}} source={this.state.files[0]} />
-      }
-        <div style={{height: 300, width: 250}}>
-          {/* {this.state.files.map((file, i) =>
-            <div key={i}>{file}</div>
-          )} */}
-        </div>
+        <View>
+          <Image style={{height: 250, width: 300}} source={this.state.files[this.state.selectedIndex]} />
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <Image style={{width: 18, height: 18, marginLeft: 8, tintColor: '#000000'}} source={require('../assets/drop_up.svg')} />
+              </TouchableOpacity>
+              <Text>Image {this.state.selectedIndex + 1} of {this.state.files.length}</Text>
+              <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <Image style={{width: 18, height: 18, marginLeft: 8, tintColor: '#000000'}} source={require('../assets/drop_up.svg')} />
+              </TouchableOpacity>
+            </View>
+        </View>
       </DragAndDrop>
     )
   }
