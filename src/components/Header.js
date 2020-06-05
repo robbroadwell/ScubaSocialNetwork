@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 import { getUser } from "../redux/selectors";
 import PopoverButton from './buttons/PopoverButton';
+import { withRouter } from 'react-router-dom'
 import Login from './Login';
 
 class Header extends Component {
@@ -21,11 +22,21 @@ class Header extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 65, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
-        <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}>
-          <Image style={{width: 45, height: 28, marginRight: 15}} source={require('../assets/flag2.svg')} />
-          <Image style={{width: 250, height: 40, marginTop: 1}} source={require('../assets/logo_27.svg')} />
-        </View>
+      <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 60, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
+        <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
+          <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}>
+            <Image style={{width: 45, height: 28, marginRight: 15}} source={require('../assets/flag2.svg')} />
+            <Image style={{width: 250, height: 40, marginTop: 1}} source={require('../assets/logo_27.svg')} />
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
+         <Text style={{marginHorizontal: 45, fontSize: 16, fontWeight: '500'}}>Search</Text>
+         <View style={{backgroundColor: '#A00000', height: 5, width: '70%', bottom: -1, left: '15%', position: 'absolute'}}></View>
+        </TouchableOpacity>
+
+        <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Destinations</Text>
+        <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Shop</Text>
 
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 20}}>
           <View>
@@ -49,4 +60,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {  }
-)(Header);
+)(withRouter(Header));

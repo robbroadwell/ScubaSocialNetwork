@@ -37,7 +37,9 @@ class Root extends Component {
             </View>
 
           </View>
-          <Header />
+          <Route path="/" >
+            <Header />
+          </Route>
         </View>
       </Router>
       

@@ -3,8 +3,6 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import { setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
 import { getUser, getMapCenter } from '../redux/selectors';
-import DiveSiteCard from './DiveSiteCard';
-import Edit from './Edit';
 const axios = require('axios')
 
 

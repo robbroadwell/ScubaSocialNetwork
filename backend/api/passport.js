@@ -73,6 +73,7 @@ const opts = {
 passport.use(
   'jwt',
   new JWTstrategy(opts, (jwt_payload, done) => {
+    
     try {
       User.findById(jwt_payload.id).then(user => {
         if (user) {

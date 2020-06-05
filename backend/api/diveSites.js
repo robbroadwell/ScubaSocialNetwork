@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router()
 const passport = require('passport');
-
 const DiveSite = require('../models/diveSite');
+var aws = require('aws-sdk'); 
+
+aws.config.update({
+  region: 'us-east-2', // Put your aws region here
+  accessKeyId: "AKIAXVB2GWU3YOV6QGZM",
+  secretAccessKey: "p2QU1ygNCH+vzEnmMGmnATX0Z1/SKWdcUiYpj/Km"
+})
+
+const S3_BUCKET = 'divingcollective-photos'
 
 router.get('/', (req, res) => {
   if (!req || !req.query || !req.query.polygon) {
@@ -157,5 +165,57 @@ router.put('/reviews/', (req, res, next) => {
         }
       })(req, res, next);
 });
+
+router.put('/photos/', (req, res, next) => {
+  console.log('test')
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+    }
+    
+    console.log(req.body)
+
+    if (info !== undefined) {
+      console.error(info.message);
+      res.status(403).send(info.message);
+
+    } else if (!user) {
+      console.error('user authorizing the JWT not found');
+      res.status(403).send('user authorizing the JWT not found');
+
+    } else if(!req.body.id || !req.body.fileName || !req.body.fileType) {
+      console.error('missing params');
+      res.status(403).send('missing params');
+
+    } else { 
+
+      const s3 = new aws.S3();
+      // const id = req.body.id
+      const fileName = req.body.fileName;
+      const fileType = req.body.fileType;
+
+      const s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 500,
+        ContentType: fileType,
+        ACL: 'public-read'
+      };
+
+      s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        console.log(data)
+        if(err){
+          console.log(err);
+          res.json({success: false, error: err})
+        }
+
+        res.json({success:true, data:{
+          signedRequest: data,
+          url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        }});
+      });
+
+    }})(req, res, next);
+})
 
 module.exports = router

@@ -131,7 +131,7 @@ class Result extends Component {
     } else if (this.state.isEditing) {
       return <Edit site={diveSite} toggleEdit={this.toggleEdit} />
     } else {
-      return <Standard addReview={this.addReview} diveSite={diveSite} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} toggleEdit={this.toggleEdit} {...this.props} />
+      return <Standard token={this.props.user.token} addReview={this.addReview} diveSite={diveSite} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} toggleEdit={this.toggleEdit} {...this.props} />
     }
   }
 }
@@ -160,7 +160,7 @@ class Standard extends Component {
             <View style={{flex: 1}}></View>
             <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
               <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                <FileList />
+                <FileList token={this.props.token} />
               </View>
             </PopoverButton>
             <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
@@ -214,7 +214,6 @@ class Standard extends Component {
   }
 }
 
-
 class FileList extends Component {
   constructor(props) {
     super(props);
@@ -222,17 +221,23 @@ class FileList extends Component {
       selectedIndex: 0,
       files: [
 
+      ],
+      previews: [
+
       ]
     };
   }
 
  handleDrop = (files) => {
-    let fileList = this.state.files
+    let previews = this.state.previews
     for (var i = 0; i < files.length; i++) {
       var url = URL.createObjectURL(files[i])
-      fileList.push(url)
+      previews.push(url)
     }
-    this.setState({files: fileList})
+    this.setState({
+      files: files,
+      previews: previews
+    })
   }
 
   previewBack = () => {
@@ -247,6 +252,46 @@ class FileList extends Component {
     });
   }
 
+  upload = () => {
+    console.log(this.state.files[0])
+    console.log(this.state.previews[0])
+    const file = this.state.files[0];
+
+    axios({
+      method: 'put',
+      url: 'http://localhost:8080/api/dive-sites/photos/',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + this.props.token
+      },
+      data: {
+        id: "5ed33596c7ebeee50ed1439c",
+        fileName: file.name,
+        fileType: file.type
+      }
+
+    }).then(response => {
+      
+      var options = {
+        headers: {
+          'Content-Type': file.type
+        }
+      };
+
+      axios.put(response.data.data.signedRequest,file,options)
+      .then(result => {
+        console.log("Response from s3")
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+    )
+    .catch(error => {
+      alert(JSON.stringify(error));
+    })
+  }
+
   render() {
     if (this.state.files.length === 0) {
       return (
@@ -258,14 +303,17 @@ class FileList extends Component {
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
         <View>
-          <Image style={{height: 250, width: 300}} source={this.state.files[this.state.selectedIndex]} />
+          <Image style={{height: 250, width: 300}} source={this.state.previews[this.state.selectedIndex]} />
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, marginLeft: 8, tintColor: '#000000'}} source={require('../assets/drop_up.svg')} />
+                <Image style={{width: 18, height: 18, tintColor: '#000000'}} source={require('../assets/left.svg')} />
               </TouchableOpacity>
               <Text>Image {this.state.selectedIndex + 1} of {this.state.files.length}</Text>
               <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, marginLeft: 8, tintColor: '#000000'}} source={require('../assets/drop_up.svg')} />
+                <Image style={{width: 18, height: 18, tintColor: '#000000'}} source={require('../assets/right.svg')} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <Text>Upload</Text>
               </TouchableOpacity>
             </View>
         </View>
