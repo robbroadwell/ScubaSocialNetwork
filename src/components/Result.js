@@ -8,6 +8,7 @@ import Edit from './Edit';
 import { connect } from "react-redux";
 import { getUser } from '../redux/selectors';
 import { fetchDiveSites } from '../redux/actions';
+import DragAndDrop from './DragAndDrop'
 const axios = require('axios')
 
 class Result extends Component {
@@ -159,7 +160,7 @@ class Standard extends Component {
             <View style={{flex: 1}}></View>
             <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photo"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
               <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                <Text>Test</Text>
+                <FileList />
               </View>
             </PopoverButton>
             <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
@@ -209,6 +210,43 @@ class Standard extends Component {
           
         </View>
       </View>
+    )
+  }
+}
+
+
+class FileList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      files: [
+        'nice.pdf',
+        'verycool.jpg',
+        'amazing.png',
+        'goodstuff.mp3',
+        'thankyou.doc'
+      ]
+    };
+  }
+
+ handleDrop = (files) => {
+    let fileList = this.state.files
+    for (var i = 0; i < files.length; i++) {
+      if (!files[i].name) return
+      fileList.push(files[i].name)
+    }
+    this.setState({files: fileList})
+  }
+
+  render() {
+    return (
+      <DragAndDrop handleDrop={this.handleDrop}>
+        <div style={{height: 300, width: 250}}>
+          {this.state.files.map((file, i) =>
+            <div key={i}>{file}</div>
+          )}
+        </div>
+      </DragAndDrop>
     )
   }
 }
