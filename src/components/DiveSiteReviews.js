@@ -10,8 +10,7 @@ function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
           rating={rating}
           widgetRatedColors={userModified ? "#FFB400" : "DD0000"}
           widgetDimensions="14px"
-          widgetSpacings="1px"
-          changeRating={(rating) => changeRating(rating)}>
+          widgetSpacings="1px">
           <Ratings.Widget widgetHoverColor="#FFB400"  />
           <Ratings.Widget widgetHoverColor="#FFB400"  />
           <Ratings.Widget widgetHoverColor="#FFB400"  />

@@ -4,29 +4,6 @@ import DiveSiteReviews from './DiveSiteReviews';
 import BaseHoverableView from './buttons/BaseHoverableView';
 
 class DiveSiteCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: this.rating(),
-      userModified: false,
-      editMode: false
-    };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      rating: this.rating(),
-      userModified: false
-    });
-  }
-
-  changeRating = (newRating) => {
-    console.log(newRating)
-    this.setState({
-      rating: newRating,
-      userModified: true
-    });
-  }
 
   rating = () => {
     if (!this.props || !this.props.site || !this.props.site.reviews || this.props.site.reviews.length === 0) {
@@ -35,6 +12,8 @@ class DiveSiteCard extends Component {
 
     var total = 0;
     var x;
+
+    console.log(this.props.site)
 
     for (x in this.props.site.reviews) {
       total = total + this.props.site.reviews[x].rating
@@ -64,10 +43,10 @@ class DiveSiteCard extends Component {
                   <Text style={{fontSize: 16, fontWeight: '500'}}>{this.props.site.name}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
                     <Text style={{fontSize: 14}}>{this.props.site.country}, </Text>
-                    <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(5))}, {Number((this.props.site.location.coordinates[0]).toFixed(5))}</Text>
+                    <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(4))}, {Number((this.props.site.location.coordinates[0]).toFixed(4))}</Text>
                   </View>
                 </View>
-                <DiveSiteReviews reviews={this.reviews()} rating={this.state.rating} changeRating={(rating) => this.changeRating(rating)} userModified={this.state.userModified} />
+                <DiveSiteReviews reviews={this.reviews()} rating={this.rating()} />
             </View>
           </BaseHoverableView>
         </TouchableOpacity>

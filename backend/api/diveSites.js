@@ -119,4 +119,43 @@ router.put('/', (req, res, next) => {
       })(req, res, next);
 });
 
+router.put('/reviews/', (req, res, next) => {
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+    }
+    
+    console.log(req)
+
+    if (info !== undefined) {
+      console.error(info.message);
+      res.status(403).send(info.message);
+
+    } else if (!user) {
+      console.error('user authorizing the JWT not found');
+      res.status(403).send('user authorizing the JWT not found');
+
+    } else if(!req.body.review || !req.body.id) {
+      console.error('missing params');
+      res.status(403).send('missing params');
+
+    } else { 
+
+      console.log(req.body);
+
+        DiveSite.findById(req.body.id).then(diveSite => {
+          diveSite.reviews.push(req.body.review)
+          console.log(diveSite)
+          diveSite.save().then(() => res.json({
+              message: "Updated dive site successfully"
+            }))
+            .catch(err => res.status(400).json({
+              "error": err,
+              "message": "Error updating dive site"
+            }))
+          })
+        }
+      })(req, res, next);
+});
+
 module.exports = router
