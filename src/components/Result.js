@@ -220,11 +220,7 @@ class FileList extends Component {
     super(props);
     this.state = {
       files: [
-        'nice.pdf',
-        'verycool.jpg',
-        'amazing.png',
-        'goodstuff.mp3',
-        'thankyou.doc'
+
       ]
     };
   }
@@ -232,8 +228,8 @@ class FileList extends Component {
  handleDrop = (files) => {
     let fileList = this.state.files
     for (var i = 0; i < files.length; i++) {
-      if (!files[i].name) return
-      fileList.push(files[i].name)
+      var url = URL.createObjectURL(files[i])
+      fileList.push(url)
     }
     this.setState({files: fileList})
   }
@@ -241,10 +237,13 @@ class FileList extends Component {
   render() {
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
+        {this.state.files.length === 0 ? <View></View> :
+        <Image style={{height: 275, width: 298}} source={this.state.files[0]} />
+      }
         <div style={{height: 300, width: 250}}>
-          {this.state.files.map((file, i) =>
+          {/* {this.state.files.map((file, i) =>
             <div key={i}>{file}</div>
-          )}
+          )} */}
         </div>
       </DragAndDrop>
     )
