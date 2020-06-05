@@ -236,15 +236,15 @@ class FileList extends Component {
   }
 
   previewBack = () => {
-    this.setState(prevState => ({
-      selectedIndex: prevState.selectedIndex > 0 ? prevState.selectedIndex = (prevState.selectedIndex - 1) : 0
-    }));
+    this.setState({
+      selectedIndex: this.state.selectedIndex > 0 ? this.state.selectedIndex = (this.state.selectedIndex - 1) : 0
+    });
   }
 
   previewForward = () => {
-    this.setState(prevState => ({
-      selectedIndex: (prevState.selectedIndex >= (prevState.files.length - 1)) ? prevState.selectedIndex : (prevState.selectedIndex + 1)
-    }));
+    this.setState({
+      selectedIndex: (this.state.selectedIndex >= (this.state.files.length - 1)) ? this.state.selectedIndex : (this.state.selectedIndex + 1)
+    });
   }
 
   render() {
