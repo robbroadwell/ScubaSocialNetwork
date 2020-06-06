@@ -19,6 +19,7 @@ class Result extends Component {
         isAddPhoto: false,
         isEditing: false,
         isReview: false,
+        photoSelectedIndex: 0,
         data: [],
     };
   }
@@ -137,9 +138,31 @@ class Result extends Component {
 }
 
 class Standard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        photoSelectedIndex: 0
+    };
+  }
+
+  previewBack = () => {
+    const {diveSite} = this.props
+    this.setState({
+      photoSelectedIndex: this.state.photoSelectedIndex > 0 ? this.state.photoSelectedIndex = (this.state.photoSelectedIndex - 1) : 0
+    });
+  }
+
+  previewForward = () => {
+    const {diveSite} = this.props
+    this.setState({
+      photoSelectedIndex: (this.state.photoSelectedIndex >= (diveSite.photos.length - 1)) ? this.state.photoSelectedIndex : (this.state.photoSelectedIndex + 1)
+    });
+  }
+
   render() {
     
     const {diveSite, isAddPhoto, toggleAddPhoto, isReview, toggleReview, toggleEdit, fetchDiveSite} = this.props
+    const photo = diveSite.photos[this.state.photoSelectedIndex]
     return (
       <View style={{position: 'absolute', width: '100%', height: '100%'}}>
         <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
@@ -181,7 +204,23 @@ class Standard extends Component {
               <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
                 
                 {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
-                  <Image style={{flex: 1}} source={diveSite.photos[0].url} />
+                  <View style={{flex: 1}}>
+                    <Image style={{flex: 1}} source={photo.url} />
+                    <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', margin: 10}}>
+                      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                          <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
+                        </TouchableOpacity>
+                        <Text style={{color: '#FFFFFF'}}>Image {this.state.photoSelectedIndex + 1} of {diveSite.photos.length}</Text>
+                        <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                          <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
+                        </TouchableOpacity>
+                      </View>
+                      <Text style={{color: '#FFFFFF'}}>Uploaded by {photo.author}</Text>
+                      <Text style={{color: '#FFFFFF'}}>{new Date(photo.timestamp).toLocaleDateString("en-US")}</Text>
+                    </View>
+                  </View>
+                  
                 }
                 <Details diveSite={diveSite} />
               </View>
