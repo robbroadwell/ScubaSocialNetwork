@@ -78,9 +78,9 @@ class List extends Component {
             <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Contact Us</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 15}}>Terms and Conditions</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 15}}>Privacy</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Contact</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
