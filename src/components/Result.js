@@ -144,11 +144,12 @@ class Standard extends Component {
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
 
-          <View style={{backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'flex-end', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
-            <Details diveSite={diveSite} />
+          <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+            
             {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
               <Image style={{flex: 1}} source={diveSite.photos[0].url} />
             }
+            <Details diveSite={diveSite} />
           </View>
           
           {
@@ -428,9 +429,7 @@ function Details({ diveSite }) {
     return <View></View>
   }
   return (
-    <View style={{backgroundColor: '#FEFEFE'}}>
-      <View>
-        <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: 'black', opacity: 0.5}} />
+      <View style={{position: 'absolute', top: 0, right: 0, backgroundColor: 'black', opacity: 0.7}} >
         {!diveSite.details || !diveSite.details.depth ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Depth</Text>
@@ -462,7 +461,6 @@ function Details({ diveSite }) {
           </View>
         }
       </View>
-    </View>
   )
 }
 
