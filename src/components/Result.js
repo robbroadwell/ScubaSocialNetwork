@@ -131,7 +131,7 @@ class Result extends Component {
     } else if (this.state.isEditing) {
       return <Edit site={diveSite} toggleEdit={this.toggleEdit} />
     } else {
-      return <Standard token={this.props.user.token} addReview={this.addReview} diveSite={diveSite} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} toggleEdit={this.toggleEdit} {...this.props} />
+      return <Standard fetchDiveSite={this.fetchDiveSite} id={qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id} token={this.props.user.token} addReview={this.addReview} diveSite={diveSite} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} toggleEdit={this.toggleEdit} {...this.props} />
     }
   }
 }
@@ -139,13 +139,16 @@ class Result extends Component {
 class Standard extends Component {
   render() {
     
-    const {diveSite, isAddPhoto, toggleAddPhoto, isReview, toggleReview, toggleEdit} = this.props
+    const {diveSite, isAddPhoto, toggleAddPhoto, isReview, toggleReview, toggleEdit, fetchDiveSite} = this.props
     return (
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
 
           <View style={{backgroundColor: '#FEFEFE', flexDirection: 'row', justifyContent: 'flex-end', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
             <Details diveSite={diveSite} />
+            {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
+              <Image style={{flex: 1}} source={diveSite.photos[0].url} />
+            }
           </View>
           
           {
@@ -160,7 +163,7 @@ class Standard extends Component {
             <View style={{flex: 1}}></View>
             <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
               <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                <FileList token={this.props.token} />
+                <FileList id={this.props.id} token={this.props.token} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} />
               </View>
             </PopoverButton>
             <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
@@ -256,16 +259,17 @@ class FileList extends Component {
     console.log(this.state.files[0])
     console.log(this.state.previews[0])
     const file = this.state.files[0];
+    const id = this.props.id;
 
     axios({
       method: 'put',
-      url: 'http://localhost:8080/api/dive-sites/photos/',
+      url: 'http://localhost:8080/api/dive-sites/photo-upload/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.token
       },
       data: {
-        id: "5ed33596c7ebeee50ed1439c",
+        id: id,
         fileName: file.name,
         fileType: file.type
       }
@@ -280,7 +284,31 @@ class FileList extends Component {
 
       axios.put(response.data.data.signedRequest,file,options)
       .then(result => {
+        const base = "https://divingcollective-photos.s3.us-east-2.amazonaws.com/"
+        const url = base + id + "/" + file.name
+        console.log(url)
         console.log("Response from s3")
+
+        axios({
+          method: 'put',
+          url: 'http://localhost:8080/api/dive-sites/photos/',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT ' + this.props.token
+          },
+          data: {
+              id: id,
+              url: url,
+              author: "Rob, USA"
+          }
+    
+        }).then(function (response) {
+          this.props.fetchDiveSite()
+          this.props.toggleAddPhoto()
+          console.log(response)
+
+        }.bind(this));
+
       })
       .catch(error => {
         console.log(error)

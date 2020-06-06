@@ -14,16 +14,20 @@ const diveSiteSchema = new Schema({
         type: Object,
         required: true
     },
-    rating: {
-        type: Number,
-        required: false
-    },
     reviews: {
         type: Array,
-        required: false
+        required: true
+    },
+    photos: {
+        type: Array,
+        required: true
     },
     details: {
         type: Object,
+        required: false
+    },
+    rating: {
+        type: Number,
         required: false
     },
 })

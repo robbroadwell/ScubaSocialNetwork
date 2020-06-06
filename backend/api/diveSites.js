@@ -71,7 +71,8 @@ router.post('/', (req, res, next) => {
                 longitude, latitude
             ]
           },
-          reviews: []
+          reviews: [],
+          photos: []
     })
     newDiveSite.save()
       .then(() => res.json({
@@ -166,8 +167,7 @@ router.put('/reviews/', (req, res, next) => {
       })(req, res, next);
 });
 
-router.put('/photos/', (req, res, next) => {
-  console.log('test')
+router.put('/photo-upload/', (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (err) {
       console.error(err);
@@ -190,13 +190,15 @@ router.put('/photos/', (req, res, next) => {
     } else { 
 
       const s3 = new aws.S3();
-      // const id = req.body.id
+
+      const id = req.body.id
       const fileName = req.body.fileName;
+      const key =  id + "/" + fileName;
       const fileType = req.body.fileType;
 
       const s3Params = {
         Bucket: S3_BUCKET,
-        Key: fileName,
+        Key: key,
         Expires: 500,
         ContentType: fileType,
         ACL: 'public-read'
@@ -211,11 +213,55 @@ router.put('/photos/', (req, res, next) => {
 
         res.json({success:true, data:{
           signedRequest: data,
-          url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+          url: `https://${S3_BUCKET}.s3.amazonaws.com/${key}`
         }});
       });
 
     }})(req, res, next);
+})
+
+router.put('/photos/', (req, res, next) => {
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+    }
+    
+    console.log(req.body)
+
+    if (info !== undefined) {
+      console.error(info.message);
+      res.status(403).send(info.message);
+
+    } else if (!user) {
+      console.error('user authorizing the JWT not found');
+      res.status(403).send('user authorizing the JWT not found');
+
+    } else if(!req.body.id || !req.body.url || !req.body.author) {
+      console.error('missing params');
+      res.status(403).send('missing params');
+
+    } else { 
+
+      const {id, url, author} = req.body
+      const photo = {
+        url: url,
+        author: author,
+        timestamp: Date.now()
+      }
+
+      DiveSite.findById(id).then(diveSite => {
+        console.log(diveSite)
+        diveSite.photos.push(photo)
+        diveSite.save().then(() => res.json({
+            message: "Updated dive site successfully"
+          }))
+          .catch(err => res.status(400).json({
+            "error": err,
+            "message": "Error updating dive site"
+          }))
+        })
+      }
+    })(req, res, next);
 })
 
 module.exports = router
