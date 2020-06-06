@@ -142,7 +142,42 @@ class Standard extends Component {
     const {diveSite, isAddPhoto, toggleAddPhoto, isReview, toggleReview, toggleEdit, fetchDiveSite} = this.props
     return (
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-        <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20, marginRight: 0}}>
+        <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20}}>
+          <View style={{width: 300, margin: 20, marginTop: 0}}>
+            <View style={{height: 280, borderColor: "#DDDDDD", borderWidth: 1}}>
+              <Image style={{height: 275, width: 298}} source={require('../assets/weather_placeholder.png')} />
+            </View>
+
+            {
+              !diveSite.reviews || diveSite.reviews.count === 0 ? <View></View> : 
+              <FlatList
+                style={{paddingBottom: 4}}
+                data={diveSite.reviews}
+                keyExtractor={({ id }, index) => id}
+                renderItem={({ item }) => (
+                  <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
+                    <Text>{item.title}</Text>
+                    <Ratings
+                      rating={item.rating}
+                      widgetRatedColors={"#DD0000"}
+                      widgetDimensions="14px"
+                      widgetSpacings="1px">
+                      <Ratings.Widget widgetHoverColor="#FFB400"  />
+                      <Ratings.Widget widgetHoverColor="#FFB400"  />
+                      <Ratings.Widget widgetHoverColor="#FFB400"  />
+                      <Ratings.Widget widgetHoverColor="#FFB400"  />
+                      <Ratings.Widget widgetHoverColor="#FFB400"  />
+                    </Ratings>
+                    <Text>{item.comment}</Text>
+                    <Text>{item.author}</Text>
+                    <Text>{item.timestamp}</Text>
+                  </View>
+                )}
+                />
+              
+            }
+            
+          </View>
 
           <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
             
@@ -160,7 +195,14 @@ class Standard extends Component {
           }
 
           <View style={{flexDirection: 'row'}} >
-            <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}, {diveSite.country}</Text>
+            <View>
+              <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
+              <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
+                <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
+                <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(4))}, {Number((diveSite.location.coordinates[0]).toFixed(4))}</Text>
+              </View>
+            </View>
+            
             <View style={{flex: 1}}></View>
             <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
               <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
@@ -178,41 +220,7 @@ class Standard extends Component {
           
         
         </View>
-        <View style={{width: 300, margin: 20, marginTop: 0}}>
-          {/* <View style={{height: 280, borderColor: "#DDDDDD", borderWidth: 1}}>
-            <Image style={{height: 275, width: 298}} source={require('../assets/weather_placeholder.png')} />
-          </View> */}
-
-          {
-            !diveSite.reviews || diveSite.reviews.count === 0 ? <View></View> : 
-            <FlatList
-              style={{paddingBottom: 4}}
-              data={diveSite.reviews}
-              keyExtractor={({ id }, index) => id}
-              renderItem={({ item }) => (
-                <View style={{height: 200, padding: 20, marginTop: 20, backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
-                  <Text>{item.title}</Text>
-                  <Ratings
-                    rating={item.rating}
-                    widgetRatedColors={"#DD0000"}
-                    widgetDimensions="14px"
-                    widgetSpacings="1px">
-                    <Ratings.Widget widgetHoverColor="#FFB400"  />
-                    <Ratings.Widget widgetHoverColor="#FFB400"  />
-                    <Ratings.Widget widgetHoverColor="#FFB400"  />
-                    <Ratings.Widget widgetHoverColor="#FFB400"  />
-                    <Ratings.Widget widgetHoverColor="#FFB400"  />
-                  </Ratings>
-                  <Text>{item.comment}</Text>
-                  <Text>{item.author}</Text>
-                  <Text>{item.timestamp}</Text>
-                </View>
-              )}
-              />
-            
-          }
-          
-        </View>
+        
       </View>
     )
   }
