@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, ActivityIndicator, Image, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, ActivityIndicator, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import qs from 'qs';
 import PrimaryButton from './buttons/PrimaryButton';
 import PopoverButton from './buttons/PopoverButton';
@@ -141,82 +141,87 @@ class Standard extends Component {
     
     const {diveSite, isAddPhoto, toggleAddPhoto, isReview, toggleReview, toggleEdit, fetchDiveSite} = this.props
     return (
-      <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-        <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20}}>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', margin: -10, marginBottom: 20}}>
+      <View style={{position: 'absolute', width: '100%', height: '100%'}}>
+        <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
+        <ScrollView style={{position: 'absolute', width: '100%', height: '100%'}}>
+          <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+            <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20}}>
+              <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: -10, marginBottom: 20}}>
 
-              <FlatList
-                contentContainerStyle={{flexDirection : "row", flexWrap : "wrap", justifyContent: 'space-between'}} 
-                data={diveSite.reviews}
-                keyExtractor={({ id }, index) => id}
-                renderItem={({ item }) => (
-                  <View style={{flex: 1, margin: 10, alignItems: 'center', backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
-                    <View style={{ width: 350, height: '100%', padding: 20}}>
-                      <Text>{item.title}</Text>
-                      <Ratings
-                        rating={item.rating}
-                        widgetRatedColors={"#DD0000"}
-                        widgetDimensions="14px"
-                        widgetSpacings="1px">
-                        <Ratings.Widget widgetHoverColor="#FFB400"  />
-                        <Ratings.Widget widgetHoverColor="#FFB400"  />
-                        <Ratings.Widget widgetHoverColor="#FFB400"  />
-                        <Ratings.Widget widgetHoverColor="#FFB400"  />
-                        <Ratings.Widget widgetHoverColor="#FFB400"  />
-                      </Ratings>
-                      <Text>{item.comment}</Text>
-                      <Text>{item.author}</Text>
-                      <Text>{item.timestamp}</Text>
-                    </View>
+                  <FlatList
+                    contentContainerStyle={{flexDirection : "row", flexWrap : "wrap", justifyContent: 'space-between'}} 
+                    data={diveSite.reviews}
+                    keyExtractor={({ id }, index) => id}
+                    renderItem={({ item }) => (
+                      <View style={{flex: 1, margin: 10, alignItems: 'center', backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
+                        <View style={{ width: 350, height: '100%', padding: 20}}>
+                          <Text>{item.title}</Text>
+                          <Ratings
+                            rating={item.rating}
+                            widgetRatedColors={"#DD0000"}
+                            widgetDimensions="14px"
+                            widgetSpacings="1px">
+                            <Ratings.Widget widgetHoverColor="#FFB400"  />
+                            <Ratings.Widget widgetHoverColor="#FFB400"  />
+                            <Ratings.Widget widgetHoverColor="#FFB400"  />
+                            <Ratings.Widget widgetHoverColor="#FFB400"  />
+                            <Ratings.Widget widgetHoverColor="#FFB400"  />
+                          </Ratings>
+                          <Text>{item.comment}</Text>
+                          <Text>{item.author}</Text>
+                          <Text>{item.timestamp}</Text>
+                        </View>
+                      </View>
+                      
+                    )}
+                    />
+                
+              </View>
+
+              <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+                
+                {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
+                  <Image style={{flex: 1}} source={diveSite.photos[0].url} />
+                }
+                <Details diveSite={diveSite} />
+              </View>
+              
+              {
+                !diveSite.details || !diveSite.details.description ? <View></View> :
+                <View style={{marginTop: 20, marginBottom: 10}}>
+                  <Text>{diveSite.details.description}</Text>
+                </View>
+              }
+
+              <View style={{flexDirection: 'row'}} >
+                <View>
+                  <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
+                  <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
+                    <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
+                    <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(4))}, {Number((diveSite.location.coordinates[0]).toFixed(4))}</Text>
                   </View>
-                  
-                )}
-                />
-            
-          </View>
-
-          <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
-            
-            {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
-              <Image style={{flex: 1}} source={diveSite.photos[0].url} />
-            }
-            <Details diveSite={diveSite} />
-          </View>
-          
-          {
-            !diveSite.details || !diveSite.details.description ? <View></View> :
-            <View style={{marginTop: 20, marginBottom: 10}}>
-              <Text>{diveSite.details.description}</Text>
-            </View>
-          }
-
-          <View style={{flexDirection: 'row'}} >
-            <View>
-              <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
-              <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
-                <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
-                <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(4))}, {Number((diveSite.location.coordinates[0]).toFixed(4))}</Text>
+                </View>
+                
+                <View style={{flex: 1}}></View>
+                <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
+                  <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                    <FileList id={this.props.id} token={this.props.token} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} />
+                  </View>
+                </PopoverButton>
+                <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
+                  <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                    <AddReview addReview={this.props.addReview} />
+                  </View>
+                </PopoverButton>
+                <PrimaryButton action={toggleEdit} title={"Edit"}icon={require('../assets/create.svg')}  />
               </View>
+              
+              
+            
             </View>
             
-            <View style={{flex: 1}}></View>
-            <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
-              <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                <FileList id={this.props.id} token={this.props.token} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} />
-              </View>
-            </PopoverButton>
-            <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
-              <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                <AddReview addReview={this.props.addReview} />
-              </View>
-            </PopoverButton>
-            <PrimaryButton action={toggleEdit} title={"Edit"}icon={require('../assets/create.svg')}  />
           </View>
-          
-          
-        
-        </View>
-        
+        </ScrollView>
       </View>
     )
   }

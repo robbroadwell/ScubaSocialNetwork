@@ -39,7 +39,7 @@ class DiveSiteCard extends Component {
             >
 
             <View style={{flexDirection: 'row'}}>
-                <View>
+                <View style={{marginRight: 20}}>
                   <Text style={{fontSize: 16, fontWeight: '500'}}>{this.props.site.name}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
                     <Text style={{fontSize: 14}}>{this.props.site.country}, </Text>

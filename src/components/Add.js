@@ -122,7 +122,7 @@ class Add extends Component {
 
 function LocationMode({ mapCenter, onPressClose, onSubmitCoordinates }) {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, width: 350}}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 16}}>Location</Text>
         <Text style={{fontSize: 20, paddingBottom: 16, margin: 5, textAlign: 'center'}}>{Number((mapCenter[0]).toFixed(5))}, {Number((mapCenter[1]).toFixed(5))} </Text>
@@ -160,7 +160,7 @@ class NameMode extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, width: 350}}>
         <View style={{flex: 1, justifyContent: 'center'}}>
           <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 16}}>Name</Text>
           <TextInput

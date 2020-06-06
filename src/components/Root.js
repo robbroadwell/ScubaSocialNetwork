@@ -21,11 +21,11 @@ class Root extends Component {
   render() {
     return (
       <Router>
-        <View style={{minHeight: '100vh', flexDirection: 'column-reverse'}}>
+        <View style={{height: '100vh', flexDirection: 'column-reverse'}}>
           
           <View style={{flex: 1, flexDirection: 'row'}}>
 
-            <View style={{width: 375, backgroundColor: "#FEFEFE"}}>
+            <View style={{backgroundColor: "#FEFEFE"}}>
               <Route path="/" >
                 <List />
               </Route>

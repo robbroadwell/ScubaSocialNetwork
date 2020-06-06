@@ -51,32 +51,38 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <View style={{flex: 1, backgroundColor: '#FEFEFE'}}>
-          <View style={{flex: 1}}>
-            <ScrollView>
+        <ScrollView>
 
-              <FlatList
-              style={{paddingBottom: 4}}
-              data={this.props.diveSites}
-              keyExtractor={({ id }, index) => id}
-              extraData={this.props.selectedSite}
-              renderItem={({ item }) => (
-                <DiveSiteCard
-                site={item}
-                onPress={() => this.selectDiveSite(item)}
-                editMode={() => this.onPressEdit(item)}
-                selected={selectedID === item._id}
-                />
-              )}
+            <FlatList
+            style={{paddingBottom: 4}}
+            data={this.props.diveSites}
+            keyExtractor={({ id }, index) => id}
+            extraData={this.props.selectedSite}
+            renderItem={({ item }) => (
+              <DiveSiteCard
+              site={item}
+              onPress={() => this.selectDiveSite(item)}
+              editMode={() => this.onPressEdit(item)}
+              selected={selectedID === item._id}
               />
-              <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'row', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+            )}
+            />
+            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+              <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+              <View style={{flexDirection: 'row', marginTop: 5}}>
                 <Image style={{height: 15, width: 15, tintColor: '#333333', marginLeft: 10, marginRight: 3}} source={require('../assets/add.svg')} />
                 <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </View>
-        </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+              <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Contact</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
       )
     } else {
       return <Edit site={this.state.editing} closeEditing={this.closeEditing} />
