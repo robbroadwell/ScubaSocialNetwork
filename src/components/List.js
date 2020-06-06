@@ -51,8 +51,8 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <ScrollView>
-
+        <ScrollView showsVerticalScrollIndicator={false}>
+            
             <FlatList
             style={{paddingBottom: 4}}
             data={this.props.diveSites}
