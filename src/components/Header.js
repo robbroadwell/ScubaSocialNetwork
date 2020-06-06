@@ -30,10 +30,10 @@ class Header extends Component {
           </View>
         </TouchableOpacity>
 
-        {/* <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
-         <Text style={{marginHorizontal: 45, fontSize: 16, fontWeight: '500'}}>Dive Sites</Text>
-         <View style={{backgroundColor: '#A00000', height: 5, width: '70%', bottom: -1, left: '15%', position: 'absolute'}}></View>
-        </TouchableOpacity> */}
+        <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
+         <Text style={{fontSize: 16, fontWeight: '500', marginHorizontal: 20}}>Dive Sites</Text>
+         <View style={{backgroundColor: '#A00000', height: 5, width: '100%', bottom: -1, position: 'absolute'}}></View>
+        </TouchableOpacity>
 
         <View style={{flex: 1}}>
           <Text style={{fontSize: 14, fontWeight: '500', textAlign: 'center'}}>We are brand new! Launched on June 15, 2020.</Text>
