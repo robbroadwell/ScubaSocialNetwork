@@ -178,10 +178,10 @@ class Standard extends Component {
           
         
         </View>
-        <View style={{width: 300, margin: 20}}>
-          <View style={{height: 280, borderColor: "#DDDDDD", borderWidth: 1}}>
+        <View style={{width: 300, margin: 20, marginTop: 0}}>
+          {/* <View style={{height: 280, borderColor: "#DDDDDD", borderWidth: 1}}>
             <Image style={{height: 275, width: 298}} source={require('../assets/weather_placeholder.png')} />
-          </View>
+          </View> */}
 
           {
             !diveSite.reviews || diveSite.reviews.count === 0 ? <View></View> : 
