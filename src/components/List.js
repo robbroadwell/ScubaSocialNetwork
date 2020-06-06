@@ -21,6 +21,7 @@ class List extends Component {
     if (!this.props.user.username) {
       this.props.openLogin()
     } else {
+      this.props.history.push(`/`)
       this.props.setAddDiveSiteMode(true);
     }
   }
