@@ -52,7 +52,7 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView style={{minWidth: 350}} showsVerticalScrollIndicator={false}>
             
             <FlatList
             style={{paddingBottom: 4}}

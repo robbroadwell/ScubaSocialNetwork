@@ -207,15 +207,19 @@ class Standard extends Component {
                   <View style={{flex: 1}}>
                     <Image style={{flex: 1}} source={photo.url} />
                     <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', margin: 10}}>
-                      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                          <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
-                        </TouchableOpacity>
-                        <Text style={{color: '#FFFFFF'}}>Image {this.state.photoSelectedIndex + 1} of {diveSite.photos.length}</Text>
-                        <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                          <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
-                        </TouchableOpacity>
-                      </View>
+                      
+                      { diveSite.photos.length === 1 ? <View></View> : 
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                          <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
+                          </TouchableOpacity>
+                          <Text style={{color: '#FFFFFF'}}>Image {this.state.photoSelectedIndex + 1} of {diveSite.photos.length}</Text>
+                          <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
+                          </TouchableOpacity>
+                        </View>
+                      }
+                      
                       <Text style={{color: '#FFFFFF'}}>Uploaded by {photo.author}</Text>
                       <Text style={{color: '#FFFFFF'}}>{new Date(photo.timestamp).toLocaleDateString("en-US")}</Text>
                     </View>
