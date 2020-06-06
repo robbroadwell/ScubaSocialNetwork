@@ -24,16 +24,16 @@ class Header extends Component {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 60, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
         <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
-          <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}>
-            <Image style={{width: 45, height: 28, marginRight: 15}} source={require('../assets/flag2.svg')} />
-            <Image style={{width: 250, height: 40, marginTop: 1}} source={require('../assets/logo_27.svg')} />
+          <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start'}}>
+            <Image style={{width: 40, height: 25, marginHorizontal: 15}} source={require('../assets/flag2.svg')} />
+            <Image style={{width: 220, height: 35, marginTop: 1}} source={require('../assets/logo_27.svg')} />
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
+        {/* <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
          <Text style={{marginHorizontal: 45, fontSize: 16, fontWeight: '500'}}>Dive Sites</Text>
          <View style={{backgroundColor: '#A00000', height: 5, width: '70%', bottom: -1, left: '15%', position: 'absolute'}}></View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={{flex: 1}}>
           <Text style={{fontSize: 14, fontWeight: '500', textAlign: 'center'}}>We are brand new! Launched on June 15, 2020.</Text>

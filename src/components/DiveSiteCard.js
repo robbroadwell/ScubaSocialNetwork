@@ -41,7 +41,10 @@ class DiveSiteCard extends Component {
             <View style={{flexDirection: 'row'}}>
                 <View>
                   <Text style={{fontSize: 16, fontWeight: '500'}}>{this.props.site.name}</Text>
-                  <Text>Novice, Depth, etc.</Text>
+                  <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
+                    <Text style={{fontSize: 14}}>{this.props.site.country}, </Text>
+                    <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(4))}, {Number((this.props.site.location.coordinates[0]).toFixed(4))}</Text>
+                  </View>
                 </View>
                 <DiveSiteReviews reviews={this.reviews()} rating={this.rating()} />
             </View>
