@@ -69,18 +69,18 @@ class List extends Component {
             )}
             />
             <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
-              <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+              <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
               <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Image style={{height: 15, width: 15, tintColor: '#333333', marginLeft: 10, marginRight: 3}} source={require('../assets/add.svg')} />
-                <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
+                <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../assets/add.svg')} />
+                <Text style={{fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Contact</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333'}}>Contact Us</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 15}}>Terms and Conditions</Text>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 15}}>Privacy</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
