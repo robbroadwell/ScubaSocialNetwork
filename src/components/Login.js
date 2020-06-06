@@ -24,7 +24,7 @@ class Login extends Component {
 
   onPressSubmit = () => {
     if (this.state.username !== "" && this.state.password !== "") {
-      axios.post('http://localhost:8080/api/users/login', {
+      axios.post('https://www.divingscore.com/api/users/login', {
         username: this.state.username,
         password: this.state.password
       })

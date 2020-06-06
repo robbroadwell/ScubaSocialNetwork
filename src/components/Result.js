@@ -105,7 +105,7 @@ class Result extends Component {
     if (this.props.user.token) {
       axios({
         method: 'put',
-        url: 'http://localhost:8080/api/dive-sites/reviews/',
+        url: 'https://www.divingscore.com/api/dive-sites/reviews/',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT ' + this.props.user.token
@@ -263,7 +263,7 @@ class FileList extends Component {
 
     axios({
       method: 'put',
-      url: 'http://localhost:8080/api/dive-sites/photo-upload/',
+      url: 'https://www.divingscore.com/api/dive-sites/photo-upload/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.token
@@ -291,7 +291,7 @@ class FileList extends Component {
 
         axios({
           method: 'put',
-          url: 'http://localhost:8080/api/dive-sites/photos/',
+          url: 'https://www.divingscore.com/api/dive-sites/photos/',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'JWT ' + this.props.token
