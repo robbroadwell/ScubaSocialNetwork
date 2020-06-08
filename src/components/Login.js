@@ -61,14 +61,14 @@ class Login extends Component {
         <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
           <TextInput
             style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-            placeholderTextColor={'white'}
+            placeholderTextColor={'#CCCCCC'}
             onChangeText={text => this.onChangeTextUsername(text)}
             placeholder={'Username'}
             value={this.state.username}
             />
           <TextInput
             style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-            placeholderTextColor={'white'}
+            placeholderTextColor={'#CCCCCC'}
             onChangeText={text => this.onChangeTextPassword(text)}
             placeholder={'Password'}
             value={this.state.password}

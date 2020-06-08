@@ -252,14 +252,14 @@ function ReviewsList({ reviews }) {
         <Text style={{fontSize: 24, marginBottom: 10}}>{review.title}</Text>
         <Ratings
           rating={review.rating}
-          widgetRatedColors={"#FFB400"}
+          widgetRatedColors={"#DD0000"}
           widgetDimensions="22px"
           widgetSpacings="1px">
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
         </Ratings>
         <Text style={{fontSize: 14, marginVertical: 10, maxWidth: 500}}>{review.comment}</Text>
         <Text style={{fontSize: 16, marginBottom:2}}>{review.author}</Text>
