@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const passport = require('passport');
 const DiveSite = require('../models/diveSite');
+const ChangeLog = require('../models/changeLog');
 var aws = require('aws-sdk'); 
 
 aws.config.update({
@@ -72,7 +73,13 @@ router.post('/', (req, res, next) => {
             ]
           },
           reviews: [],
-          photos: []
+          photos: [],
+          details: {
+            description: [],
+            depth: [],
+            difficulty: [],
+            visibility: []
+          }
     })
     newDiveSite.save()
       .then(() => res.json({
@@ -102,20 +109,175 @@ router.put('/', (req, res, next) => {
 
     } else {
 
-      console.log(req.body);
+      var changes = []
 
         DiveSite.findById(req.body.id).then(diveSite => {
-          diveSite.details = {
-            description: req.body.description,
-            access: req.body.access,
-            depth: req.body.depth,
-            visibility: req.body.visibility,
-            currents: req.body.currents,
-            airTemperature: req.body.airTemperature,
-            waterTemperature: req.body.waterTemperature,
-            experienceLevel: req.body.experienceLevel,
+
+          // description
+          if (req.body.description && req.body.description !== '') {
+            if (diveSite.details.description.length > 0) {
+              var last = diveSite.details.description[diveSite.details.description.length - 1]
+              if (req.body.description !== last.content) {
+                changes.push({
+                  section: "description",
+                  change: diveSite.details.description[diveSite.details.description.length - 1] + " -> " + req.body.description
+                })
+                diveSite.details.description.push({
+                  author: user.id,
+                  content: req.body.description
+                })
+              }
+            } else {
+              changes.push({
+                section: "description",
+                change: " NEW " + req.body.description
+              })
+              diveSite.details.description.push({
+                author: user.id,
+                content: req.body.description
+              })
+            }
           }
-          console.log(diveSite)
+
+          // depth
+          if (req.body.depth && req.body.depth !== '') {
+            if (diveSite.details.depth.length > 0) {
+              var last = diveSite.details.depth[diveSite.details.depth.length - 1]
+              if (req.body.depth !== last.content) {
+                changes.push({
+                  section: "depth",
+                  change: diveSite.details.depth[diveSite.details.depth.length - 1] + " -> " + req.body.depth
+                })
+                diveSite.details.depth.push({
+                  author: user.id,
+                  content: req.body.depth
+                })
+              }
+            } else {
+              changes.push({
+                section: "depth",
+                change: " NEW " + req.body.depth
+              })
+              diveSite.details.depth.push({
+                author: user.id,
+                content: req.body.depth
+              })
+            }
+          }
+
+          // visibility
+          if (req.body.visibility && req.body.visibility !== '') {
+            if (diveSite.details.visibility.length > 0) {
+              var last = diveSite.details.visibility[diveSite.details.visibility.length - 1]
+              if (req.body.visibility !== last.content) {
+                changes.push({
+                  section: "visibility",
+                  change: diveSite.details.visibility[diveSite.details.visibility.length - 1] + " -> " + req.body.visibility
+                })
+                diveSite.details.visibility.push({
+                  author: user.id,
+                  content: req.body.visibility
+                })
+              }
+            } else {
+              changes.push({
+                section: "visibility",
+                change: " NEW " + req.body.visibility
+              })
+              diveSite.details.visibility.push({
+                author: user.id,
+                content: req.body.visibility
+              })
+            }
+          }
+
+          // difficulty
+          if (req.body.difficulty && req.body.difficulty !== '') {
+            if (diveSite.details.difficulty.length > 0) {
+              var last = diveSite.details.difficulty[diveSite.details.difficulty.length - 1]
+              if (req.body.difficulty !== last.content) {
+                changes.push({
+                  section: "difficulty",
+                  change: diveSite.details.difficulty[diveSite.details.difficulty.length - 1] + " -> " + req.body.difficulty
+                })
+                diveSite.details.difficulty.push({
+                  author: user.id,
+                  content: req.body.difficulty
+                })
+              }
+            } else {
+              changes.push({
+                section: "difficulty",
+                change: " NEW " + req.body.difficulty
+              })
+              diveSite.details.difficulty.push({
+                author: user.id,
+                content: req.body.difficulty
+              })
+            }
+          }
+
+          // access
+          if (req.body.access && req.body.access !== '') {
+            if (diveSite.details.access.length > 0) {
+              var last = diveSite.details.access[diveSite.details.access.length - 1]
+              if (req.body.access !== last.content) {
+                changes.push({
+                  section: "access",
+                  change: diveSite.details.access[diveSite.details.access.length - 1] + " -> " + req.body.access
+                })
+                diveSite.details.access.push({
+                  author: user.id,
+                  content: req.body.access
+                })
+              }
+            } else {
+              changes.push({
+                section: "access",
+                change: " NEW " + req.body.access
+              })
+              diveSite.details.access.push({
+                author: user.id,
+                content: req.body.access
+              })
+            }
+          }
+
+          // currents
+          if (req.body.currents && req.body.currents !== '') {
+            if (diveSite.details.currents.length > 0) {
+              var last = diveSite.details.currents[diveSite.details.currents.length - 1]
+              if (req.body.currents !== last.content) {
+                changes.push({
+                  section: "access",
+                  change: diveSite.details.currents[diveSite.details.currents.length - 1] + " -> " + req.body.currents
+                })
+                diveSite.details.currents.push({
+                  author: user.id,
+                  content: req.body.currents
+                })
+              }
+            } else {
+              changes.push({
+                section: "currents",
+                change: " NEW " + req.body.currents
+              })
+              diveSite.details.currents.push({
+                author: user.id,
+                content: req.body.currents
+              })
+            }
+          }
+
+          if (changes.length > 0) {
+            const newChangeLog = new ChangeLog({
+              user: user.id,
+              diveSite: diveSite.id,
+              changes: changes
+            })
+            newChangeLog.save()
+          }
+
           diveSite.save().then(() => res.json({
               message: "Updated dive site successfully"
             }))
@@ -242,10 +404,10 @@ router.put('/photos/', (req, res, next) => {
 
     } else { 
 
-      const {id, url, author} = req.body
+      const {id, url} = req.body
       const photo = {
         url: url,
-        author: author,
+        author: user,
         timestamp: Date.now()
       }
 

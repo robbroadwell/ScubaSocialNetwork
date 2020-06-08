@@ -201,9 +201,9 @@ class Standard extends Component {
               </View>
               
               {
-                !diveSite.details || !diveSite.details.description ? <View></View> :
+                !diveSite.details || !diveSite.details.description || diveSite.details.description.length === 0 ? <View></View> :
                 <View style={{marginTop: 20, marginBottom: 10}}>
-                  <Text>{diveSite.details.description}</Text>
+                  <Text>{diveSite.details.description[diveSite.details.description.length - 1].content}</Text>
                 </View>
               }
 
@@ -356,8 +356,7 @@ class FileList extends Component {
           },
           data: {
               id: id,
-              url: url,
-              author: "Rob, USA"
+              url: url
           }
     
         }).then(function (response) {
@@ -504,34 +503,34 @@ function Details({ diveSite }) {
   }
   return (
       <View style={{position: 'absolute', top: 0, right: 0, backgroundColor: 'black', opacity: 0.7}} >
-        {!diveSite.details || !diveSite.details.depth ? <View></View> :
+        {!diveSite.details || !diveSite.details.depth || diveSite.details.depth.length === 0 ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Depth</Text>
-            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.depth}</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.depth[diveSite.details.depth.length - 1].content}</Text>
           </View>
         }
-        {!diveSite.details || !diveSite.details.access ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Access</Text>
-            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.access}</Text>
-          </View>
-        }
-        {!diveSite.details || !diveSite.details.visibility ? <View></View> :
+        {!diveSite.details || !diveSite.details.visibility || diveSite.details.visibility.length === 0 ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Visibility</Text>
-            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.visibility}</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.visibility[diveSite.details.visibility.length - 1].content}</Text>
           </View>
         }
-        {!diveSite.details || !diveSite.details.currents ? <View></View> :
-          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Currents</Text>
-            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.currents}</Text>
-          </View>
-        }
-        {!diveSite.details || !diveSite.details.experienceLevel ? <View></View> :
+        {!diveSite.details || !diveSite.details.difficulty || diveSite.details.difficulty.length === 0 ? <View></View> :
           <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Difficulty</Text>
-            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.experienceLevel}</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.difficulty[diveSite.details.difficulty.length - 1].content}</Text>
+          </View>
+        }
+        {!diveSite.details || !diveSite.details.currents || diveSite.details.currents.length === 0 ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Currents</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.currents[diveSite.details.currents.length - 1].content}</Text>
+          </View>
+        }
+        {!diveSite.details || !diveSite.details.access || diveSite.details.access.length === 0 ? <View></View> :
+          <View style={{padding: 7, borderBottomWidth: 1, borderColor: '#cccccc', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{marginRight: 30, fontSize: 16, color: 'white', fontWeight: 'bold'}}>Access</Text>
+            <Text style={{fontSize: 16, color: 'white'}}>{diveSite.details.access[diveSite.details.access.length - 1].content}</Text>
           </View>
         }
       </View>

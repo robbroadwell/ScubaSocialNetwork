@@ -18,54 +18,13 @@ class Add extends Component {
       super(props);
       this.state = {
           step: ADD_STEPS.LOCATION,
-          newDiveSite: [],
           name: "",
           country: "",
-          description: "",
-          depth: "",
-          access: "",
-          visibility: "",
-          currents: "",
-          airTemperature: "",
-          waterTemperature: "",
-          experienceLevel: ""
       };
     }
 
   onChangeTextName = input => {
     this.setState({ name: input });
-  };
-
-  onChangeTextDescription = input => {
-    this.setState({ description: input });
-  };
-
-  onChangeTextDepth = input => {
-    this.setState({ depth: input });
-  };
-
-  onChangeTextAccess = input => {
-    this.setState({ access: input });
-  };
-
-  onChangeTextVisibility = input => {
-    this.setState({ visibility: input });
-  };
-
-  onChangeTextCurrents = input => {
-    this.setState({ currents: input });
-  };
-
-  onChangeTextAirTemperature = input => {
-    this.setState({ airTemperature: input });
-  };
-
-  onChangeTextWaterTemperature = input => {
-    this.setState({ waterTemperature: input });
-  };
-
-  onChangeTextExperienceLevel = input => {
-    this.setState({ experienceLevel: input });
   };
 
   onPressClose = () => {
@@ -90,7 +49,7 @@ class Add extends Component {
 
     axios({
       method: 'post',
-      url: 'https://www.divingscore.com/api/dive-sites',
+      url: 'http://localhost:8080/api/dive-sites',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token

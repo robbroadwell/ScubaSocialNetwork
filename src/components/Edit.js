@@ -11,14 +11,13 @@ class Edit extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          description: props.site.details ? props.site.details.description : null,
-          depth: props.site.details ? props.site.details.depth : null,
-          access: props.site.details ? props.site.details.access : null,
-          visibility: props.site.details ? props.site.details.visibility : null,
-          currents: props.site.details ? props.site.details.currents : null,
-          airTemperature: props.site.details ? props.site.details.airTemperature : null,
-          waterTemperature: props.site.details ? props.site.details.waterTemperature : null,
-          experienceLevel: props.site.details ? props.site.details.experienceLevel : null
+          description: props.site.details && props.site.details.description.length > 0 ? props.site.details.description[props.site.details.description.length - 1].content : null,
+          depth: props.site.details && props.site.details.depth.length > 0 ? props.site.details.depth[props.site.details.depth.length - 1].content : null,
+          visibility: props.site.details && props.site.details.visibility.length > 0 ? props.site.details.visibility[props.site.details.visibility.length - 1].content : null,
+          difficulty: props.site.details && props.site.details.difficulty.length > 0 ? props.site.details.difficulty[props.site.details.difficulty.length - 1].content : null,
+          access: props.site.details && props.site.details.access.length > 0 ? props.site.details.access[props.site.details.access.length - 1].content : null,
+          currents: props.site.details && props.site.details.currents.length > 0 ? props.site.details.currents[props.site.details.currents.length - 1].content : null,
+
       };
     }
 
@@ -43,23 +42,15 @@ class Edit extends Component {
     this.setState({ currents: input });
   };
 
-  onChangeTextAirTemperature = input => {
-    this.setState({ airTemperature: input });
-  };
-
-  onChangeTextWaterTemperature = input => {
-    this.setState({ waterTemperature: input });
-  };
-
-  onChangeTextExperienceLevel = input => {
-    this.setState({ experienceLevel: input });
+  onChangeTextDifficulty = input => {
+    this.setState({ difficulty: input });
   };
 
   onPressSubmit = () => {
     console.log(this.props.site._id)
     axios({
       method: 'put',
-      url: 'https://www.divingscore.com/api/dive-sites',
+      url: 'http://localhost:8080/api/dive-sites',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token
@@ -71,10 +62,7 @@ class Edit extends Component {
           access: this.state.access,
           visibility: this.state.visibility,
           currents: this.state.currents,
-          airTemperature: this.state.airTemperature,
-          waterTemperature: this.state.waterTemperature,
-          experienceLevel: this.state.experienceLevel
-
+          difficulty: this.state.difficulty
       }
 
     }).then(function (response) {
@@ -129,21 +117,9 @@ class Edit extends Component {
               />
             <TextInput
               style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-              onChangeText={text => this.onChangeTextWaterTemperature(text)}
-              placeholder={'Water Temperature'}
-              value={this.state.waterTemperature}
-              />
-            <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-              onChangeText={text => this.onChangeTextAirTemperature(text)}
-              placeholder={'Air Temperature'}
-              value={this.state.airTemperature}
-              />
-            <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
-              onChangeText={text => this.onChangeTextExperienceLevel(text)}
-              placeholder={'Experience Level'}
-              value={this.state.experienceLevel}
+              onChangeText={text => this.onChangeTextDifficulty(text)}
+              placeholder={'Difficulty'}
+              value={this.state.difficulty}
               />
           </View>
         </View>

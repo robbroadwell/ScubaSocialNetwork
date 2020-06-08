@@ -23,8 +23,30 @@ const diveSiteSchema = new Schema({
         required: true
     },
     details: {
-        type: Object,
-        required: false
+        description: {
+            type: Array,
+            required: true
+        },
+        visibility: {
+            type: Array,
+            required: true
+        },
+        depth: {
+            type: Array,
+            required: true
+        },
+        difficulty: {
+            type: Array,
+            required: true
+        },
+        access: {
+            type: Array,
+            required: true
+        },
+        currents: {
+            type: Array,
+            required: true
+        },
     },
     rating: {
         type: Number,

@@ -28,6 +28,9 @@ app.use('/api/users', users);
 const diveSites = require('./api/diveSites');
 app.use('/api/dive-sites', diveSites);
 
+const feedback = require('./api/feedback');
+app.use('/api/feedback', feedback);
+
 app.use((req, res, next) => {
    if (req.headers['host'] !== 'localhost:8080' && req.header('x-forwarded-proto') !== 'https') {
         res.redirect(`https://${req.header('host')}${req.url}`)
