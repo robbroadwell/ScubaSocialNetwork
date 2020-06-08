@@ -191,7 +191,7 @@ class Standard extends Component {
                         </View>
                       }
                       
-                      <Text style={{color: '#FFFFFF'}}>Uploaded by {photo.author}</Text>
+                      <Text style={{color: '#FFFFFF'}}>Uploaded by {photo.author.username}</Text>
                       <Text style={{color: '#FFFFFF'}}>{new Date(photo.timestamp).toLocaleDateString("en-US")}</Text>
                     </View>
                   </View>
