@@ -43,35 +43,38 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{alignItems: 'center'}}>
+        <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../assets/d_logo.svg')} />
 
         {this.props.user.username ?
 
-        <View style={{maxWidth: 700}}>
-          <Text style={{textAlign: 'center', fontSize: 18}}>{this.props.user.username}</Text>
-          <Text style={{textAlign: 'center', fontSize: 18}}>{this.props.user.email}</Text>
+        <View style={{maxWidth: 700, marginBottom: 10}}>
+          <Text style={{textAlign: 'center', fontSize: 24, color: 'white', marginBottom: 2}}>{this.props.user.username}</Text>
+          <Text style={{textAlign: 'center', fontSize: 18, color: 'white', marginBottom: 10}}>{this.props.user.email}</Text>
           <TouchableOpacity onPress={() => this.onPressLogout()}>
-            <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
+            <Text style={{textAlign: 'center', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
           </TouchableOpacity>
         </View>
 
         :
 
-        <View>
+        <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
           <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+            placeholderTextColor={'white'}
             onChangeText={text => this.onChangeTextUsername(text)}
             placeholder={'Username'}
             value={this.state.username}
             />
           <TextInput
-            style={{ height: 40, borderColor: 'gray', padding: 10, borderWidth: 1 }}
+            style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+            placeholderTextColor={'white'}
             onChangeText={text => this.onChangeTextPassword(text)}
             placeholder={'Password'}
             value={this.state.password}
           />
           <TouchableOpacity onPress={() => this.onPressSubmit()}>
-            <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+            <Text style={{textAlign: 'center', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
           </TouchableOpacity>
         </View>
 

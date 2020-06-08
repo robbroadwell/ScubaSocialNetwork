@@ -241,18 +241,18 @@ class Standard extends Component {
                   <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
                     <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
-                    <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(4))}, {Number((diveSite.location.coordinates[0]).toFixed(4))}</Text>
+                    <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
                   </View>
                 </View>
                 
                 <View style={{flex: 1}}></View>
                 <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
-                  <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                  <View style={{width: 300, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                     <FileList id={this.props.id} token={this.props.token} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} />
                   </View>
                 </PopoverButton>
                 <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
-                  <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                  <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                     <AddReview addReview={this.props.addReview} />
                   </View>
                 </PopoverButton>
@@ -376,8 +376,13 @@ class FileList extends Component {
   render() {
     if (this.state.files.length === 0) {
       return (
-        <DragAndDrop handleDrop={this.handleDrop}>
-          <View style={{width: 300, height: 300}}></View>
+        <DragAndDrop style={{flex: 1}} handleDrop={this.handleDrop}>
+          <View style={{width: 300, height: 250}}>
+            <View style={{flex: 1, margin: 20, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'center'}}>
+              <Image style={{width: 50, height: 50, tintColor: '#FFFFFF'}} source={require('../assets/add_photo.svg')} />
+              <Text style={{textAlign: 'center', marginTop: 10, color: 'white', fontSize: 16}}>Drag Photo Here</Text>
+            </View>
+          </View>
         </DragAndDrop>
       )
     }
@@ -385,18 +390,28 @@ class FileList extends Component {
       <DragAndDrop handleDrop={this.handleDrop}>
         <View>
           <Image style={{height: 250, width: 300}} source={this.state.previews[this.state.selectedIndex]} />
-            <View style={{flexDirection: 'row'}}>
+          {
+            this.state.files.length === 1 ? <View></View> : 
+            <View style={{position:'absolute', top: 220, flexDirection: 'row'}}>
               <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, tintColor: '#000000'}} source={require('../assets/left.svg')} />
+                <Image style={{width: 18, height: 18, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
               </TouchableOpacity>
-              <Text>Image {this.state.selectedIndex + 1} of {this.state.files.length}</Text>
+              <Text style={{color: '#FFFFFF'}}>Image {this.state.selectedIndex + 1} of {this.state.files.length}</Text>
               <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, tintColor: '#000000'}} source={require('../assets/right.svg')} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Text>Upload</Text>
+                <Image style={{width: 18, height: 18, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
               </TouchableOpacity>
             </View>
+          }
+          
+          <View>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+              <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
+              <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></Text>
+            </View>
+            <TouchableOpacity onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+              <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Upload</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </DragAndDrop>
     )
@@ -440,12 +455,11 @@ class AddReview extends Component {
   render() {
     return (
       <View>
-
-        <View>
+        <View style={{margin: 20, alignItems: 'center'}}>
           <Ratings
             rating={this.state.rating}
             widgetRatedColors={"#FFB400"}
-            widgetDimensions="14px"
+            widgetDimensions="22px"
             widgetSpacings="1px"
             changeRating={(rating) => this.onChangeRating(rating)}>
             <Ratings.Widget widgetHoverColor="#FFB400"  />
@@ -455,19 +469,22 @@ class AddReview extends Component {
             <Ratings.Widget widgetHoverColor="#FFB400"  />
           </Ratings>
           <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+            style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}          
+            placeholderTextColor={'white'}
             onChangeText={text => this.onChangeTextTitle(text)}
             placeholder={'Title'}
             value={this.state.title}
             />
           <TextInput
-            style={{ height: 40, borderColor: 'gray', padding: 10, borderWidth: 1 }}
+            style={{ height: 40, height: 120,  color: 'white', backgroundColor: 'gray', textAlignVertical: 'top', width: '90%', borderColor: 'gray', padding: 10, borderWidth: 1 }}
+            multiline={true}
+            placeholderTextColor={'white'}
             onChangeText={text => this.onChangeTextReview(text)}
-            placeholder={'Review'}
+            placeholder={'Comments'}
             value={this.state.review}
           />
           <TouchableOpacity onPress={() => this.addReview()}>
-            <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
+            <Text style={{textAlign: 'center', marginTop: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
           </TouchableOpacity>
         </View>
 

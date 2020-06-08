@@ -73,19 +73,7 @@ class DragAndDrop extends Component {
               zIndex: 9999
             }}
           >
-            <div 
-              style={{
-                position: 'absolute',
-                top: '50%',
-                right: 0,
-                left: 0,
-                textAlign: 'center',
-                color: 'grey',
-                fontSize: 36
-              }}
-            >
-              <div>drop here :)</div>
-            </div>
+
           </div>
         }
         {this.props.children}

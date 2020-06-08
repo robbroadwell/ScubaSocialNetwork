@@ -47,7 +47,7 @@ class Header extends Component {
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 20}}>
           <View>
             <PopoverButton action={this.toggleLogin} popover={this.state.loginVisible} title={this.props.user.username ? this.props.user.username : 'Login'} icon={this.state.loginVisible ? require('../assets/drop_up.svg') : require('../assets/drop_down.svg')} >
-              <View style={{height: 250, width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+              <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                 <Login disableLoginMode={this.toggleLogin} />
               </View>
             </PopoverButton>

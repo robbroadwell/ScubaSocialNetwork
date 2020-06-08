@@ -53,7 +53,7 @@ class List extends Component {
     } else if (!this.state.editing) {
       return (
         <ScrollView style={{minWidth: 350}} showsVerticalScrollIndicator={false}>
-            
+          <View style={{minHeight: '92vh'}}>
             <FlatList
             style={{paddingBottom: 4}}
             data={this.props.diveSites}
@@ -83,6 +83,8 @@ class List extends Component {
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
               </View>
             </TouchableOpacity>
+          </View>
+            
           </ScrollView>
       )
     } else {
