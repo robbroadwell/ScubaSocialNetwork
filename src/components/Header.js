@@ -55,6 +55,7 @@ class Header extends Component {
   render() {
     return (
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 60, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
+        
         <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
           <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start'}}>
             <Image style={{width: 40, height: 25, marginHorizontal: 15}} source={require('../assets/flag2.svg')} />
@@ -78,29 +79,33 @@ class Header extends Component {
 
             {
               !this.state.contactVisible ? <View></View> : 
-              <View style={{ backgroundColor: 'white', width: 500, position: 'absolute', top: 100, backgroundColor: '#EFEFEF' }}>
+              
+              <View style={{ backgroundColor: 'white', width: 500, alignItems: 'center', position: 'absolute', top: 25, backgroundColor: '#21313C' }}>
                 <View style={{flexDirection: 'row', paddingVertical: 20, paddingHorizontal: 10}}>
-                  <Text style={{fontSize: 16, paddingHorizontal: 30, textAlign: 'center', fontWeight: '400'}}>Please let us know what you think! Any and all suggestions are welcome. Thank you for taking the time to send us your ideas!</Text>
+                  <Text style={{fontSize: 16, paddingHorizontal: 30, color: '#DDDDDD', textAlign: 'center', fontWeight: '400'}}>Please let us know what you think! Any and all suggestions are welcome. Thank you for taking the time to send us your ideas!</Text>
                   <TouchableOpacity onPress={this.toggleContact}>
-                    <Image style={{width: 20, height: 20, marginRight: 10, alignSelf: 'flex-end'}} source={require('../assets/close.png')} />
+                    <Image style={{width: 20, height: 20, marginRight: 10, alignSelf: 'flex-end', tintColor: 'white'}} source={require('../assets/close.png')} />
                   </TouchableOpacity>
                 </View>
+                
                 <TextInput
                   multiline={true}
                   placeholder={'Your email (optional)'}
-                  style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 20, padding: 10, marginBottom: 10 }}
+                  style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                  placeholderTextColor={'#CCCCCC'}
                   onChangeText={text => this.onChangeTextEmail(text)}
                   value={this.state.difficulty}
                   />
                 <TextInput
                   multiline={true}
                   placeholder={'Your feedback'}
-                  style={{ height: 200, borderColor: 'gray', borderWidth: 1, margin: 20, padding: 10, marginBottom: 10 }}
+                  style={{ height: 120, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                  placeholderTextColor={'#CCCCCC'}
                   onChangeText={text => this.onChangeTextFeedback(text)}
                   value={this.state.difficulty}
                   />
                   <TouchableOpacity onPress={() => this.addFeedback()}>
-                    <Text style={{textAlign: 'center', marginTop: 20, marginBottom: 30, color: 'black', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
+                    <Text style={{textAlign: 'center', marginTop: 20, marginBottom: 30, color: 'white', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
                   </TouchableOpacity>
               </View>
             }
