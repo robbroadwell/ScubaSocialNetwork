@@ -398,11 +398,11 @@ router.put('/photos/', (req, res, next) => {
       console.error('user authorizing the JWT not found');
       res.status(403).send('user authorizing the JWT not found');
 
-    } else if(!req.body.id || !req.body.url || !req.body.author) {
+    } else if(!req.body.id || !req.body.url) {
       console.error('missing params');
       res.status(403).send('missing params');
 
-    } else { 
+    } else {  
 
       const {id, url} = req.body
       const photo = {
