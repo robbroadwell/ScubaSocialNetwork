@@ -168,38 +168,9 @@ class Standard extends Component {
         <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
         <ScrollView style={{position: 'absolute', width: '100%', height: '100%'}}>
           <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
-            <View style={{flex: 1, flexDirection: 'column-reverse', justifyContent: 'flex-end', margin: 20}}>
-              <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: -10, marginBottom: 20}}>
-
-                  <FlatList
-                    contentContainerStyle={{flexDirection : "row", flexWrap : "wrap", justifyContent: 'space-between'}} 
-                    data={diveSite.reviews}
-                    keyExtractor={({ id }, index) => id}
-                    renderItem={({ item }) => (
-                      <View style={{flex: 1, margin: 10, alignItems: 'center', backgroundColor: "#F6F6F6", borderColor: "#DDDDDD", borderWidth: 1}}>
-                        <View style={{ width: 350, height: '100%', padding: 20}}>
-                          <Text>{item.title}</Text>
-                          <Ratings
-                            rating={item.rating}
-                            widgetRatedColors={"#DD0000"}
-                            widgetDimensions="14px"
-                            widgetSpacings="1px">
-                            <Ratings.Widget widgetHoverColor="#FFB400"  />
-                            <Ratings.Widget widgetHoverColor="#FFB400"  />
-                            <Ratings.Widget widgetHoverColor="#FFB400"  />
-                            <Ratings.Widget widgetHoverColor="#FFB400"  />
-                            <Ratings.Widget widgetHoverColor="#FFB400"  />
-                          </Ratings>
-                          <Text>{item.comment}</Text>
-                          <Text>{item.author}</Text>
-                          <Text>{item.timestamp}</Text>
-                        </View>
-                      </View>
-                      
-                    )}
-                    />
-                
-              </View>
+            <View style={{flex: 1, flexDirection: 'column-reverse', margin: 20, marginBottom: 0}}>
+              <ReviewsList reviews={diveSite.reviews} />
+              
 
               <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
                 
@@ -241,7 +212,7 @@ class Standard extends Component {
                   <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
                     <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
-                    <Text style={{fontSize: 13}}>{ Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
+                    <Text style={{fontSize: 13}}>{Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
                   </View>
                 </View>
                 
@@ -268,6 +239,40 @@ class Standard extends Component {
       </View>
     )
   }
+}
+
+function ReviewsList({ reviews }) {
+  var views = []
+  for (var i = 0; i < reviews.length; i++) {
+    const review = reviews[i]
+    console.log(review)
+
+    views.push(
+      <View style={{flex: 1, margin: 10, padding: 20, minWidth: 300, backgroundColor: '#F6F6F6', alignItems: 'center'}}>
+        <Text style={{fontSize: 24, marginBottom: 10}}>{review.title}</Text>
+        <Ratings
+          rating={review.rating}
+          widgetRatedColors={"#FFB400"}
+          widgetDimensions="22px"
+          widgetSpacings="1px">
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+          <Ratings.Widget widgetHoverColor="#FFB400"  />
+        </Ratings>
+        <Text style={{fontSize: 14, marginVertical: 10, maxWidth: 500}}>{review.comment}</Text>
+        <Text style={{fontSize: 16, marginBottom:2}}>{review.author}</Text>
+        <Text style={{fontSize: 14, fontWeight: '300'}}>{new Date(review.timestamp).toLocaleDateString("en-US")}</Text>
+      </View>
+    )
+  }
+
+  return (
+    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: -10, marginBottom: 20}}>
+      {views}
+    </View>
+  )
 }
 
 class FileList extends Component {
@@ -447,7 +452,7 @@ class AddReview extends Component {
       author: "Rob, USA",
       title: this.state.title,
       comment: this.state.review,
-      timestamp: 111111111
+      timestamp: Date.now()
     }
     this.props.addReview(review);
   }
@@ -470,17 +475,17 @@ class AddReview extends Component {
           </Ratings>
           <TextInput
             style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}          
-            placeholderTextColor={'white'}
+            placeholderTextColor={'#CCCCCC'}
             onChangeText={text => this.onChangeTextTitle(text)}
-            placeholder={'Title'}
+            placeholder={'Title for your review'}
             value={this.state.title}
             />
           <TextInput
             style={{ height: 40, height: 120,  color: 'white', backgroundColor: 'gray', textAlignVertical: 'top', width: '90%', borderColor: 'gray', padding: 10, borderWidth: 1 }}
             multiline={true}
-            placeholderTextColor={'white'}
+            placeholderTextColor={'#CCCCCC'}
             onChangeText={text => this.onChangeTextReview(text)}
-            placeholder={'Comments'}
+            placeholder={'How was it? What did you see?'}
             value={this.state.review}
           />
           <TouchableOpacity onPress={() => this.addReview()}>
