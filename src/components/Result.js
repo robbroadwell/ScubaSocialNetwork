@@ -275,6 +275,7 @@ class FileList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkmark: false,
       selectedIndex: 0,
       files: [
 
@@ -307,6 +308,12 @@ class FileList extends Component {
     this.setState({
       selectedIndex: (this.state.selectedIndex >= (this.state.files.length - 1)) ? this.state.selectedIndex : (this.state.selectedIndex + 1)
     });
+  }
+
+  toggleCheckmark = () => {
+    this.setState(prevState => ({
+      checkmark: !prevState.checkmark
+    }));
   }
 
   upload = () => {
@@ -407,11 +414,14 @@ class FileList extends Component {
           
           <View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
-              <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
+              <TouchableOpacity onPress={this.toggleCheckmark} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
+                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../assets/checkmark.svg')} />}
+              </TouchableOpacity>
               <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></Text>
             </View>
-            <TouchableOpacity onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-              <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Upload</Text>
+            <TouchableOpacity disabled={!this.state.checkmark} onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+              <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', opacity: this.state.checkmark ? 1.0 : 0.5, fontWeight: 'bold', fontSize: 18}}>Upload</Text>
             </TouchableOpacity>
           </View>
         </View>
