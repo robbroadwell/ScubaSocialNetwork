@@ -76,7 +76,6 @@ class Result extends Component {
   }
 
   toggleAddPhoto = () => {
-    console.log('add photo')
     this.setState(prevState => ({
       isAddPhoto: !prevState.isAddPhoto,
       isReview: false
@@ -229,9 +228,6 @@ class Standard extends Component {
                 </PopoverButton>
                 <PrimaryButton action={toggleEdit} title={"Edit"}icon={require('../assets/create.svg')}  />
               </View>
-              
-              
-            
             </View>
             
           </View>
@@ -319,6 +315,8 @@ class FileList extends Component {
     const file = this.state.files[0];
     const id = this.props.id;
 
+
+
     axios({
       method: 'put',
       url: 'https://www.divingscore.com/api/dive-sites/photo-upload/',
@@ -394,7 +392,7 @@ class FileList extends Component {
       <DragAndDrop handleDrop={this.handleDrop}>
         <View>
           <Image style={{height: 250, width: 300}} source={this.state.previews[this.state.selectedIndex]} />
-          {
+          {/* {
             this.state.files.length === 1 ? <View></View> : 
             <View style={{position:'absolute', top: 220, flexDirection: 'row'}}>
               <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
@@ -405,7 +403,7 @@ class FileList extends Component {
                 <Image style={{width: 18, height: 18, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
               </TouchableOpacity>
             </View>
-          }
+          } */}
           
           <View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
