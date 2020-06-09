@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'reac
 import { connect } from "react-redux";
 import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
 import { getUser } from '../../redux/selectors';
-import PrimaryButton from '../buttons/PrimaryButton';
+import PrimaryButton from '../../utility/buttons/PrimaryButton';
 const axios = require('axios')
 
 class Edit extends Component {
@@ -16,7 +16,6 @@ class Edit extends Component {
           difficulty: props.site.details && props.site.details.difficulty.length > 0 ? props.site.details.difficulty[props.site.details.difficulty.length - 1].content : null,
           access: props.site.details && props.site.details.access.length > 0 ? props.site.details.access[props.site.details.access.length - 1].content : null,
           currents: props.site.details && props.site.details.currents.length > 0 ? props.site.details.currents[props.site.details.currents.length - 1].content : null,
-
       };
     }
 
@@ -123,7 +122,6 @@ class Edit extends Component {
           </View>
         </View>
       </View>
-
     );
   }
 }

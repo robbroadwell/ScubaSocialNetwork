@@ -26,18 +26,6 @@ class List extends Component {
     }
   }
 
-  onPressEdit = (site) => {
-    if (!this.props.user.username) {
-      this.props.openLogin()
-    } else {
-      this.setState({ editing: site });
-    }
-  }
-
-  closeEditing = () => {
-    this.setState({ editing: null });
-  }
-
   selectDiveSite = (site) => {
     if (qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id === site._id) {
       this.props.history.push(`/`)
@@ -68,6 +56,7 @@ class List extends Component {
               />
             )}
             />
+
             <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
               <View style={{flexDirection: 'row', marginTop: 5}}>
@@ -75,16 +64,17 @@ class List extends Component {
                 <Text style={{fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+
+            <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
               </View>
             </TouchableOpacity>
-          </View>
             
-          </ScrollView>
+          </View>
+        </ScrollView>
       )
     } else {
       return <Edit site={this.state.editing} closeEditing={this.closeEditing} />
