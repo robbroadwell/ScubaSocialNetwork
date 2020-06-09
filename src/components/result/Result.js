@@ -121,7 +121,7 @@ class Result extends Component {
     if (this.props.user.token) {
       axios({
         method: 'put',
-        url: 'http://localhost:8080/api/dive-sites/reviews/',
+        url: 'https://www.divingscore.com/api/dive-sites/reviews/',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT ' + this.props.user.token
