@@ -25,7 +25,6 @@ class AddReview extends Component {
   };
 
   addReview = () => {
-    console.log("add")
     var review = {
       rating: this.state.rating,
       title: this.state.title,

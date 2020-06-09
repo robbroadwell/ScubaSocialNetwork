@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from "react-redux";
-import {  setAddDiveSiteMode } from '../../redux/actions';
+import { setAddDiveSiteMode, setLoginMode } from '../../redux/actions';
 import { getUser, getDiveSites, getAddDiveSiteMode } from '../../redux/selectors';
 import Add from './Add';
 import Edit from '../result/ResultEdit';
@@ -19,10 +19,10 @@ class List extends Component {
 
   onPressAdd = () => {
     if (!this.props.user.username) {
-      this.props.openLogin()
+      this.props.setLoginMode(true)
     } else {
       this.props.history.push(`/`)
-      this.props.setAddDiveSiteMode(true);
+      this.props.setAddDiveSiteMode(true)
     }
   }
 
@@ -70,6 +70,7 @@ class List extends Component {
             <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
+                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact</Text>
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
               </View>
@@ -93,5 +94,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setAddDiveSiteMode }
+  { setAddDiveSiteMode, setLoginMode }
 )(withRouter(List));

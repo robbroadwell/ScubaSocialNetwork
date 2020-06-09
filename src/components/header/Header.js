@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { getUser } from "../../redux/selectors";
+import { getUser, getLoginMode } from "../../redux/selectors";
+import { setLoginMode } from '../../redux/actions';
 import PopoverButton from '../../utility/buttons/PopoverButton';
 import { withRouter } from 'react-router-dom'
 import Login from './Login';
@@ -11,7 +12,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        loginVisible: false,
         contactVisible: false,
         email: "",
         feedback: ""
@@ -19,9 +19,7 @@ class Header extends Component {
   }
 
   toggleLogin = () => {
-    this.setState(prevState => ({
-      loginVisible: !prevState.loginVisible
-    }));
+    this.props.setLoginMode(!this.props.loginMode)
   };
 
   toggleContact = () => {
@@ -76,7 +74,7 @@ class Header extends Component {
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 20}}>
           <View>
-            <PopoverButton action={this.toggleLogin} popover={this.state.loginVisible} title={this.props.user.username ? this.props.user.username : 'Login'} icon={this.state.loginVisible ? require('../../assets/drop_up.svg') : require('../../assets/drop_down.svg')} >
+            <PopoverButton action={this.toggleLogin} popover={this.props.loginMode} title={this.props.user.username ? this.props.user.username : 'Login'} icon={this.state.loginVisible ? require('../../assets/drop_up.svg') : require('../../assets/drop_down.svg')} >
               <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                 <Login disableLoginMode={this.toggleLogin} />
               </View>
@@ -90,10 +88,11 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   const user = getUser(state);
-  return { user };
+  const loginMode = getLoginMode(state);
+  return { user, loginMode };
 };
 
 export default connect(
   mapStateToProps,
-  {  }
+  { setLoginMode }
 )(withRouter(Header));

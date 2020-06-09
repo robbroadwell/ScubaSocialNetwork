@@ -2,9 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import PrimaryButton from '../../utility/buttons/PrimaryButton';
 import PopoverButton from '../../utility/buttons/PopoverButton';
-import { connect } from "react-redux";
-import { getUser } from '../../redux/selectors';
-import { fetchDiveSites } from '../../redux/actions';
 import ImageUpload from './ImageUpload'
 import AddReview from './AddReview'
 

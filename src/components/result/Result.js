@@ -4,7 +4,7 @@ import qs from 'qs';
 
 import { connect } from "react-redux";
 import { getUser } from '../../redux/selectors';
-import { fetchDiveSites } from '../../redux/actions';
+import { fetchDiveSites, setLoginMode } from '../../redux/actions';
 
 import Loading from '../../utility/Loading';
 import ReviewsList from './ReviewsList'
@@ -79,26 +79,38 @@ class Result extends Component {
   }
 
   toggleAddPhoto = () => {
-    this.setState(prevState => ({
-      isAddPhoto: !prevState.isAddPhoto,
-      isReview: false
-    }));
+    if (!this.props.user.username) {
+      this.props.setLoginMode(true)
+    } else {
+      this.setState(prevState => ({
+        isAddPhoto: !prevState.isAddPhoto,
+        isReview: false
+      }));
+    }
   };
 
   toggleReview = () => {
-    this.setState(prevState => ({
-      isReview: !prevState.isReview,
-      isAddPhoto: false
-    }));
+    if (!this.props.user.username) {
+      this.props.setLoginMode(true)
+    } else {
+      this.setState(prevState => ({
+        isReview: !prevState.isReview,
+        isAddPhoto: false
+      }));
+    }
   };
 
   toggleEdit = () => {
-    this.fetchDiveSite()
-    this.setState(prevState => ({
-      isReview: false,
-      isAddPhoto: false,
-      isEditing: !prevState.isEditing
-    }));
+    if (!this.props.user.username) {
+      this.props.setLoginMode(true)
+    } else {
+      this.fetchDiveSite()
+      this.setState(prevState => ({
+        isReview: false,
+        isAddPhoto: false,
+        isEditing: !prevState.isEditing
+      }));
+    }
   }
 
   addReview = (review) => {
@@ -169,7 +181,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchDiveSites }
+  { fetchDiveSites, setLoginMode }
 )(Result);
 
 
