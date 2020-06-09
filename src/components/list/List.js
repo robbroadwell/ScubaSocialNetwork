@@ -65,6 +65,8 @@ class List extends Component {
               </View>
             </TouchableOpacity>
 
+            <View style={{flex: 1}} />
+
             <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
