@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import DiveSiteReviews from './DiveSiteReviews';
-import BaseHoverableView from './buttons/BaseHoverableView';
+import BaseHoverableView from '../buttons/BaseHoverableView';
 
 class DiveSiteCard extends Component {
 

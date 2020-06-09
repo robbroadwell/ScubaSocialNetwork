@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
-import { getUser, getMapCenter } from '../redux/selectors';
+import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
+import { getUser, getMapCenter } from '../../redux/selectors';
 const axios = require('axios')
 
 

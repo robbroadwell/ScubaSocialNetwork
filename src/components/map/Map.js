@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-import debounce from '../utility/debounce';
+import debounce from '../../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites } from "../redux/actions";
-import { getDiveSites, getAddDiveSiteMode } from "../redux/selectors";
+import { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites } from "../../redux/actions";
+import { getDiveSites, getAddDiveSiteMode } from "../../redux/selectors";
 import { withRouter } from 'react-router-dom'
 
 class Map extends Component {

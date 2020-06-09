@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { FlatList, ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from "react-redux";
-import {  setAddDiveSiteMode } from '../redux/actions';
-import { getUser, getDiveSites, getAddDiveSiteMode } from '../redux/selectors';
+import {  setAddDiveSiteMode } from '../../redux/actions';
+import { getUser, getDiveSites, getAddDiveSiteMode } from '../../redux/selectors';
 import Add from './Add';
-import Edit from './Edit';
+import Edit from '../result/Edit';
 import DiveSiteCard from './DiveSiteCard';
 import { withRouter } from 'react-router-dom'
 import qs from 'qs';
@@ -71,7 +71,7 @@ class List extends Component {
             <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
               <View style={{flexDirection: 'row', marginTop: 5}}>
-                <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../assets/add.svg')} />
+                <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../../assets/add.svg')} />
                 <Text style={{fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
               </View>
             </TouchableOpacity>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
 import { connect } from "react-redux";
-import { setAddDiveSiteMode, fetchDiveSites } from '../redux/actions';
-import { getUser } from '../redux/selectors';
-import DiveSiteCard from './DiveSiteCard';
-import PrimaryButton from './buttons/PrimaryButton';
+import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
+import { getUser } from '../../redux/selectors';
+import PrimaryButton from '../buttons/PrimaryButton';
 const axios = require('axios')
 
 class Edit extends Component {

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { View } from 'react-native';
 
-import Alert from './Alert';
-import Header from './Header';
-import List from './List';
-import Map from './Map';
-import Result from './Result';
+import Alert from './header/Alert';
+import Header from './header/Header';
+import List from './list/List';
+import Map from './map/Map';
+import Result from './result/Result';
 
 import { connect } from "react-redux";
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import { connect } from "react-redux";
-import { setUser } from "../redux/actions";
-import { getUser } from "../redux/selectors";
+import { setUser } from "../../redux/actions";
+import { getUser } from "../../redux/selectors";
 const axios = require('axios')
 
 class Login extends Component {
@@ -44,7 +44,7 @@ class Login extends Component {
   render() {
     return (
       <View style={{alignItems: 'center'}}>
-        <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../assets/d_logo.svg')} />
+        <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
 
         {this.props.user.username ?
 

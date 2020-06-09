@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { View, Text, ActivityIndicator, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import qs from 'qs';
-import PrimaryButton from './buttons/PrimaryButton';
-import PopoverButton from './buttons/PopoverButton';
+import PrimaryButton from '../../utility/buttons/PrimaryButton';
+import PopoverButton from '../../utility/buttons/PopoverButton';
 import Ratings from 'react-ratings-declarative';
 import Edit from './Edit';
 import { connect } from "react-redux";
-import { getUser } from '../redux/selectors';
-import { fetchDiveSites } from '../redux/actions';
-import DragAndDrop from './DragAndDrop'
+import { getUser } from '../../redux/selectors';
+import { fetchDiveSites } from '../../redux/actions';
+import DragAndDrop from '../../utility/DragAndDrop'
 const axios = require('axios')
 
 class Result extends Component {
@@ -181,11 +181,11 @@ class Standard extends Component {
                       { diveSite.photos.length === 1 ? <View></View> : 
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                           <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
+                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../assets/left.svg')} />
                           </TouchableOpacity>
                           <Text style={{color: '#FFFFFF'}}>Image {this.state.photoSelectedIndex + 1} of {diveSite.photos.length}</Text>
                           <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
+                            <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../assets/right.svg')} />
                           </TouchableOpacity>
                         </View>
                       }
@@ -216,17 +216,17 @@ class Standard extends Component {
                 </View>
                 
                 <View style={{flex: 1}}></View>
-                <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../assets/drop_up.svg') : require('../assets/add_photo.svg')} >
+                <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../../assets/drop_up.svg') : require('../../assets/add_photo.svg')} >
                   <View style={{width: 300, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                     <FileList id={this.props.id} token={this.props.token} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} />
                   </View>
                 </PopoverButton>
-                <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../assets/drop_up.svg') : require('../assets/review.svg')} >
+                <PopoverButton popover={isReview} action={toggleReview} title={"Review"} icon={isReview ? require('../../assets/drop_up.svg') : require('../../assets/review.svg')} >
                   <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
                     <AddReview addReview={this.props.addReview} />
                   </View>
                 </PopoverButton>
-                <PrimaryButton action={toggleEdit} title={"Edit"}icon={require('../assets/create.svg')}  />
+                <PrimaryButton action={toggleEdit} title={"Edit"}icon={require('../../assets/create.svg')}  />
               </View>
             </View>
             
@@ -388,7 +388,7 @@ class FileList extends Component {
         <DragAndDrop style={{flex: 1}} handleDrop={this.handleDrop}>
           <View style={{width: 300, height: 250}}>
             <View style={{flex: 1, margin: 20, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'center'}}>
-              <Image style={{width: 50, height: 50, tintColor: '#FFFFFF'}} source={require('../assets/add_photo.svg')} />
+              <Image style={{width: 50, height: 50, tintColor: '#FFFFFF'}} source={require('../../assets/add_photo.svg')} />
               <Text style={{textAlign: 'center', marginTop: 10, color: 'white', fontSize: 16}}>Drag Photo Here</Text>
             </View>
           </View>
@@ -416,7 +416,7 @@ class FileList extends Component {
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
               <TouchableOpacity onPress={this.toggleCheckmark} activeOpacity={1.0} style={{marginHorizontal: 5}} >
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
-                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../assets/checkmark.svg')} />}
+                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
               </TouchableOpacity>
               <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></Text>
             </View>
