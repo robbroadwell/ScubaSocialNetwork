@@ -74,7 +74,7 @@ class ResultEdit extends Component {
       <View style={{flexDirection: 'row', position: 'absolute', width: '100%', height: '100%', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
         <View style={{flex: 1, flexDirection: 'column', margin: 20, marginRight: 0}}>
           <View style={{flexDirection: 'row'}} >
-            <Text style={{fontSize: 28, fontWeight: '300', marginRight: 20}}>{this.props.site.name}, {this.props.site.country}</Text>
+            <Text style={{fontSize: 28, fontWeight: '300', marginRight: 20}}>{this.props.site.name}</Text>
             <PrimaryButton action={this.onPressSubmit} title={"Submit"} />
             <PrimaryButton action={this.props.toggleEdit} title={"Cancel"} />
           </View>
