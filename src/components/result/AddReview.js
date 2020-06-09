@@ -28,7 +28,6 @@ class AddReview extends Component {
     console.log("add")
     var review = {
       rating: this.state.rating,
-      author: "Rob, USA",
       title: this.state.title,
       comment: this.state.review,
       timestamp: Date.now()
