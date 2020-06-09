@@ -35,13 +35,35 @@ class List extends Component {
   }
 
   render() {
+    if (this.props.location.pathname === "/privacy" || this.props.location.pathname === "/contact" || this.props.location.pathname === "/conditions") {
+      return (
+      <View style={{minWidth: 350, flex: 1}}>
+        <View style={{flex: 1}} />
+        <View style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+          <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
+              <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Conditions of Use</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>
+              <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy Notice</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.history.push(`/contact`)}>
+              <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact Us</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+      )
+    }
+
     const selectedID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
     if (this.props.addDiveSiteMode) {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <ScrollView style={{minWidth: 350}} showsVerticalScrollIndicator={false}>
-          <View style={{minHeight: '89vh'}}>
+        <ScrollView style={{minWidth: 350, flex: 1}} showsVerticalScrollIndicator={false}>
+          <View style={{minHeight: '90vh'}}>
             <FlatList
             style={{paddingBottom: 4}}
             data={this.props.diveSites}
@@ -67,14 +89,20 @@ class List extends Component {
 
             <View style={{flex: 1}} />
 
-            <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+            <View style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Terms and Conditions</Text>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
+                <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
+                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Conditions of Use</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>
+                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy Notice</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.history.push(`/contact`)}>
+                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact Us</Text>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+            </View>
 
           </View>
         </ScrollView>

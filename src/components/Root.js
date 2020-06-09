@@ -6,8 +6,9 @@ import Header from './header/Header';
 import List from './list/List';
 import Map from './map/Map';
 import Result from './result/Result';
-
-import { connect } from "react-redux";
+import Conditions from './legal/Conditions';
+import Contact from './legal/Contact';
+import Privacy from './legal/Privacy';
 
 import {
   BrowserRouter as Router,
@@ -33,13 +34,14 @@ class Root extends Component {
             <View style={{flex: 1}}>
               <Route path="/" component={Map} />
               <Route path="/dive-sites" component={Result} />
+              <Route path="/conditions" component={Conditions} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/privacy" component={Privacy} />
             </View>
 
           </View>
-          <Route path="/" >
-            <Header />
-            <Alert />
-          </Route>
+          <Route path="/" component={Header} />
+          <Route path="/" component={Alert} />
         </View>
       </Router>
       
@@ -47,11 +49,4 @@ class Root extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {  };
-};
-
-export default connect(
-  mapStateToProps,
-  {  }
-)(Root);
+export default Root;

@@ -8,6 +8,7 @@ export const SET_MAP_CENTER = 'SET_MAP_CENTER'
 export const SET_MAP_RECT = 'SET_MAP_RECT'
 export const SET_ADD_DIVE_SITE_MODE = 'SET_ADD_DIVE_SITE_MODE'
 export const SET_LOGIN_MODE = 'SET_LOGIN_MODE'
+export const SET_ALERT_MODE = 'SET_ALERT_MODE'
 
 /*
  * action creators
@@ -35,6 +36,10 @@ export function setAddDiveSiteMode(enabled) {
 
 export function setLoginMode(enabled) {
   return { type: SET_LOGIN_MODE, enabled}
+}
+
+export function setAlertMode(enabled) {
+  return { type: SET_ALERT_MODE, enabled}
 }
 
 export function fetchDiveSites() {
