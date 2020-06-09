@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import { connect } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { getUser } from "../../redux/selectors";
+import { withRouter } from 'react-router-dom'
 const axios = require('axios')
 
 class Login extends Component {
@@ -34,6 +35,11 @@ class Login extends Component {
         this.props.disableLoginMode();
       }.bind(this));
     }
+  }
+
+  onPressRegister = () => {
+    this.props.disableLoginMode();
+    this.props.history.push(`/register`)
   }
 
   onPressLogout = () => {
@@ -74,8 +80,13 @@ class Login extends Component {
             value={this.state.password}
           />
           <TouchableOpacity onPress={() => this.onPressSubmit()}>
-            <Text style={{textAlign: 'center', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+            <Text style={{textAlign: 'center', margin: 20, marginBottom: 15, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.onPressRegister}>
+            <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 12}}>New? Create a free account.</Text>
+          </TouchableOpacity>
+
         </View>
 
         }
@@ -92,4 +103,4 @@ const mapStateToProps = state => {
   export default connect(
     mapStateToProps,
     { setUser }
-  )(Login);
+  )(withRouter(Login));

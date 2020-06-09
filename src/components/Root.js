@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import Alert from './header/Alert';
 import Header from './header/Header';
+import Register from './header/Register';
 import List from './list/List';
 import Map from './map/Map';
 import Result from './result/Result';
@@ -37,6 +38,7 @@ class Root extends Component {
               <Route path="/conditions" component={Conditions} />
               <Route path="/contact" component={Contact} />
               <Route path="/privacy" component={Privacy} />
+              <Route path="/register" component={Register} />
             </View>
 
           </View>

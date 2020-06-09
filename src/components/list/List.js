@@ -35,7 +35,7 @@ class List extends Component {
   }
 
   render() {
-    if (this.props.location.pathname === "/privacy" || this.props.location.pathname === "/contact" || this.props.location.pathname === "/conditions") {
+    if (this.props.location.pathname === "/privacy" || this.props.location.pathname === "/register" || this.props.location.pathname === "/contact" || this.props.location.pathname === "/conditions") {
       return (
       <View style={{minWidth: 350, flex: 1}}>
         <View style={{flex: 1}} />
