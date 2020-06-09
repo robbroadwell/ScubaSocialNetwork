@@ -8,7 +8,7 @@ class Alert extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#21313C", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 30, borderTopWidth: 1, borderColor: "#DDDDDD"}}>
+      <View style={{backgroundColor: "#21313C", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 30}}>
         <Text style={{color: '#DDDDDD'}}>We are brand new! Launched on June 15, 2020. Please check back often for updates, and we welcome any </Text>
         <TouchableOpacity>
           <Text style={{textDecorationLine: 'underline', color: '#DDDDDD'}}>comments or suggestions!</Text>
