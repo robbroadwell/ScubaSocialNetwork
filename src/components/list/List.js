@@ -63,7 +63,7 @@ class List extends Component {
     } else if (!this.state.editing) {
       return (
         <ScrollView style={{minWidth: 350, flex: 1}} showsVerticalScrollIndicator={false}>
-          <View style={{minHeight: '90vh'}}>
+          <View style={{minHeight: '93vh'}}>
             <FlatList
             style={{paddingBottom: 4}}
             data={this.props.diveSites}
