@@ -103,12 +103,12 @@ class Result extends Component {
 
   addReview = (review) => {
     const {diveSite} = this.state.data
-    console.log(diveSite)
+    review.user = this.props.user.username
 
     if (this.props.user.token) {
       axios({
         method: 'put',
-        url: 'https://www.divingscore.com/api/dive-sites/reviews/',
+        url: 'http://localhost:8080/api/dive-sites/reviews/',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT ' + this.props.user.token
