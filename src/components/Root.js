@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { View } from 'react-native';
 
+import Alert from './Alert';
 import Header from './Header';
 import List from './List';
-import Login from './Login';
 import Map from './Map';
-import Footer from './Footer';
 import Result from './Result';
 
 import { connect } from "react-redux";
@@ -39,6 +38,7 @@ class Root extends Component {
           </View>
           <Route path="/" >
             <Header />
+            <Alert />
           </Route>
         </View>
       </Router>

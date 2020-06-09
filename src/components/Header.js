@@ -68,50 +68,7 @@ class Header extends Component {
          <View style={{backgroundColor: '#A00000', height: 5, width: '100%', bottom: -1, position: 'absolute'}}></View>
         </TouchableOpacity>
 
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 14, fontWeight: '500', textAlign: 'center'}}>We are brand new! Launched on June 15, 2020.</Text>
-          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center'}}>Please check back often for updates, and we welcome </Text>
-            
-            <TouchableOpacity onPress={this.toggleContact} style={{height: '100%', justifyContent: 'center'}}>
-              <Text style={{textDecorationLine: 'underline'}}>comments and suggestions.</Text>
-            </TouchableOpacity>
-
-            {
-              !this.state.contactVisible ? <View></View> : 
-              
-              <View style={{ backgroundColor: 'white', width: 500, alignItems: 'center', position: 'absolute', top: 25, backgroundColor: '#21313C' }}>
-                <View style={{flexDirection: 'row', paddingVertical: 20, paddingHorizontal: 10}}>
-                  <Text style={{fontSize: 16, paddingHorizontal: 30, color: '#DDDDDD', textAlign: 'center', fontWeight: '400'}}>Please let us know what you think! Any and all suggestions are welcome. Thank you for taking the time to send us your ideas!</Text>
-                  <TouchableOpacity onPress={this.toggleContact}>
-                    <Image style={{width: 20, height: 20, marginRight: 10, alignSelf: 'flex-end', tintColor: 'white'}} source={require('../assets/close.png')} />
-                  </TouchableOpacity>
-                </View>
-                
-                <TextInput
-                  multiline={true}
-                  placeholder={'Your email (optional)'}
-                  style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-                  placeholderTextColor={'#CCCCCC'}
-                  onChangeText={text => this.onChangeTextEmail(text)}
-                  value={this.state.difficulty}
-                  />
-                <TextInput
-                  multiline={true}
-                  placeholder={'Your feedback'}
-                  style={{ height: 120, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-                  placeholderTextColor={'#CCCCCC'}
-                  onChangeText={text => this.onChangeTextFeedback(text)}
-                  value={this.state.difficulty}
-                  />
-                  <TouchableOpacity onPress={() => this.addFeedback()}>
-                    <Text style={{textAlign: 'center', marginTop: 20, marginBottom: 30, color: 'white', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
-                  </TouchableOpacity>
-              </View>
-            }
-
-          </View>
-        </View>
+        <View style={{flex: 1}} ></View>
 
         {/* <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Destinations</Text>
         <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Shop</Text>
