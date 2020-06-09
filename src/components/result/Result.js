@@ -154,7 +154,7 @@ class Result extends Component {
         <View style={{position: 'absolute', width: '100%', height: '100%'}}>
           <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
           <ScrollView style={{position: 'absolute', width: '100%', height: '100%'}}>
-            <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FEFEFE', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
+            <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#F8F8F8', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
               <View style={{flex: 1, flexDirection: 'column-reverse', margin: 20, marginBottom: 0}}>
                 <ReviewsList reviews={diveSite.reviews} />
                 <ResultPhotos diveSite={diveSite} />

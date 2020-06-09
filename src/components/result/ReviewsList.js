@@ -8,8 +8,8 @@ function ReviewsList({ reviews }) {
     const review = reviews[i]
 
     views.push(
-      <View style={{flex: 1, margin: 10, padding: 20, minWidth: 300, backgroundColor: '#F6F6F6', alignItems: 'center'}}>
-        <Text style={{fontSize: 24, marginBottom: 10}}>{review.title}</Text>
+      <View style={{flex: 1, margin: 10, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
+        <Text style={{fontSize: 22, marginBottom: 10}}>{review.title}</Text>
         <Ratings
           rating={review.rating}
           widgetRatedColors={"#DD0000"}
