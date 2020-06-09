@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, ScrollView } from 'react-native';
 import qs from 'qs';
+import { withRouter } from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { getUser } from '../../redux/selectors';
@@ -162,7 +163,7 @@ class Result extends Component {
                 <View style={{flexDirection: 'row'}} >
                   <ResultTitle diveSite={diveSite} />
                   <View style={{flex: 1}}></View>
-                  <ResultUserActions isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} addReview={this.addReview} toggleEdit={this.toggleEdit} fetchDiveSite={this.fetchDiveSite} diveSiteID={qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}  />
+                  <ResultUserActions navigateTerms={() => this.props.history.push(`/conditions`)} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} addReview={this.addReview} toggleEdit={this.toggleEdit} fetchDiveSite={this.fetchDiveSite} diveSiteID={qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}  />
                 </View>
               </View>
               
@@ -182,7 +183,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchDiveSites, setLoginMode }
-)(Result);
+)(withRouter(Result));
 
 
         

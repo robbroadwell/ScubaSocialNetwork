@@ -154,7 +154,9 @@ class ImageUpload extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
                 {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-              <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></Text>
+                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></TouchableOpacity></Text>
+              {/* <TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
             <TouchableOpacity disabled={!this.state.checkmark} onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
               <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', opacity: this.state.checkmark ? 1.0 : 0.5, fontWeight: 'bold', fontSize: 18}}>Upload</Text>
