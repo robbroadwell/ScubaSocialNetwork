@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {  setAddDiveSiteMode } from '../../redux/actions';
 import { getUser, getDiveSites, getAddDiveSiteMode } from '../../redux/selectors';
 import Add from './Add';
-import Edit from '../result/Edit';
+import Edit from '../result/ResultEdit';
 import DiveSiteCard from './DiveSiteCard';
 import { withRouter } from 'react-router-dom'
 import qs from 'qs';
@@ -72,7 +72,7 @@ class List extends Component {
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy</Text>
               </View>
             </TouchableOpacity>
-            
+
           </View>
         </ScrollView>
       )

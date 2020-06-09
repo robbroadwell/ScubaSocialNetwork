@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from '../../utility/DragAndDrop'
+import qs from 'qs';
+
+import { connect } from "react-redux";
+import { getUser } from '../../redux/selectors';
+
 const axios = require('axios')
 
 class ImageUpload extends Component {
@@ -52,16 +57,14 @@ class ImageUpload extends Component {
     console.log(this.state.files[0])
     console.log(this.state.previews[0])
     const file = this.state.files[0];
-    const id = this.props.id;
-
-
+    const id = this.props.diveSiteID;
 
     axios({
       method: 'put',
       url: 'https://www.divingscore.com/api/dive-sites/photo-upload/',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + this.props.token
+        'Authorization': 'JWT ' + this.props.user.token
       },
       data: {
         id: id,
@@ -83,13 +86,14 @@ class ImageUpload extends Component {
         const url = base + id + "/" + file.name
         console.log(url)
         console.log("Response from s3")
+        console.log(this.props.user)
 
         axios({
           method: 'put',
-          url: 'https://www.divingscore.com/api/dive-sites/photos/',
+          url: 'http://localhost:8080/api/dive-sites/photos/',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'JWT ' + this.props.token
+            'Authorization': 'JWT ' + this.props.user.token
           },
           data: {
               id: id,
@@ -162,4 +166,12 @@ class ImageUpload extends Component {
   }
 }
 
-export default ImageUpload;
+const mapStateToProps = state => {
+  const user = getUser(state);
+  return { user };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(ImageUpload);

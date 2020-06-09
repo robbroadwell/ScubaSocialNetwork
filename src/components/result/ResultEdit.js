@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
 import { getUser } from '../../redux/selectors';
 import PrimaryButton from '../../utility/buttons/PrimaryButton';
 const axios = require('axios')
 
-class Edit extends Component {
+class ResultEdit extends Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -126,7 +126,6 @@ class Edit extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   const user = getUser(state);
   return { user };
@@ -135,4 +134,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { setAddDiveSiteMode, fetchDiveSites }
-)(Edit);
+)(ResultEdit);
