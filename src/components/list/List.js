@@ -63,7 +63,7 @@ class List extends Component {
     } else if (!this.state.editing) {
       return (
         <ScrollView style={{minWidth: 350, flex: 1}} showsVerticalScrollIndicator={false}>
-          <View style={{minHeight: '93vh'}}>
+          <View style={{minHeight: '92vh'}}>
             <FlatList
             style={{paddingBottom: 4}}
             data={this.props.diveSites}
@@ -89,7 +89,7 @@ class List extends Component {
 
             <View style={{flex: 1}} />
 
-            <View style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+            <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
               <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
               <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
