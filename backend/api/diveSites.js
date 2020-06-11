@@ -123,7 +123,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.description[diveSite.details.description.length - 1] + " -> " + req.body.description
                 })
                 diveSite.details.description.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.description
                 })
               }
@@ -133,7 +133,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.description
               })
               diveSite.details.description.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.description
               })
             }
@@ -149,7 +149,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.depth[diveSite.details.depth.length - 1] + " -> " + req.body.depth
                 })
                 diveSite.details.depth.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.depth
                 })
               }
@@ -159,7 +159,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.depth
               })
               diveSite.details.depth.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.depth
               })
             }
@@ -175,7 +175,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.visibility[diveSite.details.visibility.length - 1] + " -> " + req.body.visibility
                 })
                 diveSite.details.visibility.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.visibility
                 })
               }
@@ -185,7 +185,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.visibility
               })
               diveSite.details.visibility.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.visibility
               })
             }
@@ -201,7 +201,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.difficulty[diveSite.details.difficulty.length - 1] + " -> " + req.body.difficulty
                 })
                 diveSite.details.difficulty.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.difficulty
                 })
               }
@@ -211,7 +211,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.difficulty
               })
               diveSite.details.difficulty.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.difficulty
               })
             }
@@ -227,7 +227,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.access[diveSite.details.access.length - 1] + " -> " + req.body.access
                 })
                 diveSite.details.access.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.access
                 })
               }
@@ -237,7 +237,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.access
               })
               diveSite.details.access.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.access
               })
             }
@@ -253,7 +253,7 @@ router.put('/', (req, res, next) => {
                   change: diveSite.details.currents[diveSite.details.currents.length - 1] + " -> " + req.body.currents
                 })
                 diveSite.details.currents.push({
-                  author: user.id,
+                  author: user.username,
                   content: req.body.currents
                 })
               }
@@ -263,7 +263,7 @@ router.put('/', (req, res, next) => {
                 change: " NEW " + req.body.currents
               })
               diveSite.details.currents.push({
-                author: user.id,
+                author: user.username,
                 content: req.body.currents
               })
             }
@@ -271,7 +271,7 @@ router.put('/', (req, res, next) => {
 
           if (changes.length > 0) {
             const newChangeLog = new ChangeLog({
-              user: user.id,
+              user: user.username,
               diveSite: diveSite.id,
               changes: changes
             })
@@ -407,7 +407,7 @@ router.put('/photos/', (req, res, next) => {
       const {id, url} = req.body
       const photo = {
         url: url,
-        author: user,
+        author: user.username,
         timestamp: Date.now()
       }
 
