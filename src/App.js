@@ -6,7 +6,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import configureStore from './redux/store';
 const { persistor, store } = configureStore()
 
-
 ReactGA.initialize('UA-88100612-2');
 
 function App() {

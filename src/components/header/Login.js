@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { getUser } from "../../redux/selectors";
 import { withRouter } from 'react-router-dom'
+import ReactGA from 'react-ga';
 const axios = require('axios')
 
 class Login extends Component {
@@ -48,6 +49,8 @@ class Login extends Component {
   }
 
   render() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    
     return (
       <View style={{alignItems: 'center'}}>
         <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />

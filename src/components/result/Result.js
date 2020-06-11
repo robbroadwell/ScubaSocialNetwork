@@ -14,6 +14,8 @@ import ResultPhotos from './ResultPhotos'
 import ResultEdit from './ResultEdit';
 import ResultTitle from './ResultTitle';
 import ResultUserActions from './ResultUserActions'
+import ReactGA from 'react-ga';
+
 const axios = require('axios')
 
 class Result extends Component {
@@ -140,6 +142,8 @@ class Result extends Component {
   }
   
   render() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
     const {diveSite} = this.state.data
 
     if (this.state.isLoading || !diveSite) {

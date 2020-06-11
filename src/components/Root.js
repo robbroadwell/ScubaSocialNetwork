@@ -10,6 +10,7 @@ import Result from './result/Result';
 import Conditions from './legal/Conditions';
 import Contact from './legal/Contact';
 import Privacy from './legal/Privacy';
+import ReactGA from 'react-ga';
 
 import {
   BrowserRouter as Router,
@@ -20,6 +21,8 @@ import {
 
 class Root extends Component {
   render() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
     return (
       <Router>
         <View style={{height: '100vh', flexDirection: 'column-reverse'}}>
