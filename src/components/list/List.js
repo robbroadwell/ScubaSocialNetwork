@@ -37,8 +37,8 @@ class List extends Component {
   render() {
     if (this.props.location.pathname === "/privacy" || this.props.location.pathname === "/register" || this.props.location.pathname === "/contact" || this.props.location.pathname === "/conditions") {
       return (
-      <View style={{minWidth: 350, flex: 1}}>
-        <View style={{flex: 1}} />
+      <View style={{width: 350}}>
+        <View />
         <View style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
           <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
           <View style={{flexDirection: 'row'}}>
@@ -62,50 +62,53 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <ScrollView style={{minWidth: 350, flex: 1}} showsVerticalScrollIndicator={false}>
-          <View style={{minHeight: '92vh'}}>
-            <FlatList
-            style={{paddingBottom: 4}}
-            data={this.props.diveSites}
-            keyExtractor={({ id }, index) => id}
-            extraData={this.props.selectedSite}
-            renderItem={({ item }) => (
-              <DiveSiteCard
-              site={item}
-              onPress={() => this.selectDiveSite(item)}
-              editMode={() => this.onPressEdit(item)}
-              selected={selectedID === item._id}
+        <View style={{minWidth: 350}}>
+
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={{minHeight: '92vh'}}>
+              <FlatList
+              style={{paddingBottom: 4}}
+              data={this.props.diveSites}
+              keyExtractor={({ id }, index) => id}
+              extraData={this.props.selectedSite}
+              renderItem={({ item }) => (
+                <DiveSiteCard
+                site={item}
+                onPress={() => this.selectDiveSite(item)}
+                editMode={() => this.onPressEdit(item)}
+                selected={selectedID === item._id}
+                />
+              )}
               />
-            )}
-            />
 
-            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 40, alignItems: 'center', marginHorizontal: 10}}>
-              <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
-              <View style={{flexDirection: 'row', marginTop: 2}}>
-                <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../../assets/add.svg')} />
-                <Text style={{fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
+              <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 40, alignItems: 'center', marginHorizontal: 10}}>
+                <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
+                <View style={{flexDirection: 'row', marginTop: 2}}>
+                  <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../../assets/add.svg')} />
+                  <Text style={{fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>Add a Dive Site</Text>
+                </View>
+              </TouchableOpacity>
+
+              <View style={{flex: 1}} />
+
+              <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
+                <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
+                <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
+                    <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Conditions of Use</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>
+                    <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy Notice</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.props.history.push(`/contact`)}>
+                    <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact Us</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </TouchableOpacity>
 
-            <View style={{flex: 1}} />
-
-            <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
-              <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#333333'}}>© 2020, Broadwell LLC, or its affiliates</Text>
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
-                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Conditions of Use</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>
-                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Privacy Notice</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.history.push(`/contact`)}>
-                  <Text style={{fontSize: 12, textAlign: 'center',color: '#333333', marginLeft: 10}}>Contact Us</Text>
-                </TouchableOpacity>
-              </View>
             </View>
-
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       )
     } else {
       return <Edit site={this.state.editing} closeEditing={this.closeEditing} />
