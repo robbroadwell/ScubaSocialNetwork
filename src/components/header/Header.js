@@ -52,12 +52,12 @@ class Header extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 60, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
+      <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 55, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
         
         <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
           <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Image style={{width: 40, height: 25, marginHorizontal: 15}} source={require('../../assets/flag2.svg')} />
-            <Image style={{width: 220, height: 35, marginTop: 1}} source={require('../../assets/logo_27.svg')} />
+            <Image style={{width: 35, height: 22, marginHorizontal: 15}} source={require('../../assets/flag2.svg')} />
+            <Image style={{width: 200, height: 32, marginTop: 1}} source={require('../../assets/logo_27.svg')} />
           </View>
         </TouchableOpacity>
 
