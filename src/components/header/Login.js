@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
+import Loading from '../../utility/Loading';
 import { connect } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { getUser } from "../../redux/selectors";
@@ -12,7 +13,8 @@ class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      loading: false
     };
   }
 
@@ -26,6 +28,7 @@ class Login extends Component {
 
   onPressSubmit = () => {
     if (this.state.username !== "" && this.state.password !== "") {
+      this.setState({ loading: true });
       axios.post('https://www.divingscore.com/api/users/login', {
         username: this.state.username,
         password: this.state.password
@@ -34,6 +37,7 @@ class Login extends Component {
         this.setState({ username: "", password: "" });
         this.props.setUser(response.data.user);
         this.props.disableLoginMode();
+        this.setState({ loading: false });
       }.bind(this));
     }
   }
@@ -93,6 +97,9 @@ class Login extends Component {
         </View>
 
         }
+        
+        {this.state.loading ? <Loading /> : <View></View>}
+        
       </View>
     )
   }

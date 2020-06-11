@@ -79,7 +79,7 @@ class List extends Component {
             )}
             />
 
-            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 20, alignItems: 'center', marginHorizontal: 10}}>
+            <TouchableOpacity onPress={this.onPressAdd} style={{flexDirection: 'column', justifyContent: 'center', margin: 40, alignItems: 'center', marginHorizontal: 10}}>
               <Text style={{fontSize: 13, textAlign: 'center',color: '#333333'}}>Are we missing something?</Text>
               <View style={{flexDirection: 'row', marginTop: 2}}>
                 <Image style={{height: 20, width: 20, tintColor: '#333333', marginRight: 3}} source={require('../../assets/add.svg')} />

@@ -7,6 +7,7 @@ import { setAddDiveSiteMode, setAlertMode } from '../../redux/actions';
 class Alert extends Component {
 
   navigateComments = () => {
+    this.props.setAlertMode(false);
     this.props.history.push(`/contact`)
   }
 
@@ -20,8 +21,8 @@ class Alert extends Component {
     }
 
     return (
-      <View style={{backgroundColor: "#21313C", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 30}}>
-        <Text style={{color: '#DDDDDD'}}>We are brand new! Launched on June 15, 2020. Please check back often for updates, and we welcome any </Text>
+      <View style={{backgroundColor: "#21313C", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 40}}>
+        <Text style={{color: '#DDDDDD'}}><span style={{fontWeight: '700'}}>We are brand new!</span> Launched on June 15, 2020. Please check back often for updates, and we welcome any </Text>
         <TouchableOpacity onPress={this.navigateComments}>
           <Text style={{textDecorationLine: 'underline', color: '#DDDDDD'}}>comments or suggestions!</Text>
         </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from '../../utility/DragAndDrop'
-import qs from 'qs';
+import Loading from '../../utility/Loading';
 
 import { connect } from "react-redux";
 import { getUser } from '../../redux/selectors';
@@ -12,6 +12,7 @@ class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       checkmark: false,
       selectedIndex: 0,
       files: [
@@ -59,6 +60,8 @@ class ImageUpload extends Component {
     const file = this.state.files[0];
     const id = this.props.diveSiteID;
 
+    this.setState({ loading: true });
+
     axios({
       method: 'put',
       url: 'https://www.divingscore.com/api/dive-sites/photo-upload/',
@@ -104,6 +107,7 @@ class ImageUpload extends Component {
           this.props.fetchDiveSite()
           this.props.toggleAddPhoto()
           console.log(response)
+          this.setState({ loading: false });
 
         }.bind(this));
 
@@ -162,6 +166,7 @@ class ImageUpload extends Component {
               <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', opacity: this.state.checkmark ? 1.0 : 0.5, fontWeight: 'bold', fontSize: 18}}>Upload</Text>
             </TouchableOpacity>
           </View>
+          {this.state.loading ? <Loading /> : <View></View>}
         </View>
       </DragAndDrop>
     )
