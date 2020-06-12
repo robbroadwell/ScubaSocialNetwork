@@ -55,9 +55,9 @@ class Header extends Component {
       <View style={{backgroundColor: "#FEFEFE", flexDirection: 'row', alignItems: 'center', height: 55, borderBottomWidth: 1, borderColor: "#DDDDDD"}}>
         
         <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
-          <View style={{width: 375, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Image style={{width: 35, height: 22, marginHorizontal: 15}} source={require('../../assets/flag2.svg')} />
-            <Image style={{width: 200, height: 32, marginTop: 1}} source={require('../../assets/logo_27.svg')} />
+          <View style={{alignItems: 'center', flexDirection: 'row'}}>
+            <Image style={{width: 30, height: 20, marginHorizontal: 15}} source={require('../../assets/flag2.svg')} />
+            <Image style={{width: 160, height: 25, marginTop: 2}} source={require('../../assets/logo_27.svg')} />
           </View>
         </TouchableOpacity>
 
@@ -72,7 +72,7 @@ class Header extends Component {
         <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Shop</Text>
         <Text style={{marginRight: 45, fontSize: 16, fontWeight: '500'}}>Liveaboards</Text> */}
 
-        <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 20}}>
+        <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
           <View>
             <PopoverButton action={this.toggleLogin} popover={this.props.loginMode} title={this.props.user.username ? this.props.user.username : 'Login'} icon={this.state.loginVisible ? require('../../assets/drop_up.svg') : require('../../assets/drop_down.svg')} >
               <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
