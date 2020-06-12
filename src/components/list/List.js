@@ -66,7 +66,7 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <View style={{minWidth: this.props.mobile ? '100%' : 350}}>
+        <View style={{minWidth: this.props.mobile ? '100%' : 320}}>
 
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{minHeight: '92vh'}}>

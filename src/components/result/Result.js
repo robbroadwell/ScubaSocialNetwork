@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom'
 import {Helmet} from "react-helmet";
@@ -146,6 +146,7 @@ class Result extends Component {
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     const {diveSite} = this.state.data
+    const {mobile} = this.props
 
     if (this.state.isLoading || !diveSite) {
       return <Loading />
@@ -156,7 +157,6 @@ class Result extends Component {
 
     } else {
       const title = diveSite.name + ', ' + diveSite.country
-      console.log(title)
 
       return (
         <View style={{position: 'absolute', width: '100%', height: '100%'}}>
@@ -165,26 +165,45 @@ class Result extends Component {
               <title>{title}</title>
           </Helmet>
           <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
-          <ScrollView style={{position: 'absolute', width: '100%', height: '100%'}}>
+          <ScrollView style={{flex: 1}}>
             <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#F8F8F8', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>
               <View style={{flex: 1, flexDirection: 'column-reverse', margin: 20, marginBottom: 0}}>
                 <ReviewsList reviews={diveSite.reviews} />
                 <ResultPhotos diveSite={diveSite} />
                 <ResultDescription diveSite={diveSite} />
   
-                <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}} >
+                <View style={{flexDirection: 'row', justifyContent: 'center'}} >
                   <ResultTitle diveSite={diveSite} />
                   <View style={{flex: 1, alignItems: 'flex-end'}}>
+                    {!mobile ? <View></View> : 
                     <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', paddingHorizontal: 10, justifyContent: 'center'}} >
-                      <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/close.png')} />
+                      <Image style={{width: 30, height: 30, tintColor: 'black'}} source={require('../../assets/close.png')} />
                     </TouchableOpacity>
+                    }
                   </View>
+                  {mobile ? <View></View> : 
                   <ResultUserActions navigateTerms={() => this.props.history.push(`/conditions`)} isAddPhoto={this.state.isAddPhoto} toggleAddPhoto={this.toggleAddPhoto} isReview={this.state.isReview} toggleReview={this.toggleReview} addReview={this.addReview} toggleEdit={this.toggleEdit} fetchDiveSite={this.fetchDiveSite} diveSiteID={qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}  />
+                  }
                 </View>
               </View>
-              
             </View>
           </ScrollView>
+          {!mobile ? <View></View> :
+          <View style={{height: 75, flexDirection: 'row', backgroundColor: '#FEFEFE', borderTopWidth: 1, borderTopColor: '#CCCCCC'}}>
+            <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text>Add Photos</Text>
+              <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/add_photo.svg')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text>Review</Text>
+              <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/review.svg')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text>Edit</Text>
+              <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/create.svg')} />
+            </TouchableOpacity>
+          </View>
+          }
         </View>
       )
     }
