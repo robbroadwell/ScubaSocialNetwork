@@ -7,7 +7,7 @@ import AddReview from './AddReview'
 
 function ResultUserActions({ navigateTerms, isAddPhoto, toggleAddPhoto, isReview, toggleReview, addReview, toggleEdit, fetchDiveSite, diveSiteID }) {
   return (
-    <View style={{flexDirection: 'row', marginTop: 10}}>
+    <View style={{flexDirection: 'row', marginTop: 20}}>
       <PopoverButton popover={isAddPhoto} action={toggleAddPhoto} title={"Add Photos"} icon={isAddPhoto ? require('../../assets/drop_up.svg') : require('../../assets/add_photo.svg')} >
         <View style={{width: 300, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
           <ImageUpload navigateTerms={navigateTerms} toggleAddPhoto={toggleAddPhoto} fetchDiveSite={fetchDiveSite} diveSiteID={diveSiteID} />

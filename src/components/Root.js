@@ -69,7 +69,7 @@ class Root extends Component {
       topBarHeight: 40,
       footerMenuHeight: 50,
       showFooterMenuText: windowWidth > 500,
-      showSidebar: windowWidth > 1000,
+      mobile: windowWidth < 900,
       sidebarCollapsed,
       sidebarWidth: sidebarCollapsed ? 50 : 150
     };
@@ -87,7 +87,15 @@ class Root extends Component {
         <View style={{height: '100vh', flexDirection: 'column-reverse'}}>
           <View style={{flex: 1, flexDirection: 'row'}}>
 
-            {styles.showSidebar || this.state.listMode ? <List fullScreen={!styles.showSidebar && this.state.listMode} /> : <View/>}
+            <Route path="/" exact={styles.mobile}>
+              <List mobile={styles.mobile} listMode={this.state.listMode} />
+            </Route>
+
+            {!styles.mobile ? <View></View> :
+              <Route path="/" exact={true}>
+                <MobileModeToggleButton action={this.toggleList} title={title} />
+              </Route>
+            }
 
             <View style={{flex: 1}}>
               <Route path="/" component={Map} />
@@ -98,10 +106,11 @@ class Root extends Component {
               <Route path="/register" component={Register} />
             </View>
 
-            {styles.showSidebar ? <View></View> :
-            <View style={{position: 'absolute', bottom: 40, width: '100%', pointerEvents:'box-none', justifyContent: 'center', flexDirection: 'row'}}>
-              <PrimaryButton action={this.toggleList} title={title} icon={require('../assets/search.svg')} />
-            </View>}
+            {!styles.mobile ? <View></View> :
+            <Route path="/" exact={true}>
+              <MobileModeToggleButton action={this.toggleList} title={title} />
+            </Route>
+            }
 
           </View>
           <Route path="/" component={Header} />
@@ -111,6 +120,14 @@ class Root extends Component {
       
     );
   }
+}
+
+function MobileModeToggleButton({ action, title }) {
+  return (
+    <View style={{position: 'absolute', bottom: 40, width: '100%', pointerEvents:'box-none', justifyContent: 'center', flexDirection: 'row'}}>
+      <PrimaryButton action={action} title={title} icon={require('../assets/search.svg')} />
+    </View>
+  )
 }
 
 const mapStateToProps = state => {

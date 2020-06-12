@@ -35,6 +35,10 @@ class List extends Component {
   }
 
   render() {
+    if (this.props.mobile && !this.props.listMode) {
+      return <View></View>
+    }
+
     if (this.props.location.pathname === "/privacy" || this.props.location.pathname === "/register" || this.props.location.pathname === "/contact" || this.props.location.pathname === "/conditions") {
       return (
       <View style={{width: 350}}>
@@ -62,7 +66,7 @@ class List extends Component {
       return <Add />
     } else if (!this.state.editing) {
       return (
-        <View style={{minWidth: this.props.fullScreen ? '100%' : 350}}>
+        <View style={{minWidth: this.props.mobile ? '100%' : 350}}>
 
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{minHeight: '92vh'}}>
