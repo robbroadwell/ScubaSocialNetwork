@@ -124,7 +124,7 @@ class Root extends Component {
 
 function MobileModeToggleButton({ action, title }) {
   return (
-    <View style={{position: 'absolute', bottom: 40, width: '100%', pointerEvents:'box-none', justifyContent: 'center', flexDirection: 'row'}}>
+    <View style={{position: 'absolute', bottom: 80, width: '100%', pointerEvents:'box-none', justifyContent: 'center', flexDirection: 'row'}}>
       <PrimaryButton action={action} title={title} icon={require('../assets/search.svg')} />
     </View>
   )
