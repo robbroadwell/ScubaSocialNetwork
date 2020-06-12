@@ -48,7 +48,7 @@ class ResultEdit extends Component {
     console.log(this.props.site._id)
     axios({
       method: 'put',
-      url: 'https://www.divingscore.com/api/dive-sites',
+      url: 'https://www.divingcollective.com/api/dive-sites',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token

@@ -64,7 +64,7 @@ class ImageUpload extends Component {
 
     axios({
       method: 'put',
-      url: 'https://www.divingscore.com/api/dive-sites/photo-upload/',
+      url: 'https://www.divingcollective.com/api/dive-sites/photo-upload/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token
@@ -93,7 +93,7 @@ class ImageUpload extends Component {
 
         axios({
           method: 'put',
-          url: 'https://www.divingscore.com/api/dive-sites/photos/',
+          url: 'https://www.divingcollective.com/api/dive-sites/photos/',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'JWT ' + this.props.user.token
