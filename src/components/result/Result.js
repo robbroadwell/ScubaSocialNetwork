@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View, ScrollView } from 'react-native';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom'
+import {Helmet} from "react-helmet";
 
 import { connect } from "react-redux";
 import { getUser } from '../../redux/selectors';
@@ -154,8 +155,15 @@ class Result extends Component {
       return <ResultEdit site={diveSite} toggleEdit={this.toggleEdit} />
 
     } else {
+      const title = diveSite.name + ', ' + diveSite.country
+      console.log(title)
+
       return (
         <View style={{position: 'absolute', width: '100%', height: '100%'}}>
+          <Helmet>
+              <meta charSet="utf-8" />
+              <title>{title}</title>
+          </Helmet>
           <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: '#000000', opacity: 0.8}} />
           <ScrollView style={{position: 'absolute', width: '100%', height: '100%'}}>
             <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#F8F8F8', borderLeftWidth: 1, borderColor: "#DDDDDD"}}>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux";
 import { getDiveSites } from '../redux/selectors';
+import {Helmet} from "react-helmet";
 
 import Alert from './header/Alert';
 import Header from './header/Header';
@@ -78,6 +79,11 @@ class Root extends Component {
 
     return (
       <Router>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>DivingCollective: Search for Dive Sites, Scuba Liveaboards, Dive Resorts, Hotels, Gear, Dive Shops & more</title>
+        </Helmet>
+
         <View style={{height: '100vh', flexDirection: 'column-reverse'}}>
           <View style={{flex: 1, flexDirection: 'row'}}>
 
