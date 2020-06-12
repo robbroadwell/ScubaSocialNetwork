@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from "react-redux";
+import { getDiveSites } from '../redux/selectors';
 
 import Alert from './header/Alert';
 import Header from './header/Header';
@@ -10,6 +12,8 @@ import Result from './result/Result';
 import Conditions from './legal/Conditions';
 import Contact from './legal/Contact';
 import Privacy from './legal/Privacy';
+import PrimaryButton from '../utility/buttons/PrimaryButton';
+
 import ReactGA from 'react-ga';
 
 import {
@@ -24,7 +28,8 @@ class Root extends Component {
     super(props);
     this.state = {
       windowWidth: 0,
-      windowHeight: 0
+      windowHeight: 0,
+      listMode: false
     };
 
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -46,6 +51,12 @@ class Root extends Component {
     this.setState({ windowWidth, windowHeight });
   }
 
+  toggleList = () => {
+    this.setState(prevState => ({
+      listMode: !prevState.listMode
+    }));
+  }
+
   render() {
     const { windowWidth } = this.state;
 
@@ -57,22 +68,20 @@ class Root extends Component {
       topBarHeight: 40,
       footerMenuHeight: 50,
       showFooterMenuText: windowWidth > 500,
-      showSidebar: windowWidth > 768,
+      showSidebar: windowWidth > 1000,
       sidebarCollapsed,
       sidebarWidth: sidebarCollapsed ? 50 : 150
     };
     
-    console.log(styles.showSidebar)
-
     ReactGA.pageview(window.location.pathname + window.location.search);
+    const title = this.state.listMode ? "Return to Map" : this.props.diveSites.length + " results"
 
     return (
       <Router>
         <View style={{height: '100vh', flexDirection: 'column-reverse'}}>
-          
           <View style={{flex: 1, flexDirection: 'row'}}>
 
-            {styles.showSidebar ? <List /> : <View/>}
+            {styles.showSidebar || this.state.listMode ? <List fullScreen={!styles.showSidebar && this.state.listMode} /> : <View/>}
 
             <View style={{flex: 1}}>
               <Route path="/" component={Map} />
@@ -82,6 +91,11 @@ class Root extends Component {
               <Route path="/privacy" component={Privacy} />
               <Route path="/register" component={Register} />
             </View>
+
+            {styles.showSidebar ? <View></View> :
+            <View style={{position: 'absolute', bottom: 40, width: '100%', pointerEvents:'box-none', justifyContent: 'center', flexDirection: 'row'}}>
+              <PrimaryButton action={this.toggleList} title={title} icon={require('../assets/search.svg')} />
+            </View>}
 
           </View>
           <Route path="/" component={Header} />
@@ -93,4 +107,12 @@ class Root extends Component {
   }
 }
 
-export default Root;
+const mapStateToProps = state => {
+  const diveSites = getDiveSites(state);
+  return { diveSites };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(Root);
