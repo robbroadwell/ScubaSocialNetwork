@@ -8,7 +8,7 @@ function ReviewsList({ reviews }) {
     const review = reviews[i]
 
     views.push(
-      <View style={{flex: 1, margin: 10, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
+      <View style={{flex: 1, marginHorizontal: 10, marginVertical: 10, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
         <Text style={{fontSize: 22, marginBottom: 10}}>{review.title}</Text>
         <Ratings
           rating={review.rating}
@@ -29,7 +29,7 @@ function ReviewsList({ reviews }) {
   }
 
   return (
-    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: -10, marginBottom: 20}}>
+    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: 10, marginBottom: 20}}>
       {views}
     </View>
   )

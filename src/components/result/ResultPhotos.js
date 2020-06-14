@@ -30,7 +30,7 @@ class ResultPhotos extends Component {
     const photo = diveSite.photos[this.state.photoSelectedIndex]
 
     return (
-      <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, marginVertical: 20}}>
+      <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, margin: 20, marginBottom: 10}}>
                   
         {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
           <View style={{flex: 1}}>

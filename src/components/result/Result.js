@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet";
 import PopoverButton from '../buttons/PopoverButton';
 import PrimaryButton from '../buttons/PrimaryButton';
 import ResultCloseButton from './ResultCloseButton';
+import ReviewsList from './ReviewsList'
+import ResultPhotos from './ResultPhotos'
 import Loading from '../misc/Loading';
 
 class Result extends Component {
@@ -48,10 +50,10 @@ class Result extends Component {
         <View style={{position: 'relative', margin: 20, flex: 1, backgroundColor: this.props.style.colors.secondary}}>
           {this.state.isLoading ? <Loading /> : <View></View>}
 
-          <View style={{flexDirection: 'row', margin: 20}}>
+          <View style={{flexDirection: 'row', padding: 20, marginBottom: 10, backgroundColor: this.props.style.colors.primary}}>
             <ResultTitle diveSite={this.state.data.diveSite} style={this.props.style} />
             <ResultDesktopAction style={this.props.style} />
-            <ResultCloseButton history={this.props.history} />
+            <ResultCloseButton history={this.props.history} style={this.props.style} />
           </View>
 
           <ResultContent diveSite={this.state.data.diveSite} style={this.props.style} />
@@ -67,20 +69,37 @@ function ResultTitle({ diveSite, style }) {
     return <View></View>
   }
   return (
-    <View>
-      <Text style={{fontSize: 28, fontWeight: '300'}}>{diveSite.name}</Text>
+    <View >
+      <Text style={{fontSize: 28, fontWeight: '300', color: style.colors.secondary}}>{diveSite.name}</Text>
       <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
-        <Text style={{fontSize: 16}}>{diveSite.country}, </Text>
-        <Text style={{fontSize: 13}}>{Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
+        <Text style={{fontSize: 16, color: style.colors.secondary}}>{diveSite.country}, </Text>
+        <Text style={{fontSize: 13, color: style.colors.secondary}}>{Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
       </View>
     </View>
   )
 }
 
 function ResultContent({ diveSite, style }) {
+  if (!diveSite) {
+    return <View></View>
+  }
   return (
-    <View style={{flex: 1}}>
-      
+    <ScrollView style={{flex: 1}}>
+      <ResultDescription diveSite={diveSite} />
+      <ResultPhotos diveSite={diveSite} />
+      <ReviewsList reviews={diveSite.reviews} />
+    </ScrollView>
+  )
+}
+
+function ResultDescription({ diveSite }) {
+  if (!diveSite.details || !diveSite.details.description || diveSite.details.description.length === 0) {
+    return <View></View>
+  }
+
+  return (
+    <View style={{margin: 20}}>
+      <Text>{diveSite.details.description[diveSite.details.description.length - 1].content}</Text>
     </View>
   )
 }
