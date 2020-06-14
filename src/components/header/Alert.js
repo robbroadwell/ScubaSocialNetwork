@@ -22,8 +22,8 @@ class Alert extends Component {
 
     return (
       <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{color: '#DDDDDD', margin: 10, flex: 1, textAlign: 'center'}}><span style={{fontWeight: '700'}}>We are brand new!</span> Launched on June 15, 2020. Please check back often for updates, and we welcome any <span style={{textDecorationLine: 'underline', color: '#DDDDDD'}}><TouchableOpacity onPress={this.navigateComments}>comments or suggestions!</TouchableOpacity></span></Text>
-        <TouchableOpacity onPress={this.closeAlert} style={{height: '100%', paddingHorizontal: 10}} >
+        <Text style={{color: '#DDDDDD', margin: 10, flex: 1, textAlign: 'center'}}><span style={{fontWeight: '700'}}>We are brand new!</span> Launched on June 15, 2020. Please check back often for updates, and we welcome any <span style={{textDecorationLine: 'underline', color: '#DDDDDD'}}><TouchableOpacity onPress={this.navigateComments}><Text>comments or suggestions!</Text></TouchableOpacity></span></Text>
+        <TouchableOpacity onPress={this.closeAlert} style={{height: '100%', paddingHorizontal: 10, justifyContent: 'center'}} >
           <Image style={{width: 20, height: 20, tintColor: this.props.style.colors.secondary}} source={require('../../assets/close.png')} />
         </TouchableOpacity>
       </View>

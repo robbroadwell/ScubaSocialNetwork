@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
-import PrimaryButton from '../../utility/buttons/PrimaryButton';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 class Header extends Component {
 
