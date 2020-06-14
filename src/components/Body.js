@@ -9,7 +9,7 @@ class Body extends Component {
     return (
       <View style={{flex: 1, flexDirection: 'row'}}>
         <Map style={this.props.style} diveSites={this.props.diveSites} />
-        <List style={this.props.style} diveSites={this.props.diveSites} />
+        <List style={this.props.style} diveSites={this.props.diveSites} history={this.props.history} />
       </View>
     )
   }

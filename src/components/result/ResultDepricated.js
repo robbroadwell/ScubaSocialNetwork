@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getUser } from '../../redux/selectors';
 import { fetchDiveSites, setLoginMode } from '../../redux/actions';
 
-import Loading from '../../utility/Loading';
+import Loading from '../misc/Loading';
 import ReviewsList from './ReviewsList'
 import ResultDescription from './ResultDescription'
 import ResultPhotos from './ResultPhotos'
