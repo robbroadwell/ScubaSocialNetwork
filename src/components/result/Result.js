@@ -50,7 +50,7 @@ class Result extends Component {
         <View style={{position: 'relative', margin: 20, flex: 1, backgroundColor: this.props.style.colors.secondary}}>
           {this.state.isLoading ? <Loading /> : <View></View>}
 
-          <View style={{flexDirection: 'row', padding: 20, marginBottom: 10, backgroundColor: this.props.style.colors.primary}}>
+          <View style={{flexDirection: 'row', paddingHorizontal: 15, paddingVertical: 7, backgroundColor: this.props.style.colors.primary}}>
             <ResultTitle diveSite={this.state.data.diveSite} style={this.props.style} />
             <ResultDesktopAction style={this.props.style} />
             <ResultCloseButton history={this.props.history} style={this.props.style} />
@@ -70,9 +70,9 @@ function ResultTitle({ diveSite, style }) {
   }
   return (
     <View >
-      <Text style={{fontSize: 28, fontWeight: '300', color: style.colors.secondary}}>{diveSite.name}</Text>
-      <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 3}}>
-        <Text style={{fontSize: 16, color: style.colors.secondary}}>{diveSite.country}, </Text>
+      <Text style={{fontSize: 20, fontWeight: '300', color: style.colors.secondary}}>{diveSite.name}</Text>
+      <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+        <Text style={{fontSize: 15, color: style.colors.secondary}}>{diveSite.country}, </Text>
         <Text style={{fontSize: 13, color: style.colors.secondary}}>{Number((diveSite.location.coordinates[1]).toFixed(6))}, {Number((diveSite.location.coordinates[0]).toFixed(6))}</Text>
       </View>
     </View>
@@ -130,7 +130,7 @@ function ResultMobileActions({ style }) {
     return <View></View>
   }
   return (
-    <View style={{height: 75, flexDirection: 'row', backgroundColor: '#FEFEFE', borderTopWidth: 1, borderTopColor: '#CCCCCC'}}>
+    <View style={{paddingVertical: 10, flexDirection: 'row', backgroundColor: '#FEFEFE', borderTopWidth: 1, borderTopColor: '#CCCCCC'}}>
       <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Add Photos</Text>
         <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/add_photo.svg')} />
