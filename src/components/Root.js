@@ -30,11 +30,18 @@ class Root extends Component {
   }
 
   render() {
-    const { windowWidth } = this.state;
-    const mobile = windowWidth < 900;
+
+    const style = {
+      mobile: this.state.windowWidth < 900,
+      colors: {
+        primary: '#20232a',
+        secondary: '#FEFEFE',
+        borders: '#DDDDDD'
+      }
+    }
 
     ReactGA.pageview(window.location.pathname + window.location.search);
-    return <RootComponent mobile={mobile} />
+    return <RootComponent style={style} />
   }
 }
 
