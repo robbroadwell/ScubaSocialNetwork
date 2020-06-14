@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
 import { connect } from "react-redux";
 import { getDiveSites } from '../redux/selectors';
@@ -24,7 +24,7 @@ class RootComponent extends Component {
             <title>DivingCollective: Search for Dive Sites, Scuba Liveaboards, Dive Resorts, Hotels, Gear, Dive Shops & more</title>
         </Helmet>
         
-        <View style={{width: '100%', height: '100vh'}}>
+        <View style={{width: '100%', height: window.innerHeight}}>
           <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Body {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
