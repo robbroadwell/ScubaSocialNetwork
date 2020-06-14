@@ -13,7 +13,7 @@ import ReviewsList from './ReviewsList'
 import ResultDescription from './ResultDescription'
 import ResultPhotos from './ResultPhotos'
 import ResultEdit from './ResultEdit';
-import ResultTitle from './ResultTitle';
+// import ResultTitle from './ResultTitle';
 import ResultUserActions from './ResultUserActions'
 import ReactGA from 'react-ga';
 
@@ -173,7 +173,7 @@ class Result extends Component {
                 <ResultDescription diveSite={diveSite} />
   
                 <View style={{flexDirection: 'row', justifyContent: 'center'}} >
-                  <ResultTitle diveSite={diveSite} />
+                  {/* <ResultTitle diveSite={diveSite} /> */}
                   <View style={{flex: 1, alignItems: 'flex-end'}}>
                     {!mobile ? <View></View> : 
                     <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', paddingHorizontal: 10, justifyContent: 'center'}} >
