@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, FlatList, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import DiveSiteList from './DiveSiteList';
 import Legal from './Legal';
 
@@ -42,7 +42,7 @@ class List extends Component {
 
 function ResultsView({ diveSites, style }) {
   return (
-    <View style={{backgroundColor: style.colors.secondary, minWidth: 320}}>
+    <View style={{backgroundColor: style.colors.secondary}}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
         <DiveSiteList diveSites={diveSites} />
         <Legal />

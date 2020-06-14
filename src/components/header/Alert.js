@@ -16,9 +16,9 @@ class Alert extends Component {
   }
 
   render() {
-    // if (!this.props.alertMode) {
-    //   return <View></View>
-    // }
+    if (!this.props.alertMode) {
+      return <View></View>
+    }
 
     return (
       <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
