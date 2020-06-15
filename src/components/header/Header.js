@@ -6,16 +6,29 @@ class Header extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: this.props.style.colors.secondary, flexDirection: 'row', alignItems: 'center', height: 55, borderBottomWidth: 1, borderColor: this.props.style.colors.borders}}>
+      <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', alignItems: 'center', height: 60}}>
         
         <TouchableOpacity onPress={() => this.props.history.push(`/`)} style={{height: '100%', justifyContent: 'center'}}>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
             <Image style={{width: 30, height: 20, marginHorizontal: 15}} source={require('../../assets/flag2.svg')} />
-            <Image style={{width: 160, height: 25, marginTop: 2}} source={require('../../assets/logo_27.svg')} />
+            <Image style={{width: 200, height: 32, marginTop: 2}} source={require('../../assets/logo_light3.svg')} />
           </View>
         </TouchableOpacity>
 
+        <View style={{flexDirection: 'row', marginHorizontal: 30}}>
+          <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Destinations</Text>
+          <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Explore</Text>
+          <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Best Photos</Text>
+          <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Top Dive Sites</Text>
+        </View>
+
         <View style={{flex: 1}} ></View>
+
+        <View style={{width: 200, height: '100%'}}>
+          <View style={{flex: 1, marginVertical: 13, padding: 10, backgroundColor: 'white', justifyContent: 'center'}}>
+            <Text>Search</Text>
+          </View>
+        </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
           <PrimaryButton title={"Login"} />

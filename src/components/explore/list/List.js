@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import DiveSiteList from './DiveSiteList';
-import Legal from './Legal';
+import { connect } from "react-redux";
+import { getDiveSites } from "../../../redux/selectors";
+
 
 class List extends Component {
   constructor(props) {
@@ -19,8 +21,6 @@ class List extends Component {
 
   render() {
 
-    console.log(this.props)
-
     if (!this.props.style.mobile) { // desktop
       return <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} />
     }
@@ -37,7 +37,7 @@ class List extends Component {
       <View style={{position: 'absolute', height: '100%', width: '100%'}}>
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{position: 'absolute', right: 0, top: 0, height: '100%', flexDirection: 'row'}}>
-          <ExpandToggleButton icon={require('../../assets/close.png')} onPress={this.toggleExpanded} style={this.props.style} />
+          <ExpandToggleButton icon={require('../../../assets/close.png')} onPress={this.toggleExpanded} style={this.props.style} />
           <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} />
         </View>
       </View>
@@ -50,7 +50,6 @@ function ResultsView({ diveSites, style, history }) {
     <View style={{backgroundColor: style.colors.secondary}}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
         <DiveSiteList diveSites={diveSites} history={history} />
-        <Legal />
       </ScrollView>
     </View>
   )
@@ -65,4 +64,12 @@ function ExpandToggleButton({ title, icon, style, onPress }) {
   )
 }
 
-export default List;
+const mapStateToProps = state => {
+  const diveSites = getDiveSites(state);
+  return { diveSites };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(List);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import PrimaryButton from '../buttons/PrimaryButton';
-import PopoverButton from '../buttons/PopoverButton';
+import PrimaryButton from '../../buttons/PrimaryButton';
+import PopoverButton from '../../buttons/PopoverButton';
 import ImageUpload from './ImageUpload'
 import AddReview from './AddReview'
 

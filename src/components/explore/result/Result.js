@@ -4,12 +4,12 @@ import qs from 'qs';
 import { withRouter } from 'react-router-dom'
 import { Helmet } from "react-helmet";
 
-import PopoverButton from '../buttons/PopoverButton';
-import PrimaryButton from '../buttons/PrimaryButton';
+import PopoverButton from '../../buttons/PopoverButton';
+import PrimaryButton from '../../buttons/PrimaryButton';
 import ResultCloseButton from './ResultCloseButton';
 import ReviewsList from './ReviewsList'
 import ResultPhotos from './ResultPhotos'
-import Loading from '../misc/Loading';
+import Loading from '../../misc/Loading';
 
 class Result extends Component {
   constructor(props) {
@@ -45,8 +45,7 @@ class Result extends Component {
 
   render() {
     return (
-      <View style={{position: 'absolute', width: '100%', height: '100%'}}>
-        <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: 'black', opacity: 0.8}} />
+      <View style={{flex: 1}}>
         <View style={{position: 'relative', margin: 20, flex: 1, backgroundColor: this.props.style.colors.secondary}}>
           {this.state.isLoading ? <Loading /> : <View></View>}
 
@@ -110,17 +109,17 @@ function ResultDesktopAction({ style }) {
   }
   return (
     <View style={{flexDirection: 'row', flex: 1, alignItems: 'center', justifyContent: 'flex-end'}}>
-      <PopoverButton title={"Add Photos"} icon={require('../../assets/add_photo.svg')} >
+      <PopoverButton title={"Add Photos"} icon={require('../../../assets/add_photo.svg')} >
         <View style={{width: 300, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
           {/* <ImageUpload /> */}
         </View>
       </PopoverButton>
-      <PopoverButton title={"Review"} icon={require('../../assets/review.svg')} >
+      <PopoverButton title={"Review"} icon={require('../../../assets/review.svg')} >
         <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, right: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
           {/* <AddReview /> */}
         </View>
       </PopoverButton>
-      <PrimaryButton title={"Edit"}icon={require('../../assets/create.svg')}  />
+      <PrimaryButton title={"Edit"}icon={require('../../../assets/create.svg')}  />
     </View>
   )
 }
@@ -133,15 +132,15 @@ function ResultMobileActions({ style }) {
     <View style={{paddingVertical: 10, flexDirection: 'row', backgroundColor: '#FEFEFE', borderTopWidth: 1, borderTopColor: '#CCCCCC'}}>
       <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Add Photos</Text>
-        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/add_photo.svg')} />
+        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../../assets/add_photo.svg')} />
       </TouchableOpacity>
       <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Review</Text>
-        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/review.svg')} />
+        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../../assets/review.svg')} />
       </TouchableOpacity>
       <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Edit</Text>
-        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../assets/create.svg')} />
+        <Image style={{width: 20, height: 20, tintColor: 'black'}} source={require('../../../assets/create.svg')} />
       </TouchableOpacity>
     </View>
   )

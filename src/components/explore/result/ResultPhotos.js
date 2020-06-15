@@ -40,11 +40,11 @@ class ResultPhotos extends Component {
               { diveSite.photos.length === 1 ? <View></View> : 
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                    <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../assets/left.svg')} />
+                    <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../../assets/left.svg')} />
                   </TouchableOpacity>
                   <Text style={{color: '#FFFFFF'}}>Image {this.state.photoSelectedIndex + 1} of {diveSite.photos.length}</Text>
                   <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                    <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../assets/right.svg')} />
+                    <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../../assets/right.svg')} />
                   </TouchableOpacity>
                 </View>
               }

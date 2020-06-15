@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
-import { getUser } from '../../redux/selectors';
-import PrimaryButton from '../buttons/PrimaryButton';
+import { setAddDiveSiteMode, fetchDiveSites } from '../../../redux/actions';
+import { getUser } from '../../../redux/selectors';
+import PrimaryButton from '../../buttons/PrimaryButton';
 const axios = require('axios')
 
 class ResultEdit extends Component {

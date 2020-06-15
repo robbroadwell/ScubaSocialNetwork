@@ -7,8 +7,9 @@ import { Helmet } from "react-helmet";
 
 import Alert from './header/Alert';
 import Header from './header/Header';
-import Body from './Body';
-import Result from './result/Result';
+import Home from './home/Home';
+import Explore from './explore/Explore';
+import Result from './explore/result/Result';
 
 import {
   BrowserRouter as Router,
@@ -28,8 +29,8 @@ class RootComponent extends Component {
         <View style={{width: '100%', height: window.innerHeight}}>
           <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
-          <Route path='/' render={(props) => <Body {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
-          <Route path='/dive-sites' render={(props) => <Result {...props} style={this.props.style} />} />
+          <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
+          <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
         </View>
 
       </Router>

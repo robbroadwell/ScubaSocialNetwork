@@ -11,7 +11,6 @@ function DiveSiteList({ diveSites, history }) {
   return (
     <FlatList
 
-      style={{paddingBottom: 4}}
       data={diveSites}
       keyExtractor={({ id }, index) => id}
       renderItem={({ item }) => (

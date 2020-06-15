@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-import debounce from '../../utility/debounce';
+import debounce from '../../../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setMapCenter, setMapRect, fetchDiveSites } from "../../redux/actions";
-import { getAddDiveSiteMode } from "../../redux/selectors";
+import { setDiveSites, setMapCenter, setMapRect, fetchDiveSites } from "../../../redux/actions";
+import { getAddDiveSiteMode, getDiveSites } from "../../../redux/selectors";
 import { withRouter } from 'react-router-dom'
 
 class Map extends Component {
@@ -102,7 +102,8 @@ class Map extends Component {
 
 const mapStateToProps = state => {
   const addDiveSiteMode = getAddDiveSiteMode(state);
-  return { addDiveSiteMode };
+  const diveSites = getDiveSites(state);
+  return { addDiveSiteMode, diveSites };
 };
 
 export default connect(

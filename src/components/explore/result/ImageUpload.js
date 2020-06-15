@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import DragAndDrop from '../images/DragAndDrop'
-import Loading from '../misc/Loading';
+import DragAndDrop from '../../images/DragAndDrop'
+import Loading from '../../misc/Loading';
 
 import { connect } from "react-redux";
-import { getUser } from '../../redux/selectors';
+import { getUser } from '../../../redux/selectors';
 
 const axios = require('axios')
 
