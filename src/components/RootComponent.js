@@ -9,7 +9,8 @@ import Alert from './header/Alert';
 import Header from './header/Header';
 import Home from './home/Home';
 import Explore from './explore/Explore';
-import Result from './explore/result/Result';
+import Destinations from './destinations/Destinations';
+import DiveSites from './dive-sites/DiveSites';
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,8 @@ class RootComponent extends Component {
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
           <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
+          <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
+          <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
         </View>
 
       </Router>
