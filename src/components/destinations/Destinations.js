@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 class Destinations extends Component {
   render() {
     return (
       <View style={{marginTop: 10}}>
-        <DestinationContent />
+        <DestinationContent onPress={() => this.props.history.push(`/destinations/mexico`)} />
       </View>
     )
   }
 }
 
-function DestinationContent() {
+function DestinationContent({ onPress }) {
   const count = 20;
 
   var views = []
   for (var i = 0; i < count; i++) {
     views.push(
-      <DestinationCard />
+      <DestinationCard onPress={onPress} />
     )
   }
 
@@ -28,11 +28,11 @@ function DestinationContent() {
   )
 }
 
-function DestinationCard() {
+function DestinationCard({ onPress }) {
   return (
-    <View style={{width: 220, height: 200, backgroundColor: '#CCCCCC', marginBottom: 10}}>
+    <TouchableOpacity onPress={onPress} style={{width: 220, height: 200, backgroundColor: '#CCCCCC', marginBottom: 10}}>
 
-    </View>
+    </TouchableOpacity>
   )
 }
 

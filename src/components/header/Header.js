@@ -20,13 +20,23 @@ class Header extends Component {
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Destinations</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => this.props.history.push(`/explore`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Explore</Text>
-          </TouchableOpacity>
-
           <TouchableOpacity onPress={() => this.props.history.push(`/dive-sites`)}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Top Dive Sites</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => this.props.history.push(`/photos`)}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Best Photos</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => this.props.history.push(`/animals`)}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Find Animals</Text>
+          </TouchableOpacity>
+
+          {/* <TouchableOpacity onPress={() => this.props.history.push(`/explore`)}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Explore</Text>
+          </TouchableOpacity> */}
+
+          
         </View>
 
         <View style={{flex: 1}} ></View>

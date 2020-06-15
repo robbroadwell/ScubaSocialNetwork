@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import List from '../explore/list/List';
 import Map from '../explore/map/Map';
-import Legal from './Legal';
 
 class Home extends Component {
+
+  navigateDestination = () => {
+    this.props.history.push(`/destinations/mexico`)
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -48,73 +52,44 @@ class Home extends Component {
           <Text style={{fontSize: 14, color: 'black', marginTop: 5}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
           <View style={{flexDirection: 'row', marginTop: 10}}>
             <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
             </View>
             <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
             </View>
             <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
             </View>
             <View style={{flexDirection: 'column'}}>
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
-              <DirectoryLocation />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
+              <DirectoryLocation onPress={this.navigateDestination} />
             </View>
           </View>
         </View>
 
-        <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 40, flexDirection: 'row', height: 450}}>
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
-            <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>
-            <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Never lose the trail, even if you lose your cell signal. Our app was designed to work offline.</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-              <View style={{backgroundColor: '#A00000'}}>
-                <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{width: 20}} />
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Image style={{flex: 1}} source={require('../../assets/you.jpg')} />
-            <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Add your favorite dive sites</Text>
-            <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of riders who’ve shared their most treasured trails with the MTB Project community.</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-              <View style={{backgroundColor: '#A00000'}}>
-                <Text style={{padding: 15, color: 'white'}}>Add a dive site</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={{backgroundColor: 'black'}}>
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 40}}>
-            <Image style={{width: 150, height: 45, marginRight: 10}} source={require('../../assets/appStoreIos.gif')} />
-            <Image style={{width: 150, height: 45}} source={require('../../assets/appStoreAndroid.gif')} />
-          </View>
-          <Legal />
-        </View>
       </View>
     )
   }
 }
 
-function DirectoryLocation() {
+function DirectoryLocation({ onPress }) {
   return (
     <View style={{flexDirection: 'row'}}>
-      <Text>Jamaica</Text>
-      <Text>......................................</Text>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={{color: '#0000A5'}}>Mexico</Text>
+      </TouchableOpacity>
+      <Text>.........................................</Text>
       <Text>24 dives</Text>
     </View>
   )
