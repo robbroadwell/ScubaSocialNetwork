@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import List from '../explore/list/List';
 import Map from '../explore/map/Map';
 
@@ -30,7 +30,7 @@ class Home extends Component {
         <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Dive Sites</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <TouchableOpacity onPress={() => this.props.history.push(`/dive-sites/5465131546/great-blue-hole`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
@@ -78,9 +78,38 @@ class Home extends Component {
           </View>
         </View>
 
+        <FooterActions />
       </View>
     )
   }
+}
+
+function FooterActions() {
+  return (
+    <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 40, flexDirection: 'row', height: 450}}>
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
+        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>
+        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Never lose the trail, even if you lose your cell signal. Our app was designed to work offline.</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+          <View style={{backgroundColor: '#A00000'}}>
+            <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
+          </View>
+        </View>
+      </View>
+      <View style={{width: 20}} />
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <Image style={{flex: 1}} source={require('../../assets/you.jpg')} />
+        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Add your favorite dive sites</Text>
+        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of riders who’ve shared their most treasured trails with the MTB Project community.</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+          <View style={{backgroundColor: '#A00000'}}>
+            <Text style={{padding: 15, color: 'white'}}>Add a dive site</Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  )
 }
 
 function DirectoryLocation({ onPress }) {

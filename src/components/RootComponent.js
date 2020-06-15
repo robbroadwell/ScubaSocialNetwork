@@ -13,6 +13,7 @@ import Explore from './explore/Explore';
 import Destinations from './destinations/Destinations';
 import DestinationDetail from './destinations/DestinationDetail';
 import DiveSites from './dive-sites/DiveSites';
+import DiveSiteDetail from './dive-sites/DiveSiteDetail';
 import Photos from './photos/Photos';
 import PhotosOverlay from './photos/PhotosOverlay';
 import Animals from './animals/Animals';
@@ -39,7 +40,7 @@ class RootComponent extends Component {
           <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
           <Route path='/destinations/:id' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} />} />
           <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
-          <Route path='/dive-sites/:id' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
+          <Route path='/dive-sites/:id' render={(props) => <DiveSiteDetail {...props} style={this.props.style} />} />
           <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />
           <Route path='/animals' exact={true} render={(props) => <Animals {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />

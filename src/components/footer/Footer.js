@@ -5,7 +5,6 @@ class Footer extends Component {
   render() {
     return (
       <View>
-        <FooterActions />
         <View style={{backgroundColor: 'black'}}>
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 40}}>
             <Image style={{width: 150, height: 45, marginRight: 10}} source={require('../../assets/appStoreIos.gif')} />
@@ -29,34 +28,6 @@ class Footer extends Component {
       </View>
     )
   }
-}
-
-function FooterActions() {
-  return (
-    <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 40, flexDirection: 'row', height: 450}}>
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
-        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>
-        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Never lose the trail, even if you lose your cell signal. Our app was designed to work offline.</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-          <View style={{backgroundColor: '#A00000'}}>
-            <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
-          </View>
-        </View>
-      </View>
-      <View style={{width: 20}} />
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <Image style={{flex: 1}} source={require('../../assets/you.jpg')} />
-        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Add your favorite dive sites</Text>
-        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of riders who’ve shared their most treasured trails with the MTB Project community.</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-          <View style={{backgroundColor: '#A00000'}}>
-            <Text style={{padding: 15, color: 'white'}}>Add a dive site</Text>
-          </View>
-        </View>
-      </View>
-    </View>
-  )
 }
 
 export default Footer;
