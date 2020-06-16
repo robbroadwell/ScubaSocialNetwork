@@ -36,9 +36,9 @@ class Home extends Component {
         </View>
 
         <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Photos</Text> 
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Destinations</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <TouchableOpacity onPress={() => this.props.history.push(`/dive-sites/5465131546/great-blue-hole`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <TouchableOpacity onPress={() => this.props.history.push(`/destinations/mexico`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
