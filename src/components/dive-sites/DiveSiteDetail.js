@@ -181,6 +181,9 @@ class DiveSiteDetailMarketing extends Component {
           <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Liveaboards from $154 per night</Text>
           </View>
+          {/* <View style={{margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+            <Text style={{color: '#A00000', fontSize: 15, fontWeight: '600', margin: 20, marginVertical: 50, textAlign: 'center'}}>Featured Dive Operator</Text>
+          </View> */}
         </View>
       )}
     </Sticky>
