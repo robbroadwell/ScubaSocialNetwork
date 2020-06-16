@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Ratings from 'react-ratings-declarative';
+import { StickyContainer, Sticky } from 'react-sticky';
 import Map from '../explore/map/Map';
 
 function DiveSiteDetailHeader() {
@@ -80,128 +81,109 @@ function DiveSiteDetailBody({ style }) {
 
 function DiveSiteDetailSidebar() {
   return (
-    <View style={{width: 320, flexDirection: 'column'}}>
-      <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
-        <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
-      </View>
-      <View style={{margin: 10, marginBottom: 5, borderColor: '#DDDDDD', borderWidth: 1}}>
-        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
-          <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+    <StickyContainer>
+      <View style={{width: 320, flexDirection: 'column'}}>
+        <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
+          <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
         </View>
-        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
-          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
-          <Text style={{fontWeight: '600'}}>100+ meters</Text>
-          <View style={{flex: 1}} />
-          <Text>See history</Text>
-        </View>
-      </View>
-      <View style={{margin: 10, marginBottom: 5, borderColor: '#DDDDDD', borderWidth: 1}}>
-        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Depth</Text>
-          <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-        </View>
-        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
-          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
-          <View style={{flexDirection: 'column'}}>
-            <Text style={{fontWeight: '600'}}>Average: 44 ft</Text>
-            <Text style={{fontWeight: '600'}}>Max: 78 ft</Text>
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Log Dive</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
           </View>
-          <View style={{flex: 1}} />
-          <Text>See history</Text>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+            <Text style={{fontWeight: '600'}}>100+ meters</Text>
+            <View style={{flex: 1}} />
+            <Text>See history</Text>
+          </View>
         </View>
-      </View>
-      <View style={{margin: 10, marginBottom: 5, borderColor: '#DDDDDD', borderWidth: 1}}>
-        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Water Temperature</Text>
-          <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Depth</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Log Dive</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          </View>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+            <View style={{flexDirection: 'column'}}>
+              <Text style={{fontWeight: '600'}}>Average: 44 ft</Text>
+              <Text style={{fontWeight: '600'}}>Max: 78 ft</Text>
+            </View>
+            <View style={{flex: 1}} />
+            <Text>See history</Text>
+          </View>
         </View>
-        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
-          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
-          <Text style={{fontWeight: '600'}}>80°F</Text>
-          <View style={{flex: 1}} />
-          <Text>See history</Text>
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Water Temperature</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Log Dive</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          </View>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+            <Text style={{fontWeight: '600'}}>80°F</Text>
+            <View style={{flex: 1}} />
+            <Text>See history</Text>
+          </View>
         </View>
-      </View>
-      <View style={{margin: 10, marginBottom: 5, borderColor: '#DDDDDD', borderWidth: 1}}>
-        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Currents</Text>
-          <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Currents</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Log Dive</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          </View>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+            <Text style={{fontWeight: '600'}}>None</Text>
+            <View style={{flex: 1}} />
+            <Text>See history</Text>
+          </View>
         </View>
-        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
-          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
-          <Text style={{fontWeight: '600'}}>None</Text>
-          <View style={{flex: 1}} />
-          <Text>See history</Text>
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Access</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Edit</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          </View>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Text style={{fontWeight: '600'}}>Boat, Liveaboard</Text>
+            <View style={{flex: 1}} />
+          </View>
         </View>
-      </View>
-      <View style={{margin: 10, marginBottom: 5, borderColor: '#DDDDDD', borderWidth: 1}}>
-        <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Access</Text>
-          <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Edit</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-        </View>
-        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
-          <Text style={{fontWeight: '600'}}>Boat, Liveaboard</Text>
-          <View style={{flex: 1}} />
-        </View>
-      </View>
 
-      <DiveSiteDetailMarketing />
-    </View>
+        <DiveSiteDetailMarketing />
+      </View>
+    </StickyContainer>
   )
 }
 
 class DiveSiteDetailMarketing extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     fixed: false,
-  //     positionY: 0
-  //   };
-  // }
-
-  // onSetFixed = input => {
-  //   this.setState({ fixed: input });
-  // };
-
-  // componentDidMount() {
-  //   document.addEventListener('scroll', this.trackScrolling);
-  // }
-
-  // trackScrolling = (result) => {
-  //   var fixed = result.path[1].scrollY > 600
-  //   this.setState({ positionY: result.path[1].scrollY})
-
-  //   if (fixed !== this.state.fixed) {
-  //     this.setState({fixed: fixed})
-  //   }
-  // }
-  
   render() {
     return (
-      <View>
-      {/* <View style={{position: this.state.fixed ? 'absolute' : 'relative', top: this.state.positionY}} ></View> */}
-        <Text style={{fontSize: 18, fontWeight: '600', marginTop: 40, marginBottom: 5, textAlign: 'center'}}>Ready to go?</Text>
-        <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
-          <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Flights from $2,000</Text>
+    <Sticky topOffset={665}>
+      {({ style }) => (
+        <View style={style}>
+        {/* <View style={{position: this.state.fixed ? 'absolute' : 'relative', top: this.state.positionY}} ></View> */}
+          <Text style={{fontSize: 18, fontWeight: '600', marginTop: 30, marginBottom: 5, textAlign: 'center'}}>Ready to go?</Text>
+          <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Flights from $2,000</Text>
+          </View>
+          <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Hotels from $120 per night</Text>
+          </View>
+          <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Liveaboards from $154 per night</Text>
+          </View>
         </View>
-        <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
-          <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Hotels from $120 per night</Text>
-        </View>
-        <View style={{backgroundColor: '#A00000', margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
-          <Text style={{color: 'white', fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Liveaboards from $154 per night</Text>
-        </View>
-      </View>
+      )}
+    </Sticky>
     )
   }
 }
@@ -226,7 +208,7 @@ class DiveSiteDetail extends Component {
 function DiveSiteDetailMap({ style }) {
   return (
     <View>
-      <View style={{flexDirection: 'row', margin: 20, marginBottom: 0, alignItems: 'center'}}>
+      <View style={{flexDirection: 'row', marginHorizontal: 20, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
         <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
         <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
