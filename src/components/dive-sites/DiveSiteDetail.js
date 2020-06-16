@@ -74,17 +74,6 @@ function DiveSiteDetailBody({ style }) {
       </View>
       <ReviewsContent />
 
-      <View style={{flexDirection: 'row', marginTop: 15, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-      </View>
-      <Text style={{marginBottom: 15, marginTop: 5}}>
-        -41.12394948, 12.1241429
-      </Text>
-      <View style={{width: '100%', height: 300}}>
-        <Map style={style} />
-      </View>
     </View>
   )
 }
@@ -227,9 +216,29 @@ class DiveSiteDetail extends Component {
           <DiveSiteDetailBody style={this.props.style} />
           <DiveSiteDetailSidebar />
         </View>
+
+        <DiveSiteDetailMap style ={this.props.style} />
       </View>
     )
   }
+}
+
+function DiveSiteDetailMap({ style }) {
+  return (
+    <View>
+      <View style={{flexDirection: 'row', margin: 20, marginBottom: 0, alignItems: 'center'}}>
+        <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
+        <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
+        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+      </View>
+      <Text style={{margin: 15, marginTop: 5}}>
+        -41.12394948, 12.1241429
+      </Text>
+      <View style={{width: '100%', height: 300}}>
+        <Map style={style} />
+      </View>
+    </View>
+  )
 }
 
 function AnimalsContent({ onPress }) {
