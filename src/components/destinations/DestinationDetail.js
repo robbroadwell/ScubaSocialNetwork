@@ -22,6 +22,8 @@ class DestinationDetail extends Component {
             <Text style={{fontSize: 15}}>Destinations</Text>
             <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
             <Text style={{fontSize: 15}}>Mexico</Text>
+            <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+            <Text style={{fontSize: 15}}>Select Region</Text>
           </View>
 
           <View style={{flexDirection: 'row', marginTop: 5, marginVertical: 10}}>

@@ -216,9 +216,13 @@ function DiveSiteDetailMap({ style }) {
         <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
         <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
       </View>
-      <Text style={{margin: 15, marginTop: 5}}>
-        -41.12394948, 12.1241429
-      </Text>
+      <View style={{flexDirection: 'row', margin: 15, marginTop: 5}}>
+        <Text style={{fontSize: 15}}>Belize</Text>
+        <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+        <Text style={{fontSize: 15}}>Lighthouse Reef</Text>
+        <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+        <Text style={{fontSize: 15}}>-41.12394948, 12.1241429</Text>
+      </View>
       <View style={{width: '100%', height: 300}}>
         <Map style={style} />
       </View>
