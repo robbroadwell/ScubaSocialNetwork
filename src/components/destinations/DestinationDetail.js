@@ -18,12 +18,10 @@ class DestinationDetail extends Component {
             </View>
           </View>
 
-          <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 20}}>
+          <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 10}}>
             <Text style={{fontSize: 15}}>Destinations</Text>
             <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
             <Text style={{fontSize: 15}}>Mexico</Text>
-            <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-            <Text style={{fontSize: 15}}>View Regions</Text>
           </View>
 
           <View style={{flexDirection: 'row', marginTop: 5, marginVertical: 10}}>
@@ -62,8 +60,8 @@ class DestinationDetail extends Component {
           </View>
         </View>
 
-        <View style={{margin: 20}}>
-          {/* <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Mexico</Text>  */}
+        <View style={{margin: 20, marginTop: 20}}>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Mexico</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
