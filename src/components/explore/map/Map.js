@@ -9,14 +9,52 @@ import { withRouter } from 'react-router-dom'
 
 class Map extends Component {
   googleMapRef = React.createRef()
+  markers = []; // prevent duplicates
 
   componentDidMount() {
-    const googleMapScript = document.createElement("script");
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E&libraries=places`;
-    window.document.body.appendChild(googleMapScript);
-    googleMapScript.addEventListener("load", () => {
-    this.googleMap = this.createGoogleMap();
+    this.markers = [];
 
+    var googleMapScript;
+    
+    const children = window.document.body.children;
+    if (children.length > 0) {
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].title === "map") {
+          googleMapScript = children[i]
+        }
+      }
+    }
+
+    if (!googleMapScript) {
+      googleMapScript = document.createElement("script");
+      googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDK1d0EuOMSupb27KqzQJCkTqjSDjXtf-E&libraries=places`;
+      googleMapScript.title = "map"
+      window.document.body.appendChild(googleMapScript);
+      googleMapScript.addEventListener("load", () => {
+        this.googleMap = this.createGoogleMap();
+        this.addBoundsListener();
+      })
+
+    } else {
+      this.googleMap = this.createGoogleMap();
+      this.addBoundsListener();
+    }
+  }
+
+  createGoogleMap = () =>
+    new window.google.maps.Map(this.googleMapRef.current, {
+      zoom: 5,
+      minZoom: 4,
+      center: {
+          lat: 25.618760268337972,
+          lng: -79.08256345614791
+      },
+      disableDefaultUI: true,
+      zoomControl: !this.props.style.mobile,
+      mapTypeId: window.google.maps.MapTypeId.HYBRID,
+  })
+
+  addBoundsListener = () => {
     window.google.maps.event.addListener(this.googleMap, 'bounds_changed', debounce(() => {
       var bounds = this.googleMap.getBounds();
       
@@ -38,23 +76,8 @@ class Map extends Component {
       this.props.fetchDiveSites()
 
     }, 250));
-    })
   }
 
-  createGoogleMap = () =>
-    new window.google.maps.Map(this.googleMapRef.current, {
-      zoom: 5,
-      minZoom: 4,
-      center: {
-          lat: 25.618760268337972,
-          lng: -79.08256345614791
-      },
-      disableDefaultUI: true,
-      zoomControl: !this.props.style.mobile,
-      mapTypeId: window.google.maps.MapTypeId.HYBRID,
-  })
-
-  markers = []; // prevent duplicates
   createMarkers = () => {
     if (window.google) {
       const { diveSites, setSelectedDiveSite } = this.props;

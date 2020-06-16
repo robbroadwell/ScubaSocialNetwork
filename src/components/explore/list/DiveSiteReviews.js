@@ -4,24 +4,20 @@ import Ratings from 'react-ratings-declarative';
 
 function DiveSiteReviews({ reviews, rating, changeRating, userModified }) {
   return (
-    <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-      <View style={{alignItems: 'center'}}>
-        <Ratings
-          rating={rating}
-          widgetRatedColors={userModified ? "#FFB400" : "DD0000"}
-          widgetDimensions="14px"
-          widgetSpacings="1px">
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-          <Ratings.Widget widgetHoverColor="#FFB400"  />
-        </Ratings>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 13, fontWeight: '600'}}>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
-            <Text style={{marginLeft: 5, fontSize: 13}}>({reviews} review{reviews == 1 ? '' : 's'})</Text>
-        </View>
-      </View>
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Ratings
+        rating={rating}
+        widgetRatedColors={userModified ? "#FFB400" : "DD0000"}
+        widgetDimensions="14px"
+        widgetSpacings="1px">
+        <Ratings.Widget widgetHoverColor="#FFB400"  />
+        <Ratings.Widget widgetHoverColor="#FFB400"  />
+        <Ratings.Widget widgetHoverColor="#FFB400"  />
+        <Ratings.Widget widgetHoverColor="#FFB400"  />
+        <Ratings.Widget widgetHoverColor="#FFB400"  />
+      </Ratings>
+      
+      <Text style={{marginLeft: 10}}>{(Math.round(rating * 100) / 100).toFixed(1)} ( {reviews} )</Text>
     </View>
   )
 }

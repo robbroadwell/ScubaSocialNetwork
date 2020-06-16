@@ -64,6 +64,16 @@ class DiveSiteDetail extends Component {
                 <Text>See history</Text>
               </View>
             </View>
+            <Text style={{fontSize: 18, fontWeight: '600', marginTop: 40, marginBottom: 5, textAlign: 'center'}}>Ready to go?</Text>
+            <View style={{margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+              <Text style={{fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Flights from $2,000</Text>
+            </View>
+            <View style={{margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+              <Text style={{fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Hotels from $120 per night</Text>
+            </View>
+            <View style={{margin: 10, borderColor: '#DDDDDD', borderWidth: 1, marginBottom: 5}}>
+              <Text style={{fontSize: 15, fontWeight: '600', margin: 20, textAlign: 'center'}}>Liveaboards from $154 per night</Text>
+            </View>
           </View>
         </View>
       </View>

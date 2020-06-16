@@ -25,14 +25,31 @@ class DestinationDetail extends Component {
             <Text style={{fontSize: 15}}>View Regions</Text>
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <List style={this.props.style} />
-            <Map style={this.props.style} />
+            <List style={this.props.style} history={this.props.history} />
+            {this.props.map}
           </View>
         </View>
 
         <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Photos in Mexico</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Latest Photos in Mexico</Text> 
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+          
+          </View>
+        </View>
+
+        <View style={{margin: 20}}>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Mexico</Text> 
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />

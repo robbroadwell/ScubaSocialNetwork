@@ -26,24 +26,23 @@ class Home extends Component {
             <Text style={{padding: 20}}>Find dive sites, destinations, etc.</Text>
           </View>
         </View>
-        
+
+        <View style={{height: 500, margin: 20}}>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 20}}>Explore 4,340 Dive Sites</Text> 
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <List style={this.props.style} history={this.props.history} />
+            {this.props.map}
+          </View>
+        </View>
+
         <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Dive Sites</Text> 
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Photos</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
             <TouchableOpacity onPress={() => this.props.history.push(`/dive-sites/5465131546/great-blue-hole`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-          </View>
-        </View>
-
-        <View style={{height: 500, margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Explore 4,340 Dive Sites</Text> 
-          <Text style={{fontSize: 14, color: 'black', marginTop: 5, marginBottom: 20}}>Move the map to find dive sites. You can also <span style={{textDecorationLine: 'underline'}}>search on a larger map.</span></Text> 
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <List style={this.props.style} />
-            <Map style={this.props.style} />
           </View>
         </View>
 
