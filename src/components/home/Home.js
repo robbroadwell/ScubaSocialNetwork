@@ -15,10 +15,10 @@ class Home extends Component {
         <View style={{height: 500, justifyContent: 'center', alignItems: 'center'}}>
           <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={require('../../assets/reef.jpg')} />
           <View style={{marginBottom: 30}}>
-            <Text style={{fontSize: 50, fontWeight: '700', color: 'white'}}>
+            <Text style={{fontSize: 50, fontWeight: '700', color: 'white', textShadowColor: '#555555', textShadowRadius: 10}}>
               Plan your next Scuba adventure
             </Text>
-            <Text style={{fontSize: 20, color: 'white', textAlign: 'center'}}>
+            <Text style={{fontSize: 20, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
               Get information from fellow divers just like you.
             </Text>
           </View>
