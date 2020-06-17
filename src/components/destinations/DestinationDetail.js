@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import List from '../explore/list/List';
 import Map from '../explore/map/Map';
+import StyledLink from '../buttons/StyledLink';
 
 class DestinationDetail extends Component {
   render() {
+    console.log(this.props.match.params)
     return (
       <View style={{flex: 1}}>
 
@@ -13,7 +15,7 @@ class DestinationDetail extends Component {
 
             <View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>Mexico</Text>
+                <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>Belize</Text>
                 <View style={{marginLeft: 15, justifyContent: 'center'}}>
                   <View style={{backgroundColor: '#A00000'}}>
                     <Text style={{padding: 5, color: 'white'}}>TOP</Text>
@@ -22,11 +24,11 @@ class DestinationDetail extends Component {
               </View>
 
               <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 10}}>
-                <Text style={{fontSize: 15}}>Destinations</Text>
+                <StyledLink to="/destinations">Destinations</StyledLink>
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-                <Text style={{fontSize: 15}}>Mexico</Text>
+                {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">Belize</StyledLink> : <Text style={{fontSize: 16}}>Belize</Text>}
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-                <Text style={{fontSize: 15}}>Select Region</Text>
+                {this.props.match.params.idRegion ? <Text style={{fontSize: 16}}>Lighthouse Reef</Text> : <StyledLink to="/destinations/belize/lighthouse-reef">Select Region</StyledLink>}
               </View>
             </View>
             
@@ -64,7 +66,7 @@ class DestinationDetail extends Component {
         </View>
 
         <View style={{margin: 20, marginTop: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Mexico</Text> 
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Belize</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
@@ -81,7 +83,7 @@ class DestinationDetail extends Component {
         </View>
 
         <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Mexico</Text> 
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Belize</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />

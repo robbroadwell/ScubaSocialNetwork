@@ -5,7 +5,7 @@ class Destinations extends Component {
   render() {
     return (
       <View style={{marginTop: 10}}>
-        <DestinationContent onPress={() => this.props.history.push(`/destinations/mexico`)} />
+        <DestinationContent onPress={() => this.props.history.push(`/destinations/belize`)} />
       </View>
     )
   }

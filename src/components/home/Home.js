@@ -6,7 +6,7 @@ import Map from '../explore/map/Map';
 class Home extends Component {
 
   navigateDestination = () => {
-    this.props.history.push(`/destinations/mexico`)
+    this.props.history.push(`/destinations/belize`)
   }
 
   render() {
@@ -38,7 +38,7 @@ class Home extends Component {
         <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Destinations</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <TouchableOpacity onPress={() => this.props.history.push(`/destinations/mexico`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <TouchableOpacity onPress={() => this.props.history.push(`/destinations/belize`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />

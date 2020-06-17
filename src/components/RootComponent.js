@@ -44,7 +44,7 @@ class RootComponent extends Component {
           <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} map={this.map} />} />
           <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
           <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
-          <Route path='/destinations/:id' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
+          <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
           <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
           <Route path='/dive-sites/:id' render={(props) => <DiveSiteDetail {...props} style={this.props.style} />} />
           <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />

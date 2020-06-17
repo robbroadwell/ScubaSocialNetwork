@@ -31,7 +31,7 @@ details of one destination
       name
     }
   ]
-  photos: [
+  recentPhotos: [  (10)
     {
       id
       urlThumbnail
@@ -170,6 +170,12 @@ list of all photos
       id
       name
     }
+    animals: [
+      {
+        id
+        name
+      }
+    ]
     rating
     ratingCount
   }
@@ -197,6 +203,12 @@ get details for one photo
     id
     name
   }
+  animals: [
+    {
+      id
+      name
+    }
+  ]
   score
   ratings: [
     {

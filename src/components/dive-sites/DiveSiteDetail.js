@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Map from '../explore/map/Map';
+import StyledLink from '../buttons/StyledLink';
 
 function DiveSiteDetailHeader() {
   return (
@@ -35,11 +36,11 @@ function DiveSiteDetailHeader() {
             </View>
 
             <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-              <Text style={{fontSize: 15}}>Destinations</Text>
+              <StyledLink to="/destinations">Destinations</StyledLink>
               <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <Text style={{fontSize: 15}}>Belize</Text>
+              <StyledLink to="/destinations/belize">Belize</StyledLink>
               <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <Text style={{fontSize: 15}}>Lighthouse Reef</Text>
+              <StyledLink to="/destinations/belize/lighthouse-reef">Lighthouse Reef</StyledLink>
               <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
               <Text style={{fontSize: 15}}>The Great Blue Hole</Text>
             </View>
