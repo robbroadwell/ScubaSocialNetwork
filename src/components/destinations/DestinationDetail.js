@@ -51,9 +51,9 @@ class DestinationDetail extends Component {
                 <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
                   <Text style={{padding: 10}}>Access</Text>
                 </View>
-                {/* <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Animal Sightings</Text>
-                </View> */}
+                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                  <Text style={{padding: 10}}>Animals</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -82,6 +82,17 @@ class DestinationDetail extends Component {
           </View>
         </View>
 
+        {/* <View style={{margin: 20}}>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Animals Seen in Belize</Text> 
+          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+          </View>
+        </View> */}
+
         <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Belize</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
@@ -92,17 +103,6 @@ class DestinationDetail extends Component {
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
           </View>
         </View>
-
-        {/* <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Animal Sightings in Mexico</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-          </View>
-        </View> */}
       </View>
     )
   }

@@ -1,3 +1,10 @@
+Make list of every READ and WRITE situation,
+breaking down which & how many objects need to be
+read or updated in each situation.
+
+Then try to trim them down as much as possible while
+still accomplishing the funcitonality.
+
 /api/destinations
 list of all destinations 
 "Destination"
@@ -9,7 +16,7 @@ list of all destinations
       id
       name
       diveSiteCount
-      isFeatured
+      isTop
       urlThumbnail (500x500)
       regions: [
         {
@@ -30,7 +37,7 @@ details of one destination
   id
   name
   diveSiteCount
-  isFeatured
+  isTop
   urlThumbnail (500x500)
   regions: [
     {
@@ -75,6 +82,7 @@ list of dive sites within a polygon
     waterTemp
     currents
     access
+    animals: [id, ...]
     destination: {
       id
       name
@@ -106,6 +114,14 @@ full dive site object
   waterTemp
   currents
   access
+  animals: [
+    {
+      id
+      name
+      urlThumbnail
+      countSightings
+    }
+  ]
   destination: {
     id
     name
@@ -155,6 +171,7 @@ list of all photos
     countLikes
     countViews
     countComments
+    animals: [id, ...]
     diveSite: {
       id
       name
@@ -205,8 +222,48 @@ get details for one photo
     id
     name
   }
+  animals: [
+    {
+      id
+      name
+      urlThumbnail
+    }
+  ]
 }
 
+/api/animals/groups
+get list of animal groups
+"AnimalGroup"
+[
+  {
+    id
+    name
+    urlThumbnail
+  }
+]
+
+/api/animals/species
+get list of animal species
+
+"AnimalSpecies"
+[
+  {
+    id
+    name
+    group
+    urlThumbnail
+  }
+]
+
+/api/animal/:id
+get detail of one animal
+"AnimalDetail"
+{
+  id
+  name
+  group
+  urlThumbnail
+}
 
 /api/user/:id
 get one user's data
