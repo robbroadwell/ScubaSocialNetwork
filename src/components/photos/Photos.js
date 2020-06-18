@@ -65,9 +65,9 @@ function PhotosContent({ onPress }) {
 
 function PhotosCard({ onPress }) {
   return (
-    <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 210, height: 200, marginBottom: 10}} >
-
-    </ReactPlaceholder>
+    <TouchableOpacity onPress={onPress} style={{width: 210, height: 200, marginBottom: 10}}>
+      <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{flex: 1}} />
+    </TouchableOpacity>
   )
 }
 

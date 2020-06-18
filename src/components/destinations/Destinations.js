@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 class Destinations extends Component {
   render() {
@@ -30,8 +32,8 @@ function DestinationContent({ onPress }) {
 
 function DestinationCard({ onPress }) {
   return (
-    <TouchableOpacity onPress={onPress} style={{width: 220, height: 200, backgroundColor: '#CCCCCC', marginBottom: 10}}>
-
+    <TouchableOpacity onPress={onPress} style={{width: 220, height: 200, marginBottom: 10}}>
+      <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{flex: 1}} />
     </TouchableOpacity>
   )
 }

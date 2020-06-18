@@ -127,6 +127,14 @@ full dive site object
     profilePhotoURL
   }
   score
+  animals: [
+    {
+      id
+      name
+      urlThumbnail
+      seenCount
+    }
+  ]
   ratings: [
     {
       score

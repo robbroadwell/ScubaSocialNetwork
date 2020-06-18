@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import List from '../explore/list/List';
-import Map from '../explore/map/Map';
 import StyledLink from '../buttons/StyledLink';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 class DestinationDetail extends Component {
   render() {
@@ -68,17 +69,16 @@ class DestinationDetail extends Component {
         <View style={{margin: 20, marginTop: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Belize</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-          
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
+            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
           </View>
         </View>
 
