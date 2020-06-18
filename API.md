@@ -2,21 +2,25 @@
 list of all destinations 
 "Destination"
 
-[
-  {
-    id
-    name
-    diveSiteCount
-    urlThumbnail (500x500)
-    regions: [
-      {
-        id
-        name
-        diveSiteCount
-      }
-    ]
-  }
-]
+{
+  totalDiveSites
+  destinations: [
+    {
+      id
+      name
+      diveSiteCount
+      isFeatured
+      urlThumbnail (500x500)
+      regions: [
+        {
+          id
+          name
+          diveSiteCount
+        }
+      ]
+    }
+  ]
+}
 
 /api/destination/details/:id
 details of one destination
@@ -25,6 +29,9 @@ details of one destination
 {
   id
   name
+  diveSiteCount
+  isFeatured
+  urlThumbnail (500x500)
   regions: [
     {
       id
