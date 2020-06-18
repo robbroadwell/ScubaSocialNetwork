@@ -51,9 +51,9 @@ class DestinationDetail extends Component {
                 <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
                   <Text style={{padding: 10}}>Access</Text>
                 </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                {/* <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
                   <Text style={{padding: 10}}>Animal Sightings</Text>
-                </View>
+                </View> */}
               </View>
             </View>
           </View>

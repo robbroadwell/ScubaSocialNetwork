@@ -29,50 +29,23 @@ details of one destination
     {
       id
       name
+      recentPhotos: [  (10)
+        {
+          id
+          urlThumbnail
+        }
+      ]
     }
   ]
   recentPhotos: [  (10)
     {
       id
       urlThumbnail
-      rating
-      user: {
-        id
-        name
-      }
     }
   ]
 }
 
-/api/dive-sites
-list of all dive sites
-"DiveSite"
-
-[
-  {
-    id
-    name
-    location: {
-        type: point,
-        coordinates: {
-          
-        }
-      }
-    destination: {
-      id
-      name
-    }
-    region: {
-      id
-      name
-    }
-    urlThumbnail
-    rating
-    ratingCount
-  }
-]
-
-/api/dive-sites/polygon
+/api/dive-sites/polygon or /api/dive-sites
 list of dive sites within a polygon
 "DiveSite"
 
@@ -80,12 +53,21 @@ list of dive sites within a polygon
   {
     id
     name
+    country
+    rating
+    ratingCount
+    urlThumbnail
     location: {
         type: point,
         coordinates: {
           
         }
       }
+    visibility
+    depth
+    waterTemp
+    currents
+    access
     destination: {
       id
       name
@@ -94,9 +76,6 @@ list of dive sites within a polygon
       id
       name
     }
-    urlThumbnail
-    rating
-    ratingCount
   }
 ]
 
@@ -107,12 +86,21 @@ full dive site object
 {
   id
   name
+  country
+  rating
+  ratingCount
+  urlThumbnail
   location: {
-        type: point,
-        coordinates: {
-          
-        }
+      type: point,
+      coordinates: {
+        
       }
+    }
+  visibility
+  depth
+  waterTemp
+  currents
+  access
   destination: {
     id
     name
@@ -126,15 +114,6 @@ full dive site object
     username
     profilePhotoURL
   }
-  score
-  animals: [
-    {
-      id
-      name
-      urlThumbnail
-      seenCount
-    }
-  ]
   ratings: [
     {
       score
@@ -164,8 +143,11 @@ list of all photos
 [
   {
     id
-    name
+    timestamp
     urlThumbnail
+    countLikes
+    countViews
+    countComments
     diveSite: {
       id
       name
@@ -178,14 +160,6 @@ list of all photos
       id
       name
     }
-    animals: [
-      {
-        id
-        name
-      }
-    ]
-    rating
-    ratingCount
   }
 ]
 
@@ -195,10 +169,23 @@ get details for one photo
 
 {
   id
-  userID
-  name
+  timestamp
   url
   urlThumbnail
+  countLikes
+  countViews
+  countComments
+  comments : [
+    {
+      timestamp
+      comment
+      user: {
+        id
+        username
+        profilePhotoURL
+      }
+    }
+  ]
   diveSite: {
     id
     name
@@ -211,25 +198,6 @@ get details for one photo
     id
     name
   }
-  animals: [
-    {
-      id
-      name
-    }
-  ]
-  score
-  ratings: [
-    {
-      score
-      timestamp
-      comment
-      user: {
-        id
-        username
-        profilePhotoURL
-      }
-    }
-  ]
 }
 
 
