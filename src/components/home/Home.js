@@ -27,14 +27,6 @@ class Home extends Component {
           </View>
         </View>
 
-        <View style={{height: 500, margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 20}}>Explore 4,340 Dive Sites</Text> 
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <List style={this.props.style} history={this.props.history} />
-            {this.props.map}
-          </View>
-        </View>
-
         <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Destinations</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
@@ -43,6 +35,38 @@ class Home extends Component {
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+          </View>
+        </View>
+
+        <View style={{height: 500, margin: 20}}>
+          <View style={{flexDirection: 'row', marginBottom: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Explore 4,340 Dive Sites</Text> 
+            <View style={{flex: 1}} />
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              {/* <Image style={{width: 20, height: 20, marginHorizontal: 15}} source={require('../../assets/tune.svg')} /> */}
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Visibility</Text>
+              </View>
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Depth</Text>
+              </View>
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Water Temperature</Text>
+              </View>
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Currents</Text>
+              </View>
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Access</Text>
+              </View>
+              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
+                <Text style={{padding: 10}}>Animals</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <List style={this.props.style} history={this.props.history} />
+            {this.props.map}
           </View>
         </View>
 

@@ -64,7 +64,7 @@ function DiveSiteDetailBody({ style }) {
 
       <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Animals</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
+        <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
         <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
       </View>
       <AnimalsContent />
