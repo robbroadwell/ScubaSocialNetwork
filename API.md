@@ -87,8 +87,6 @@ full dive site object
   id
   name
   country
-  rating
-  ratingCount
   urlThumbnail
   location: {
       type: point,
@@ -114,7 +112,9 @@ full dive site object
     username
     profilePhotoURL
   }
-  ratings: [
+  rating
+  ratingCount
+  reviews: [
     {
       score
       userID
