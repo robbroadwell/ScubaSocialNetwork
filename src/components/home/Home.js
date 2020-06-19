@@ -52,8 +52,8 @@ class Home extends Component {
 
         <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
-          <Text style={{fontSize: 14, color: 'black', marginTop: 5}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
-          <View style={{flexDirection: 'row', marginTop: 10}}>
+          <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
+          <View style={{flexDirection: 'row', marginTop: 15}}>
             <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
               <DirectoryLocation country={"Bahamas"} diveCount={24} onPress={this.navigateDestination} />
               <DirectoryLocation country={"Belize"} diveCount={5} onPress={this.navigateDestination} />
