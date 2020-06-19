@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import List from '../explore/list/List';
-import Map from '../explore/map/Map';
+import DestinationCard from '../destinations/DestinationCard';
+import MapFilters from '../explore/map/MapFilters';
 
 class Home extends Component {
 
@@ -27,42 +28,21 @@ class Home extends Component {
           </View>
         </View>
 
-        <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Destinations</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <TouchableOpacity onPress={() => this.props.history.push(`/destinations/belize`)} style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
+        <View style={{margin: 10}}>
+          <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Top Destinations</Text> 
+          <View style={{flexDirection: 'row', justifyContent: 'center', marginHorizontal: 5}}>
+            <DestinationCard country={"Mexico"} image={require('../../assets/mexico.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
+            <DestinationCard country={"Belize"} image={require('../../assets/belize.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
+            <DestinationCard country={"Fiji"} image={require('../../assets/fiji.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
+            <DestinationCard country={"Australia"} image={require('../../assets/australia.jpeg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
           </View>
         </View>
 
         <View style={{height: 500, margin: 20}}>
           <View style={{flexDirection: 'row', marginBottom: 10, alignItems: 'center'}}>
-            <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Explore 4,340 Dive Sites</Text> 
+            <Text style={{fontSize: 18, fontWeight: '700', color: '#222222'}}>Explore 4,340 Dive Sites</Text> 
             <View style={{flex: 1}} />
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              {/* <Image style={{width: 20, height: 20, marginHorizontal: 15}} source={require('../../assets/tune.svg')} /> */}
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Visibility</Text>
-              </View>
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Depth</Text>
-              </View>
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Water Temperature</Text>
-              </View>
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Currents</Text>
-              </View>
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Access</Text>
-              </View>
-              <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                <Text style={{padding: 10}}>Animals</Text>
-              </View>
-            </View>
+            <MapFilters />
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <List style={this.props.style} history={this.props.history} />
@@ -115,6 +95,14 @@ class Home extends Component {
   }
 }
 
+function FilterButton({ filter }) {
+  return (
+    <View style={{borderColor: '#DDDDDD', borderWidth: 1, borderRadius: 7, marginRight: 10}}>
+      <Text style={{padding: 10}}>{filter}</Text>
+    </View>
+  )
+}
+
 function DirectoryLocation({ country, diveCount, onPress }) {
   return (
     <View style={{flexDirection: 'row', minWidth: 250, marginBottom: 2}}>
@@ -146,7 +134,7 @@ function RegionLocation({ region, diveCount, onPress }) {
 
 function FooterActions() {
   return (
-    <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 40, flexDirection: 'row', height: 450}}>
+    <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 20, flexDirection: 'row', height: 450}}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
         <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>

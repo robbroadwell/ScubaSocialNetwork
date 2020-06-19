@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
-import ReactPlaceholder from 'react-placeholder';
-import "react-placeholder/lib/reactPlaceholder.css";
+import { View } from 'react-native';
+import DestinationCard from './DestinationCard';
 
 class Destinations extends Component {
   render() {
     return (
-      <View style={{marginTop: 10}}>
+      <View style={{margin: 10}}>
         <DestinationContent onPress={() => this.props.history.push(`/destinations/belize`)} />
       </View>
     )
@@ -14,12 +13,94 @@ class Destinations extends Component {
 }
 
 function DestinationContent({ onPress }) {
-  const count = 20;
+  const destinations = [
+    {
+      name: "Mexico",
+      image: require('../../assets/mexico.jpg'),
+      isTop: true
+    },
+    {
+      name: "Belize",
+      image: require('../../assets/belize.jpg'),
+      isTop: true
+    },
+    {
+      name: "Fiji",
+      image: require('../../assets/fiji.jpg'),
+      isTop: true
+    },
+    {
+      name: "Australia",
+      image: require('../../assets/australia.jpeg'),
+      isTop: true
+    },
+    {
+      name: "Belize",
+      image: require('../../assets/belize.jpg'),
+      isTop: true
+    },
+    {
+      name: "Fiji",
+      image: require('../../assets/fiji.jpg'),
+      isTop: true
+    },
+    {
+      name: "Australia",
+      image: require('../../assets/australia.jpeg'),
+      isTop: true
+    },
+    {
+      name: "Mexico",
+      image: require('../../assets/mexico.jpg'),
+      isTop: true
+    },
+    {
+      name: "Belize",
+      image: require('../../assets/belize.jpg'),
+      isTop: false
+    },
+    {
+      name: "Australia",
+      image: require('../../assets/australia.jpeg'),
+      isTop: false
+    },
+    {
+      name: "Mexico",
+      image: require('../../assets/mexico.jpg'),
+      isTop: false
+    },
+    {
+      name: "Belize",
+      image: require('../../assets/belize.jpg'),
+      isTop: false
+    },
+    {
+      name: "Fiji",
+      image: require('../../assets/fiji.jpg'),
+      isTop: false
+    },
+    {
+      name: "Australia",
+      image: require('../../assets/australia.jpeg'),
+      isTop: false
+    },
+    {
+      name: "Fiji",
+      image: require('../../assets/fiji.jpg'),
+      isTop: false
+    },
+    {
+      name: "Belize",
+      image: require('../../assets/belize.jpg'),
+      isTop: false
+    },
+    
+  ]
 
   var views = []
-  for (var i = 0; i < count; i++) {
+  for (var i = 0; i < destinations.length; i++) {
     views.push(
-      <DestinationCard onPress={onPress} />
+      <DestinationCard country={destinations[i].name} image={destinations[i].image} isTop={destinations[i].isTop} onPress={onPress} />
     )
   }
 
@@ -27,14 +108,6 @@ function DestinationContent({ onPress }) {
     <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
       {views}
     </View>
-  )
-}
-
-function DestinationCard({ onPress }) {
-  return (
-    <TouchableOpacity onPress={onPress} style={{width: 220, height: 200, marginBottom: 10}}>
-      <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{flex: 1}} />
-    </TouchableOpacity>
   )
 }
 

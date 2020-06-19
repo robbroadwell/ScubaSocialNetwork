@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
-import ReactPlaceholder from 'react-placeholder';
-import "react-placeholder/lib/reactPlaceholder.css";
+import { View, Text, Image } from 'react-native';
+import PhotosContent from './PhotosContent';
 
 class Photos extends Component {
   render() {
@@ -44,31 +43,6 @@ class Photos extends Component {
       </View>
     )
   }
-}
-
-function PhotosContent({ onPress }) {
-  const count = 16;
-
-  var views = []
-  for (var i = 0; i < count; i++) {
-    views.push(
-      <PhotosCard onPress={onPress} />
-    )
-  }
-
-  return (
-    <View style={{marginLeft: 5, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-      {views}
-    </View>
-  )
-}
-
-function PhotosCard({ onPress }) {
-  return (
-    <TouchableOpacity onPress={onPress} style={{width: 210, height: 200, marginBottom: 10}}>
-      <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{flex: 1}} />
-    </TouchableOpacity>
-  )
 }
 
 export default Photos;

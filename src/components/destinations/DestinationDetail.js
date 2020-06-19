@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import List from '../explore/list/List';
 import StyledLink from '../buttons/StyledLink';
-import ReactPlaceholder from 'react-placeholder';
-import "react-placeholder/lib/reactPlaceholder.css";
+import PhotosContent from '../photos/PhotosContent';
+import MapFilters from '../explore/map/MapFilters';
 
 class DestinationDetail extends Component {
   render() {
@@ -34,27 +34,7 @@ class DestinationDetail extends Component {
             </View>
             
             <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-
-              <View style={{flexDirection: 'row'}}>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Visibility</Text>
-                </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Depth</Text>
-                </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Water Temperature</Text>
-                </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Currents</Text>
-                </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Access</Text>
-                </View>
-                <View style={{borderColor: '#DDDDDD', borderWidth: 1, marginRight: 10}}>
-                  <Text style={{padding: 10}}>Animals</Text>
-                </View>
-              </View>
+              <MapFilters />
             </View>
           </View>
 
@@ -67,19 +47,8 @@ class DestinationDetail extends Component {
         </View>
 
         <View style={{margin: 20, marginTop: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Recent Photos in Belize</Text> 
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-            <ReactPlaceholder type='rect' showLoadingAnimation={true} style={{width: 200, height: 200, margin: 10}} />
-          </View>
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in Belize</Text> 
+          <PhotosContent />
         </View>
 
         {/* <View style={{margin: 20}}>
