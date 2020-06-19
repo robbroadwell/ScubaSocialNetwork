@@ -74,29 +74,37 @@ class Home extends Component {
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
           <Text style={{fontSize: 14, color: 'black', marginTop: 5}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
           <View style={{flexDirection: 'row', marginTop: 10}}>
-            <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
+            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
+              <DirectoryLocation country={"Bahamas"} diveCount={24} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Belize"} diveCount={5} onPress={this.navigateDestination} />
+                <RegionLocation region={"Lighthouse Reef"} diveCount={2} onPress={this.navigateDestination} />
+                <RegionLocation region={"Palancar Reef"} diveCount={3} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Brazil"} diveCount={75} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Cayman Islands"} diveCount={18} onPress={this.navigateDestination} />
             </View>
-            <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
+            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
+              <DirectoryLocation country={"Columbia"} diveCount={18} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Costa Rica"} diveCount={18} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Croatia"} diveCount={92} onPress={this.navigateDestination} />
+                <RegionLocation region={"Djbrovnik Area"} diveCount={80} onPress={this.navigateDestination} />
+                <RegionLocation region={"Split Area"} diveCount={12} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Cuba"} diveCount={22} onPress={this.navigateDestination} />
             </View>
-            <View style={{flexDirection: 'column', marginRight: 20}}>
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
+            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
+              <DirectoryLocation country={"Dominican Republic"} diveCount={24} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Ecuador"} diveCount={5} onPress={this.navigateDestination} />
+                <RegionLocation region={"Lighthouse Reef"} diveCount={2} onPress={this.navigateDestination} />
+                <RegionLocation region={"Palancar Reef"} diveCount={3} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Egypt"} diveCount={75} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Cayman Islands"} diveCount={18} onPress={this.navigateDestination} />
             </View>
-            <View style={{flexDirection: 'column'}}>
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
-              <DirectoryLocation onPress={this.navigateDestination} />
+            <View style={{flexDirection: 'column', marginRight: 0, flex: 1}}>
+              <DirectoryLocation country={"Fiji"} diveCount={18} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Greece"} diveCount={18} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Grenada"} diveCount={92} onPress={this.navigateDestination} />
+                <RegionLocation region={"Rainbow Reef"} diveCount={80} onPress={this.navigateDestination} />
+                <RegionLocation region={"Split Area"} diveCount={12} onPress={this.navigateDestination} />
+              <DirectoryLocation country={"Guatamala"} diveCount={22} onPress={this.navigateDestination} />
             </View>
           </View>
         </View>
@@ -107,13 +115,42 @@ class Home extends Component {
   }
 }
 
+function DirectoryLocation({ country, diveCount, onPress }) {
+  return (
+    <View style={{flexDirection: 'row', minWidth: 250, marginBottom: 2}}>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={{color: '#0000A5'}}>{country}</Text>
+      </TouchableOpacity>
+      <View style={{flex: 1}}>
+        <Text numberOfLines={1}>..............................................................................</Text>
+      </View>
+      <Text>{diveCount} dives</Text>
+    </View>
+  )
+}
+
+function RegionLocation({ region, diveCount, onPress }) {
+  return (
+    <View style={{flexDirection: 'row', minWidth: 250, alignItems: 'center', marginBottom: 2}}>
+      <Image style={{height: 10, width: 18, tintColor: '#AAAAAA', marginRight: 5}} source={require('../../assets/region_arrow.svg')} />
+      <TouchableOpacity onPress={onPress}>
+        <Text style={{color: '#0000A5', fontSize: 13}}>{region}</Text>
+      </TouchableOpacity>
+      <View style={{flex: 1}}>
+        <Text numberOfLines={1}>..............................................................................</Text>
+      </View>
+      <Text>{diveCount} dives</Text>
+    </View>
+  )
+}
+
 function FooterActions() {
   return (
     <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 40, flexDirection: 'row', height: 450}}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
         <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>
-        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Never lose the trail, even if you lose your cell signal. Our app was designed to work offline.</Text>
+        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Find dive sites, connect with other divers, or log your dive... anywhere. Apps that are as mobile as your are.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
           <View style={{backgroundColor: '#A00000'}}>
             <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
@@ -131,18 +168,6 @@ function FooterActions() {
           </View>
         </View>
       </View>
-    </View>
-  )
-}
-
-function DirectoryLocation({ onPress }) {
-  return (
-    <View style={{flexDirection: 'row'}}>
-      <TouchableOpacity onPress={onPress}>
-        <Text style={{color: '#0000A5'}}>Mexico</Text>
-      </TouchableOpacity>
-      <Text>.........................................</Text>
-      <Text>24 dives</Text>
     </View>
   )
 }
