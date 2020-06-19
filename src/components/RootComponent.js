@@ -39,7 +39,7 @@ class RootComponent extends Component {
               <title>DivingCollective: Search for Dive Sites, Scuba Liveaboards, Dive Resorts, Hotels, Gear, Dive Shops & more</title>
           </Helmet>
           
-          <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} />
+          {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} map={this.map} />} />
           <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
