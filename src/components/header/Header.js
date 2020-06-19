@@ -48,7 +48,7 @@ class Header extends Component {
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={"Login"} />
+          <PrimaryButton title={"Join Diving Collective"} />
         </View>
       </View>
     )
