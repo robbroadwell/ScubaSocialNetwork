@@ -137,8 +137,8 @@ function FooterActions() {
     <View style={{margin: 20, marginBottom: 40, borderTopColor: '#CCCCCC', borderTopWidth: 1, paddingTop: 20, flexDirection: 'row', height: 450}}>
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Image style={{flex: 1}} source={require('../../assets/mobile.jpg')} />
-        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Maps as mobile as you are</Text>
-        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Find dive sites, connect with other divers, or log your dive... anywhere. Apps that are as mobile as your are.</Text>
+        <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Apps as mobile as you are</Text>
+        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Find dive sites, connect with other divers, or log your dive... anywhere.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
           <View style={{backgroundColor: '#A00000'}}>
             <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
@@ -149,7 +149,7 @@ function FooterActions() {
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Image style={{flex: 1}} source={require('../../assets/you.jpg')} />
         <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Add your favorite dive sites</Text>
-        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of riders who’ve shared their most treasured trails with the MTB Project community.</Text>
+        <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of divers who’ve shared their most loved dive sites.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
           <View style={{backgroundColor: '#A00000'}}>
             <Text style={{padding: 15, color: 'white'}}>Add a dive site</Text>
