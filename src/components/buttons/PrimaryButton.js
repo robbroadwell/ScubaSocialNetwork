@@ -8,8 +8,8 @@ class PrimaryButton extends React.Component {
     return (
       <TouchableOpacity onPress={action} activeOpacity={1.0} style={{marginHorizontal: 5}} >
         <BaseHoverableView
-          style={{ backgroundColor: 'red', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 5}}
-          onHover={{ flexDirection: 'row', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 5}}
+          style={{ backgroundColor: 'red', paddingVertical: 8, paddingHorizontal: 12}}
+          onHover={{ flexDirection: 'row', paddingVertical: 8, paddingHorizontal: 12}}
           >
           <Text style={{color: '#FFFFFF', fontWeight: '500', fontSize: 16}}>{title}</Text>
           {!icon ? <View></View> :
