@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react
 import List from '../explore/list/List';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 class Home extends Component {
 
@@ -140,9 +141,7 @@ function FooterActions() {
         <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Apps as mobile as you are</Text>
         <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Find dive sites, connect with other divers, or log your dive... anywhere.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-          <View style={{backgroundColor: '#A00000'}}>
-            <Text style={{padding: 15, color: 'white'}}>Download the App</Text>
-          </View>
+          <PrimaryButton title={"Download the App"} />
         </View>
       </View>
       <View style={{width: 20}} />
@@ -151,9 +150,7 @@ function FooterActions() {
         <Text style={{fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 5}}>Add your favorite dive sites</Text>
         <Text style={{fontSize: 14, textAlign: 'center', marginHorizontal: 50}}>Join the thousands of divers who’ve shared their most loved dive sites.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-          <View style={{backgroundColor: '#A00000'}}>
-            <Text style={{padding: 15, color: 'white'}}>Add a dive site</Text>
-          </View>
+          <PrimaryButton title={"Add a Dive Site"} />
         </View>
       </View>
     </View>
