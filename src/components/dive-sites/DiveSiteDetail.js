@@ -4,6 +4,7 @@ import Ratings from 'react-ratings-declarative';
 import { StickyContainer, Sticky } from 'react-sticky';
 import Map from '../explore/map/Map';
 import StyledLink from '../buttons/StyledLink';
+import DiveSiteReviewsList from './DiveSiteReviewsList';
 
 function DiveSiteDetailHeader() {
   return (
@@ -50,6 +51,36 @@ function DiveSiteDetailHeader() {
 }
 
 function DiveSiteDetailBody({ style }) {
+  const reviews = [
+    {
+      title: 'A magical place',
+      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
+      user: 'Rob, USA',
+      timestamp: '000000000',
+      rating: 5.0
+    },
+    {
+      title: 'A magical place',
+      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
+      user: 'Rob, USA',
+      timestamp: '000000000',
+      rating: 5.0
+    },
+    {
+      title: 'A magical place',
+      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
+      user: 'Rob, USA',
+      timestamp: '000000000',
+      rating: 5.0
+    },
+    {
+      title: 'A magical place',
+      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
+      user: 'Rob, USA',
+      timestamp: '000000000',
+      rating: 5.0
+    },
+  ]
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
       <Image style={{height: 400, marginBottom: 15}} source={require('../../assets/blue-hole-belize.jpg')} />
@@ -74,7 +105,7 @@ function DiveSiteDetailBody({ style }) {
         <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
         <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
       </View>
-      <ReviewsContent />
+      <DiveSiteReviewsList reviews={reviews} />
 
     </View>
   )
