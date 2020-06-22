@@ -28,9 +28,9 @@ class Header extends Component {
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Best Photos</Text>
           </TouchableOpacity>
 
-          {/* <TouchableOpacity onPress={() => this.props.history.push(`/animals`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Animal Sightings</Text>
-          </TouchableOpacity> */}
+          <TouchableOpacity onPress={() => this.props.history.push(`/leaderboard`)}>
+            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Leaderboard</Text>
+          </TouchableOpacity>
 {/* 
           <TouchableOpacity onPress={() => this.props.history.push(`/explore`)}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Explore</Text>
