@@ -17,8 +17,7 @@ class Animals extends Component {
               <View style={style}>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                   <View style={{marginTop: 100, marginBottom: 100, padding: 50, maxWidth: 500, borderColor: '#CCCCCC', borderWidth: 1, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
-                    <Text style={{fontSize: 20, textAlign: 'center'}}>DivingCollective is community driven, and couldn't exist without user like you.</Text>
-                    <Text style={{fontSize: 20, textAlign: 'center'}}>Here we showcase the top contributors.</Text>
+                    <Text style={{fontSize: 20, textAlign: 'center'}}>DivingCollective is community driven, and couldn't exist without users like you.</Text>
                     
                     <View style={{flexDirection: 'row', marginTop: 20}}>
                       <View style={{flex: 1, margin: 10, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', backgroundColor: 'red', paddingVertical: 20}}>
