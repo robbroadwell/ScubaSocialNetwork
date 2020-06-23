@@ -44,6 +44,11 @@ class DestinationDetail extends Component {
             <List style={this.props.style} history={this.props.history} />
             {this.props.map}
           </View>
+          <View style={{flexDirection: 'row', marginTop: 5}}>
+            <View style={{flex: 1}} />
+            <Text style={{marginRight: 5}}>Are we missing something?</Text>
+            <Text style={{textDecorationLine: 'underline', color: '#A00000'}}>Add a dive site</Text>
+          </View>
         </View>
 
         <View style={{margin: 20, marginTop: 20}}>
