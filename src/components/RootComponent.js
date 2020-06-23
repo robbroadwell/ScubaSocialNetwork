@@ -18,6 +18,7 @@ import DiveSiteDetail from './dive-sites/DiveSiteDetail';
 import Photos from './photos/Photos';
 import PhotosOverlay from './photos/PhotosOverlay';
 import Animals from './animals/Animals';
+import Leaderboard from './leaders/Leaderboard';
 import ScrollToTop from '../utility/ScrollToTop';
 
 import {
@@ -49,6 +50,7 @@ class RootComponent extends Component {
           <Route path='/dive-sites/:id' render={(props) => <DiveSiteDetail {...props} style={this.props.style} />} />
           <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />
           <Route path='/animals' exact={true} render={(props) => <Animals {...props} style={this.props.style} />} />
+          <Route path='/leaderboard' exact={true} render={(props) => <Leaderboard {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
           <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
           

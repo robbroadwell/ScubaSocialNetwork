@@ -38,8 +38,6 @@ class DestinationDetail extends Component {
             </View>
           </View>
 
-
-
           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
             <List style={this.props.style} history={this.props.history} />
             {this.props.map}
