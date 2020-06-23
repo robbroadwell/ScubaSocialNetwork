@@ -231,6 +231,39 @@ get details for one photo
   ]
 }
 
+/api/animals/groups
+get list of animal groups
+"AnimalGroup"
+[
+  {
+    id
+    name
+    urlThumbnail
+  }
+]
+
+/api/animals/species
+get list of animal species
+
+"AnimalSpecies"
+[
+  {
+    id
+    name
+    group
+    urlThumbnail
+  }
+]
+
+/api/animal/:id
+get detail of one animal
+"AnimalDetail"
+{
+  id
+  name
+  group
+  urlThumbnail
+}
 
 /api/user/:id
 get one user's data
@@ -244,13 +277,4 @@ get one user's data
   lastName
   email
   profilePhotoURL
-  photos: [
-
-  ]
-  loggedDives: [
-
-  ]
-  diveSites: [
-    
-  ]
 }
