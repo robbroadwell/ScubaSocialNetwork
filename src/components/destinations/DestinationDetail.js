@@ -62,7 +62,7 @@ class DestinationDetail extends Component {
           </View>
         </View> */}
 
-        <View style={{margin: 20}}>
+        {/* <View style={{margin: 20}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Belize</Text> 
           <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
@@ -71,7 +71,7 @@ class DestinationDetail extends Component {
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
             <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
           </View>
-        </View>
+        </View> */}
       </View>
     )
   }

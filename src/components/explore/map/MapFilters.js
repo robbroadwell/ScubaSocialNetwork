@@ -10,7 +10,7 @@ function MapFilters() {
         <FilterButton filter={"Water Temperature"} />
         <FilterButton filter={"Currents"} />
         <FilterButton filter={"Access"} />
-        <FilterButton filter={"Animals"} />
+        {/* <FilterButton filter={"Animals"} /> */}
       </View>
  
   )
