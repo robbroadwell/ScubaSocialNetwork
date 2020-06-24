@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router()
 const passport = require('passport');
 const DiveSite = require('../models/diveSite');
-const ChangeLog = require('../models/changeLog');
+const DiveSiteDetails = require('../models/diveSiteDetails');
 var aws = require('aws-sdk'); 
 
 aws.config.update({
@@ -15,9 +15,11 @@ const S3_BUCKET = 'divingcollective-photos'
 
 router.get('/', (req, res) => {
   if (!req || !req.query || !req.query.polygon) {
-    DiveSite.find({}, ['name', 'country', 'location', 'reviews'])
-    .then(diveSites => res.json(diveSites))
-    .catch(err => console.log(err))
+
+    res.status(401).send({
+      'error': 'polygon required'
+    });
+
     return
   }
   
@@ -36,13 +38,13 @@ router.get('/', (req, res) => {
           ]]
         }
     }}
-  }, ['name', 'country', 'location', 'reviews'])
+  })
   .then(diveSites => res.json(diveSites))
   .catch(err => console.log(err))
 })
 
 router.get('/details/:id', (req, res) => {
-  DiveSite.findById(req.params.id).then(diveSite => {
+  DiveSiteDetails.findById(req.params.id).then(diveSite => {
     res.json({
       diveSite
     })
@@ -62,8 +64,25 @@ router.post('/', (req, res, next) => {
       console.error('user authorizing the JWT not found');
       res.status(403).send('user authorizing the JWT not found');
     } else {
-        const { name, country, latitude, longitude } = req.body;
+        const { name, country, latitude, longitude, destination, region } = req.body;
         const newDiveSite = new DiveSite({
+          name: name,
+          country: country,
+          rating: 0,
+          ratingCount: 0,
+          location: {
+            type: "Point",
+            coordinates: [
+                longitude, latitude
+            ]
+          },
+          destination: destination,
+          region: region
+    })
+    newDiveSite.save()
+      .then(diveSite => {
+        const newDiveSiteDetail = new DiveSiteDetails({
+          _id: diveSite._id,
           name: name,
           country: country,
           location: {
@@ -72,22 +91,31 @@ router.post('/', (req, res, next) => {
                 longitude, latitude
             ]
           },
+          visibility: [],
+          depth: [],
+          waterTemp: [],
+          currents: [],
+          access: [],
+          destination: destination,
+          region: region,
+          user: user,
+          rating: 0,
+          ratingCount: 0,
           reviews: [],
-          photos: [],
-          details: {
-            description: [],
-            depth: [],
-            difficulty: [],
-            visibility: []
-          }
-    })
-    newDiveSite.save()
-      .then(() => res.json({
-        newDiveSite
-      }))
+          photos: []
+        })
+        newDiveSiteDetail.save()
+          .then(() => res.json({
+            'message': 'dive site + dive site detail created'
+          }))
+          .catch(err => res.json({
+            'message': 'failed creating dive site detail',
+            'error': err
+          }))
+      })
       .catch(err => res.status(400).json({
-        "error": err,
-        "message": "Error creating dive site"
+        'message': 'failed creating dive site detail',
+        "error": err
       }))
     }
   })(req, res, next);
@@ -109,8 +137,6 @@ router.put('/', (req, res, next) => {
 
     } else {
 
-      var changes = []
-
         DiveSite.findById(req.body.id).then(diveSite => {
 
           // description
@@ -118,20 +144,12 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.description.length > 0) {
               var last = diveSite.details.description[diveSite.details.description.length - 1]
               if (req.body.description !== last.content) {
-                changes.push({
-                  section: "description",
-                  change: diveSite.details.description[diveSite.details.description.length - 1] + " -> " + req.body.description
-                })
                 diveSite.details.description.push({
                   author: user.username,
                   content: req.body.description
                 })
               }
             } else {
-              changes.push({
-                section: "description",
-                change: " NEW " + req.body.description
-              })
               diveSite.details.description.push({
                 author: user.username,
                 content: req.body.description
@@ -144,20 +162,12 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.depth.length > 0) {
               var last = diveSite.details.depth[diveSite.details.depth.length - 1]
               if (req.body.depth !== last.content) {
-                changes.push({
-                  section: "depth",
-                  change: diveSite.details.depth[diveSite.details.depth.length - 1] + " -> " + req.body.depth
-                })
                 diveSite.details.depth.push({
                   author: user.username,
                   content: req.body.depth
                 })
               }
             } else {
-              changes.push({
-                section: "depth",
-                change: " NEW " + req.body.depth
-              })
               diveSite.details.depth.push({
                 author: user.username,
                 content: req.body.depth
@@ -170,20 +180,12 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.visibility.length > 0) {
               var last = diveSite.details.visibility[diveSite.details.visibility.length - 1]
               if (req.body.visibility !== last.content) {
-                changes.push({
-                  section: "visibility",
-                  change: diveSite.details.visibility[diveSite.details.visibility.length - 1] + " -> " + req.body.visibility
-                })
                 diveSite.details.visibility.push({
                   author: user.username,
                   content: req.body.visibility
                 })
               }
             } else {
-              changes.push({
-                section: "visibility",
-                change: " NEW " + req.body.visibility
-              })
               diveSite.details.visibility.push({
                 author: user.username,
                 content: req.body.visibility
@@ -196,20 +198,12 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.difficulty.length > 0) {
               var last = diveSite.details.difficulty[diveSite.details.difficulty.length - 1]
               if (req.body.difficulty !== last.content) {
-                changes.push({
-                  section: "difficulty",
-                  change: diveSite.details.difficulty[diveSite.details.difficulty.length - 1] + " -> " + req.body.difficulty
-                })
                 diveSite.details.difficulty.push({
                   author: user.username,
                   content: req.body.difficulty
                 })
               }
             } else {
-              changes.push({
-                section: "difficulty",
-                change: " NEW " + req.body.difficulty
-              })
               diveSite.details.difficulty.push({
                 author: user.username,
                 content: req.body.difficulty
@@ -222,20 +216,12 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.access.length > 0) {
               var last = diveSite.details.access[diveSite.details.access.length - 1]
               if (req.body.access !== last.content) {
-                changes.push({
-                  section: "access",
-                  change: diveSite.details.access[diveSite.details.access.length - 1] + " -> " + req.body.access
-                })
                 diveSite.details.access.push({
                   author: user.username,
                   content: req.body.access
                 })
               }
             } else {
-              changes.push({
-                section: "access",
-                change: " NEW " + req.body.access
-              })
               diveSite.details.access.push({
                 author: user.username,
                 content: req.body.access
@@ -248,34 +234,17 @@ router.put('/', (req, res, next) => {
             if (diveSite.details.currents.length > 0) {
               var last = diveSite.details.currents[diveSite.details.currents.length - 1]
               if (req.body.currents !== last.content) {
-                changes.push({
-                  section: "access",
-                  change: diveSite.details.currents[diveSite.details.currents.length - 1] + " -> " + req.body.currents
-                })
                 diveSite.details.currents.push({
                   author: user.username,
                   content: req.body.currents
                 })
               }
             } else {
-              changes.push({
-                section: "currents",
-                change: " NEW " + req.body.currents
-              })
               diveSite.details.currents.push({
                 author: user.username,
                 content: req.body.currents
               })
             }
-          }
-
-          if (changes.length > 0) {
-            const newChangeLog = new ChangeLog({
-              user: user.username,
-              diveSite: diveSite.id,
-              changes: changes
-            })
-            newChangeLog.save()
           }
 
           diveSite.save().then(() => res.json({

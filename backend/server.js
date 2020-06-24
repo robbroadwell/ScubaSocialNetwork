@@ -2,7 +2,10 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport')
+const helmet = require('helmet')
+// const rateLimiterRedisMiddleware = require('./middleware/rateLimiterRedis');
 require('./api/passport'); // run config
+
 
 const cors = require('cors');
 const path = require('path')
@@ -13,6 +16,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(cors());
+// app.use(rateLimiterRedisMiddleware);
+app.use(helmet())
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -22,14 +27,17 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
   });
 
-const users = require('./api/users');
-app.use('/api/users', users);
+const destinations = require('./api/destinations');
+app.use('/api/destinations', destinations);
 
 const diveSites = require('./api/diveSites');
 app.use('/api/dive-sites', diveSites);
 
 const feedback = require('./api/feedback');
 app.use('/api/feedback', feedback);
+
+const users = require('./api/users');
+app.use('/api/users', users);
 
 app.use((req, res, next) => {
    if (req.headers['host'] !== 'localhost:8080' && req.header('x-forwarded-proto') !== 'https') {

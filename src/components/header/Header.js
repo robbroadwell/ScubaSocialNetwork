@@ -41,11 +41,11 @@ class Header extends Component {
 
         <View style={{flex: 1}} ></View>
 
-        <View style={{width: 200, height: '100%'}}>
+        {/* <View style={{width: 200, height: '100%'}}>
           <View style={{flex: 1, marginVertical: 13, padding: 10, backgroundColor: 'white', justifyContent: 'center'}}>
             <Text>Search</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
           <PrimaryButton title={"Join Diving Collective"} />

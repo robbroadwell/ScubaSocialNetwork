@@ -10,48 +10,50 @@ const diveSiteSchema = new Schema({
         type: String,
         required: true
     },
+    rating: {
+        type: Number,
+        required: true
+    },
+    ratingCount: {
+        type: Number,
+        required: true
+    },
+    urlThumbnail: {
+        type: String,
+        required: false
+    },
     location: {
         type: Object,
         required: true
     },
-    reviews: {
-        type: Array,
-        required: true
-    },
-    photos: {
-        type: Array,
-        required: true
-    },
-    details: {
-        description: {
-            type: Array,
-            required: true
-        },
-        visibility: {
-            type: Array,
-            required: true
-        },
-        depth: {
-            type: Array,
-            required: true
-        },
-        difficulty: {
-            type: Array,
-            required: true
-        },
-        access: {
-            type: Array,
-            required: true
-        },
-        currents: {
-            type: Array,
-            required: true
-        },
-    },
-    rating: {
-        type: Number,
+    visibility: {
+        type: String,
         required: false
     },
+    depth: {
+        type: String,
+        required: false
+    },
+    waterTemp: {
+        type: String,
+        required: false
+    },
+    currents: {
+        type: String,
+        required: false
+    },
+    access: {
+        type: String,
+        required: false
+    },
+    destination: {
+        type: Object,
+        required: true
+    },
+    region: {
+        type: Object,
+        required: false
+    }
 })
 
 module.exports = mongoose.model("DiveSite", diveSiteSchema, "diveSites")

@@ -6,12 +6,44 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    password: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
     email: {
         type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    profilePhotoURL: {
+        type: String,
+        required: true
+    },
+    photos: {
+        type: Array,
+        required: true
+    },
+    loggedDives: {
+        type: Array,
+        required: true
+    },
+    diveSitesAdded: {
+        type: Array,
+        required: true
+    },
+    comments: {
+        type: Array,
+        required: true
+    },
+    likes: {
+        type: Array,
         required: true
     }
 })
