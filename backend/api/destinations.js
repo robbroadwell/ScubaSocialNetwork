@@ -9,6 +9,12 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.get('/top/', (req, res) => {
+  Destination.find({ "isTop" : true})
+    .then(destinations => res.json(destinations))
+    .catch(err => console.log(err))
+})
+
 router.post('/', (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (err) {

@@ -1,114 +1,48 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import DestinationCard from './DestinationCard';
+import { getTopDestinations } from '../../redux/selectors';
+import { connect } from "react-redux";
 
 class Destinations extends Component {
+
   render() {
     return (
       <View style={{margin: 10}}>
-        <DestinationContent onPress={() => this.props.history.push(`/destinations/belize`)} />
+        <DestinationContent destinations={this.props.destinations} navigateDestination={(destination) => this.props.history.push(`/destinations/` + destination._id)} />
       </View>
     )
   }
 }
 
-function DestinationContent({ onPress }) {
-  const destinations = [
-    {
-      name: "Mexico",
-      image: require('../../assets/mexico.jpg'),
-      isTop: true
-    },
-    {
-      name: "Belize",
-      image: require('../../assets/belize.jpg'),
-      isTop: true
-    },
-    {
-      name: "Fiji",
-      image: require('../../assets/fiji.jpg'),
-      isTop: true
-    },
-    {
-      name: "Australia",
-      image: require('../../assets/australia.jpg'),
-      isTop: true
-    },
-    {
-      name: "Belize",
-      image: require('../../assets/belize.jpg'),
-      isTop: true
-    },
-    {
-      name: "Fiji",
-      image: require('../../assets/fiji.jpg'),
-      isTop: true
-    },
-    {
-      name: "Australia",
-      image: require('../../assets/australia.jpg'),
-      isTop: true
-    },
-    {
-      name: "Mexico",
-      image: require('../../assets/mexico.jpg'),
-      isTop: true
-    },
-    {
-      name: "Belize",
-      image: require('../../assets/belize.jpg'),
-      isTop: false
-    },
-    {
-      name: "Australia",
-      image: require('../../assets/australia.jpg'),
-      isTop: false
-    },
-    {
-      name: "Mexico",
-      image: require('../../assets/mexico.jpg'),
-      isTop: false
-    },
-    {
-      name: "Belize",
-      image: require('../../assets/belize.jpg'),
-      isTop: false
-    },
-    {
-      name: "Fiji",
-      image: require('../../assets/fiji.jpg'),
-      isTop: false
-    },
-    {
-      name: "Australia",
-      image: require('../../assets/australia.jpg'),
-      isTop: false
-    },
-    {
-      name: "Fiji",
-      image: require('../../assets/fiji.jpg'),
-      isTop: false
-    },
-    {
-      name: "Belize",
-      image: require('../../assets/belize.jpg'),
-      isTop: false
-    },
-    
-  ]
+function DestinationContent({ destinations, navigateDestination }) {
 
   var views = []
+
   for (var i = 0; i < destinations.length; i++) {
     views.push(
-      <DestinationCard country={destinations[i].name} image={destinations[i].image} isTop={destinations[i].isTop} onPress={onPress} />
+      <DestinationCard destination={destinations[i]} navigateDestination={navigateDestination} />
     )
   }
 
   return (
-    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-      {views}
+    <View style={{margin: 10}}>
+      {/* <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Top Destinations</Text>  */}
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginHorizontal: 5}}>
+        {views}
+      </View>
     </View>
   )
 }
 
-export default Destinations;
+
+const mapStateToProps = state => {
+  const destinations = getTopDestinations(state);
+  return { destinations };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(Destinations);
+

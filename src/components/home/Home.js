@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
-import { fetchDestinations } from "../../redux/actions";
-import { getDestinations } from '../../redux/selectors';
+import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
+import { getDestinations, getTopDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
 
 import List from '../explore/list/List';
@@ -13,6 +13,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.fetchDestinations()
+    this.props.fetchTopDestinations()
   }
 
   navigateDestination = (destination) => {
@@ -41,15 +42,7 @@ class Home extends Component {
           </View>
         </View>
 
-        <View style={{margin: 10}}>
-          <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Top Destinations</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginHorizontal: 5}}>
-            <DestinationCard country={"Mexico"} image={require('../../assets/mexico.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
-            <DestinationCard country={"Belize"} image={require('../../assets/belize.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
-            <DestinationCard country={"Fiji"} image={require('../../assets/fiji.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
-            <DestinationCard country={"Australia"} image={require('../../assets/australia.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
-          </View>
-        </View>
+        <Featured destinations={this.props.topDestinations} navigateDestination={this.navigateDestination}  />
 
         <View style={{height: 500, margin: 20}}>
           <View style={{flexDirection: 'row', marginBottom: 20, alignItems: 'center'}}>
@@ -69,6 +62,27 @@ class Home extends Component {
       </View>
     )
   }
+}
+
+function Featured({ destinations, navigateDestination }) {
+  console.log(destinations)
+  var views = []
+  var max = 4
+
+  for (var i = 0; i < destinations.length && i < max; i++) {
+    views.push(
+      <DestinationCard destination={destinations[i]} navigateDestination={navigateDestination} />
+    )
+  }
+
+  return (
+    <View style={{margin: 10}}>
+      <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Featured Destinations</Text> 
+      <View style={{flexDirection: 'row', justifyContent: 'center', marginHorizontal: 5}}>
+        {views}
+      </View>
+    </View>
+  )
 }
 
 function Directory({ destinations, navigateDestination, addDiveSite }) {
@@ -175,10 +189,11 @@ function FooterActions() {
 
 const mapStateToProps = state => {
   const destinations = getDestinations(state);
-  return { destinations };
+  const topDestinations = getTopDestinations(state);
+  return { destinations, topDestinations };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchDestinations }
+  { fetchDestinations, fetchTopDestinations }
 )(Home);

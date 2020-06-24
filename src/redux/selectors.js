@@ -1,5 +1,6 @@
 export const getDiveSitesState = store => store.diveSites;
 export const getDestinationsState = store => store.destinations;
+export const getTopDestinationsState = store => store.topDestinations;
 export const getSelectedDiveSiteState = store => store.selectedDiveSite;
 export const getUserState = store => store.user;
 export const getMapCenterState = store => store.mapCenter;
@@ -10,6 +11,7 @@ export const getAlertModeState = store => store.alertMode;
 
 export const getDiveSites = store => getDiveSitesState(store);
 export const getDestinations = store => getDestinationsState(store);
+export const getTopDestinations = store => getTopDestinationsState(store);
 export const getSelectedDiveSite = store => getSelectedDiveSiteState(store);
 export const getUser = store => getUserState(store);
 export const getMapCenter = store => getMapCenterState(store);
