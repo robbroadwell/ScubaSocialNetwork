@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import debounce from '../../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setSelectedDiveSite, setMapCenter, setMapRect, fetchDiveSites } from "../../redux/actions";
+import { setMapCenter, setMapRect, fetchDiveSites } from "../../redux/actions";
 import { getDiveSites, getAddDiveSiteMode } from "../../redux/selectors";
 import { withRouter } from 'react-router-dom'
 
@@ -115,5 +115,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setDiveSites, setMapCenter, setMapRect, fetchDiveSites }
+  { setMapCenter, setMapRect, fetchDiveSites }
 )(withRouter(Map));

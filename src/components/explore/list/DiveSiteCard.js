@@ -13,8 +13,6 @@ class DiveSiteCard extends Component {
     var total = 0;
     var x;
 
-    console.log(this.props.site)
-
     for (x in this.props.site.reviews) {
       total = total + this.props.site.reviews[x].rating
     }

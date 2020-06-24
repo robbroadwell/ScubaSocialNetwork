@@ -31,7 +31,7 @@ function DestinationContent({ onPress }) {
     },
     {
       name: "Australia",
-      image: require('../../assets/australia.jpeg'),
+      image: require('../../assets/australia.jpg'),
       isTop: true
     },
     {
@@ -46,7 +46,7 @@ function DestinationContent({ onPress }) {
     },
     {
       name: "Australia",
-      image: require('../../assets/australia.jpeg'),
+      image: require('../../assets/australia.jpg'),
       isTop: true
     },
     {
@@ -61,7 +61,7 @@ function DestinationContent({ onPress }) {
     },
     {
       name: "Australia",
-      image: require('../../assets/australia.jpeg'),
+      image: require('../../assets/australia.jpg'),
       isTop: false
     },
     {
@@ -81,7 +81,7 @@ function DestinationContent({ onPress }) {
     },
     {
       name: "Australia",
-      image: require('../../assets/australia.jpeg'),
+      image: require('../../assets/australia.jpg'),
       isTop: false
     },
     {

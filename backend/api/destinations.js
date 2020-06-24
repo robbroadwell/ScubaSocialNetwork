@@ -30,12 +30,13 @@ router.post('/', (req, res, next) => {
         const item = destinations[i]
 
         const destination = new Destination({
-          _id: item.id,
+          _id: item.name.replace(/\s+/g, '-').toLowerCase(),
           name: item.name,
+          code: item.code,
           diveSiteCount: 0,
-          isTop: item.isTop,
-          urlThumbnail: item.urlThumbnail,
-          regions: item.regions
+          isTop: false,
+          urlThumbnail: "https://divingcollective-photos.s3.us-east-2.amazonaws.com/destinations/" + item.name.replace(/\s+/g, '-').toLowerCase() + ".jpg",
+          regions: []
         })
         sem.take(function() {
           destination.save()

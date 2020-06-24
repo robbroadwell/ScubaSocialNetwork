@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SET_USER, SET_DIVE_SITES, SET_MAP_CENTER, SET_MAP_RECT, SET_ADD_DIVE_SITE_MODE, SET_LOGIN_MODE, SET_ALERT_MODE
+  SET_USER, SET_DIVE_SITES, SET_MAP_CENTER, SET_MAP_RECT, SET_ADD_DIVE_SITE_MODE, SET_LOGIN_MODE, SET_ALERT_MODE, SET_DESTINATIONS
 } from './actions'
 
 function user(state = [], action) {
@@ -39,6 +39,15 @@ function diveSites(state = [], action) {
   }
 }
 
+function destinations(state = [], action) {
+  switch (action.type) {
+    case SET_DESTINATIONS:
+      return action.destinations
+    default:
+      return state
+  }
+}
+
 function addDiveSiteMode(state = false, action) {
   switch (action.type) {
     case SET_ADD_DIVE_SITE_MODE:
@@ -71,6 +80,7 @@ const rootReducer = combineReducers({
   mapCenter,
   mapRect,
   diveSites,
+  destinations,
   addDiveSiteMode,
   loginMode,
   alertMode

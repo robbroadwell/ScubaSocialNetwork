@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+import { fetchDestinations } from "../../redux/actions";
+import { getDestinations } from '../../redux/selectors';
+import { connect } from "react-redux";
+
 import List from '../explore/list/List';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
@@ -7,8 +11,12 @@ import PrimaryButton from '../buttons/PrimaryButton';
 
 class Home extends Component {
 
-  navigateDestination = () => {
-    this.props.history.push(`/destinations/belize`)
+  componentWillMount() {
+    this.props.fetchDestinations()
+  }
+
+  navigateDestination = (destination) => {
+    this.props.history.push(`/destinations/` + destination._id)
   }
 
   navigateAddDiveSite = () => {
@@ -39,7 +47,7 @@ class Home extends Component {
             <DestinationCard country={"Mexico"} image={require('../../assets/mexico.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
             <DestinationCard country={"Belize"} image={require('../../assets/belize.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
             <DestinationCard country={"Fiji"} image={require('../../assets/fiji.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
-            <DestinationCard country={"Australia"} image={require('../../assets/australia.jpeg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
+            <DestinationCard country={"Australia"} image={require('../../assets/australia.jpg')} isTop={true} onPress={() => this.props.history.push(`/destinations/belize`)} />
           </View>
         </View>
 
@@ -55,49 +63,53 @@ class Home extends Component {
           </View>
         </View>
 
-        <View style={{margin: 20, marginBottom: 50}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
-          <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 Dive Sites submitted by users from all over the world. <TouchableOpacity onPress={this.navigateAddDiveSite}><span style={{textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</span></TouchableOpacity></Text> 
-          <View style={{flexDirection: 'row', marginTop: 15}}>
-            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
-              <DirectoryLocation country={"Bahamas"} diveCount={24} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Belize"} diveCount={5} onPress={this.navigateDestination} />
-                <RegionLocation region={"Lighthouse Reef"} diveCount={2} onPress={this.navigateDestination} />
-                <RegionLocation region={"Palancar Reef"} diveCount={3} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Brazil"} diveCount={75} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Cayman Islands"} diveCount={18} onPress={this.navigateDestination} />
-            </View>
-            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
-              <DirectoryLocation country={"Columbia"} diveCount={18} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Costa Rica"} diveCount={18} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Croatia"} diveCount={92} onPress={this.navigateDestination} />
-                <RegionLocation region={"Djbrovnik Area"} diveCount={80} onPress={this.navigateDestination} />
-                <RegionLocation region={"Split Area"} diveCount={12} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Cuba"} diveCount={22} onPress={this.navigateDestination} />
-            </View>
-            <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
-              <DirectoryLocation country={"Dominican Republic"} diveCount={24} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Ecuador"} diveCount={5} onPress={this.navigateDestination} />
-                <RegionLocation region={"Lighthouse Reef"} diveCount={2} onPress={this.navigateDestination} />
-                <RegionLocation region={"Palancar Reef"} diveCount={3} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Egypt"} diveCount={75} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Cayman Islands"} diveCount={18} onPress={this.navigateDestination} />
-            </View>
-            <View style={{flexDirection: 'column', marginRight: 0, flex: 1}}>
-              <DirectoryLocation country={"Fiji"} diveCount={18} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Greece"} diveCount={18} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Grenada"} diveCount={92} onPress={this.navigateDestination} />
-                <RegionLocation region={"Rainbow Reef"} diveCount={80} onPress={this.navigateDestination} />
-                <RegionLocation region={"Split Area"} diveCount={12} onPress={this.navigateDestination} />
-              <DirectoryLocation country={"Guatamala"} diveCount={22} onPress={this.navigateDestination} />
-            </View>
-          </View>
-        </View>
+        <Directory destinations={this.props.destinations} navigateDestination={this.navigateDestination} addDiveSite={this.navigateAddDiveSite} />
 
         {/* <FooterActions /> */}
       </View>
     )
   }
+}
+
+function Directory({ destinations, navigateDestination, addDiveSite }) {
+  var col1 = []
+  var col2 = []
+  var col3 = []
+  
+  for (var i = 0; i < destinations.length; i++) {
+    if (i < destinations.length / 3) {
+      col1.push(
+        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+      )
+    } else if (i < (destinations.length / 3) * 2) {
+      col2.push(
+        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+      )
+    } else {
+      col3.push(
+        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+      )
+    }
+  }
+
+  return (
+    <View style={{margin: 20, marginBottom: 50}}>
+      <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
+      <TouchableOpacity onPress={addDiveSite}><Text style={{fontSize: 14, color: 'black', marginTop: 2, textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</Text></TouchableOpacity>
+      <View style={{flexDirection: 'row', marginTop: 20}}>
+        <View style={{flex: 1, marginRight: 20}}>
+          {col1}
+        </View>
+        <View  style={{flex: 1, marginRight: 20}}>
+          {col2}
+        </View>
+        <View style={{flex: 1}}>
+          {col3}
+        </View>
+      </View>
+    </View>
+  
+  )
 }
 
 function FilterButton({ filter }) {
@@ -108,16 +120,16 @@ function FilterButton({ filter }) {
   )
 }
 
-function DirectoryLocation({ country, diveCount, onPress }) {
+function DirectoryLocation({ destination, navigateDestination }) {
   return (
-    <View style={{flexDirection: 'row', minWidth: 250, marginBottom: 2}}>
-      <TouchableOpacity onPress={onPress}>
-        <Text style={{color: '#0000A5'}}>{country}</Text>
+    <View style={{flexDirection: 'row', marginBottom: 2}}>
+      <TouchableOpacity onPress={() => navigateDestination(destination)}>
+        <Text style={{color: '#0000A5'}}>{destination.name}</Text>
       </TouchableOpacity>
       <View style={{flex: 1}}>
-        <Text numberOfLines={1}>..............................................................................</Text>
+        <Text numberOfLines={1}>............................................................................................................................................................</Text>
       </View>
-      <Text>{diveCount} dives</Text>
+      <Text>{destination.diveSiteCount} dives</Text>
     </View>
   )
 }
@@ -161,4 +173,12 @@ function FooterActions() {
   )
 }
 
-export default Home;
+const mapStateToProps = state => {
+  const destinations = getDestinations(state);
+  return { destinations };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchDestinations }
+)(Home);

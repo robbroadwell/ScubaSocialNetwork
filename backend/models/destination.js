@@ -10,6 +10,10 @@ const destinationSchema = new Schema({
         type: String,
         required: true
     },
+    code: {
+        type: String,
+        required: true
+    },
     diveSiteCount: {
         type: Number,
         required: true
@@ -20,7 +24,7 @@ const destinationSchema = new Schema({
     },
     urlThumbnail: {
         type: String,
-        required: true
+        required: false
     },
     regions: {
         type: Array,

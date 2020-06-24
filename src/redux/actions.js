@@ -3,6 +3,7 @@
  */
 
 export const SET_DIVE_SITES = 'SET_DIVE_SITES'
+export const SET_DESTINATIONS = 'SET_DESTINATIONS'
 export const SET_USER = 'SET_USER'
 export const SET_MAP_CENTER = 'SET_MAP_CENTER'
 export const SET_MAP_RECT = 'SET_MAP_RECT'
@@ -16,6 +17,10 @@ export const SET_ALERT_MODE = 'SET_ALERT_MODE'
 
 export function setDiveSites(diveSites) {
   return { type: SET_DIVE_SITES, diveSites }
+}
+
+export function setDestinations(destinations) {
+  return { type: SET_DESTINATIONS, destinations }
 }
 
 export function setUser(user) {
@@ -51,6 +56,27 @@ export function fetchDiveSites() {
       .then((response) => response.json())
       .then((json) => {
         dispatch(setDiveSites(json));
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        // this.setState({ isLoading: false });
+      });
+    }
+}
+
+export function fetchDestinations() {
+  console.log("fetchDestionations")
+  return function(dispatch, getState) {
+
+    if (getState().destinations.length !== 0) {
+      return
+    }
+
+    return fetch('http://localhost:8080/api/destinations')
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        dispatch(setDestinations(json));
       })
       .catch((error) => console.error(error))
       .finally(() => {
