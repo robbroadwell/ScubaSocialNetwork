@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 import { View, Text } from 'react-native';
 import DestinationCard from './DestinationCard';
+import { fetchTopDestinations } from "../../redux/actions";
 import { getTopDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
 
 class Destinations extends Component {
+
+  componentWillMount() {
+    this.props.fetchTopDestinations()
+  }
 
   render() {
     return (
@@ -43,6 +48,6 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {  }
+  { fetchTopDestinations }
 )(Destinations);
 
