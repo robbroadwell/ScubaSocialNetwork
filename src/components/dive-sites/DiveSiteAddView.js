@@ -26,7 +26,7 @@ class DiveSiteAddView extends Component {
   };
 
   onPressClose = () => {
-    this.props.goBack();
+    this.props.history.goBack();
   }
 
   onPressNameBack = () => {

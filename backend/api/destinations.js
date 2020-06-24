@@ -9,6 +9,12 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err))
 })
 
+router.get('/:id', (req, res) => {
+  Destination.find({"_id": req.params.id})
+    .then(destination => res.json(destination))
+    .catch(err => console.log(err))
+})
+
 router.get('/top/', (req, res) => {
   Destination.find({ "isTop" : true})
     .then(destinations => res.json(destinations))

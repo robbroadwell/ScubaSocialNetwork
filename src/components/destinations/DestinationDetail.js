@@ -6,8 +6,39 @@ import PhotosContent from '../photos/PhotosContent';
 import MapFilters from '../explore/map/MapFilters';
 
 class DestinationDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isLoading: true,
+        data: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchDestination()
+  }
+
+  // componentDidUpdate = (prevProps) => {
+  //   if (this.props.location.pathname !== prevProps.location.pathname) {
+  //     this.fetchDestination()
+  //   }
+  // }
+
+  fetchDestination = () => {
+    console.log(this.props.match.params.id)
+    fetch('http://localhost:8080/api/destinations/'+ this.props.match.params.id )
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        this.setState({ data: json[0] });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+    })
+  }
+
   render() {
-    console.log(this.props.match.params)
     return (
       <View style={{flex: 1}}>
 
@@ -16,18 +47,20 @@ class DestinationDetail extends Component {
 
             <View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>Belize</Text>
-                <View style={{marginLeft: 15, justifyContent: 'center'}}>
-                  <View style={{backgroundColor: '#A00000'}}>
-                    <Text style={{padding: 5, color: 'white'}}>TOP</Text>
+                <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>{this.state.data.name}</Text>
+                {!this.state.data.isTop ? <View></View> :
+                  <View style={{marginLeft: 15, justifyContent: 'center'}}>
+                    <View style={{backgroundColor: '#A00000'}}>
+                      <Text style={{padding: 5, color: 'white'}}>TOP</Text>
+                    </View>
                   </View>
-                </View>
+                }
               </View>
 
               <View style={{flexDirection: 'row', marginTop: 5, marginBottom: 10}}>
                 <StyledLink to="/destinations">Destinations</StyledLink>
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-                {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">Belize</StyledLink> : <Text style={{fontSize: 16}}>Belize</Text>}
+                {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">{this.state.data.name}</StyledLink> : <Text style={{fontSize: 16}}>{this.state.data.name}</Text>}
                 {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
                 {this.props.match.params.idRegion ? <Text style={{fontSize: 16}}>Lighthouse Reef</Text> : <StyledLink to="/destinations/belize/lighthouse-reef">Select Region</StyledLink>} */}
               </View>
@@ -50,7 +83,7 @@ class DestinationDetail extends Component {
         </View>
 
         <View style={{margin: 20, marginTop: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in Belize</Text> 
+          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in {this.state.data.name}</Text> 
           <PhotosContent />
         </View>
 

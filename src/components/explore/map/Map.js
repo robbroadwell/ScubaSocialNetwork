@@ -50,7 +50,7 @@ class Map extends Component {
           lng: -79.08256345614791
       },
       disableDefaultUI: true,
-      zoomControl: !this.props.style.mobile,
+      zoomControl: true,
       mapTypeId: window.google.maps.MapTypeId.HYBRID,
   })
 

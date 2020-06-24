@@ -6,7 +6,7 @@ import DiveSiteAddView from './DiveSiteAddView';
 class DiveSiteAdd extends Component {
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'row', height: '90vh'}}>
+      <View style={{flex: 1, flexDirection: 'row', height: '75vh'}}>
         <Map style={this.props.style} diveSites={this.props.diveSites} addDiveSite={true} />
         <DiveSiteAddView history={this.props.history} />
       </View>
