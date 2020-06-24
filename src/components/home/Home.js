@@ -51,7 +51,7 @@ class Home extends Component {
           </View>
         </View>
 
-        <View style={{margin: 20}}>
+        <View style={{margin: 20, marginBottom: 50}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
           <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
           <View style={{flexDirection: 'row', marginTop: 15}}>
@@ -90,7 +90,7 @@ class Home extends Component {
           </View>
         </View>
 
-        <FooterActions />
+        {/* <FooterActions /> */}
       </View>
     )
   }

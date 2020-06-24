@@ -115,9 +115,9 @@ function DiveSiteDetailSidebar() {
   return (
     <StickyContainer>
       <View style={{width: 320, flexDirection: 'column'}}>
-        <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
+        {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
           <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
-        </View>
+        </View> */}
         <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
           <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
             <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
