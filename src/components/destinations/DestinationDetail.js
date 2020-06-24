@@ -28,8 +28,8 @@ class DestinationDetail extends Component {
                 <StyledLink to="/destinations">Destinations</StyledLink>
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
                 {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">Belize</StyledLink> : <Text style={{fontSize: 16}}>Belize</Text>}
-                <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-                {this.props.match.params.idRegion ? <Text style={{fontSize: 16}}>Lighthouse Reef</Text> : <StyledLink to="/destinations/belize/lighthouse-reef">Select Region</StyledLink>}
+                {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+                {this.props.match.params.idRegion ? <Text style={{fontSize: 16}}>Lighthouse Reef</Text> : <StyledLink to="/destinations/belize/lighthouse-reef">Select Region</StyledLink>} */}
               </View>
             </View>
             
