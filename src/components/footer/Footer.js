@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-88100612-2');
 
 class Footer extends Component {
+  componentDidMount() {
+    this.props.history.listen(location => {
+      ReactGA.set({ page: location.pathname })
+      ReactGA.pageview(location.pathname)
+  })
+  }
+
   render() {
     return (
       <View>

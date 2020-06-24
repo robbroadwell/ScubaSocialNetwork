@@ -58,7 +58,7 @@ class Login extends Component {
       return <View></View>
     }
 
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview('/login');
     
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', top: 0, backgroundColor: 'black'}}>
