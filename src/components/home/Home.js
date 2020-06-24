@@ -11,6 +11,10 @@ class Home extends Component {
     this.props.history.push(`/destinations/belize`)
   }
 
+  navigateAddDiveSite = () => {
+    this.props.history.push(`/add-dive-site`)
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -53,7 +57,7 @@ class Home extends Component {
 
         <View style={{margin: 20, marginBottom: 50}}>
           <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
-          <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 Dive Sites submitted by users from all over the world. <span style={{textDecorationLine: 'underline'}}>Submit your favorite dive site.</span></Text> 
+          <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 Dive Sites submitted by users from all over the world. <TouchableOpacity onPress={this.navigateAddDiveSite}><span style={{textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</span></TouchableOpacity></Text> 
           <View style={{flexDirection: 'row', marginTop: 15}}>
             <View style={{flexDirection: 'column', marginRight: 20, flex: 1}}>
               <DirectoryLocation country={"Bahamas"} diveCount={24} onPress={this.navigateDestination} />

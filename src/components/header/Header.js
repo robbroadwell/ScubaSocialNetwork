@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import { connect } from "react-redux";
+import { getUser } from "../../redux/selectors";
+import { setLoginMode } from '../../redux/actions';
 import PrimaryButton from '../buttons/PrimaryButton';
+import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
+
+  toggleLogin = () => {
+    this.props.setLoginMode(!this.props.loginMode)
+  };
 
   render() {
     return (
@@ -48,11 +56,19 @@ class Header extends Component {
         </View> */}
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={"Join Diving Collective"} />
+          <PrimaryButton title={this.props.user.username ? "Account" : "Join Diving Collective"} action={this.toggleLogin} />
         </View>
       </View>
     )
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  const user = getUser(state);
+  return { user };
+};
+
+export default connect(
+  mapStateToProps,
+  { setLoginMode }
+)(withRouter(Header));

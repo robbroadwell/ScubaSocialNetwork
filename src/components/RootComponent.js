@@ -6,6 +6,7 @@ import { getDiveSites } from '../redux/selectors';
 import { Helmet } from "react-helmet";
 
 import Alert from './header/Alert';
+import Login from './header/Login';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
@@ -14,6 +15,7 @@ import Explore from './explore/Explore';
 import Destinations from './destinations/Destinations';
 import DestinationDetail from './destinations/DestinationDetail';
 import DiveSites from './dive-sites/DiveSites';
+import DiveSiteAdd from './dive-sites/DiveSiteAdd';
 import DiveSiteDetail from './dive-sites/DiveSiteDetail';
 import Photos from './photos/Photos';
 import PhotosOverlay from './photos/PhotosOverlay';
@@ -48,12 +50,13 @@ class RootComponent extends Component {
           <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
           <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
           <Route path='/dive-sites/:id' render={(props) => <DiveSiteDetail {...props} style={this.props.style} />} />
+          <Route path='/add-dive-site/' render={(props) => <DiveSiteAdd {...props} style={this.props.style} />} />
           <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />
           <Route path='/animals' exact={true} render={(props) => <Animals {...props} style={this.props.style} />} />
           <Route path='/leaderboard' exact={true} render={(props) => <Leaderboard {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
           <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
-          
+          <Route path='/' render={(props) => <Login {...props} style={this.props.style} />} />
         </ScrollToTop>
       </Router>
       

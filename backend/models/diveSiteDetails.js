@@ -10,10 +10,6 @@ const diveSiteDetailsSchema = new Schema({
         type: String,
         required: true
     },
-    country: {
-        type: String,
-        required: true
-    },
     urlThumbnail: {
         type: String,
         required: true
@@ -48,7 +44,7 @@ const diveSiteDetailsSchema = new Schema({
     },
     region: {
         type: Object,
-        required: true
+        required: false
     },
     user: {
         type: Object,

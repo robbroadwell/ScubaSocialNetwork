@@ -53,6 +53,7 @@ router.get('/details/:id', (req, res) => {
 
 router.post('/', (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    console.log("test")
     if (err) {
       console.error(err);
     }
@@ -60,25 +61,27 @@ router.post('/', (req, res, next) => {
     if (info !== undefined) {
       console.error(info.message);
       res.status(403).send(info.message);
+
     } else if (!user) {
       console.error('user authorizing the JWT not found');
       res.status(403).send('user authorizing the JWT not found');
+      
     } else {
-        const { name, country, latitude, longitude, destination, region } = req.body;
-        const newDiveSite = new DiveSite({
-          name: name,
-          country: country,
-          rating: 0,
-          ratingCount: 0,
-          location: {
-            type: "Point",
-            coordinates: [
-                longitude, latitude
-            ]
-          },
-          destination: destination,
-          region: region
-    })
+      const { name, country, latitude, longitude, destination, region } = req.body;
+      const newDiveSite = new DiveSite({
+        name: name,
+        rating: 0,
+        ratingCount: 0,
+        location: {
+          type: "Point",
+          coordinates: [
+              longitude, latitude
+          ]
+        },
+        destination: destination,
+        region: region
+      })
+
     newDiveSite.save()
       .then(diveSite => {
         const newDiveSiteDetail = new DiveSiteDetails({
@@ -102,24 +105,26 @@ router.post('/', (req, res, next) => {
           rating: 0,
           ratingCount: 0,
           reviews: [],
+          urlThumbnail: 'www.google.com',
           photos: []
         })
+
         newDiveSiteDetail.save()
-          .then(() => res.json({
-            'message': 'dive site + dive site detail created'
-          }))
-          .catch(err => res.json({
+          .then(diveSiteDetail => 
+            res.json({
+              diveSiteDetail
+            })
+          ).catch(err => res.status(400).json({
             'message': 'failed creating dive site detail',
-            'error': err
-          }))
-      })
-      .catch(err => res.status(400).json({
-        'message': 'failed creating dive site detail',
+            "error": err
+          })(req, res, next))
+
+
+      }).catch(err => res.status(400).json({
+        'message': 'failed creating dive site',
         "error": err
-      }))
-    }
-  })(req, res, next);
-});
+      })(req, res, next))
+  }})(req, res, next)})
 
 router.put('/', (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user, info) => {

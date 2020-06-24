@@ -5,7 +5,7 @@ import { getUser, getLoginMode } from "../../redux/selectors";
 import { setLoginMode } from '../../redux/actions';
 import PopoverButton from '../../utility/buttons/PopoverButton';
 import { withRouter } from 'react-router-dom'
-import Login from './Login';
+import Login from '../../components/header/Login';
 const axios = require('axios')
 
 class Header extends Component {

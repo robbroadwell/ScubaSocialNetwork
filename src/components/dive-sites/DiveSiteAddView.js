@@ -5,14 +5,12 @@ import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
 import { getUser, getMapCenter } from '../../redux/selectors';
 const axios = require('axios')
 
-
 export const ADD_STEPS = {
     LOCATION: "LOCATION",
-    NAME: "NAME",
-    ADDITIONAL: "ADDITIONAL"
+    NAME: "NAME"
 }
 
-class Add extends Component {
+class DiveSiteAddView extends Component {
 
   constructor(props) {
       super(props);
@@ -28,7 +26,7 @@ class Add extends Component {
   };
 
   onPressClose = () => {
-    this.props.setAddDiveSiteMode(false);
+    this.props.history.goBack();
   }
 
   onPressNameBack = () => {
@@ -46,7 +44,7 @@ class Add extends Component {
   }
 
   onCreateDiveSite = (name) => {
-
+    console.log(name)
     axios({
       method: 'post',
       url: 'http://localhost:8080/api/dive-sites',
@@ -56,15 +54,20 @@ class Add extends Component {
       },
       data: {
           name: name,
-          country: this.state.country,
           latitude: this.props.mapCenter[0],
           longitude: this.props.mapCenter[1],
+          destination: {
+            id: 'new-zealand',
+            name: 'New Zealand'
+          }
       }
-
-    }).then(function (response) {
-      this.props.fetchDiveSites()
-      this.onPressClose()
-    }.bind(this));
+    })
+    .then(response => {
+      console.log(response)
+  
+      // this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -154,4 +157,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { setAddDiveSiteMode, fetchDiveSites }
-)(Add);
+)(DiveSiteAddView);
