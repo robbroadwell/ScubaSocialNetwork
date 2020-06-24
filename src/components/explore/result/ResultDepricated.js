@@ -44,7 +44,7 @@ class Result extends Component {
   }
 
   fetchDiveSite = () => {
-    fetch('https://www.divingcollective.com/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+    fetch('http://localhost:8080/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
@@ -124,7 +124,7 @@ class Result extends Component {
     if (this.props.user.token) {
       axios({
         method: 'put',
-        url: 'https://www.divingcollective.com/api/dive-sites/reviews/',
+        url: 'http://localhost:8080/api/dive-sites/reviews/',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT ' + this.props.user.token

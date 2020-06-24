@@ -31,7 +31,7 @@ class Result extends Component {
   }
 
   fetchDiveSite = () => {
-    fetch('https://www.divingcollective.com/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+    fetch('http://localhost:8080/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

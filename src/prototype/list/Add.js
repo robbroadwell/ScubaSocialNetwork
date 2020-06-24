@@ -49,7 +49,7 @@ class Add extends Component {
 
     axios({
       method: 'post',
-      url: 'https://www.divingcollective.com/api/dive-sites',
+      url: 'http://localhost:8080/api/dive-sites',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token

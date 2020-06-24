@@ -39,7 +39,7 @@ class Header extends Component {
   addFeedback = () => {
     axios({
       method: 'post',
-      url: 'https://www.divingcollective.com/api/feedback',
+      url: 'http://localhost:8080/api/feedback',
       data: {
           email: this.state.email,
           feedback: this.state.feedback,

@@ -29,7 +29,7 @@ class Login extends Component {
   onPressSubmit = () => {
     if (this.state.username !== "" && this.state.password !== "") {
       this.setState({ loading: true });
-      axios.post('https://www.divingcollective.com/api/users/login', {
+      axios.post('http://localhost:8080/api/users/login', {
         username: this.state.username,
         password: this.state.password
       })

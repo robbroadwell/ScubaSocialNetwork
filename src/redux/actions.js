@@ -47,7 +47,7 @@ export function fetchDiveSites() {
     const coordinates = getState().mapRect;
     console.log(coordinates)
 
-    return fetch('https://www.divingcollective.com/api/dive-sites?polygon='+`${coordinates}`)
+    return fetch('http://localhost:8080/api/dive-sites?polygon='+`${coordinates}`)
       .then((response) => response.json())
       .then((json) => {
         dispatch(setDiveSites(json));
