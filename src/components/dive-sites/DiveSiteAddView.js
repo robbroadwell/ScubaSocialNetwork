@@ -26,7 +26,7 @@ class DiveSiteAddView extends Component {
   };
 
   onPressClose = () => {
-    this.props.history.goBack();
+    this.props.goBack();
   }
 
   onPressNameBack = () => {
@@ -44,7 +44,6 @@ class DiveSiteAddView extends Component {
   }
 
   onCreateDiveSite = (name) => {
-    console.log(name)
     axios({
       method: 'post',
       url: 'http://localhost:8080/api/dive-sites',
@@ -53,21 +52,24 @@ class DiveSiteAddView extends Component {
         'Authorization': 'JWT ' + this.props.user.token
       },
       data: {
-          name: name,
-          latitude: this.props.mapCenter[0],
-          longitude: this.props.mapCenter[1],
-          destination: {
-            id: 'new-zealand',
-            name: 'New Zealand'
-          }
+        name: name,
+        latitude: this.props.mapCenter[0],
+        longitude: this.props.mapCenter[1],
+        destination: {
+          id: 'new-zealand',
+          name: 'New Zealand'
+        }
       }
-    })
-    .then(response => {
-      console.log(response)
-  
-      // this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
-    })
-    .catch(err => console.log(err));
+
+    }).then(function (response) {
+      const {destination, name, _id} = response.data.diveSiteDetail
+      this.props.history.push(`/dive-sites/${destination.id}/${name}?id=${_id}`)
+      
+      // this.props.history.push(`/`)
+      // alert(JSON.stringify(response.data.diveSiteDetail));
+    }.bind(this)).catch(error => {
+      alert(JSON.stringify(error));
+    });
   }
 
   render() {
