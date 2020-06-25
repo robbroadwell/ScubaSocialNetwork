@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import List from '../list/List';
 
 import debounce from '../../../utility/debounce';
 import { connect } from "react-redux";
@@ -112,18 +113,22 @@ class Map extends Component {
     this.createMarkers()
 
     return (
-      <View style={{flex: 1}}>
-        <div
-          id="google-map"
-          ref={this.googleMapRef}
-          style={{ flex: 1 }}
-        />
-        {!this.props.addDiveSite ? <View></View> :
-        <View pointerEvents={"none"} style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
-          <View style={{position: 'absolute', width: '100%', height: 2, backgroundColor: 'white'}} />
-          <View style={{position: 'absolute', width: 2, height: '100%', backgroundColor: 'white'}} />
+      <View style={{flexDirection: "row", flex: 1}}>
+        <List style={this.props.style} history={this.props.history} />
+
+        <View style={{flex: 1}}>
+          <div
+            id="google-map"
+            ref={this.googleMapRef}
+            style={{ flex: 1 }}
+          />
+          {!this.props.addDiveSite ? <View></View> :
+          <View pointerEvents={"none"} style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{position: 'absolute', width: '100%', height: 2, backgroundColor: 'white'}} />
+            <View style={{position: 'absolute', width: 2, height: '100%', backgroundColor: 'white'}} />
+          </View>
+          }
         </View>
-        }
       </View>
     )
   }

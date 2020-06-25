@@ -4,7 +4,7 @@ import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
 import { getDestinations, getTopDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
 
-import List from '../explore/list/List';
+import Map from '../explore/map/Map';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
 import PrimaryButton from '../buttons/PrimaryButton';
@@ -51,8 +51,7 @@ class Home extends Component {
             {/* <MapFilters /> */}
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <List style={this.props.style} history={this.props.history} />
-            {this.props.map}
+            <Map style={this.props.style} history={this.props.history} />
           </View>
         </View>
 

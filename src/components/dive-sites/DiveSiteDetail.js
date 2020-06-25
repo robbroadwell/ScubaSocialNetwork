@@ -189,6 +189,18 @@ function DiveSiteDetailSidebar() {
             <View style={{flex: 1}} />
           </View>
         </View>
+        <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Dive Type</Text>
+            <View style={{flex: 1}} />
+            <Text style={{color: '#A00000'}}>Edit</Text>
+            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          </View>
+          <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+            <Text style={{fontWeight: '600'}}>Shipwreck</Text>
+            <View style={{flex: 1}} />
+          </View>
+        </View>
 
         {/* <DiveSiteDetailMarketing /> */}
       </View>

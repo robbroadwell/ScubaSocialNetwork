@@ -10,7 +10,6 @@ import Login from './header/Login';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
-import Map from './explore/map/Map';
 import Explore from './explore/Explore';
 import Destinations from './destinations/Destinations';
 import DestinationDetail from './destinations/DestinationDetail';
@@ -30,8 +29,6 @@ import {
 
 class RootComponent extends Component {
 
-  map = <Map style={this.props.style} />
-
   render() {
     return (
       <Router>
@@ -44,7 +41,7 @@ class RootComponent extends Component {
           
           {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
-          <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} map={this.map} />} />
+          <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
           <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
           <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
           <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />

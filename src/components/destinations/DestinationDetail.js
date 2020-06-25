@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import List from '../explore/list/List';
+import Map from '../explore/map/Map';
 import StyledLink from '../buttons/StyledLink';
 import PhotosContent from '../photos/PhotosContent';
 import MapFilters from '../explore/map/MapFilters';
@@ -73,8 +73,7 @@ class DestinationDetail extends Component {
           </View>
 
           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
-            <List style={this.props.style} history={this.props.history} />
-            {this.props.map}
+            <Map style={this.props.style} history={this.props.history} />
           </View>
           <View style={{flexDirection: 'row', marginTop: 5}}>
             <View style={{flex: 1}} />
