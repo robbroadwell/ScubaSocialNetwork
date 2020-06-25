@@ -121,7 +121,7 @@ class DiveSiteAddView extends Component {
 
     }).then(function (response) {
       const {destination, name, _id} = response.data.diveSiteDetail
-      this.props.history.push(`/dive-sites/${destination.id}/${name}?id=${_id}`)
+      this.props.history.push(`/dive-sites/${destination.id}/${name.replace(/\s+/g, '-').toLowerCase()}?id=${_id}`)
 
     }.bind(this)).catch(error => {
       alert(JSON.stringify(error));
