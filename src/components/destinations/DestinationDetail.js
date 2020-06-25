@@ -79,7 +79,9 @@ class DestinationDetail extends Component {
           <View style={{flexDirection: 'row', marginTop: 5}}>
             <View style={{flex: 1}} />
             <Text style={{marginRight: 5}}>Are we missing something?</Text>
-            <Text style={{textDecorationLine: 'underline', color: '#A00000'}}>Add a dive site</Text>
+            <TouchableOpacity onPress={() => this.props.history.push('/add-dive-site/')}>
+              <Text style={{textDecorationLine: 'underline', color: '#A00000'}}>Add a dive site</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
