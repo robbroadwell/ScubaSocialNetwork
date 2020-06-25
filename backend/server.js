@@ -13,7 +13,7 @@ const app = express();
 require('./database');
 
 app.use(cookieParser());
-app.use(bodyParser.json({limit: '200mb'}));
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(cors());
 // app.use(rateLimiterRedisMiddleware);
