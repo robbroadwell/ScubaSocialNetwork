@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import Select from 'react-select';
 import 'react-dropdown/style.css';
-import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
+import { setAddDiveSiteMode } from '../../redux/actions';
 import { getUser, getMapCenter, getDestinations } from '../../redux/selectors';
 import BaseURL from '../../utility/BaseURL';
 const axios = require('axios')
@@ -227,5 +227,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setAddDiveSiteMode, fetchDiveSites }
+  { setAddDiveSiteMode }
 )(DiveSiteAddView);

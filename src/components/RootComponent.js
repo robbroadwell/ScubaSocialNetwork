@@ -1,8 +1,4 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
-
-import { connect } from "react-redux";
-import { getDiveSites } from '../redux/selectors';
 import { Helmet } from "react-helmet";
 
 import Alert from './header/Alert';
@@ -61,12 +57,4 @@ class RootComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const diveSites = getDiveSites(state);
-  return { diveSites };
-};
-
-export default connect(
-  mapStateToProps,
-  { fetch }
-)(RootComponent);
+export default RootComponent;

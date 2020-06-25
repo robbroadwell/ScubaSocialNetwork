@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import DiveSiteList from './DiveSiteList';
-import { connect } from "react-redux";
-import { getDiveSites } from "../../../redux/selectors";
 
 
 class List extends Component {
@@ -64,12 +62,4 @@ function ExpandToggleButton({ title, icon, style, onPress }) {
   )
 }
 
-const mapStateToProps = state => {
-  const diveSites = getDiveSites(state);
-  return { diveSites };
-};
-
-export default connect(
-  mapStateToProps,
-  {  }
-)(List);
+export default List;

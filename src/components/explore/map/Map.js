@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import List from '../list/List';
+import BaseURL from '../../../utility/BaseURL';
 
 import debounce from '../../../utility/debounce';
 import { connect } from "react-redux";
-import { setDiveSites, setMapCenter, setMapRect, fetchDiveSites } from "../../../redux/actions";
-import { getAddDiveSiteMode, getDiveSites } from "../../../redux/selectors";
+import { setMapCenter, setMapRect } from "../../../redux/actions";
+import { getAddDiveSiteMode, getMapRect } from "../../../redux/selectors";
 import { withRouter } from 'react-router-dom'
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isLoading: true,
+        diveSites: [],
+    };
+  }
+
   googleMapRef = React.createRef()
   markers = []; // prevent duplicates
+
+  fetchDiveSites = () => {
+    fetch(BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`)
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ diveSites: json });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+    }
+  
 
   componentDidMount() {
     this.markers = [];
@@ -74,14 +96,14 @@ class Map extends Component {
 
       this.props.setMapCenter([center.lat(), center.lng()])
       this.props.setMapRect(coordinates)
-      this.props.fetchDiveSites()
+      this.fetchDiveSites()
 
     }, 250));
   }
 
   createMarkers = () => {
     if (window.google) {
-      const { diveSites, setSelectedDiveSite } = this.props;
+      const { diveSites } = this.state;
 
       var i, marker;
       for (i = 0; i < diveSites.length; i++) {
@@ -114,7 +136,7 @@ class Map extends Component {
 
     return (
       <View style={{flexDirection: "row", flex: 1}}>
-        <List style={this.props.style} history={this.props.history} />
+        <List style={this.props.style} history={this.props.history} diveSites={this.state.diveSites} />
 
         <View style={{flex: 1}}>
           <div
@@ -136,11 +158,11 @@ class Map extends Component {
 
 const mapStateToProps = state => {
   const addDiveSiteMode = getAddDiveSiteMode(state);
-  const diveSites = getDiveSites(state);
-  return { addDiveSiteMode, diveSites };
+  const mapRect = getMapRect(state);
+  return { addDiveSiteMode, mapRect };
 };
 
 export default connect(
   mapStateToProps,
-  { setDiveSites, setMapCenter, setMapRect, fetchDiveSites }
+  { setMapCenter, setMapRect }
 )(withRouter(Map));
