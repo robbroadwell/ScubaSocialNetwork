@@ -6,10 +6,12 @@ ReactGA.initialize('UA-88100612-2');
 
 class Footer extends Component {
   componentDidMount() {
-    this.props.history.listen(location => {
-      ReactGA.set({ page: location.pathname })
-      ReactGA.pageview(location.pathname)
-  })
+    if (process.env.NODE_ENV !== "development") {
+      this.props.history.listen(location => {
+        ReactGA.set({ page: location.pathname })
+        ReactGA.pageview(location.pathname)
+      })
+    }
   }
 
   render() {

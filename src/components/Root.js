@@ -40,7 +40,10 @@ class Root extends Component {
       }
     }
 
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if (process.env.NODE_ENV !== "development") {
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+
     return <RootComponent style={style} />
   }
 }

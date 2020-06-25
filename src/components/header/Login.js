@@ -59,7 +59,9 @@ class Login extends Component {
       return <View></View>
     }
 
-    ReactGA.pageview('/login');
+    if (process.env.NODE_ENV !== "development") {
+      ReactGA.pageview('/login');
+    }
     
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', top: 0, backgroundColor: 'black'}}>
