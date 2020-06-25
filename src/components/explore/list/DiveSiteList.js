@@ -4,10 +4,6 @@ import DiveSiteCard from './DiveSiteCard';
 
 function DiveSiteList({ diveSites, history }) {
   
-  function selectDiveSite (site) {
-    history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
-  }
-
   return (
     <FlatList
       style={{marginBottom: -5}}
@@ -15,7 +11,7 @@ function DiveSiteList({ diveSites, history }) {
       keyExtractor={({ id }, index) => id}
       renderItem={({ item }) => (
 
-        <DiveSiteCard site={item} onPress={() => selectDiveSite(item)} />
+        <DiveSiteCard site={item} onPress={() => history.push(`/dive-sites/${item.destination.id.replace(/\s+/g, '-').toLowerCase()}/${item.name.replace(/\s+/g, '-').toLowerCase()}?id=${item._id}`)} />
 
       )}
     />

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const passport = require('passport');
 const DiveSite = require('../models/diveSite');
+const Destination = require('../models/destination');
 const DiveSiteDetails = require('../models/diveSiteDetails');
 var aws = require('aws-sdk'); 
 
@@ -81,6 +82,11 @@ router.post('/', (req, res, next) => {
         destination: destination,
         region: region
       })
+
+    Destination.findById(destination.id).then(destination => {
+      destination.diveSiteCount = destination.diveSiteCount + 1
+      destination.save()
+    })
 
     newDiveSite.save()
       .then(diveSite => {

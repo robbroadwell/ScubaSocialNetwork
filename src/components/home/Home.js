@@ -86,22 +86,30 @@ function Featured({ destinations, navigateDestination }) {
 }
 
 function Directory({ destinations, navigateDestination, addDiveSite }) {
+  var restrictedList = []
+  
+  for (var i = 0; i < destinations.length; i++) {
+    if (destinations[i].diveSiteCount > 0) {
+      restrictedList.push(destinations[i])
+    }
+  }
+
   var col1 = []
   var col2 = []
   var col3 = []
   
-  for (var i = 0; i < destinations.length; i++) {
-    if (i < destinations.length / 3) {
+  for (var i = 0; i < restrictedList.length; i++) {
+    if (i < restrictedList.length / 3) {
       col1.push(
-        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
-    } else if (i < (destinations.length / 3) * 2) {
+    } else if (i < (restrictedList.length / 3) * 2) {
       col2.push(
-        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
     } else {
       col3.push(
-        <DirectoryLocation destination={destinations[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
     }
   }
