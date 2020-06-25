@@ -180,21 +180,21 @@ function CoordinatesPicker({ mapCenter, isFreeEntry, toggleFreeEntry, freeEntryL
       </View>
       
       <View style={{flexDirection: 'row', margin: 10}}>
-        <View style={{backgroundColor: '#CCCCCC', flex: 1, height: 50, margin: 10}}>
+        <View style={{backgroundColor: '#CCCCCC', flex: 1, justifyContent: 'center', height: 50, margin: 10}}>
           {isFreeEntry ? 
           <TextInput
             style={{backgroundColor: '#CCCCCC', flex: 1, fontSize: 20, textAlign: 'center' }}
             onChangeText={text => onChangeTextLatitude(text)}
             value={freeEntryLatitude}
-          /> : <Text>{Number((mapCenter[0]).toFixed(5))}</Text>}
+          /> : <Text style={{fontSize: 18, textAlign: 'center'}}>{Number((mapCenter[0]).toFixed(5))}</Text>}
         </View>
-        <View style={{backgroundColor: '#CCCCCC', flex: 1, height: 50, margin: 10}}>
+        <View style={{backgroundColor: '#CCCCCC', flex: 1, justifyContent: 'center', height: 50, margin: 10}}>
           {isFreeEntry ? 
             <TextInput
               style={{backgroundColor: '#CCCCCC', flex: 1, fontSize: 20, textAlign: 'center' }}
               onChangeText={text => onChangeTextLongitude(text)}
               value={freeEntryLongitude}
-            /> : <Text>{Number((mapCenter[1]).toFixed(5))}</Text>}
+            /> : <Text style={{fontSize: 18, textAlign: 'center'}}>{Number((mapCenter[1]).toFixed(5))}</Text>}
         </View>
       </View>
     </View>
