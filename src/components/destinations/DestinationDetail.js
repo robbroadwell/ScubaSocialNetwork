@@ -86,8 +86,8 @@ class DestinationDetail extends Component {
         </View>
 
         <View style={{margin: 20, marginTop: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in {this.state.data.name}</Text> 
-          <PhotosContent />
+          {/* <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in {this.state.data.name}</Text> 
+          <PhotosContent /> */}
         </View>
 
         {/* <View style={{margin: 20}}>

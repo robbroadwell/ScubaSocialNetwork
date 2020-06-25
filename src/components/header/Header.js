@@ -32,9 +32,9 @@ class Header extends Component {
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Top Dive Sites</Text>
           </TouchableOpacity> */}
 
-          <TouchableOpacity onPress={() => this.props.history.push(`/photos`)}>
+          {/* <TouchableOpacity onPress={() => this.props.history.push(`/photos`)}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Best Photos</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           {/* <TouchableOpacity onPress={() => this.props.history.push(`/leaderboard`)}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Leaderboard</Text>
