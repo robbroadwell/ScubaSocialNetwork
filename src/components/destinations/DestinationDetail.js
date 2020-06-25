@@ -4,6 +4,7 @@ import List from '../explore/list/List';
 import StyledLink from '../buttons/StyledLink';
 import PhotosContent from '../photos/PhotosContent';
 import MapFilters from '../explore/map/MapFilters';
+import BaseURL from '../../utility/BaseURL';
 
 class DestinationDetail extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class DestinationDetail extends Component {
 
   fetchDestination = () => {
     console.log(this.props.match.params.id)
-    fetch('http://localhost:8080/api/destinations/'+ this.props.match.params.id )
+    fetch(BaseURL() + '/api/destinations/'+ this.props.match.params.id )
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

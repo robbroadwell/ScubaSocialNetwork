@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import { setAddDiveSiteMode, fetchDiveSites } from '../../redux/actions';
 import { getUser, getMapCenter } from '../../redux/selectors';
+import BaseURL from '../../utility/BaseURL';
 const axios = require('axios')
 
 export const ADD_STEPS = {
@@ -46,7 +47,7 @@ class DiveSiteAddView extends Component {
   onCreateDiveSite = (name) => {
     axios({
       method: 'post',
-      url: 'http://localhost:8080/api/dive-sites',
+      url: BaseURL() + '/api/dive-sites',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token

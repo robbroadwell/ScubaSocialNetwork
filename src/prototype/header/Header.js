@@ -39,7 +39,7 @@ class Header extends Component {
   addFeedback = () => {
     axios({
       method: 'post',
-      url: 'http://localhost:8080/api/feedback',
+      url: BaseURL() + '/api/feedback',
       data: {
           email: this.state.email,
           feedback: this.state.feedback,

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from '../../images/DragAndDrop'
 import Loading from '../../misc/Loading';
+import BaseURL from '../../utility/BaseURL';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
@@ -64,7 +65,7 @@ class ImageUpload extends Component {
 
     axios({
       method: 'put',
-      url: 'http://localhost:8080/api/dive-sites/photo-upload/',
+      url: BaseURL() + '/api/dive-sites/photo-upload/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'JWT ' + this.props.user.token
@@ -93,7 +94,7 @@ class ImageUpload extends Component {
 
         axios({
           method: 'put',
-          url: 'http://localhost:8080/api/dive-sites/photos/',
+          url: BaseURL() + '/api/dive-sites/photos/',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'JWT ' + this.props.user.token

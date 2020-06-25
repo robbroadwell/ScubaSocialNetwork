@@ -3,6 +3,7 @@ import { View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom'
 import { Helmet } from "react-helmet";
+import BaseURL from '../../utility/BaseURL';
 
 import PopoverButton from '../../buttons/PopoverButton';
 import PrimaryButton from '../../buttons/PrimaryButton';
@@ -31,7 +32,7 @@ class Result extends Component {
   }
 
   fetchDiveSite = () => {
-    fetch('http://localhost:8080/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+    fetch(BaseURL() + '/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

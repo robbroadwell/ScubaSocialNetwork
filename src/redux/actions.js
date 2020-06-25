@@ -1,3 +1,5 @@
+import BaseURL from '../utility/BaseURL';
+
 /*
  * action types
  */
@@ -56,7 +58,7 @@ export function fetchDiveSites() {
   return function(dispatch, getState) {
     const coordinates = getState().mapRect;
 
-    return fetch('http://localhost:8080/api/dive-sites?polygon='+`${coordinates}`)
+    return fetch(BaseURL() + '/api/dive-sites?polygon='+`${coordinates}`)
       .then((response) => response.json())
       .then((json) => {
         dispatch(setDiveSites(json));
@@ -75,7 +77,7 @@ export function fetchDestinations() {
       return
     }
 
-    return fetch('http://localhost:8080/api/destinations')
+    return fetch(BaseURL() + '/api/destinations')
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
@@ -91,11 +93,13 @@ export function fetchDestinations() {
 export function fetchTopDestinations() {
   return function(dispatch, getState) {
 
+    console.log(process.env.NODE_ENV === "development")
+
     if (getState().topDestinations.length !== 0) {
       return
     }
 
-    return fetch('http://localhost:8080/api/destinations/top')
+    return fetch(BaseURL() + '/api/destinations/top')
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

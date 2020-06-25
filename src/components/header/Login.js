@@ -6,6 +6,7 @@ import { setUser, setLoginMode } from "../../redux/actions";
 import { getUser, getLoginMode } from "../../redux/selectors";
 import { withRouter } from 'react-router-dom'
 import ReactGA from 'react-ga';
+import BaseURL from '../../utility/BaseURL';
 const axios = require('axios')
 
 class Login extends Component {
@@ -29,7 +30,7 @@ class Login extends Component {
   onPressSubmit = () => {
     if (this.state.username !== "" && this.state.password !== "") {
       this.setState({ loading: true });
-      axios.post('http://localhost:8080/api/users/login', {
+      axios.post(BaseURL() + '/api/users/login', {
         username: this.state.username,
         password: this.state.password
       })

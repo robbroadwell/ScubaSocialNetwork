@@ -3,6 +3,7 @@ import { View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom'
 import {Helmet} from "react-helmet";
+import BaseURL from '../../utility/BaseURL';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
@@ -44,7 +45,7 @@ class Result extends Component {
   }
 
   fetchDiveSite = () => {
-    fetch('http://localhost:8080/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+    fetch(BaseURL() + '/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
@@ -124,7 +125,7 @@ class Result extends Component {
     if (this.props.user.token) {
       axios({
         method: 'put',
-        url: 'http://localhost:8080/api/dive-sites/reviews/',
+        url: BaseURL() + '/api/dive-sites/reviews/',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT ' + this.props.user.token
