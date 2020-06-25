@@ -22,6 +22,10 @@ const destinationSchema = new Schema({
         type: Boolean,
         required: false
     },
+    geometry: {
+        type: Object,
+        required: false
+    },
     urlThumbnail: {
         type: String,
         required: false

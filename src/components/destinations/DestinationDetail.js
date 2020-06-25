@@ -26,7 +26,6 @@ class DestinationDetail extends Component {
   // }
 
   fetchDestination = () => {
-    console.log(this.props.match.params.id)
     fetch(BaseURL() + '/api/destinations/'+ this.props.match.params.id )
       .then((response) => response.json())
       .then((json) => {
@@ -73,7 +72,7 @@ class DestinationDetail extends Component {
           </View>
 
           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
-            <Map style={this.props.style} history={this.props.history} />
+            <Map style={this.props.style} history={this.props.history} country={this.props.match.params.id} />
           </View>
           <View style={{flexDirection: 'row', marginTop: 5}}>
             <View style={{flex: 1}} />

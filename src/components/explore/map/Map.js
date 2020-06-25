@@ -22,7 +22,13 @@ class Map extends Component {
   markers = []; // prevent duplicates
 
   fetchDiveSites = () => {
-    fetch(BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`)
+    var url = BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`
+
+    if (this.props.country) {
+      url = url + '&country=' + this.props.country
+    }
+
+    fetch(url)
       .then((response) => response.json())
       .then((json) => {
         this.setState({ diveSites: json });
@@ -136,7 +142,7 @@ class Map extends Component {
 
     return (
       <View style={{flexDirection: "row", flex: 1}}>
-        <List style={this.props.style} history={this.props.history} diveSites={this.state.diveSites} />
+        <List style={this.props.style} country={this.props.country} history={this.props.history} diveSites={this.state.diveSites} country={this.props.country}/>
 
         <View style={{flex: 1}}>
           <div

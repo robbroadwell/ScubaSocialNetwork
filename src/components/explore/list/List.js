@@ -18,9 +18,8 @@ class List extends Component {
   }
 
   render() {
-
     if (!this.props.style.mobile) { // desktop
-      return <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} />
+      return <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} country={this.props.country} />
     }
 
     if (!this.props.diveSites || this.props.diveSites.length === 0) {
@@ -36,18 +35,19 @@ class List extends Component {
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{position: 'absolute', right: 0, top: 0, height: '100%', flexDirection: 'row'}}>
           <ExpandToggleButton icon={require('../../../assets/close.png')} onPress={this.toggleExpanded} style={this.props.style} />
-          <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} />
+          <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} country={this.props.country}  />
         </View>
       </View>
     )
   }
 }
 
-function ResultsView({ diveSites, style, history }) {
+function ResultsView({ diveSites, style, history, country }) {
+  console.log(country)
   return (
     <View style={{backgroundColor: style.colors.secondary, width: 400}}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
-        <DiveSiteList diveSites={diveSites} history={history} />
+        <DiveSiteList diveSites={diveSites} history={history} country={country}  />
       </ScrollView>
     </View>
   )

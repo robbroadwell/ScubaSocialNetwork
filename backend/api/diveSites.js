@@ -23,25 +23,48 @@ router.get('/', (req, res) => {
 
     return
   }
-  
+
   const polygon = req.query.polygon.split(',')
-  DiveSite.find({
-    location: {
-      $geoWithin: {
-        $geometry: {
-          type: "Polygon",
-          coordinates: [[
-            [ parseFloat(polygon[0]), parseFloat(polygon[1]) ],
-            [ parseFloat(polygon[2]), parseFloat(polygon[3]) ],
-            [ parseFloat(polygon[4]), parseFloat(polygon[5]) ],
-            [ parseFloat(polygon[6]), parseFloat(polygon[7]) ],
-            [ parseFloat(polygon[8]), parseFloat(polygon[9]) ],
-          ]]
-        }
-    }}
-  })
-  .then(diveSites => res.json(diveSites))
-  .catch(err => console.log(err))
+
+  if(req.query.country) {
+    DiveSite.find({
+      location: {
+        $geoWithin: {
+          $geometry: {
+            type: "Polygon",
+            coordinates: [[
+              [ parseFloat(polygon[0]), parseFloat(polygon[1]) ],
+              [ parseFloat(polygon[2]), parseFloat(polygon[3]) ],
+              [ parseFloat(polygon[4]), parseFloat(polygon[5]) ],
+              [ parseFloat(polygon[6]), parseFloat(polygon[7]) ],
+              [ parseFloat(polygon[8]), parseFloat(polygon[9]) ],
+            ]]
+          }
+      }},
+      'destination.id': req.query.country, 
+    })
+    .then(diveSites => res.json(diveSites))
+    .catch(err => console.log(err))
+
+  } else {
+    DiveSite.find({
+      location: {
+        $geoWithin: {
+          $geometry: {
+            type: "Polygon",
+            coordinates: [[
+              [ parseFloat(polygon[0]), parseFloat(polygon[1]) ],
+              [ parseFloat(polygon[2]), parseFloat(polygon[3]) ],
+              [ parseFloat(polygon[4]), parseFloat(polygon[5]) ],
+              [ parseFloat(polygon[6]), parseFloat(polygon[7]) ],
+              [ parseFloat(polygon[8]), parseFloat(polygon[9]) ],
+            ]]
+          }
+      }}
+    })
+    .then(diveSites => res.json(diveSites))
+    .catch(err => console.log(err))
+  }
 })
 
 router.get('/details/:id', (req, res) => {

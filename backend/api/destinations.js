@@ -4,7 +4,7 @@ const passport = require('passport');
 const Destination = require('../models/destination');
 
 router.get('/', (req, res) => {
-  Destination.find()
+  Destination.find().select('name, code, diveSiteCount, isTop, urlThumbnail, regions')
     .then(destinations => res.json(destinations))
     .catch(err => console.log(err))
 })
@@ -47,6 +47,7 @@ router.post('/', (req, res, next) => {
           code: item.code,
           diveSiteCount: 0,
           isTop: item.isTop,
+          geometry: item.geometry,
           urlThumbnail: "https://divingcollective-photos.s3.us-east-2.amazonaws.com/destinations/" + item.name.replace(/\s+/g, '-').toLowerCase() + ".jpg",
           regions: []
         })
