@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-
-import ResultDetails from './ResultDetails'
+import ImageUpload from '../../explore/result/ImageUpload';
+import ReactPlaceholder from 'react-placeholder';
 
 class ResultPhotos extends Component {
   constructor(props) {
@@ -26,15 +26,25 @@ class ResultPhotos extends Component {
   }
 
   render() {
+    if (!this.props.diveSite) {
+      return <ReactPlaceholder type='rect' style={{height: 400}} showLoadingAnimation={true} />
+    }
+
+    if (this.props.diveSite.photos || this.props.diveSite.photos.length === 0) {
+      return (
+        <View style={{height: 400, borderWidth: 1, borderColor: "#DDDDDD"}}>
+          <ImageUpload />
+        </View>
+      )
+    }
+
     const {diveSite} = this.props
-    const photo = diveSite.photos[this.state.photoSelectedIndex]
 
     return (
-      <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400, margin: 20, marginBottom: 10}}>
-                  
-        {!diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
+      <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400}}>     
+        {!diveSite || !diveSite.photos || diveSite.photos.length === 0 ? <View></View> : 
           <View style={{flex: 1}}>
-            <Image style={{flex: 1}} source={photo.url} />
+            <Image style={{flex: 1}} source={diveSite.photos[this.state.photoSelectedIndex].url} />
             <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', margin: 10}}>
               
               { diveSite.photos.length === 1 ? <View></View> : 
@@ -49,13 +59,12 @@ class ResultPhotos extends Component {
                 </View>
               }
               
-              <Text style={{color: '#FFFFFF'}}>Uploaded by {photo.author.username}</Text>
-              <Text style={{color: '#FFFFFF'}}>{new Date(photo.timestamp).toLocaleDateString("en-US")}</Text>
+              <Text style={{color: '#FFFFFF'}}>Uploaded by {diveSite.photos[this.state.photoSelectedIndex].author.username}</Text>
+              <Text style={{color: '#FFFFFF'}}>{new Date(diveSite.photos[this.state.photoSelectedIndex].timestamp).toLocaleDateString("en-US")}</Text>
             </View>
           </View>
           
         }
-        <ResultDetails diveSite={diveSite} />
       </View>
     )
   }

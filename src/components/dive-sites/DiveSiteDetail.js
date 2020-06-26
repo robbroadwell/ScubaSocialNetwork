@@ -4,11 +4,13 @@ import Ratings from 'react-ratings-declarative';
 import { StickyContainer, Sticky } from 'react-sticky';
 import DiveSiteMap from './DiveSiteMap';
 import StyledLink from '../buttons/StyledLink';
+import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
+import ResultPhotos from '../explore/result/ResultPhotos';
+import ImageUpload from '../explore/result/ImageUpload';
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import ReactPlaceholder from 'react-placeholder';
-import {TextBlock, MediaBlock, TextRow, RectShape, RoundShape} from 'react-placeholder/lib/placeholders';
 import "react-placeholder/lib/reactPlaceholder.css";
 
 class DiveSiteDetail extends Component {
@@ -59,128 +61,10 @@ class DiveSiteDetail extends Component {
   }
 }
 
-function DiveSiteDetailHeader({ diveSite }) {
-
-  function rating() {
-    if (!diveSite || !diveSite.reviews || diveSite.reviews.length === 0) {
-      return 0
-    }
-
-    var total = 0;
-    var x;
-
-    for (x in diveSite.reviews) {
-      total = total + diveSite.reviews[x].rating
-    }
-
-    return total / diveSite.reviews.length
-  }
-
-  function reviews() {
-    if (!diveSite || !diveSite.reviews) {
-      return 0
-    }
-    return diveSite.reviews.length
-  }
-
+function DiveSiteDescription({ diveSite }) {
   return (
-    <View style={{margin: 20}}>
-      <View style={{flexDirection: 'row'}}>
-        <ReactPlaceholder type='rect' style={{width: 300, height: 35}} ready={diveSite} showLoadingAnimation={true}>
-          <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>{!diveSite ? "Loading" : diveSite.name}</Text>
-        </ReactPlaceholder>
-        {!diveSite || !diveSite.isTop ? <View/> : 
-        <View style={{marginLeft: 15, justifyContent: 'center'}}>
-          <View style={{backgroundColor: '#A00000'}}>
-            <Text style={{padding: 5, color: 'white'}}>TOP</Text>
-          </View>
-        </View>
-        }
-      </View>
-      <View style={{flexDirection: 'row', marginTop: 5}}>
-        <ReactPlaceholder type='rect' style={{width: 80, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-          <Ratings
-            rating={rating()}
-            widgetRatedColors={"#DD0000"}
-            widgetDimensions="15px"
-            widgetSpacings="1px">
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-            <Ratings.Widget />
-          </Ratings>
-        </ReactPlaceholder>
-        
-        <ReactPlaceholder type='rect' style={{width: 70, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-          <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-            <Text>{Number(rating()).toFixed(2)} ( {reviews()} reviews )</Text>
-            {reviews() === 0 ? <View /> : <Image style={{width: 20, height: 20}} source={require('../../assets/drop_down.svg')} />}
-          </View>
-        </ReactPlaceholder>
-
-        <ReactPlaceholder type='rect' style={{width: 400, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-          {!diveSite ? <View></View> :
-
-          <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-            <StyledLink to="/destinations">Destinations</StyledLink>
-            <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-            <StyledLink to={`/destinations/${diveSite.destination.id}`}>{diveSite.destination.name}</StyledLink>
-            
-            {!diveSite.region ? <View/> : 
-            <View style={{flexDirection: 'row'}}>
-              <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <StyledLink to={`/destinations/${diveSite.region.id}`}>{diveSite.region.name}</StyledLink>
-            </View>
-            }
-            
-            <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-            <Text style={{fontSize: 16}}>{diveSite.name}</Text>
-          </View>
-          }
-          
-        </ReactPlaceholder>
-
-      </View>
-    </View>
-  )
-}
-
-function DiveSiteDetailBody({ diveSite, style }) {
-  const reviews = [
-    {
-      title: 'A magical place',
-      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
-      user: 'Rob, USA',
-      timestamp: '000000000',
-      rating: 5.0
-    },
-    {
-      title: 'A magical place',
-      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
-      user: 'Rob, USA',
-      timestamp: '000000000',
-      rating: 5.0
-    },
-    {
-      title: 'A magical place',
-      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
-      user: 'Rob, USA',
-      timestamp: '000000000',
-      rating: 5.0
-    },
-    {
-      title: 'A magical place',
-      comment: "SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.",
-      user: 'Rob, USA',
-      timestamp: '000000000',
-      rating: 5.0
-    },
-  ]
-  return (
-    <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
-      <Image style={{height: 400, marginBottom: 15}} source={require('../../assets/blue-hole-belize.jpg')} />
-      <View style={{flexDirection: 'row', marginBottom: 10, alignItems: 'center'}}>
+    <View>
+      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 10, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
         <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
         <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
@@ -188,20 +72,16 @@ function DiveSiteDetailBody({ diveSite, style }) {
       <Text>
       SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.
       </Text>
+    </View>
+  )
+}
 
-      {/* <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Animals</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-      </View>
-      <AnimalsContent /> */}
-
-      <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-      </View>
-      <DiveSiteReviewsList reviews={reviews} />
+function DiveSiteDetailBody({ diveSite, style }) {
+  return (
+    <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
+      <ResultPhotos diveSite={diveSite} />
+      <DiveSiteDescription diveSite={diveSite} />
+      <DiveSiteReviewsList diveSite={diveSite} />
 
     </View>
   )

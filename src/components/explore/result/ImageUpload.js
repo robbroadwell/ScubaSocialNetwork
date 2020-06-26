@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from '../../images/DragAndDrop'
 import Loading from '../../misc/Loading';
-import BaseURL from '../../utility/BaseURL';
+import BaseURL from '../../../utility/BaseURL';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
@@ -125,51 +125,49 @@ class ImageUpload extends Component {
 
   render() {
     if (this.state.files.length === 0) {
-      return (
-        <DragAndDrop style={{flex: 1}} handleDrop={this.handleDrop}>
-          <View style={{width: 300, height: 250}}>
-            <View style={{flex: 1, margin: 20, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'center'}}>
-              <Image style={{width: 50, height: 50, tintColor: '#FFFFFF'}} source={require('../../assets/add_photo.svg')} />
-              <Text style={{textAlign: 'center', marginTop: 10, color: 'white', fontSize: 16}}>Drag Photo Here</Text>
+      return ( // ready for drop
+        <View style={{flex: 1}}>
+          <DragAndDrop handleDrop={this.handleDrop}>
+            <View style={{position: 'absolute', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+              <Image style={{width: 50, height: 50, tintColor: 'black'}} source={require('../../../assets/add_photo.svg')} />
+              <Text style={{textAlign: 'center', marginTop: 10, color: 'black', fontSize: 16}}>Drag Photo Here</Text>
             </View>
-          </View>
-        </DragAndDrop>
+          </DragAndDrop>
+        </View>
       )
     }
+
+    
     return (
-      <DragAndDrop handleDrop={this.handleDrop}>
-        <View>
-          <Image style={{height: 250, width: 300}} source={this.state.previews[this.state.selectedIndex]} />
-          {/* {
-            this.state.files.length === 1 ? <View></View> : 
-            <View style={{position:'absolute', top: 220, flexDirection: 'row'}}>
-              <TouchableOpacity onPress={this.previewBack} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, tintColor: '#FFFFFF'}} source={require('../assets/left.svg')} />
-              </TouchableOpacity>
-              <Text style={{color: '#FFFFFF'}}>Image {this.state.selectedIndex + 1} of {this.state.files.length}</Text>
-              <TouchableOpacity onPress={this.previewForward} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <Image style={{width: 18, height: 18, tintColor: '#FFFFFF'}} source={require('../assets/right.svg')} />
-              </TouchableOpacity>
-            </View>
-          } */}
+      <View style={{flex: 1}}>
+        
+        <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={this.state.previews[this.state.selectedIndex]} />
+        <View style={{flex: 1, justifyContent: 'flex-end'}}>
           
           <View>
-            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+            <View style={{backgroundColor: 'black', opacity: 0.8, position: 'absolute', width: '100%', height: '100%'}} />
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={this.toggleCheckmark} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-                <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: '#FFFFFF', borderWidth: 1}} />
-                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
+                <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: 'white', borderWidth: 1}} />
+                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>agree to the T&C.</span></TouchableOpacity></Text>
-              {/* <TouchableOpacity>
-              </TouchableOpacity> */}
+                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>DivingCollective's Conditions of Use.</span></TouchableOpacity></Text>
             </View>
-            <TouchableOpacity disabled={!this.state.checkmark} onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-              <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', opacity: this.state.checkmark ? 1.0 : 0.5, fontWeight: 'bold', fontSize: 18}}>Upload</Text>
-            </TouchableOpacity>
+
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <TouchableOpacity onPress={() => this.setState({ files: []})} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity disabled={!this.state.checkmark} onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', opacity: this.state.checkmark ? 1.0 : 0.5, fontWeight: 'bold', fontSize: 18}}>Upload</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          {this.state.loading ? <Loading /> : <View></View>}
+
+
         </View>
-      </DragAndDrop>
+        
+      </View>
     )
   }
 }
