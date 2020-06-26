@@ -22,6 +22,7 @@ class Map extends Component {
 
   googleMapRef = React.createRef()
   markers = []; // prevent duplicates
+  isPolygonLoaded = false;
 
   fetchDiveSites = () => {
     var url = BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`
@@ -138,8 +139,8 @@ class Map extends Component {
 
   createPolygon = () => {
 
-    if (!this.state.isPolygonLoaded && this.googleMap && window.google.maps && this.props.country && this.props.country.geojson) {
-            
+    if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country && this.props.country.geojson) {
+
       window.google.maps.Polygon.prototype.getBounds = function() {
         var bounds = new window.google.maps.LatLngBounds();
         var paths = this.getPaths();
@@ -154,12 +155,17 @@ class Map extends Component {
       }
 
       let allCoordinates = this.props.country.geojson.geometry.coordinates;
+
+      var latMin;
+      var latMax;
+      var lngMin;
+      var lngMax;
       
       for(var i=0; i < allCoordinates.length; i++) {
         let coordinates = allCoordinates[i][0]
         let array = []
         coordinates.map(coordinate => array.push({lat: coordinate[1], lng: coordinate[0]}))
-      
+        
         let polygon = new window.google.maps.Polygon({
           paths: array,
           strokeColor: '#FF0000',
@@ -170,23 +176,36 @@ class Map extends Component {
         })
 
         polygon.setMap(this.googleMap)
-        this.googleMap.fitBounds(polygon.getBounds());
+        
+        let polygonBounds = polygon.getBounds()
+        let northeast = polygonBounds.getNorthEast()
+        let southwest = polygonBounds.getSouthWest()
+        
+        latMin = (!latMin || latMin > northeast.lat()) ? northeast.lat() : latMin
+        latMin = (!latMin || latMin > southwest.lat()) ? southwest.lat() : latMin
+        latMax = (!latMax || latMax < northeast.lat()) ? northeast.lat() : latMax
+        latMax = (!latMax || latMax < southwest.lat()) ? southwest.lat() : latMax
+        
+        lngMin = (!lngMin || lngMin > northeast.lng()) ? northeast.lng() : lngMin
+        lngMin = (!lngMin || lngMin > southwest.lng()) ? southwest.lng() : lngMin
+        lngMax = (!lngMax || lngMax < northeast.lng()) ? northeast.lng() : lngMax
+        lngMax = (!lngMax || lngMax < southwest.lng()) ? southwest.lng() : lngMax        
       }
 
+      var bounds = new window.google.maps.LatLngBounds();
+      var coordinates = [
+        new window.google.maps.LatLng(latMin, lngMin),
+        new window.google.maps.LatLng(latMin, lngMax),
+        new window.google.maps.LatLng(latMax, lngMax),
+        new window.google.maps.LatLng(latMax, lngMin),
+      ]
 
-      this.setState({isPolygonLoaded: true})
-    }
-  }
+      for (i = 0; i < coordinates.length; i++) {
+        bounds.extend(coordinates[i]);
+      }
 
-  processPoints = (geometry, callback, thisArg) => {
-    if (geometry instanceof window.google.maps.LatLng) {
-      callback.call(thisArg, geometry);
-    } else if (geometry instanceof window.google.maps.Data.Point) {
-      callback.call(thisArg, geometry.get());
-    } else {
-      geometry.getArray().forEach(function(g) {
-        this.processPoints(g, callback, thisArg);
-      });
+      this.googleMap.fitBounds(bounds);
+      this.isPolygonLoaded = true
     }
   }
 
