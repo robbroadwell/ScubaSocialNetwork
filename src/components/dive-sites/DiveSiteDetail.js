@@ -2,51 +2,101 @@ import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 import { StickyContainer, Sticky } from 'react-sticky';
-import Map from '../explore/map/Map';
+import DiveSiteMap from './DiveSiteMap';
 import StyledLink from '../buttons/StyledLink';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
+import qs from 'qs';
+import BaseURL from '../../utility/BaseURL';
+
+class DiveSiteDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isLoading: true,
+        data: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchDiveSite()
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.fetchDiveSite()
+    }
+  }
+
+  fetchDiveSite = () => {
+    fetch(BaseURL() + '/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        this.setState({ data: json });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+    })
+  }
+
+  render() {
+    return (
+      <View>
+        <DiveSiteDetailHeader diveSite={this.state.data.diveSite} />
+
+        <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
+          <DiveSiteDetailBody diveSite={this.state.data.diveSite} style={this.props.style} />
+          <DiveSiteDetailSidebar diveSite={this.state.data.diveSite} />
+        </View>
+
+        <DiveSiteDetailMap diveSite={this.state.data.diveSite} style={this.props.style} />
+      </View>
+    )
+  }
+}
 
 function DiveSiteDetailHeader() {
   return (
     <View style={{margin: 20}}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>The Great Blue Hole</Text>
-            <View style={{marginLeft: 15, justifyContent: 'center'}}>
-              <View style={{backgroundColor: '#A00000'}}>
-                <Text style={{padding: 5, color: 'white'}}>TOP</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
-
-            <Ratings
-              rating={4.5}
-              widgetRatedColors={"#DD0000"}
-              widgetDimensions="15px"
-              widgetSpacings="1px">
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-            </Ratings>
-
-            <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-              <Text>4.5 ( 75 )</Text>
-              <Image style={{width: 20, height: 20}} source={require('../../assets/drop_down.svg')} />
-            </View>
-
-            <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-              <StyledLink to="/destinations">Destinations</StyledLink>
-              <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <StyledLink to="/destinations/belize">Belize</StyledLink>
-              <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <StyledLink to="/destinations/belize/lighthouse-reef">Lighthouse Reef</StyledLink>
-              <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-              <Text style={{fontSize: 15}}>The Great Blue Hole</Text>
-            </View>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>The Great Blue Hole</Text>
+        <View style={{marginLeft: 15, justifyContent: 'center'}}>
+          <View style={{backgroundColor: '#A00000'}}>
+            <Text style={{padding: 5, color: 'white'}}>TOP</Text>
           </View>
         </View>
+      </View>
+      <View style={{flexDirection: 'row', marginTop: 5}}>
+
+        <Ratings
+          rating={4.5}
+          widgetRatedColors={"#DD0000"}
+          widgetDimensions="15px"
+          widgetSpacings="1px">
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+          <Ratings.Widget />
+        </Ratings>
+
+        <View style={{flexDirection: 'row', marginHorizontal: 10}}>
+          <Text>4.5 ( 75 )</Text>
+          <Image style={{width: 20, height: 20}} source={require('../../assets/drop_down.svg')} />
+        </View>
+
+        <View style={{flexDirection: 'row', marginHorizontal: 10}}>
+          <StyledLink to="/destinations">Destinations</StyledLink>
+          <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+          <StyledLink to="/destinations/belize">Belize</StyledLink>
+          <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+          <StyledLink to="/destinations/belize/lighthouse-reef">Lighthouse Reef</StyledLink>
+          <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+          <Text style={{fontSize: 15}}>The Great Blue Hole</Text>
+        </View>
+      </View>
+    </View>
   )
 }
 
@@ -235,24 +285,7 @@ class DiveSiteDetailMarketing extends Component {
   }
 }
 
-class DiveSiteDetail extends Component {
-  render() {
-    return (
-      <View>
-        <DiveSiteDetailHeader />
-
-        <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody style={this.props.style} />
-          <DiveSiteDetailSidebar />
-        </View>
-
-        <DiveSiteDetailMap style ={this.props.style} />
-      </View>
-    )
-  }
-}
-
-function DiveSiteDetailMap({ style }) {
+function DiveSiteDetailMap({ style, diveSite }) {
   return (
     <View>
       <View style={{flexDirection: 'row', marginHorizontal: 20, alignItems: 'center'}}>
@@ -268,7 +301,7 @@ function DiveSiteDetailMap({ style }) {
         <Text style={{fontSize: 15}}>-41.12394948, 12.1241429</Text>
       </View>
       <View style={{width: '100%', height: 300}}>
-        <Map style={style} />
+        <DiveSiteMap diveSite={diveSite} style={style} />
       </View>
     </View>
   )

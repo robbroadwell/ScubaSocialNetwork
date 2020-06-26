@@ -219,7 +219,9 @@ class Map extends Component {
 
     return (
       <View style={{flexDirection: "row", flex: 1}}>
+        {this.props.hideList ? <View></View> :
         <List style={this.props.style} country={this.props.country} history={this.props.history} diveSites={this.state.diveSites} country={this.props.country}/>
+        }
 
         <View style={{flex: 1}}>
           <div

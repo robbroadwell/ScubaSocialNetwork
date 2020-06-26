@@ -43,7 +43,7 @@ class DestinationDetail extends Component {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height: 500, margin: 20}}>
+        <View style={{height: 700, margin: 20}}>
           <View style={{flexDirection: 'row'}}>
 
             <View>
