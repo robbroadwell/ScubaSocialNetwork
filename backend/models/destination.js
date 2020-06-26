@@ -26,6 +26,10 @@ const destinationSchema = new Schema({
         type: Object,
         required: false
     },
+    geojson: {
+        type: Object,
+        required: false
+    },
     urlThumbnail: {
         type: String,
         required: false

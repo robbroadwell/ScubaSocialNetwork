@@ -48,6 +48,7 @@ router.post('/', (req, res, next) => {
           diveSiteCount: 0,
           isTop: item.isTop,
           geometry: item.geometry,
+          geojson: item.geojson,
           urlThumbnail: "https://divingcollective-photos.s3.us-east-2.amazonaws.com/destinations/" + item.name.replace(/\s+/g, '-').toLowerCase() + ".jpg",
           regions: []
         })

@@ -8,12 +8,14 @@ import { connect } from "react-redux";
 import { setMapCenter, setMapRect } from "../../../redux/actions";
 import { getAddDiveSiteMode, getMapRect } from "../../../redux/selectors";
 import { withRouter } from 'react-router-dom'
+import { Polygon } from 'google-maps-react';
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
         isLoading: true,
+        isPolygonLoaded: false,
         diveSites: [],
     };
   }
@@ -24,8 +26,8 @@ class Map extends Component {
   fetchDiveSites = () => {
     var url = BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`
 
-    if (this.props.country) {
-      url = url + '&country=' + this.props.country
+    if (this.props.country && this.props.country._id) {
+      url = url + '&country=' + this.props.country._id
     }
 
     fetch(url)
@@ -61,6 +63,7 @@ class Map extends Component {
       window.document.body.appendChild(googleMapScript);
       googleMapScript.addEventListener("load", () => {
         this.googleMap = this.createGoogleMap();
+        console.log(this.googleMap)
         this.addBoundsListener();
       })
 
@@ -133,12 +136,38 @@ class Map extends Component {
     }
   }
 
+  createPolygon = () => {
+    if (!this.state.isPolygonLoaded && this.googleMap && window.google.maps && this.props.country && this.props.country.geojson) {
+      let allCoordinates = this.props.country.geojson.geometry.coordinates;
+      
+      for(var i=0; i < allCoordinates.length; i++) {
+        let coordinates = allCoordinates[i][0]
+        let array = []
+        coordinates.map(coordinate => array.push({lat: coordinate[1], lng: coordinate[0]}))
+      
+        let polygon = new window.google.maps.Polygon({
+          paths: array,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.1
+        })
+
+        polygon.setMap(this.googleMap)
+      }
+
+      this.setState({isPolygonLoaded: true})
+    }
+  }
+
   selectDiveSite = (site) => {
     this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
   }
 
   render() {
     this.createMarkers()
+    this.createPolygon()
 
     return (
       <View style={{flexDirection: "row", flex: 1}}>
