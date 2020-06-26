@@ -50,14 +50,6 @@ const diveSiteDetailsSchema = new Schema({
         type: Object,
         required: true
     },
-    rating: {
-        type: Number,
-        required: true
-    },
-    ratingCount: {
-        type: Number,
-        required: true
-    },
     reviews: {
         type: Array,
         required: true
