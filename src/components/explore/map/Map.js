@@ -137,7 +137,22 @@ class Map extends Component {
   }
 
   createPolygon = () => {
+
     if (!this.state.isPolygonLoaded && this.googleMap && window.google.maps && this.props.country && this.props.country.geojson) {
+            
+      window.google.maps.Polygon.prototype.getBounds = function() {
+        var bounds = new window.google.maps.LatLngBounds();
+        var paths = this.getPaths();
+        var path;        
+        for (var i = 0; i < paths.getLength(); i++) {
+            path = paths.getAt(i);
+            for (var ii = 0; ii < path.getLength(); ii++) {
+                bounds.extend(path.getAt(ii));
+            }
+        }
+        return bounds;
+      }
+
       let allCoordinates = this.props.country.geojson.geometry.coordinates;
       
       for(var i=0; i < allCoordinates.length; i++) {
@@ -155,9 +170,23 @@ class Map extends Component {
         })
 
         polygon.setMap(this.googleMap)
+        this.googleMap.fitBounds(polygon.getBounds());
       }
 
+
       this.setState({isPolygonLoaded: true})
+    }
+  }
+
+  processPoints = (geometry, callback, thisArg) => {
+    if (geometry instanceof window.google.maps.LatLng) {
+      callback.call(thisArg, geometry);
+    } else if (geometry instanceof window.google.maps.Data.Point) {
+      callback.call(thisArg, geometry.get());
+    } else {
+      geometry.getArray().forEach(function(g) {
+        this.processPoints(g, callback, thisArg);
+      });
     }
   }
 
