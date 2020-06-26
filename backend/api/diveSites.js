@@ -414,7 +414,7 @@ router.put('/photos/', (req, res, next) => {
         timestamp: Date.now()
       }
 
-      DiveSite.findById(id).then(diveSite => {
+      DiveSiteDetails.findById(id).then(diveSite => {
         console.log(diveSite)
         diveSite.photos.push(photo)
         diveSite.save().then(() => res.json({

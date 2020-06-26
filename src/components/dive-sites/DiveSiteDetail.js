@@ -51,7 +51,7 @@ class DiveSiteDetail extends Component {
         <DiveSiteDetailHeader diveSite={this.state.data.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.state.data.diveSite} style={this.props.style} />
+          <DiveSiteDetailBody diveSite={this.state.data.diveSite} reload={this.fetchDiveSite} />
           <DiveSiteDetailSidebar diveSite={this.state.data.diveSite} />
         </View>
 
@@ -76,10 +76,10 @@ function DiveSiteDescription({ diveSite }) {
   )
 }
 
-function DiveSiteDetailBody({ diveSite, style }) {
+function DiveSiteDetailBody({ diveSite, reload }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
-      <ResultPhotos diveSite={diveSite} />
+      <ResultPhotos diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
       <DiveSiteReviewsList diveSite={diveSite} />
 

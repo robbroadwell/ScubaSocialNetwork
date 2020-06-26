@@ -60,7 +60,7 @@ function DiveSiteDetailHeader({ diveSite }) {
         
         <ReactPlaceholder type='rect' style={{width: 70, height: 20}} ready={diveSite} showLoadingAnimation={true}>
           <View style={{flexDirection: 'row', marginHorizontal: 10}}>
-            <Text>{Number(rating()).toFixed(2)} ( {reviews()} reviews )</Text>
+            <Text style={{fontSize: 16}}>{Number(rating()).toFixed(2)} ( {reviews()} reviews )</Text>
             {reviews() === 0 ? <View /> : <Image style={{width: 20, height: 20}} source={require('../../assets/drop_down.svg')} />}
           </View>
         </ReactPlaceholder>

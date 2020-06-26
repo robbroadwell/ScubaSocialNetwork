@@ -59,7 +59,7 @@ class ImageUpload extends Component {
     console.log(this.state.files[0])
     console.log(this.state.previews[0])
     const file = this.state.files[0];
-    const id = this.props.diveSiteID;
+    const id = this.props.diveSite._id;
 
     this.setState({ loading: true });
 
@@ -105,10 +105,8 @@ class ImageUpload extends Component {
           }
     
         }).then(function (response) {
-          this.props.fetchDiveSite()
-          this.props.toggleAddPhoto()
-          console.log(response)
-          this.setState({ loading: false });
+          this.props.reload()
+          this.setState({ loading: false, files: [] });
 
         }.bind(this));
 
