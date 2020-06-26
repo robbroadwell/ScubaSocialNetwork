@@ -35,6 +35,7 @@ class DiveSiteAddView extends Component {
         value: this.props.destinations[i]
       })
     }
+    console.log(this.props.destinations)
     this.setState({ countryList: list });
   }
 
@@ -124,7 +125,7 @@ class DiveSiteAddView extends Component {
       this.props.history.push(`/dive-sites/${destination.id}/${name.replace(/\s+/g, '-').toLowerCase()}?id=${_id}`)
 
     }.bind(this)).catch(error => {
-      alert(JSON.stringify(error));
+      console.log(error)
     });
   }
 

@@ -139,14 +139,13 @@ router.post('/', (req, res, next) => {
         })
 
         newDiveSiteDetail.save()
-          .then(diveSiteDetail => 
-            res.json({
+          .then(diveSiteDetail => res.json({
               diveSiteDetail
             })
           ).catch(err => res.status(400).json({
             'message': 'failed creating dive site detail',
             "error": err
-          })(req, res, next))
+          }))
 
 
       }).catch(err => res.status(400).json({

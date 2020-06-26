@@ -4,7 +4,7 @@ const passport = require('passport');
 const Destination = require('../models/destination');
 
 router.get('/', (req, res) => {
-  Destination.find().select('name, code, diveSiteCount, isTop, urlThumbnail, regions')
+  Destination.find().select('name code diveSiteCount isTop urlThumbnail regions')
     .then(destinations => res.json(destinations))
     .catch(err => console.log(err))
 })
