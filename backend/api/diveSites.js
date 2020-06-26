@@ -130,9 +130,9 @@ router.post('/', (req, res, next) => {
           access: [],
           destination: destination,
           region: region,
-          user: user,
-          rating: 0,
-          ratingCount: 0,
+          user: {
+            username: user.username
+          },
           reviews: [],
           urlThumbnail: 'www.google.com',
           photos: []

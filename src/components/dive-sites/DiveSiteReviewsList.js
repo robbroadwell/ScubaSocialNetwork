@@ -8,7 +8,7 @@ function DiveSiteReviewsList({ reviews }) {
     const review = reviews[i]
 
     views.push(
-      <View style={{flex: 1, marginHorizontal: 5, marginVertical: 5, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
+      <View key={i} style={{flex: 1, marginHorizontal: 5, marginVertical: 5, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
         <Text style={{fontSize: 22, marginBottom: 5}}>{review.title}</Text>
         <Ratings
           rating={review.rating}
