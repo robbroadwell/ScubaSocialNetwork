@@ -102,6 +102,10 @@ class Map extends Component {
         [SWCorner.lng(), NECorner.lat()]
       ]
 
+      if (this.props.country && !this.isPolygonLoaded) {
+        return  // wait until polygon loads to perfom search
+      }
+
       var center = new window.google.maps.LatLng(this.googleMap.getCenter().lat(), this.googleMap.getCenter().lng(), false);
 
       this.props.setMapCenter([center.lat(), center.lng()])
@@ -210,7 +214,7 @@ class Map extends Component {
   }
 
   selectDiveSite = (site) => {
-    this.props.history.push(`/dive-sites/${site.country.replace(/\s+/g, '-').toLowerCase()}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
+    this.props.history.push(`/dive-sites/${site.destination.id}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)
   }
 
   render() {
