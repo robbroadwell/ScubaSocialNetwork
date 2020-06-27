@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SET_USER, SET_MAP_CENTER, SET_MAP_RECT, SET_ADD_DIVE_SITE_MODE, SET_ACCOUNT_MODE, SET_LOGIN_MODE, SET_REGISTER_MODE, SET_ALERT_MODE, SET_DESTINATIONS, SET_TOP_DESTINATIONS
+  SET_USER, SET_MAP_CENTER, SET_MAP_RECT, SET_ADD_DIVE_SITE_MODE, SET_ACCOUNT_MODE, SET_LOGIN_MODE, SET_REGISTER_MODE, SET_ALERT_MODE, SET_DESTINATIONS, SET_TOP_DESTINATIONS, SET_FEATURED_DESTINATIONS
 } from './actions'
 
 function user(state = [], action) {
@@ -42,6 +42,15 @@ function destinations(state = [], action) {
 function topDestinations(state = [], action) {
   switch (action.type) {
     case SET_TOP_DESTINATIONS:
+      return action.destinations
+    default:
+      return state
+  }
+}
+
+function featuredDestinations(state = [], action) {
+  switch (action.type) {
+    case SET_FEATURED_DESTINATIONS:
       return action.destinations
     default:
       return state
@@ -99,6 +108,7 @@ const rootReducer = combineReducers({
   mapRect,
   destinations,
   topDestinations,
+  featuredDestinations,
   addDiveSiteMode,
   accountMode,
   loginMode,

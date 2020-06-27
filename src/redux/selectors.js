@@ -1,5 +1,6 @@
 export const getDestinationsState = store => store.destinations;
 export const getTopDestinationsState = store => store.topDestinations;
+export const getFeaturedDestinationsState = store => store.featuredDestinations;
 export const getUserState = store => store.user;
 export const getMapCenterState = store => store.mapCenter;
 export const getMapRectState = store => store.mapRect;
@@ -11,6 +12,7 @@ export const getAlertModeState = store => store.alertMode;
 
 export const getDestinations = store => getDestinationsState(store);
 export const getTopDestinations = store => getTopDestinationsState(store);
+export const getFeaturedDestinations = store => getFeaturedDestinationsState(store);
 export const getUser = store => getUserState(store);
 export const getMapCenter = store => getMapCenterState(store);
 export const getMapRect = store => getMapRectState(store);

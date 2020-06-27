@@ -1,4 +1,5 @@
 import BaseURL from '../utility/BaseURL';
+import { getTopDestinations } from './selectors';
 
 /*
  * action types
@@ -6,6 +7,7 @@ import BaseURL from '../utility/BaseURL';
 
 export const SET_DESTINATIONS = 'SET_DESTINATIONS'
 export const SET_TOP_DESTINATIONS = 'SET_TOP_DESTINATIONS'
+export const SET_FEATURED_DESTINATIONS = 'SET_FEATURED_DESTINATIONS'
 export const SET_USER = 'SET_USER'
 export const SET_MAP_CENTER = 'SET_MAP_CENTER'
 export const SET_MAP_RECT = 'SET_MAP_RECT'
@@ -26,6 +28,10 @@ export function setDestinations(destinations) {
 
 export function setTopDestinations(destinations) {
   return { type: SET_TOP_DESTINATIONS, destinations }
+}
+
+export function setFeaturedDestinations(destinations) {
+  return { type: SET_FEATURED_DESTINATIONS, destinations }
 }
 
 export function setUser(user) {
@@ -85,19 +91,43 @@ export function fetchTopDestinations() {
 
     console.log(process.env.NODE_ENV === "development")
 
-    // if (getState().topDestinations.length !== 0) {
-    //   return
-    // }
+    if (getState().topDestinations.length !== 0) {
+      return
+    }
 
     return fetch(BaseURL() + '/api/destinations/top')
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
         dispatch(setTopDestinations(json));
+
+        var i = 0;
+        var max = 4
+        var usedIndexes = []
+        var featured = []
+
+        while (i < max) {
+          var random = getRandomInt(json.length)
+          if (usedIndexes.includes(random)) {
+            continue // generate \(max) unique featured destinations
+          }
+
+          featured.push(json[random])
+          usedIndexes.push(random)
+          i += 1
+        }
+
+        console.log(featured)
+        dispatch(setFeaturedDestinations(featured));
+
       })
       .catch((error) => console.error(error))
       .finally(() => {
         // this.setState({ isLoading: false });
       });
     }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }

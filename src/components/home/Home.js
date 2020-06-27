@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
-import { getDestinations, getTopDestinations } from '../../redux/selectors';
+import { getDestinations, getTopDestinations, getFeaturedDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
 
 import Map from '../explore/map/Map';
@@ -42,7 +42,7 @@ class Home extends Component {
           </View>
         </View>
 
-        <Featured destinations={this.props.topDestinations} navigateDestination={this.navigateDestination}  />
+        <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
 
         <View style={{height: 500, margin: 20}}>
           <View style={{flexDirection: 'row', marginBottom: 20, alignItems: 'center'}}>
@@ -197,7 +197,8 @@ function FooterActions() {
 const mapStateToProps = state => {
   const destinations = getDestinations(state);
   const topDestinations = getTopDestinations(state);
-  return { destinations, topDestinations };
+  const featuredDestinations = getFeaturedDestinations(state);
+  return { destinations, topDestinations, featuredDestinations };
 };
 
 export default connect(
