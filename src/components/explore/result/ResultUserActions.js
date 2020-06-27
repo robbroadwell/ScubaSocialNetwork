@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import PrimaryButton from '../../buttons/PrimaryButton';
 import PopoverButton from '../../buttons/PopoverButton';
 import ImageUpload from './ImageUpload'
-import AddReview from './AddReview'
+import AddReview from '../../dive-sites/AddReview'
 
 function ResultUserActions({ navigateTerms, isAddPhoto, toggleAddPhoto, isReview, toggleReview, addReview, toggleEdit, fetchDiveSite, diveSiteID }) {
   return (

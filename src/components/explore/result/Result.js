@@ -9,7 +9,7 @@ import PopoverButton from '../../buttons/PopoverButton';
 import PrimaryButton from '../../buttons/PrimaryButton';
 import ResultCloseButton from './ResultCloseButton';
 import ReviewsList from './ReviewsList'
-import ResultPhotos from './ResultPhotos'
+import ResultPhotos from '../../dive-sites/DiveSitePhotos'
 import Loading from '../../misc/Loading';
 
 class Result extends Component {

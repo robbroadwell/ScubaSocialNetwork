@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
         const item = destinations[i]
 
         const destination = new Destination({
-          _id: item.name.replace(/\s+/g, '-').toLowerCase(),
+          _id: item.name.replace(/\s+/g, '-').replace(/,/g, '-').toLowerCase(),
           name: item.name,
           code: item.code,
           diveSiteCount: 0,

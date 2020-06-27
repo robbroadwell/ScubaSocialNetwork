@@ -11,7 +11,7 @@ function DestinationCard({ destination, navigateDestination }) {
           <Text style={{color: 'white', fontWeight: '700', padding: 5}}>TOP</Text>
         </View>
         }
-        <Text style={{color: 'white', fontSize: 24, fontWeight: '900', textShadowColor: '#000000', textShadowRadius: 5}}>{destination.name}</Text>
+        <Text style={{color: 'white', fontSize: 24, fontWeight: '900', textAlign: 'center', textShadowColor: '#000000', textShadowRadius: 5}}>{destination.name}</Text>
       </View>
     </TouchableOpacity>
   )

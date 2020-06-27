@@ -317,8 +317,13 @@ router.put('/reviews/', (req, res, next) => {
       console.log(req.body);
 
         DiveSite.findById(req.body.id).then(diveSite => {
+          diveSite.rating = ((diveSite.rating * diveSite.ratingCount) + req.body.review.rating) / (diveSite.ratingCount + 1)
+          diveSite.ratingCount = diveSite.ratingCount + 1
+          diveSite.save()
+        })
+
+        DiveSiteDetails.findById(req.body.id).then(diveSite => {
           diveSite.reviews.push(req.body.review)
-          console.log(diveSite)
           diveSite.save().then(() => res.json({
               message: "Updated dive site successfully"
             }))
@@ -327,8 +332,9 @@ router.put('/reviews/', (req, res, next) => {
               "message": "Error updating dive site"
             }))
           })
-        }
-      })(req, res, next);
+
+    }
+  })(req, res, next);
 });
 
 router.put('/photo-upload/', (req, res, next) => {

@@ -5,28 +5,6 @@ import BaseHoverableView from '../../buttons/BaseHoverableView';
 
 class DiveSiteCard extends Component {
 
-  rating = () => {
-    if (!this.props || !this.props.site || !this.props.site.reviews || this.props.site.reviews.length === 0) {
-      return 0
-    }
-
-    var total = 0;
-    var x;
-
-    for (x in this.props.site.reviews) {
-      total = total + this.props.site.reviews[x].rating
-    }
-
-    return total / this.props.site.reviews.length
-  }
-
-  reviews = () => {
-    if (!this.props || !this.props.site || !this.props.site.reviews) {
-      return 0
-    }
-    return this.props.site.reviews.length
-  }
-
   render() {
     return (
       <View>
@@ -47,7 +25,7 @@ class DiveSiteCard extends Component {
                     }
                   </View>
                 </View>
-                <DiveSiteReviews reviews={this.reviews()} rating={this.rating()} />
+                <DiveSiteReviews reviews={this.props.site.ratingCount} rating={this.props.site.rating} />
             </View>
           </BaseHoverableView>
         </TouchableOpacity>

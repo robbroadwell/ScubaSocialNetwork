@@ -1,60 +1,116 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, Text, Image } from 'react-native';
 import Ratings from 'react-ratings-declarative';
+import PopoverButton from '../buttons/PopoverButton';
+import AddReview from './AddReview';
+import BaseURL from '../../utility/BaseURL';
+import { getUser } from '../../redux/selectors';
+import { connect } from "react-redux";
 
-function DiveSiteReviewsList({ diveSite }) {
-  if (!diveSite || diveSite.reviews.length === 0) {
+const axios = require('axios')
+
+class DiveSiteReviewsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isReview: false
+    };
+  }
+
+  addReview = (review) => {
+    const {diveSite} = this.props
+
+    if (this.props.user.token) {
+      axios({
+        method: 'put',
+        url: BaseURL() + '/api/dive-sites/reviews/',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'JWT ' + this.props.user.token
+        },
+        data: {
+          id: diveSite._id,
+          review: review
+        }
+  
+      }).then(function (response) {
+        this.toggleReview();
+        this.props.reload()
+      }.bind(this));
+    }
+  }
+
+  toggleReview = () => {
+    this.setState(prevState => ({
+      isReview: !prevState.isReview
+    }))
+  }
+
+  render() {
+    const { diveSite } = this.props 
+
+    var views = []
+
+    if (diveSite && diveSite.reviews.length > 0) {
+
+      for (var i = 0; i < diveSite.reviews.length; i++) {
+        const review = diveSite.reviews[i]
+    
+        views.push(
+          <View key={i} style={{flex: 1, marginHorizontal: 5, marginVertical: 5, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
+            <Text style={{fontSize: 22, marginBottom: 5}}>{review.title}</Text>
+            <Ratings
+              rating={review.rating}
+              widgetRatedColors={"#DD0000"}
+              widgetDimensions="22px"
+              widgetSpacings="1px">
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+              <Ratings.Widget />
+            </Ratings>
+            <Text style={{fontSize: 14, marginVertical: 10, maxWidth: 500}}>{review.comment}</Text>
+            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end', width: '100%'}}>
+              <Text style={{fontSize: 16, marginBottom:2}}>{review.user}</Text>
+              <Text style={{fontSize: 14, fontWeight: '300'}}>{new Date(review.timestamp).toLocaleDateString("en-US")}</Text>
+            </View>
+          </View>
+        )
+      }
+    }
+
+    console.log(views)
+  
     return (
-      <View style={{marginBottom: 10}}>
-        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-          <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
-            <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
-            <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
-            <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+      <View>
+        <View style={{marginBottom: 10, flexDirection: "column-reverse"}}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            {views}
+          </View>
+          {diveSite && diveSite.reviews && diveSite.reviews.length > 0 ? <View /> : <Text>No Reviews Yet.</Text>}
+          <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+            <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
+              <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
+              <PopoverButton popover={this.state.isReview} action={this.toggleReview} title={"Review"} icon={this.state.isReview ? require('../../assets/drop_up.svg') : require('../../assets/review.svg')} >
+                <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, left: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
+                  <AddReview addReview={this.addReview} />
+                </View>
+              </PopoverButton>
+            </View>
           </View>
         </View>
-        <Text>No Reviews Yet.</Text>
       </View>
     )
   }
-
-  var views = []
-  for (var i = 0; i < diveSite.reviews.length; i++) {
-    const review = diveSite.reviews[i]
-
-    views.push(
-      <View key={i} style={{flex: 1, marginHorizontal: 5, marginVertical: 5, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
-        <Text style={{fontSize: 22, marginBottom: 5}}>{review.title}</Text>
-        <Ratings
-          rating={review.rating}
-          widgetRatedColors={"#DD0000"}
-          widgetDimensions="22px"
-          widgetSpacings="1px">
-          <Ratings.Widget />
-          <Ratings.Widget />
-          <Ratings.Widget />
-          <Ratings.Widget />
-          <Ratings.Widget />
-        </Ratings>
-        <Text style={{fontSize: 14, marginVertical: 10, maxWidth: 500}}>{review.comment}</Text>
-        <View style={{justifyContent: 'flex-end', alignItems: 'flex-end', width: '100%'}}>
-          <Text style={{fontSize: 16, marginBottom:2}}>{review.user}</Text>
-          <Text style={{fontSize: 14, fontWeight: '300'}}>{new Date(review.timestamp).toLocaleDateString("en-US")}</Text>
-        </View>
-      </View>
-    )
-  }
-
-  return (
-    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginBottom: 20}}>
-      <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Add</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
-      </View>
-      {views}
-    </View>
-  )
 }
 
-export default DiveSiteReviewsList;
+const mapStateToProps = state => {
+  const user = getUser(state);
+  return { user };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(DiveSiteReviewsList);

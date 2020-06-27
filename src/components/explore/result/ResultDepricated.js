@@ -118,30 +118,7 @@ class Result extends Component {
     }
   }
 
-  addReview = (review) => {
-    const {diveSite} = this.state.data
-    review.user = this.props.user.username
 
-    if (this.props.user.token) {
-      axios({
-        method: 'put',
-        url: BaseURL() + '/api/dive-sites/reviews/',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'JWT ' + this.props.user.token
-        },
-        data: {
-          id: diveSite._id,
-          review: review
-        }
-  
-      }).then(function (response) {
-        this.toggleReview();
-        this.fetchDiveSite();
-        this.props.fetchDiveSites();
-      }.bind(this));
-    }
-  }
   
   render() {
     ReactGA.pageview(window.location.pathname + window.location.search);

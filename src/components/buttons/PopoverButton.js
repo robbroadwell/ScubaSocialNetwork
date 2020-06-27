@@ -1,19 +1,19 @@
 import React from 'react'
 import { View, Text, ActivityIndicator, Image, TouchableOpacity } from 'react-native';
-import PrimaryButton from './PrimaryButton'
+import EditButton from './EditButton'
 
 class PopoverButton extends React.Component {
   render() {
     const { ...passThrough } = this.props
     if (!this.props.popover) {
       return (
-        <PrimaryButton {...passThrough} />
+        <EditButton {...passThrough} />
       )
     }
 
     return (
       <View>
-         <PrimaryButton {...passThrough} />
+         <EditButton {...passThrough} />
          <View {...this.props} />
       </View>
     )

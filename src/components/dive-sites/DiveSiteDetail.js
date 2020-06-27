@@ -77,11 +77,10 @@ function DiveSiteDescription({ diveSite }) {
 
 function DiveSiteDetailBody({ diveSite, reload }) {
   return (
-    <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
+    <View style={{flex: 1, flexDirection: 'column-reverse', margin: 10}}>
       <DiveSitePhotos diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
-      <DiveSiteReviewsList diveSite={diveSite} />
-
+      <DiveSiteReviewsList diveSite={diveSite} reload={reload}  />
     </View>
   )
 }
