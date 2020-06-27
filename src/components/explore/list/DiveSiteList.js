@@ -8,7 +8,7 @@ function DiveSiteList({ diveSites, history, country }) {
     <FlatList
       style={{marginBottom: -5}}
       data={diveSites}
-      keyExtractor={({ id }, index) => id}
+      keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
 
         <DiveSiteCard site={item} country={country} onPress={() => history.push(`/dive-sites/${item.destination.id.replace(/\s+/g, '-').toLowerCase()}/${item.name.replace(/\s+/g, '-').toLowerCase()}?id=${item._id}`)} />

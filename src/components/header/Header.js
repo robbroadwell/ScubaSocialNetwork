@@ -60,7 +60,7 @@ class Header extends Component {
         </View> */}
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={this.props.user.username ? "Account" : "Join Diving Collective"} action={this.showLogin} />
+          <PrimaryButton title={this.props.user.name ? "Good morning, " + this.props.user.name : "Join Diving Collective"} action={this.showLogin} />
         </View>
       </View>
     )

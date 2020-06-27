@@ -6,8 +6,8 @@ import { setUser, setLoginMode, setRegisterMode } from "../../redux/actions";
 import { withRouter } from 'react-router-dom'
 import ReactGA from 'react-ga';
 import BaseURL from '../../utility/BaseURL';
-
 const axios = require('axios')
+
 
 class Login extends Component {
   constructor(props) {
@@ -37,6 +37,7 @@ class Login extends Component {
       .then(function (response) {
         this.setState({ username: "", password: "" });
         this.props.setUser(response.data.user);
+        console.log(response.data.user)
         this.props.setLoginMode(false);
         this.setState({ loading: false });
       }.bind(this)
@@ -54,11 +55,10 @@ class Login extends Component {
     if (process.env.NODE_ENV !== "development") {
       ReactGA.pageview('/login');
     }
-    
-    return (
-      <View style={{position: 'absolute', height: '100%', width: '100%', top: 0}}>
-        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: '#CCCCCC', opacity: 0.7}} />
 
+    return (
+      <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
+        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
             <TouchableOpacity onPress={() => this.props.setLoginMode(false)} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >

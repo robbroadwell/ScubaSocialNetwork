@@ -70,7 +70,7 @@ function Featured({ destinations, navigateDestination }) {
 
   for (var i = 0; i < destinations.length && i < max; i++) {
     views.push(
-      <DestinationCard destination={destinations[i]} navigateDestination={navigateDestination} />
+      <DestinationCard key={i} destination={destinations[i]} navigateDestination={navigateDestination} />
     )
   }
 
@@ -100,15 +100,15 @@ function Directory({ destinations, navigateDestination, addDiveSite }) {
   for (var i = 0; i < restrictedList.length; i++) {
     if (i < restrictedList.length / 3) {
       col1.push(
-        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
     } else if (i < (restrictedList.length / 3) * 2) {
       col2.push(
-        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
     } else {
       col3.push(
-        <DirectoryLocation destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
       )
     }
   }

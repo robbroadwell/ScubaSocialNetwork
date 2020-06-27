@@ -6,6 +6,7 @@ import { setUser, setLoginMode, setRegisterMode } from "../../redux/actions";
 import { withRouter } from 'react-router-dom'
 import ReactGA from 'react-ga';
 import BaseURL from '../../utility/BaseURL';
+import FullScreenConfetti from '../../utility/FullScreenConfetti';
 const axios = require('axios')
 
 class Register extends Component {
@@ -26,7 +27,6 @@ class Register extends Component {
     this.setState({ name: input });
   };
 
-
   onChangeTextUsername = input => {
     this.setState({ username: input });
   };
@@ -40,7 +40,7 @@ class Register extends Component {
   };
 
   onChangeTextEmail = input => {
-    this.setState({ username: input });
+    this.setState({ email: input });
   };
 
   onToggleTermsAccepted = () => {
@@ -61,22 +61,31 @@ class Register extends Component {
         email: this.state.email
       })
       .then(function (response) {
-        this.setState({ 
-          name: "",
-          username: "",
-          password: "",
-          confirmPassword: "",
-          email: "",
-          termsAccepted: false,
-          loading: false
-         });
 
-        this.props.setUser(response.data.user);
-        this.props.setRegisterMode(false);
-        this.setState({ loading: false });
-        
-      }.bind(this)
-      );
+        if (response.status !== 200) {
+          console.log('something went wrong')
+          this.setState({ loading: false });
+        }
+
+        axios.post(BaseURL() + '/api/users/login', {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(function (response) {
+          this.setState({ 
+            name: "",
+            username: "",
+            password: "",
+            confirmPassword: "",
+            email: "",
+            termsAccepted: false,
+            loading: false
+           });
+           
+          this.props.setUser(response.data.user);
+          this.props.setRegisterMode(false);
+        }.bind(this));
+      }.bind(this));
     }
   }
 
@@ -92,10 +101,10 @@ class Register extends Component {
     }
     
     return (
-      <View style={{position: 'absolute', height: '100%', width: '100%', top: 0}}>
-        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: '#CCCCCC', opacity: 0.7}} />
-
-        <View style={{alignItems: 'center', marginBottom: 10}}>
+      <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
+        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
+        <FullScreenConfetti />
+        <View style={{zIndex: 1000, alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
             <TouchableOpacity onPress={() => this.props.setRegisterMode(false)} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
@@ -146,12 +155,10 @@ class Register extends Component {
             <TouchableOpacity onPress={this.onPressLogin}>
               <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 14}}>Already have an account? Login.</Text>
             </TouchableOpacity>
-          </View>
 
+            {this.state.loading ? <Loading /> : <View></View>}
+          </View>
         </View> 
-        
-        {this.state.loading ? <Loading /> : <View></View>}
-        
       </View>
     )
   }

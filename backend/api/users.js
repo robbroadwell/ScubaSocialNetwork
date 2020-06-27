@@ -30,6 +30,7 @@ router.post('/login', (req, res, next) => {
             user: {
               username: user.username,
               email: user.email,
+              name: user.name,
               token: token
             },
             message: 'user found & logged in',
@@ -40,8 +41,8 @@ router.post('/login', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
     passport.authenticate('register', (err, user, info) => {
-        const { username, password, email } = req.body;
-        if (info !== undefined) {
+
+      if (info !== undefined) {
             console.error(info.message);
             if (info.message === 'bad username') {
               res.status(401).send(info.message);
@@ -49,11 +50,17 @@ router.post('/register', (req, res, next) => {
               res.status(403).send(info.message);
             }
           } else {
-            bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
+            bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
                 const newUser = new User({
-                username: username,
+                username: req.body.username,
+                name: req.body.name,
+                email: req.body.email,
                 password: hashedPassword,
-                email: email
+                photos: [],
+                loggedDives: [],
+                diveSitesAdded: [],
+                comments: [],
+                likes: []
             })
 
             newUser.save()

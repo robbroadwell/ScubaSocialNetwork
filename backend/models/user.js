@@ -6,11 +6,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
+    name: {
         type: String,
         required: true
     },
@@ -19,10 +15,6 @@ const userSchema = new Schema({
         required: true
     },
     password: {
-        type: String,
-        required: true
-    },
-    profilePhotoURL: {
         type: String,
         required: true
     },
@@ -45,7 +37,11 @@ const userSchema = new Schema({
     likes: {
         type: Array,
         required: true
-    }
+    },
+    profilePhotoURL: {
+        type: String,
+        required: false
+    },
 })
 
 userSchema.methods.validPassword = function( pwd ) {
