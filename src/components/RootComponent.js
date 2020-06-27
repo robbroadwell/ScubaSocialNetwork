@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Helmet } from "react-helmet";
 
 import Alert from './header/Alert';
-import Login from './header/Login';
+import AccountRoot from './header/AccountRoot';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
@@ -49,7 +49,7 @@ class RootComponent extends Component {
           <Route path='/leaderboard' exact={true} render={(props) => <Leaderboard {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
           <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
-          <Route path='/' render={(props) => <Login {...props} style={this.props.style} />} />
+          <Route path='/' render={(props) => <AccountRoot {...props} style={this.props.style} />} />
         </ScrollToTop>
       </Router>
       

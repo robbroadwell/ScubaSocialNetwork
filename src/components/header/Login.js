@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import Loading from '../misc/Loading';
 import { connect } from "react-redux";
-import { setUser, setLoginMode } from "../../redux/actions";
-import { getUser, getLoginMode } from "../../redux/selectors";
+import { setUser, setLoginMode, setRegisterMode } from "../../redux/actions";
 import { withRouter } from 'react-router-dom'
 import ReactGA from 'react-ga';
 import BaseURL from '../../utility/BaseURL';
+
 const axios = require('axios')
 
 class Login extends Component {
@@ -46,65 +46,50 @@ class Login extends Component {
 
   onPressRegister = () => {
     this.props.setLoginMode(false);
-    this.props.history.push(`/register`)
-  }
-
-  onPressLogout = () => {
-    this.props.setUser([]);
-    this.props.setLoginMode(false);
+    this.props.setRegisterMode(true);
   }
 
   render() {
-    if (!this.props.loginMode) {
-      return <View></View>
-    }
 
     if (process.env.NODE_ENV !== "development") {
       ReactGA.pageview('/login');
     }
     
     return (
-      <View style={{position: 'absolute', height: '100%', width: '100%', top: 0, backgroundColor: 'black'}}>
-        <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
+      <View style={{position: 'absolute', height: '100%', width: '100%', top: 0}}>
+        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: '#CCCCCC', opacity: 0.7}} />
 
-        {this.props.user.username ?
-
-        <View style={{maxWidth: 700, marginBottom: 10}}>
-          <Text style={{textAlign: 'center', fontSize: 24, color: 'white', marginBottom: 2}}>{this.props.user.username}</Text>
-          <Text style={{textAlign: 'center', fontSize: 18, color: 'white', marginBottom: 10}}>{this.props.user.email}</Text>
-          <TouchableOpacity onPress={() => this.onPressLogout()}>
-            <Text style={{textAlign: 'center', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-
-        :
-
-        <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
-          <TextInput
-            style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-            placeholderTextColor={'#CCCCCC'}
-            onChangeText={text => this.onChangeTextUsername(text)}
-            placeholder={'Username'}
-            value={this.state.username}
+        <View style={{alignItems: 'center', marginBottom: 10}}>
+          <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => this.props.setLoginMode(false)} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
+              <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
+            </TouchableOpacity>
+            <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
+            <TextInput
+              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              placeholderTextColor={'#CCCCCC'}
+              onChangeText={text => this.onChangeTextUsername(text)}
+              placeholder={'Username'}
+              value={this.state.username}
+              />
+            <TextInput
+              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              placeholderTextColor={'#CCCCCC'}
+              secureTextEntry={true} 
+              onChangeText={text => this.onChangeTextPassword(text)}
+              placeholder={'Password'}
+              value={this.state.password}
             />
-          <TextInput
-            style={{ height: 40, width: '90%', color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-            placeholderTextColor={'#CCCCCC'}
-            onChangeText={text => this.onChangeTextPassword(text)}
-            placeholder={'Password'}
-            value={this.state.password}
-          />
-          <TouchableOpacity onPress={() => this.onPressSubmit()}>
-            <Text style={{textAlign: 'center', margin: 20, marginBottom: 15, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.onPressSubmit()}>
+              <Text style={{textAlign: 'center', borderColor: '#CCCCCC', borderWidth: 1, padding: 10, margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.onPressRegister}>
-            <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 12}}>New? Create a free account.</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={this.onPressRegister}>
+              <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 14}}>New? Create a free account.</Text>
+            </TouchableOpacity>
+          </View>
 
-        </View>
-
-        }
+        </View> 
         
         {this.state.loading ? <Loading /> : <View></View>}
         
@@ -114,12 +99,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  const user = getUser(state);
-  const loginMode = getLoginMode(state);
-  return { user, loginMode };
+  return {  };
 };
 
   export default connect(
     mapStateToProps,
-    { setUser, setLoginMode }
+    { setUser, setLoginMode, setRegisterMode }
   )(withRouter(Login));

@@ -1,19 +1,21 @@
 export const getDestinationsState = store => store.destinations;
 export const getTopDestinationsState = store => store.topDestinations;
-export const getSelectedDiveSiteState = store => store.selectedDiveSite;
 export const getUserState = store => store.user;
 export const getMapCenterState = store => store.mapCenter;
 export const getMapRectState = store => store.mapRect;
 export const getAddDiveSiteModeState = store => store.addDiveSiteMode;
+export const getAccountModeState = store => store.accountMode;
 export const getLoginModeState = store => store.loginMode;
+export const getRegisterModeState = store => store.registerMode;
 export const getAlertModeState = store => store.alertMode;
 
 export const getDestinations = store => getDestinationsState(store);
 export const getTopDestinations = store => getTopDestinationsState(store);
-export const getSelectedDiveSite = store => getSelectedDiveSiteState(store);
 export const getUser = store => getUserState(store);
 export const getMapCenter = store => getMapCenterState(store);
 export const getMapRect = store => getMapRectState(store);
 export const getAddDiveSiteMode = store => getAddDiveSiteModeState(store);
+export const getAccountMode = store => getAccountModeState(store);
 export const getLoginMode = store => getLoginModeState(store);
+export const getRegisterMode = store => getRegisterModeState(store);
 export const getAlertMode = store => getAlertModeState(store);

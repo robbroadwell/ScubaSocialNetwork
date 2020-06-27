@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import { getUser } from "../../redux/selectors";
-import { setLoginMode } from '../../redux/actions';
+import { setAccountMode, setLoginMode, setRegisterMode } from '../../redux/actions';
 import PrimaryButton from '../buttons/PrimaryButton';
 import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
 
-  toggleLogin = () => {
-    this.props.setLoginMode(!this.props.loginMode)
+  showLogin = () => {
+    if (this.props.user.username) {
+      this.props.setAccountMode(true);
+    } else {
+      this.props.setRegisterMode(true);
+    }
   };
 
   render() {
@@ -56,7 +60,7 @@ class Header extends Component {
         </View> */}
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={this.props.user.username ? "Account" : "Join Diving Collective"} action={this.toggleLogin} />
+          <PrimaryButton title={this.props.user.username ? "Account" : "Join Diving Collective"} action={this.showLogin} />
         </View>
       </View>
     )
@@ -70,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setLoginMode }
+  { setAccountMode, setLoginMode, setRegisterMode }
 )(withRouter(Header));

@@ -10,7 +10,9 @@ export const SET_USER = 'SET_USER'
 export const SET_MAP_CENTER = 'SET_MAP_CENTER'
 export const SET_MAP_RECT = 'SET_MAP_RECT'
 export const SET_ADD_DIVE_SITE_MODE = 'SET_ADD_DIVE_SITE_MODE'
+export const SET_ACCOUNT_MODE = 'SET_ACCOUNT_MODE'
 export const SET_LOGIN_MODE = 'SET_LOGIN_MODE'
+export const SET_REGISTER_MODE = 'SET_REGISTER_MODE'
 export const SET_ALERT_MODE = 'SET_ALERT_MODE'
 
 /*
@@ -42,8 +44,16 @@ export function setAddDiveSiteMode(enabled) {
   return { type: SET_ADD_DIVE_SITE_MODE, enabled}
 }
 
+export function setAccountMode(enabled) {
+  return { type: SET_ACCOUNT_MODE, enabled}
+}
+
 export function setLoginMode(enabled) {
   return { type: SET_LOGIN_MODE, enabled}
+}
+
+export function setRegisterMode(enabled) {
+  return { type: SET_REGISTER_MODE, enabled}
 }
 
 export function setAlertMode(enabled) {
