@@ -6,8 +6,7 @@ import DiveSiteMap from './DiveSiteMap';
 import StyledLink from '../buttons/StyledLink';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
-import ResultPhotos from '../explore/result/ResultPhotos';
-import ImageUpload from '../explore/result/ImageUpload';
+import DiveSitePhotos from './DiveSitePhotos';
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import ReactPlaceholder from 'react-placeholder';
@@ -79,7 +78,7 @@ function DiveSiteDescription({ diveSite }) {
 function DiveSiteDetailBody({ diveSite, reload }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
-      <ResultPhotos diveSite={diveSite} reload={reload} />
+      <DiveSitePhotos diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
       <DiveSiteReviewsList diveSite={diveSite} />
 
@@ -219,7 +218,7 @@ function DiveSiteDetailSidebar({ diveSite }) {
         {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
           <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
         </View> */}
-        
+
         <VisibilityCard diveSite={diveSite} />
         <DepthCard diveSite={diveSite} />
         <WaterTemperatureCard diveSite={diveSite} />

@@ -3,7 +3,7 @@ import { View, ActivityIndicator } from 'react-native';
 
 function Loading() {
   return (
-     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+     <View style={{position: 'absolute', width: '100%', height: '100%', backgroundColor: 'black', opacity: 0.8, justifyContent: 'center', alignItems: 'center'}}>
        <ActivityIndicator />
      </View>
    )
