@@ -87,12 +87,9 @@ class Login extends Component {
             <TouchableOpacity onPress={this.onPressRegister}>
               <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 14}}>New? Create a free account.</Text>
             </TouchableOpacity>
+            {this.state.loading ? <Loading /> : <View></View>}
           </View>
-
         </View> 
-        
-        {this.state.loading ? <Loading /> : <View></View>}
-        
       </View>
     )
   }
