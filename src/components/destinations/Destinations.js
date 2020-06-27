@@ -4,6 +4,7 @@ import DestinationCard from './DestinationCard';
 import { fetchTopDestinations } from "../../redux/actions";
 import { getTopDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
+import shuffle from '../../utility/shuffle';
 
 class Destinations extends Component {
 
@@ -29,6 +30,8 @@ function DestinationContent({ destinations, navigateDestination }) {
       <DestinationCard destination={destinations[i]} navigateDestination={navigateDestination} />
     )
   }
+
+  shuffle(views)
 
   return (
     <View style={{margin: 10}}>
