@@ -5,25 +5,27 @@ import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
 import LogButton from '../buttons/LogButton';
 import EditButton from '../buttons/EditButton';
+import DiveSiteReviewsList from './DiveSiteReviewsList';
 
-function DiveSiteDetailSidebar({ diveSite, openLogDive }) {
+function DiveSiteDetailSidebar({ diveSite, openAddReview }) {
+
   return (
-    <StickyContainer>
-      <View style={{width: 320, flexDirection: 'column'}}>
-        {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
-          <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
-        </View> */}
+    <View style={{width: 450, paddingLeft: 20, paddingTop: 10, paddingRight: 20, marginRight: -10, marginBottom: -10, backgroundColor: '#EFEFEF', flexDirection: 'column', alignItems: 'center'}}>
+      {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
+        <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
+      </View> */}
 
-        <VisibilityCard diveSite={diveSite} openLogDive={openLogDive} />
-        <DepthCard diveSite={diveSite} openLogDive={openLogDive} />
-        <WaterTemperatureCard diveSite={diveSite} openLogDive={openLogDive} />
-        <CurrentsCard diveSite={diveSite} openLogDive={openLogDive} />
-        <AccessCard diveSite={diveSite} />
-        <DiveTypeCard diveSite={diveSite} />
+      <DiveSiteReviewsList diveSite={diveSite} openAddReview={openAddReview}  />
 
-        {/* <DiveSiteDetailMarketing /> */}
-      </View>
-    </StickyContainer>
+      {/* <VisibilityCard diveSite={diveSite} openLogDive={openLogDive} />
+      <DepthCard diveSite={diveSite} openLogDive={openLogDive} />
+      <WaterTemperatureCard diveSite={diveSite} openLogDive={openLogDive} />
+      <CurrentsCard diveSite={diveSite} openLogDive={openLogDive} />
+      <AccessCard diveSite={diveSite} />
+      <DiveTypeCard diveSite={diveSite} /> */}
+
+      {/* <DiveSiteDetailMarketing /> */}
+    </View>
   )
 }
 

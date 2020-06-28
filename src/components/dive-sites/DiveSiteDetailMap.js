@@ -48,6 +48,7 @@ class DiveSiteMap extends Component {
   })
 
   createMarkers = () => {
+    console.log(this.props.diveSite)
     if (this.props.diveSite && window.google && this.googleMap) {
       const { diveSite } = this.props;
 
@@ -85,24 +86,9 @@ class DiveSiteMap extends Component {
 }
 
 function DiveSiteDetailMap({ style, diveSite }) {
+  console.log(diveSite)
   return (
     <View>
-      <View style={{flexDirection: 'row', marginHorizontal: 20, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
-        {/* <EditButton /> */}
-      </View>
-      <View style={{flexDirection: 'row', margin: 20, marginTop: 5}}>
-        {!diveSite ? <View /> : 
-          <Text style={{fontSize: 15}}>{diveSite.destination.name}</Text>
-        }
-        {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-        <Text style={{fontSize: 15}}>Lighthouse Reef</Text> */}
-        <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-
-        {!diveSite ? <View /> : 
-          <Text style={{fontSize: 15}}>{diveSite.location.coordinates[1]}, {diveSite.location.coordinates[0]}</Text>
-        }
-      </View>
       <View style={{width: '100%', height: 300}}>
         <DiveSiteMap diveSite={diveSite} style={style} />
       </View>

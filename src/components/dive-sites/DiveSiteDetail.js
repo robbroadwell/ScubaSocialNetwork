@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import DiveSiteDetailMap from './DiveSiteDetailMap';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteDetailSidebar from './DiveSiteDetailSidebar';
-import DiveSiteReviewsList from './DiveSiteReviewsList';
 import DiveSitePhotos from './DiveSitePhotos';
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
@@ -61,7 +60,7 @@ class DiveSiteDetail extends Component {
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
           <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openAddPhoto={this.openAddPhoto} />
-          <DiveSiteDetailSidebar diveSite={this.props.diveSite} openLogDive={this.openLogDive} />
+          <DiveSiteDetailSidebar diveSite={this.props.diveSite} openAddReview={this.openAddReview} />
         </View>
 
         <DiveSiteDetailMap diveSite={this.props.diveSite} style={this.props.style} />
@@ -85,13 +84,38 @@ function DiveSiteDescription({ diveSite }) {
   )
 }
 
-function DiveSiteDetailBody({ diveSite, reload, openAddReview, openAddPhoto }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddPhoto }) {
   return (
-    <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
+    <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
-      <DiveSiteReviewsList diveSite={diveSite} openAddReview={openAddReview}  />
+      <View style={{flex: 1}}></View>
+      <DiveSiteLocation diveSite={diveSite} />
     </View>
+  )
+}
+
+function DiveSiteLocation({diveSite}) {
+  return (
+    <View>
+      <View style={{flexDirection: 'row', marginTop: 20, alignItems: 'center'}}>
+        <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
+        {/* <EditButton /> */}
+      </View>
+      <View style={{flexDirection: 'row', marginTop: 5}}>
+        {!diveSite ? <View /> : 
+          <Text style={{fontSize: 15}}>{diveSite.destination.name}</Text>
+        }
+        {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+        <Text style={{fontSize: 15}}>Lighthouse Reef</Text> */}
+        <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+
+        {!diveSite ? <View /> : 
+          <Text style={{fontSize: 15}}>{diveSite.location.coordinates[1]}, {diveSite.location.coordinates[0]}</Text>
+        }
+      </View>
+    </View>
+
   )
 }
 
