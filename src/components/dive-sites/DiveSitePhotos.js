@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-// import ImageUpload from '../misc/ImageUpload';
+import ImageUpload from '../header/add-photo/ImageUpload';
 import ReactPlaceholder from 'react-placeholder';
 
 class DiveSitePhotos extends Component {
@@ -33,7 +33,7 @@ class DiveSitePhotos extends Component {
     if (!this.props.diveSite.photos || this.props.diveSite.photos.length === 0) {
       return (
         <View style={{height: 400, borderWidth: 1, borderColor: "#DDDDDD"}}>
-          {/* <ImageUpload diveSite={this.props.diveSite} reload={(this.props.reload)} /> */}
+          <ImageUpload diveSite={this.props.diveSite} reload={(this.props.reload)} />
         </View>
       )
     } 
@@ -44,45 +44,17 @@ class DiveSitePhotos extends Component {
       <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400}}>     
         <View style={{flex: 1}}>
           <Image style={{flex: 1}} source={diveSite.photos[this.state.photoSelectedIndex].url} />
-          <View style={{position: 'absolute', bottom: 0, right: 0, alignItems: 'center', backgroundColor: 'black'}}>
+          <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', backgroundColor: 'black'}}>
             <PhotoNavigation previewBack={this.previewBack} previewForward={this.previewForward} selectedIndex={this.state.photoSelectedIndex} length={diveSite.photos.length} />
-            <PhotoCredits photo={diveSite.photos[this.state.photoSelectedIndex]} />
+            {/* <PhotoCredits photo={diveSite.photos[this.state.photoSelectedIndex]} /> */}
           </View>
-          <PhotoAdd diveSite={diveSite} reload={reload} />
+          <TouchableOpacity onPress={this.props.openAddPhoto} style={{backgroundColor: 'black', position: 'absolute', right: 0, bottom: 0}}>
+            <View style={{flexDirection: 'row', padding: 7.5, marginHorizontal: 5}}>
+              <Text style={{color: 'white'}}>Add a Photo</Text>
+              <Image style={{width: 15, height: 15, marginLeft: 5, tintColor: 'white'}} source={require('../../assets/edit.svg')} />
+            </View>
+          </TouchableOpacity>
         </View>
-      </View>
-    )
-  }
-}
-
-class PhotoAdd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        addPopover: false
-    };
-  }
-
-  reload = () => {
-    this.setState({ addPopover: false }, () => {
-      this.props.reload()
-    });
-  }
-
-  render() {
-    return (
-      <View style={{position: 'absolute', top: 0, right: 0}}>
-        <TouchableOpacity onPress={() => this.setState({ addPopover: true })} activeOpacity={1.0} style={{marginHorizontal: 5}} >
-          <Image style={{width: 30, height: 30, tintColor: '#FFFFFF'}} source={require('../../assets/add.svg')} />
-        </TouchableOpacity>
-        {!this.state.addPopover ? <View /> : 
-          <View style={{position: 'absolute', top: 0, right: 0, width: 400, height: 300, backgroundColor: 'white'}}>
-            {/* <ImageUpload diveSite={this.props.diveSite} reload={(this.reload)} /> */}
-            <TouchableOpacity onPress={() => this.setState({ addPopover: false })} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
-              <Image style={{width: 30, height: 30, tintColor: 'black'}} source={require('../../assets/close.png')} />
-            </TouchableOpacity>
-          </View>
-        }
       </View>
     )
   }

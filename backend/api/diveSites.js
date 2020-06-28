@@ -421,7 +421,7 @@ router.put('/photos/', (req, res, next) => {
 
       DiveSiteDetails.findById(id).then(diveSite => {
         console.log(diveSite)
-        diveSite.photos.push(photo)
+        diveSite.photos.unshift(photo)
         diveSite.save().then(() => res.json({
             message: "Updated dive site successfully"
           }))

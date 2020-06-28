@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import ReactGA from 'react-ga';
 
+import qs from 'qs';
+import { setDiveSite } from '../../redux/actions';
+import { connect } from "react-redux";
+
 ReactGA.initialize('UA-88100612-2');
 
 class Footer extends Component {
@@ -11,6 +15,13 @@ class Footer extends Component {
       if (process.env.NODE_ENV !== "development") {
         ReactGA.set({ page: location.pathname })
         ReactGA.pageview(location.pathname)
+      }
+
+      // consider another way to destroy the redux cache for the dive site
+      // so the previous dive site doesn't flash on the screen before reloading,
+      // and instead shows the loading state for the dive site detail screen.
+      if (!qs.parse(location.search, { ignoreQueryPrefix: true }).id) {
+        this.props.setDiveSite(null)
       }
 
       document.body.style.overflow = "visible" // reset enable scroll whenever route changes
@@ -45,4 +56,11 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+const mapStateToProps = state => {
+  return {  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setDiveSite }
+)(Footer);

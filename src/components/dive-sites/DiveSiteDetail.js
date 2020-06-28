@@ -22,15 +22,21 @@ class DiveSiteDetail extends Component {
   }
 
   componentDidMount() {
-    let id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
-    this.props.fetchDiveSite(id)
+    this.fetchDiveSite()
   }
 
   componentDidUpdate = (prevProps) => {
-    let id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
+    console.log('update')
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.props.fetchDiveSite(id)
+      console.log('fetch')
+      this.fetchDiveSite()
     }
+  }
+
+  fetchDiveSite = () => {
+    console.log('fetch')
+    let id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
+    this.props.fetchDiveSite(id)
   }
 
   openLogDive = () => {
@@ -43,13 +49,18 @@ class DiveSiteDetail extends Component {
     console.log("openAddReview")
   }
 
+  openAddPhoto = () => {
+    this.props.setAddPhotoMode(true);
+    console.log("openAddPhoto")
+  }
+
   render() {
     return (
       <View>
         <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} />
+          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openAddPhoto={this.openAddPhoto} />
           <DiveSiteDetailSidebar diveSite={this.props.diveSite} openLogDive={this.openLogDive} />
         </View>
 
@@ -74,12 +85,12 @@ function DiveSiteDescription({ diveSite }) {
   )
 }
 
-function DiveSiteDetailBody({ diveSite, reload, openAddReview }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddReview, openAddPhoto }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
-      <DiveSitePhotos diveSite={diveSite} reload={reload} />
+      <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
-      <DiveSiteReviewsList diveSite={diveSite} reload={reload} openAddReview={openAddReview}  />
+      <DiveSiteReviewsList diveSite={diveSite} openAddReview={openAddReview}  />
     </View>
   )
 }

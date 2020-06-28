@@ -124,7 +124,7 @@ class ImageUpload extends Component {
   render() {
     if (this.state.files.length === 0) {
       return ( // ready for drop
-        <View style={{flex: 1}}>
+        <View style={{position: 'absolute', height: '100%', width: '100%'}}>
           <DragAndDrop handleDrop={this.handleDrop}>
             <View style={{position: 'absolute', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
               <Image style={{width: 50, height: 50, tintColor: 'black'}} source={require('../../../assets/add_photo.svg')} />
@@ -137,7 +137,7 @@ class ImageUpload extends Component {
 
     
     return (
-      <View style={{flex: 1}}>
+      <View style={{position: 'absolute', height: '100%', width: '100%'}}>
         
         <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={this.state.previews[this.state.selectedIndex]} />
         <View style={{flex: 1, justifyContent: 'flex-end'}}>
