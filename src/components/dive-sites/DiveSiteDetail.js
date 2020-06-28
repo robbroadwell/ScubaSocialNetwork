@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import Ratings from 'react-ratings-declarative';
 import { StickyContainer, Sticky } from 'react-sticky';
 import DiveSiteMap from './DiveSiteMap';
-import StyledLink from '../buttons/StyledLink';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
 import DiveSitePhotos from './DiveSitePhotos';
@@ -11,12 +9,17 @@ import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
+import LogButton from '../buttons/LogButton';
+import EditButton from '../buttons/EditButton';
+import ReactGA from 'react-ga';
 
 class DiveSiteDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
         isLoading: true,
+        isLogDive: false,
+        isAddReview: false,
         data: [],
     };
   }
@@ -44,29 +47,84 @@ class DiveSiteDetail extends Component {
     })
   }
 
+  openLogDive = () => {
+    this.setState({ isLogDive: true })
+    console.log("openLogDive")
+  }
+
+  openAddReview = () => {
+    this.setState({ isAddReview: true })
+    console.log("openAddReview")
+  }
+
+  closeModals = () => {
+    this.setState({ isLogDive: false, isAddReview: false })
+    document.body.style.overflow = "visible"
+    console.log("closeModals")
+  }
+
   render() {
     return (
       <View>
         <DiveSiteDetailHeader diveSite={this.state.data.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.state.data.diveSite} reload={this.fetchDiveSite} />
-          <DiveSiteDetailSidebar diveSite={this.state.data.diveSite} />
+          <DiveSiteDetailBody diveSite={this.state.data.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} />
+          <DiveSiteDetailSidebar diveSite={this.state.data.diveSite} openLogDive={this.openLogDive} />
         </View>
 
         <DiveSiteDetailMap diveSite={this.state.data.diveSite} style={this.props.style} />
+        <DiveSiteDetailOverlays isLogDive={this.state.isLogDive} isAddReview={this.state.isAddReview} close={this.closeModals} />
       </View>
     )
   }
 }
+
+class DiveSiteDetailOverlays extends Component {
+
+  componentWillMount() {
+    if (process.env.NODE_ENV !== "development") {
+      if (this.props.isLogDive) {
+        ReactGA.pageview('/log-dive/123');
+      }
+      if (this.props.isAddReview) {
+        ReactGA.pageview('/convert-to-event/123');
+      }
+    }
+  }
+  
+  render() {
+    const { isLogDive, isAddReview} = this.props
+
+    if (!isLogDive && !isAddReview) {
+      return <View />
+    }
+
+    document.body.style.overflow = "hidden"
+
+    return (
+      <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
+        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
+        <View style={{alignItems: 'center', marginBottom: 10}}>
+          <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => this.props.close()} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
+              <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
+            </TouchableOpacity>
+  
+          </View>
+        </View>
+      </View>
+    )
+  }
+}
+
 
 function DiveSiteDescription({ diveSite }) {
   return (
     <View>
       <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 10, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+        <EditButton />
       </View>
       <Text>
       SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.
@@ -75,25 +133,24 @@ function DiveSiteDescription({ diveSite }) {
   )
 }
 
-function DiveSiteDetailBody({ diveSite, reload }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddReview }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10}}>
       <DiveSitePhotos diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
-      <DiveSiteReviewsList diveSite={diveSite} reload={reload}  />
+      <DiveSiteReviewsList diveSite={diveSite} reload={reload} openAddReview={openAddReview}  />
     </View>
   )
 }
 
-function VisibilityCard({ diveSite }) {
+function VisibilityCard({ diveSite, openLogDive }) {
   return (
     <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <LogButton onPress={openLogDive} />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
@@ -106,15 +163,14 @@ function VisibilityCard({ diveSite }) {
   )
 }
 
-function DepthCard({ diveSite }){
+function DepthCard({ diveSite, openLogDive }){
   return (
     <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Depth</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <LogButton onPress={openLogDive} />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
@@ -130,15 +186,14 @@ function DepthCard({ diveSite }){
   )
 }
 
-function WaterTemperatureCard({ diveSite }) {
+function WaterTemperatureCard({ diveSite, openLogDive }) {
   return (
     <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Water Temperature</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <LogButton onPress={openLogDive} />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
@@ -151,15 +206,14 @@ function WaterTemperatureCard({ diveSite }) {
   )
 }
 
-function CurrentsCard({ diveSite }) {
+function CurrentsCard({ diveSite, openLogDive }) {
   return (
     <View style={{margin: 10, marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Currents</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Log Dive</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <LogButton onPress={openLogDive} />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
@@ -179,8 +233,7 @@ function AccessCard({ diveSite }) {
         <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Access</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Edit</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <EditButton />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Text style={{fontWeight: '600'}}>Boat, Liveaboard</Text>
@@ -198,8 +251,7 @@ function DiveTypeCard({ diveSite }) {
         <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
           <Text style={{fontSize: 18, fontWeight: '600'}}>Dive Type</Text>
           <View style={{flex: 1}} />
-          <Text style={{color: '#A00000'}}>Edit</Text>
-          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+          <EditButton />
         </View>
         <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
           <Text style={{fontWeight: '600'}}>Shipwreck</Text>
@@ -210,7 +262,7 @@ function DiveTypeCard({ diveSite }) {
   )
 }
 
-function DiveSiteDetailSidebar({ diveSite }) {
+function DiveSiteDetailSidebar({ diveSite, openLogDive }) {
   return (
     <StickyContainer>
       <View style={{width: 320, flexDirection: 'column'}}>
@@ -218,10 +270,10 @@ function DiveSiteDetailSidebar({ diveSite }) {
           <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
         </View> */}
 
-        <VisibilityCard diveSite={diveSite} />
-        <DepthCard diveSite={diveSite} />
-        <WaterTemperatureCard diveSite={diveSite} />
-        <CurrentsCard diveSite={diveSite} />
+        <VisibilityCard diveSite={diveSite} openLogDive={openLogDive} />
+        <DepthCard diveSite={diveSite} openLogDive={openLogDive} />
+        <WaterTemperatureCard diveSite={diveSite} openLogDive={openLogDive} />
+        <CurrentsCard diveSite={diveSite} openLogDive={openLogDive} />
         <AccessCard diveSite={diveSite} />
         <DiveTypeCard diveSite={diveSite} />
 
@@ -263,8 +315,7 @@ function DiveSiteDetailMap({ style, diveSite }) {
     <View>
       <View style={{flexDirection: 'row', marginHorizontal: 20, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
-        <Text style={{color: '#A00000', marginLeft: 10}}>Edit</Text>
-        <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/edit.svg')} />
+        <EditButton />
       </View>
       <View style={{flexDirection: 'row', margin: 15, marginTop: 5}}>
         <Text style={{fontSize: 15}}>Belize</Text>

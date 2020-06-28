@@ -21,6 +21,10 @@ class Login extends Component {
 
   componentWillMount() {
     document.body.style.overflow = "hidden"
+
+    if (process.env.NODE_ENV !== "development") {
+      ReactGA.pageview('/login');
+    }
   }
 
   onChangeTextUsername = input => {
@@ -61,10 +65,6 @@ class Login extends Component {
   }
 
   render() {
-
-    if (process.env.NODE_ENV !== "development") {
-      ReactGA.pageview('/login');
-    }
 
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>

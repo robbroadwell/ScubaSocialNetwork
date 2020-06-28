@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import Ratings from 'react-ratings-declarative';
-import PopoverButton from '../buttons/PopoverButton';
-import AddReview from './AddReview';
+import AddButton from '../buttons/AddButton';
 import BaseURL from '../../utility/BaseURL';
 import { getUser } from '../../redux/selectors';
 import { connect } from "react-redux";
@@ -39,13 +38,7 @@ class DiveSiteReviewsList extends Component {
       }.bind(this));
     }
   }
-
-  toggleReview = () => {
-    this.setState(prevState => ({
-      isReview: !prevState.isReview
-    }))
-  }
-
+  
   render() {
     const { diveSite } = this.props 
 
@@ -92,11 +85,7 @@ class DiveSiteReviewsList extends Component {
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
             <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
               <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
-              <PopoverButton popover={this.state.isReview} action={this.toggleReview} title={"Review"} icon={this.state.isReview ? require('../../assets/drop_up.svg') : require('../../assets/review.svg')} >
-                <View style={{width: 320, backgroundColor: '#21313C', position: 'absolute', top: 10, left: 0, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.4, shadowRadius: 7, shadowColor: '#000'}}>
-                  <AddReview addReview={this.addReview} />
-                </View>
-              </PopoverButton>
+              <AddButton onPress={this.props.openAddReview} />
             </View>
           </View>
         </View>

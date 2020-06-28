@@ -6,12 +6,15 @@ ReactGA.initialize('UA-88100612-2');
 
 class Footer extends Component {
   componentDidMount() {
-    if (process.env.NODE_ENV !== "development") {
-      this.props.history.listen(location => {
+    this.props.history.listen(location => {
+      
+      if (process.env.NODE_ENV !== "development") {
         ReactGA.set({ page: location.pathname })
         ReactGA.pageview(location.pathname)
-      })
-    }
+      }
+
+      document.body.style.overflow = "visible" // reset enable scroll whenever route changes
+    })
   }
 
   render() {

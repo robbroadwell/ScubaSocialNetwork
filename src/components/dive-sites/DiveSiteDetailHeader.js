@@ -30,7 +30,7 @@ function DiveSiteDetailHeader({ diveSite }) {
   }
 
   return (
-    <View style={{margin: 20}}>
+    <View style={{margin: 20, marginBottom: 10}}>
       <View style={{flexDirection: 'row'}}>
         <ReactPlaceholder type='rect' style={{width: 300, height: 35}} ready={diveSite} showLoadingAnimation={true}>
           <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>{!diveSite ? "Loading" : diveSite.name}</Text>
