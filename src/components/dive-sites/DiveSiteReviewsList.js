@@ -19,7 +19,7 @@ class DiveSiteReviewsList extends Component {
         const review = diveSite.reviews[i]
     
         views.push(
-          <View key={i} style={{flex: 1, marginHorizontal: 5, marginVertical: 5, padding: 20, minWidth: 300, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
+          <View key={i} style={{flexBasis: '49.5%', marginVertical: 5, padding: 20, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1, alignItems: 'center'}}>
             <Text style={{fontSize: 22, marginBottom: 5}}>{review.title}</Text>
             <Ratings
               rating={review.rating}
@@ -34,7 +34,7 @@ class DiveSiteReviewsList extends Component {
             </Ratings>
             <Text style={{fontSize: 14, marginVertical: 10, maxWidth: 500}}>{review.comment}</Text>
             <View style={{justifyContent: 'flex-end', alignItems: 'flex-end', width: '100%'}}>
-              <Text style={{fontSize: 16, marginBottom:2}}>{review.user}</Text>
+              <Text style={{fontSize: 16, marginBottom:2}}>{review.user.name}</Text>
               <Text style={{fontSize: 14, fontWeight: '300'}}>{new Date(review.timestamp).toLocaleDateString("en-US")}</Text>
             </View>
           </View>
@@ -46,16 +46,18 @@ class DiveSiteReviewsList extends Component {
   
     return (
       <View>
-        <View style={{marginBottom: 10, flexDirection: "column-reverse"}}>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            {views}
-          </View>
-          {diveSite && diveSite.reviews && diveSite.reviews.length > 0 ? <View /> : <Text>No Reviews Yet.</Text>}
+        <View style={{marginVertical: 20}}>
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-            <View style={{flexDirection: 'row', marginVertical: 15, alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', marginVertical: 10, alignItems: 'center'}}>
               <Text style={{fontSize: 18, fontWeight: '600'}}>Reviews</Text>
               <AddButton onPress={this.props.openAddReview} />
             </View>
+          </View>
+
+          {diveSite && diveSite.reviews && diveSite.reviews.length > 0 ? <View /> : <Text>No Reviews Yet.</Text>}
+          
+          <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+            {views}
           </View>
         </View>
       </View>

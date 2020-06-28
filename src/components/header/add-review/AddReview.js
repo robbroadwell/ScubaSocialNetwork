@@ -41,6 +41,10 @@ class AddReview extends Component {
       rating: this.state.rating,
       title: this.state.title,
       comment: this.state.review,
+      user: {
+        id: this.props.user.id,
+        name: this.props.user.name
+      },
       timestamp: Date.now()
     }
 
@@ -69,7 +73,7 @@ class AddReview extends Component {
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
-        <FullScreenConfetti />
+        {/* <FullScreenConfetti /> */}
         <View style={{zIndex: 1000, alignItems: 'center'}}>
 
           <View style={{backgroundColor: 'black', padding: 30, alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>

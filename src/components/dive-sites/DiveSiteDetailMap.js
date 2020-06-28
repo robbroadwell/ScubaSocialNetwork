@@ -89,7 +89,7 @@ function DiveSiteDetailMap({ style, diveSite }) {
     <View>
       <View style={{flexDirection: 'row', marginHorizontal: 20, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
-        <EditButton />
+        {/* <EditButton /> */}
       </View>
       <View style={{flexDirection: 'row', margin: 20, marginTop: 5}}>
         {!diveSite ? <View /> : 

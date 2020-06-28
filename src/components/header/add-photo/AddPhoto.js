@@ -24,7 +24,7 @@ class AddPhoto extends Component {
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
-        <FullScreenConfetti />
+        {/* <FullScreenConfetti /> */}
         
         <View style={{zIndex: 1000, alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: '#EFEFEF', width: 800, height: 500, alignItems: 'center'}}>

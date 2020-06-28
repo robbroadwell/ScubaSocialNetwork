@@ -323,7 +323,7 @@ router.put('/reviews/', (req, res, next) => {
         })
 
         DiveSiteDetails.findById(req.body.id).then(diveSite => {
-          diveSite.reviews.push(req.body.review)
+          diveSite.reviews.unshift(req.body.review)
           diveSite.save().then(() => res.json({
               message: "Updated dive site successfully"
             }))
