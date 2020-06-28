@@ -10,48 +10,35 @@ import BaseURL from '../../utility/BaseURL';
 import EditButton from '../buttons/EditButton';
 
 import { connect } from "react-redux";
-import { setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite } from '../../redux/actions';
+import { getDiveSite } from "../../redux/selectors";
+import { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite } from '../../redux/actions';
 
 class DiveSiteDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        isLoading: true,
-        data: [],
+        isLoading: true
     };
   }
 
   componentDidMount() {
-    this.fetchDiveSite()
+    let id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
+    this.props.fetchDiveSite(id)
   }
 
   componentDidUpdate = (prevProps) => {
+    let id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.fetchDiveSite()
+      this.props.fetchDiveSite(id)
     }
   }
 
-  fetchDiveSite = () => {
-    fetch(BaseURL() + '/api/dive-sites/details/'+`${qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).id}`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json)
-        this.setState({ data: json });
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        this.setState({ isLoading: false });
-    })
-  }
-
   openLogDive = () => {
-    this.props.setDiveSite(this.state.data.diveSite)
     this.props.setLogDiveMode(true);
     console.log("openLogDive")
   }
 
   openAddReview = () => {
-    this.props.setDiveSite(this.state.data.diveSite)
     this.props.setAddReviewMode(true);
     console.log("openAddReview")
   }
@@ -59,14 +46,14 @@ class DiveSiteDetail extends Component {
   render() {
     return (
       <View>
-        <DiveSiteDetailHeader diveSite={this.state.data.diveSite} />
+        <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.state.data.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} />
-          <DiveSiteDetailSidebar diveSite={this.state.data.diveSite} openLogDive={this.openLogDive} />
+          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} />
+          <DiveSiteDetailSidebar diveSite={this.props.diveSite} openLogDive={this.openLogDive} />
         </View>
 
-        <DiveSiteDetailMap diveSite={this.state.data.diveSite} style={this.props.style} />
+        <DiveSiteDetailMap diveSite={this.props.diveSite} style={this.props.style} />
       </View>
     )
   }
@@ -98,10 +85,11 @@ function DiveSiteDetailBody({ diveSite, reload, openAddReview }) {
 }
 
 const mapStateToProps = state => {
-  return {  };
+  const diveSite = getDiveSite(state);
+  return { diveSite };
 };
 
 export default connect(
   mapStateToProps,
-  { setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite }
+  { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite }
 )(DiveSiteDetail);

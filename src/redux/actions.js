@@ -148,6 +148,24 @@ export function fetchTopDestinations() {
     }
 }
 
+export function fetchDiveSite(id) {
+  return function(dispatch, getState) {
+
+    console.log(id)
+
+    return fetch(BaseURL() + '/api/dive-sites/details/' + id)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        dispatch(setDiveSite(json.diveSite));
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        // this.setState({ isLoading: false });
+    })
+  }
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }

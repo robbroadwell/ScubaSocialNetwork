@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 import ReactGA from 'react-ga';
 import FullScreenConfetti from '../../../utility/FullScreenConfetti';
+import BaseURL from '../../../utility/BaseURL';
+const axios = require('axios')
 
 class AddReview extends Component {
   constructor(props) {
@@ -41,7 +43,26 @@ class AddReview extends Component {
       comment: this.state.review,
       timestamp: Date.now()
     }
-    this.props.addReview(review);
+
+    const {diveSite} = this.props
+
+    if (this.props.user.token) {
+      axios({
+        method: 'put',
+        url: BaseURL() + '/api/dive-sites/reviews/',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'JWT ' + this.props.user.token
+        },
+        data: {
+          id: diveSite._id,
+          review: review
+        }
+  
+      }).then(function (response) {
+        this.props.close()
+      }.bind(this));
+    }
   }
 
   render() {
