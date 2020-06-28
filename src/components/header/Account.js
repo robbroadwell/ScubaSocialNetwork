@@ -10,9 +10,20 @@ import BaseURL from '../../utility/BaseURL';
 const axios = require('axios')
 
 class Account extends Component {
+
+  componentWillMount() {
+    document.body.style.overflow = "hidden"
+  }
+
   onPressLogout = () => {
     this.props.setUser([]);
     this.props.setAccountMode(false);
+    document.body.style.overflow = "visible"
+  }
+
+  onPressClose = () => {
+    document.body.style.overflow = "visible"
+    this.props.setAccountMode(false)
   }
 
   render() {
@@ -26,7 +37,7 @@ class Account extends Component {
 
         <View style={{alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: 'black', padding: 50, alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.setAccountMode(false)} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
+            <TouchableOpacity onPress={this.onPressClose} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
 

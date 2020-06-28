@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import List from '../list/List';
+import List from '../../dive-sites/List';
 import BaseURL from '../../../utility/BaseURL';
 
 import debounce from '../../../utility/debounce';

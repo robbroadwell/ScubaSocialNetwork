@@ -6,7 +6,6 @@ import AccountRoot from './header/AccountRoot';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
-import Explore from './explore/Explore';
 import Destinations from './destinations/Destinations';
 import DestinationDetail from './destinations/DestinationDetail';
 import DiveSites from './dive-sites/DiveSites';
@@ -38,7 +37,6 @@ class RootComponent extends Component {
           {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
           <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
-          <Route path='/explore' exact={true} render={(props) => <Explore {...props} style={this.props.style} diveSites={this.props.diveSites} />} />
           <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
           <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
           <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />

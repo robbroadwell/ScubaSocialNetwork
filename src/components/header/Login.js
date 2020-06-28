@@ -19,6 +19,10 @@ class Login extends Component {
     };
   }
 
+  componentWillMount() {
+    document.body.style.overflow = "hidden"
+  }
+
   onChangeTextUsername = input => {
     this.setState({ username: input });
   };
@@ -39,6 +43,7 @@ class Login extends Component {
         this.props.setUser(response.data.user);
         console.log(response.data.user)
         this.props.setLoginMode(false);
+        document.body.style.overflow = "visible"
         this.setState({ loading: false });
       }.bind(this)
       );
@@ -48,6 +53,11 @@ class Login extends Component {
   onPressRegister = () => {
     this.props.setLoginMode(false);
     this.props.setRegisterMode(true);
+  }
+
+  onPressClose = () => {
+    document.body.style.overflow = "visible"
+    this.props.setLoginMode(false)
   }
 
   render() {
@@ -61,7 +71,7 @@ class Login extends Component {
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.setLoginMode(false)} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
+            <TouchableOpacity onPress={this.onPressClose} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
             <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />

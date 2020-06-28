@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import DiveSiteReviews from './DiveSiteReviews';
-import BaseHoverableView from '../../buttons/BaseHoverableView';
+import DiveSiteReviews from '../explore/list/DiveSiteReviews';
+import BaseHoverableView from '../buttons/BaseHoverableView';
 
 class DiveSiteCard extends Component {
 
@@ -19,6 +19,7 @@ class DiveSiteCard extends Component {
                   <Text style={{fontSize: 16, fontWeight: '500'}}>{this.props.site.name}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 2}}>
                     {this.props.country ? 
+                    
                       <Text style={{fontSize: 13}}>{ Number((this.props.site.location.coordinates[1]).toFixed(8))}, {Number((this.props.site.location.coordinates[0]).toFixed(8))}</Text>
                     : 
                       <Text style={{fontSize: 13}}>{this.props.site.destination.name} </Text>

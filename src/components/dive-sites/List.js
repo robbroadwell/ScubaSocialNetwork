@@ -34,7 +34,7 @@ class List extends Component {
       <View style={{position: 'absolute', height: '100%', width: '100%'}}>
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{position: 'absolute', right: 0, top: 0, height: '100%', flexDirection: 'row'}}>
-          <ExpandToggleButton icon={require('../../../assets/close.png')} onPress={this.toggleExpanded} style={this.props.style} />
+          <ExpandToggleButton icon={require('../../assets/close.png')} onPress={this.toggleExpanded} style={this.props.style} />
           <ResultsView diveSites={this.props.diveSites} style={this.props.style} history={this.props.history} country={this.props.country}  />
         </View>
       </View>
