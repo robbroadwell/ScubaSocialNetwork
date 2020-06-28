@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { StickyContainer, Sticky } from 'react-sticky';
 import DiveSiteMap from './DiveSiteMap';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
+import DiveSiteDetailOverlays from './DiveSiteDetailOverlays';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
 import DiveSitePhotos from './DiveSitePhotos';
 import qs from 'qs';
@@ -11,7 +12,6 @@ import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
 import LogButton from '../buttons/LogButton';
 import EditButton from '../buttons/EditButton';
-import ReactGA from 'react-ga';
 
 class DiveSiteDetail extends Component {
   constructor(props) {
@@ -74,45 +74,7 @@ class DiveSiteDetail extends Component {
         </View>
 
         <DiveSiteDetailMap diveSite={this.state.data.diveSite} style={this.props.style} />
-        <DiveSiteDetailOverlays isLogDive={this.state.isLogDive} isAddReview={this.state.isAddReview} close={this.closeModals} />
-      </View>
-    )
-  }
-}
-
-class DiveSiteDetailOverlays extends Component {
-
-  componentWillMount() {
-    if (process.env.NODE_ENV !== "development") {
-      if (this.props.isLogDive) {
-        ReactGA.pageview('/log-dive/123');
-      }
-      if (this.props.isAddReview) {
-        ReactGA.pageview('/convert-to-event/123');
-      }
-    }
-  }
-  
-  render() {
-    const { isLogDive, isAddReview} = this.props
-
-    if (!isLogDive && !isAddReview) {
-      return <View />
-    }
-
-    document.body.style.overflow = "hidden"
-
-    return (
-      <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
-        <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
-        <View style={{alignItems: 'center', marginBottom: 10}}>
-          <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.close()} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
-              <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
-            </TouchableOpacity>
-  
-          </View>
-        </View>
+        <DiveSiteDetailOverlays diveSite={this.state.data.diveSite} isLogDive={this.state.isLogDive} isAddReview={this.state.isAddReview} close={this.closeModals} reload={this.fetchDiveSite} />
       </View>
     )
   }

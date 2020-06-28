@@ -2,43 +2,12 @@ import React, {Component} from 'react';
 import { View, Text } from 'react-native';
 import Ratings from 'react-ratings-declarative';
 import AddButton from '../buttons/AddButton';
-import BaseURL from '../../utility/BaseURL';
 import { getUser } from '../../redux/selectors';
 import { connect } from "react-redux";
 
-const axios = require('axios')
 
 class DiveSiteReviewsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        isReview: false
-    };
-  }
 
-  addReview = (review) => {
-    const {diveSite} = this.props
-
-    if (this.props.user.token) {
-      axios({
-        method: 'put',
-        url: BaseURL() + '/api/dive-sites/reviews/',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'JWT ' + this.props.user.token
-        },
-        data: {
-          id: diveSite._id,
-          review: review
-        }
-  
-      }).then(function (response) {
-        this.toggleReview();
-        this.props.reload()
-      }.bind(this));
-    }
-  }
-  
   render() {
     const { diveSite } = this.props 
 
