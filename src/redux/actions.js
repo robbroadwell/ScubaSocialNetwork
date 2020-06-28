@@ -15,7 +15,11 @@ export const SET_ADD_DIVE_SITE_MODE = 'SET_ADD_DIVE_SITE_MODE'
 export const SET_ACCOUNT_MODE = 'SET_ACCOUNT_MODE'
 export const SET_LOGIN_MODE = 'SET_LOGIN_MODE'
 export const SET_REGISTER_MODE = 'SET_REGISTER_MODE'
+export const SET_LOG_DIVE_MODE = 'SET_LOG_DIVE_MODE'
+export const SET_ADD_PHOTO_MODE = 'SET_ADD_PHOTO_MODE'
+export const SET_ADD_REVIEW_MODE = 'SET_ADD_REVIEW_MODE'
 export const SET_ALERT_MODE = 'SET_ALERT_MODE'
+export const SET_DIVE_SITE = 'SET_DIVE_SITE'
 
 /*
  * action creators
@@ -62,8 +66,24 @@ export function setRegisterMode(enabled) {
   return { type: SET_REGISTER_MODE, enabled}
 }
 
+export function setLogDiveMode(enabled) {
+  return { type: SET_LOG_DIVE_MODE, enabled}
+}
+
+export function setAddPhotoMode(enabled) {
+  return { type: SET_ADD_PHOTO_MODE, enabled}
+}
+
+export function setAddReviewMode(enabled) {
+  return { type: SET_ADD_REVIEW_MODE, enabled}
+}
+
 export function setAlertMode(enabled) {
   return { type: SET_ALERT_MODE, enabled}
+}
+
+export function setDiveSite(site) {
+  return { type: SET_DIVE_SITE, site}
 }
 
 export function fetchDestinations() {

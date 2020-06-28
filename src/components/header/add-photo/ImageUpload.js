@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import DragAndDrop from '../images/DragAndDrop'
-import Loading from './Loading';
-import BaseURL from '../../utility/BaseURL';
+import DragAndDrop from './DragAndDrop'
+import Loading from '../../misc/Loading';
+import BaseURL from '../../../utility/BaseURL';
 
 import { connect } from "react-redux";
-import { getUser } from '../../redux/selectors';
+import { getUser } from '../../../redux/selectors';
 
 const axios = require('axios')
 
@@ -127,7 +127,7 @@ class ImageUpload extends Component {
         <View style={{flex: 1}}>
           <DragAndDrop handleDrop={this.handleDrop}>
             <View style={{position: 'absolute', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
-              <Image style={{width: 50, height: 50, tintColor: 'black'}} source={require('../../assets/add_photo.svg')} />
+              <Image style={{width: 50, height: 50, tintColor: 'black'}} source={require('../../../assets/add_photo.svg')} />
               <Text style={{textAlign: 'center', marginTop: 10, color: 'black', fontSize: 16}}>Drag Photo Here</Text>
             </View>
           </DragAndDrop>
@@ -147,7 +147,7 @@ class ImageUpload extends Component {
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={this.toggleCheckmark} activeOpacity={1.0} style={{marginHorizontal: 5}} >
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: 'white', borderWidth: 1}} />
-                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
+                {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../../assets/checkmark.svg')} />}
               </TouchableOpacity>
                 <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>DivingCollective's Conditions of Use.</span></TouchableOpacity></Text>
             </View>

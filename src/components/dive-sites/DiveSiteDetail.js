@@ -3,20 +3,20 @@ import { View, Text } from 'react-native';
 import DiveSiteDetailMap from './DiveSiteDetailMap';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteDetailSidebar from './DiveSiteDetailSidebar';
-import DiveSiteDetailOverlays from './DiveSiteDetailOverlays';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
 import DiveSitePhotos from './DiveSitePhotos';
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import EditButton from '../buttons/EditButton';
 
+import { connect } from "react-redux";
+import { setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite } from '../../redux/actions';
+
 class DiveSiteDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
         isLoading: true,
-        isLogDive: false,
-        isAddReview: false,
         data: [],
     };
   }
@@ -45,19 +45,15 @@ class DiveSiteDetail extends Component {
   }
 
   openLogDive = () => {
-    this.setState({ isLogDive: true })
+    this.props.setDiveSite(this.state.data.diveSite)
+    this.props.setLogDiveMode(true);
     console.log("openLogDive")
   }
 
   openAddReview = () => {
-    this.setState({ isAddReview: true })
+    this.props.setDiveSite(this.state.data.diveSite)
+    this.props.setAddReviewMode(true);
     console.log("openAddReview")
-  }
-
-  closeModals = () => {
-    this.setState({ isLogDive: false, isAddReview: false })
-    document.body.style.overflow = "visible"
-    console.log("closeModals")
   }
 
   render() {
@@ -71,7 +67,6 @@ class DiveSiteDetail extends Component {
         </View>
 
         <DiveSiteDetailMap diveSite={this.state.data.diveSite} style={this.props.style} />
-        <DiveSiteDetailOverlays diveSite={this.state.data.diveSite} isLogDive={this.state.isLogDive} isAddReview={this.state.isAddReview} close={this.closeModals} reload={this.fetchDiveSite} />
       </View>
     )
   }
@@ -102,4 +97,11 @@ function DiveSiteDetailBody({ diveSite, reload, openAddReview }) {
   )
 }
 
-export default DiveSiteDetail;
+const mapStateToProps = state => {
+  return {  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite }
+)(DiveSiteDetail);

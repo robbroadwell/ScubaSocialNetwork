@@ -1,0 +1,59 @@
+import React, { Component } from 'react';
+import { View } from 'react-native';
+
+import { connect } from "react-redux";
+import { setLogDiveMode, setAddPhotoMode, setAddReviewMode } from '../../redux/actions';
+import { getLogDiveMode, getAddPhotoMode, getAddReviewMode, getDiveSite } from "../../redux/selectors";
+import { withRouter } from 'react-router-dom'
+
+import LogDive from './log-dive/LogDive';
+import AddReview from './add-review/AddReview';
+import AddPhoto from './add-photo/AddPhoto';
+
+class OverlayActionsRoot extends Component {
+  closeOverlays = () => {
+    this.props.setLogDiveMode(false)
+    this.props.setAddReviewMode(false)
+    this.props.setAddPhotoMode(false)
+    document.body.style.overflow = "visible"
+  }
+
+  render() {
+
+    console.log(this.props.diveSite)
+
+    console.log("logDiveMode:" + this.props.logDiveMode)
+    console.log("addPhotoMode:" + this.props.addPhotoMode)
+    console.log("addReviewMode:" + this.props.addReviewMode)
+
+    if (this.props.logDiveMode) {
+      window.scrollTo(0, 0) // figure out another way to do this
+      return <LogDive diveSite={this.props.diveSite} close={this.closeOverlays} />
+    }
+
+    if (this.props.addReviewMode) {
+      window.scrollTo(0, 0)
+      return <AddReview diveSite={this.props.diveSite} close={this.closeOverlays} />
+    }
+
+    if (this.props.addPhotoMode) {
+      window.scrollTo(0, 0)
+      return <AddPhoto diveSite={this.props.diveSite} close={this.closeOverlays} />
+    }
+
+    return <View></View>
+  }
+}
+
+const mapStateToProps = state => {
+  const logDiveMode = getLogDiveMode(state);
+  const addPhotoMode = getAddPhotoMode(state);
+  const addReviewMode = getAddReviewMode(state);
+  const diveSite = getDiveSite(state);
+  return { logDiveMode, addPhotoMode, addReviewMode, diveSite };
+};
+
+  export default connect(
+    mapStateToProps,
+    { setLogDiveMode, setAddPhotoMode, setAddReviewMode }
+  )(OverlayActionsRoot);

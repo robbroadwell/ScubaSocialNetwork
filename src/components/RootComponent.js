@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 
 import Alert from './header/Alert';
 import AccountRoot from './header/AccountRoot';
+import OverlayActionsRoot from './header/OverlayActionsRoot';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Home from './home/Home';
@@ -48,6 +49,7 @@ class RootComponent extends Component {
           <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
           <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
           <Route path='/' render={(props) => <AccountRoot {...props} style={this.props.style} />} />
+          <Route path='/' render={(props) => <OverlayActionsRoot {...props} style={this.props.style} />} />
         </ScrollToTop>
       </Router>
       

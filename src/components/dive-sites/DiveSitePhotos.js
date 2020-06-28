@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import ImageUpload from '../misc/ImageUpload';
+// import ImageUpload from '../misc/ImageUpload';
 import ReactPlaceholder from 'react-placeholder';
 
 class DiveSitePhotos extends Component {
@@ -33,7 +33,7 @@ class DiveSitePhotos extends Component {
     if (!this.props.diveSite.photos || this.props.diveSite.photos.length === 0) {
       return (
         <View style={{height: 400, borderWidth: 1, borderColor: "#DDDDDD"}}>
-          <ImageUpload diveSite={this.props.diveSite} reload={(this.props.reload)} />
+          {/* <ImageUpload diveSite={this.props.diveSite} reload={(this.props.reload)} /> */}
         </View>
       )
     } 
@@ -77,7 +77,7 @@ class PhotoAdd extends Component {
         </TouchableOpacity>
         {!this.state.addPopover ? <View /> : 
           <View style={{position: 'absolute', top: 0, right: 0, width: 400, height: 300, backgroundColor: 'white'}}>
-            <ImageUpload diveSite={this.props.diveSite} reload={(this.reload)} />
+            {/* <ImageUpload diveSite={this.props.diveSite} reload={(this.reload)} /> */}
             <TouchableOpacity onPress={() => this.setState({ addPopover: false })} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'black'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
