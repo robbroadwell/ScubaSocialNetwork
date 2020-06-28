@@ -4,6 +4,9 @@ import DiveSiteDetailMap from './DiveSiteDetailMap';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteDetailSidebar from './DiveSiteDetailSidebar';
 import DiveSitePhotos from './DiveSitePhotos';
+import LogButton from '../buttons/LogButton';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import EditButton from '../buttons/EditButton';
@@ -59,7 +62,7 @@ class DiveSiteDetail extends Component {
         <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openAddPhoto={this.openAddPhoto} />
+          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} />
           <DiveSiteDetailSidebar diveSite={this.props.diveSite} openAddReview={this.openAddReview} />
         </View>
 
@@ -68,7 +71,6 @@ class DiveSiteDetail extends Component {
     )
   }
 }
-
 
 function DiveSiteDescription({ diveSite }) {
   return (
@@ -84,13 +86,27 @@ function DiveSiteDescription({ diveSite }) {
   )
 }
 
-function DiveSiteDetailBody({ diveSite, reload, openAddPhoto }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} />
+      <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
       <View style={{flex: 1}}></View>
       <DiveSiteLocation diveSite={diveSite} />
+    </View>
+  )
+}
+
+function DiveSiteAverages({ diveSite, openLogDive }) {
+  return (
+    <View style={{flexDirection: 'row', flexWrap: 'wrap', marginTop: 20}}>
+      <VisibilityCard diveSite={diveSite} openLogDive={openLogDive} />
+      <DepthCard diveSite={diveSite} openLogDive={openLogDive} />
+      <WaterTemperatureCard diveSite={diveSite} openLogDive={openLogDive} />
+      <CurrentsCard diveSite={diveSite} openLogDive={openLogDive} />
+      <AccessCard diveSite={diveSite} />
+      <DiveTypeCard diveSite={diveSite} />
     </View>
   )
 }
@@ -116,6 +132,125 @@ function DiveSiteLocation({diveSite}) {
       </View>
     </View>
 
+  )
+}
+
+function VisibilityCard({ diveSite, openLogDive }) {
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
+          <View style={{flex: 1}} />
+          <LogButton onPress={openLogDive} />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+          <Text style={{fontWeight: '600'}}>100+ meters</Text>
+          <View style={{flex: 1}} />
+          <Text>See history</Text>
+        </View>
+      </ReactPlaceholder>
+    </View>
+  )
+}
+
+function DepthCard({ diveSite, openLogDive }){
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Depth</Text>
+          <View style={{flex: 1}} />
+          <LogButton onPress={openLogDive} />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+          <View style={{flexDirection: 'column'}}>
+            <Text style={{fontWeight: '600'}}>Average: 44 ft</Text>
+            <Text style={{fontWeight: '600'}}>Max: 78 ft</Text>
+          </View>
+          <View style={{flex: 1}} />
+          <Text>See history</Text>
+        </View>
+      </ReactPlaceholder>
+    </View>
+  )
+}
+
+function WaterTemperatureCard({ diveSite, openLogDive }) {
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Water Temperature</Text>
+          <View style={{flex: 1}} />
+          <LogButton onPress={openLogDive} />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+          <Text style={{fontWeight: '600'}}>80°F</Text>
+          <View style={{flex: 1}} />
+          <Text>See history</Text>
+        </View>
+      </ReactPlaceholder>
+    </View>
+  )
+}
+
+function CurrentsCard({ diveSite, openLogDive }) {
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Currents</Text>
+          <View style={{flex: 1}} />
+          <LogButton onPress={openLogDive} />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Image style={{width: 50, height: 30, marginTop: 0, marginLeft: 10, marginRight: 10}} source={require('../../assets/dial.svg')} />
+          <Text style={{fontWeight: '600'}}>None</Text>
+          <View style={{flex: 1}} />
+          <Text>See history</Text>
+        </View>
+      </ReactPlaceholder>
+    </View>
+  )
+}
+
+function AccessCard({ diveSite }) {
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 60}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Access</Text>
+          <View style={{flex: 1}} />
+          <EditButton />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Text style={{fontWeight: '600'}}>Boat, Liveaboard</Text>
+          <View style={{flex: 1}} />
+        </View>
+      </ReactPlaceholder>
+    </View>
+  )
+}
+
+function DiveTypeCard({ diveSite }) {
+  return (
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+      <ReactPlaceholder type='rect' style={{height: 60}} ready={diveSite} showLoadingAnimation={true}>
+        <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>Dive Type</Text>
+          <View style={{flex: 1}} />
+          <EditButton />
+        </View>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginBottom: 10}}>
+          <Text style={{fontWeight: '600'}}>Shipwreck</Text>
+          <View style={{flex: 1}} />
+        </View>
+      </ReactPlaceholder>
+    </View>
   )
 }
 
