@@ -55,6 +55,10 @@ class ImageUpload extends Component {
     }));
   }
 
+  cancelUpload = () => {
+    this.setState({ files: [], previews: [] })
+  }
+
   upload = () => {
     console.log(this.state.files[0])
     console.log(this.state.previews[0])
@@ -153,7 +157,7 @@ class ImageUpload extends Component {
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.setState({ files: []})} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+              <TouchableOpacity onPress={this.cancelUpload} activeOpacity={1.0} style={{marginHorizontal: 5}} >
                 <Text style={{textAlign: 'center', marginVertical: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity disabled={!this.state.checkmark} onPress={() => this.upload()} activeOpacity={1.0} style={{marginHorizontal: 5}} >

@@ -74,7 +74,7 @@ class DiveSiteMap extends Component {
   }
 
   render() {
-
+    this.createMarkers()
     return (
       <View style={{flexDirection: "row", flex: 1}}>
         <View style={{flex: 1}}>
