@@ -99,7 +99,7 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
         <Text style={{fontSize: 18, fontWeight: '600'}}>Details</Text>
         <LogButton onPress={openLogDive} />
       </View>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', marginBottom: 40}}>
+      <View style={{flexDirection: 'row', marginBottom: 40, marginHorizontal: -5}}>
         <DetailCard name={"Visibility"} value={"100+ meters"} diveSite={diveSite} />
         <DetailCard name={"Depth"} value={"70-80 meters"} diveSite={diveSite} />
         <DetailCard name={"Water Temperature"} value={"80°F"} diveSite={diveSite} />
@@ -141,7 +141,7 @@ function DiveSiteLocation({diveSite}) {
 
 function DetailCard({ name, value, diveSite }) {
   return (
-    <View style={{flexBasis: '25%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
+    <View style={{flex: 1, marginHorizontal: 5, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 120}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: 16, fontWeight: '600'}}>{name}</Text>

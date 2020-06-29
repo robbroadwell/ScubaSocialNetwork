@@ -23,7 +23,7 @@ class DiveSiteReviewsList extends Component {
           <View key={i} style={{marginBottom: 10, padding: 15, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1}}>
 
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text style={{fontSize: 18, marginVertical: 5}}>{review.title}</Text>
+              <Text style={{fontWeight: '600', fontSize: 18, marginVertical: 5}}>{review.title}</Text>
               <Ratings
                 rating={review.rating}
                 widgetRatedColors={"#DD0000"}
@@ -44,7 +44,7 @@ class DiveSiteReviewsList extends Component {
                 <Image style={{height: 28, width: 18, marginRight: 2, tintColor: 'white'}} source={require('../../assets/d_logo.svg')} />
               </View>
               <View style={{marginHorizontal: 10}}>
-                <Text>{review.user.name}</Text> 
+                <Text style={{fontWeight: '600'}}>{review.user.name}</Text> 
                 <Text>{new Date(review.timestamp).toLocaleDateString("en-US", options)}</Text> 
               </View>
             </View>
