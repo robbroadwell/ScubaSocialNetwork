@@ -1,4 +1,5 @@
 import BaseURL from '../utility/BaseURL';
+import shuffle from '../utility/shuffle';
 import { getTopDestinations } from './selectors';
 
 /*
@@ -89,9 +90,9 @@ export function setDiveSite(site) {
 export function fetchDestinations() {
   return function(dispatch, getState) {
 
-    // if (getState().destinations.length !== 0) {
-    //   return
-    // }
+    if (getState().destinations.length !== 0) {
+      return
+    }
 
     return fetch(BaseURL() + '/api/destinations')
       .then((response) => response.json())
@@ -111,33 +112,24 @@ export function fetchTopDestinations() {
 
     console.log(process.env.NODE_ENV === "development")
 
-    // if (getState().topDestinations.length !== 0) {
-    //   return
-    // }
+    if (getState().topDestinations.length !== 0) {
+      return
+    }
 
     return fetch(BaseURL() + '/api/destinations/top')
       .then((response) => response.json())
       .then((json) => {
-        console.log(json)
+
+        shuffle(json)
         dispatch(setTopDestinations(json));
 
-        var i = 0;
         var max = 4
-        var usedIndexes = []
         var featured = []
 
-        while (i < max) {
-          var random = getRandomInt(json.length)
-          if (usedIndexes.includes(random)) {
-            continue // generate \(max) unique featured destinations
-          }
-
-          featured.push(json[random])
-          usedIndexes.push(random)
-          i += 1
+        for (var i = 0; i < max; i++) {
+          featured.push(json[i])
         }
 
-        console.log(featured)
         dispatch(setFeaturedDestinations(featured));
 
       })
