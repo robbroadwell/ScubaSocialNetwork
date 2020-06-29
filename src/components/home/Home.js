@@ -11,11 +11,6 @@ import PrimaryButton from '../buttons/PrimaryButton';
 
 class Home extends Component {
 
-  componentWillMount() {
-    this.props.fetchDestinations()
-    this.props.fetchTopDestinations()
-  }
-
   navigateDestination = (destination) => {
     this.props.history.push(`/destinations/` + destination._id)
   }

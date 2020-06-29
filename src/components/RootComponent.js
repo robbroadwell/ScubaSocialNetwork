@@ -18,12 +18,20 @@ import Animals from './animals/Animals';
 import Leaderboard from './leaders/Leaderboard';
 import ScrollToTop from '../utility/ScrollToTop';
 
+import { fetchDestinations, fetchTopDestinations } from "../redux/actions";
+import { connect } from "react-redux";
+
 import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom";
 
 class RootComponent extends Component {
+
+  componentWillMount() {
+    this.props.fetchDestinations()
+    this.props.fetchTopDestinations()
+  }
 
   render() {
     return (
@@ -57,4 +65,11 @@ class RootComponent extends Component {
   }
 }
 
-export default RootComponent;
+const mapStateToProps = state => {
+  return {  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchDestinations, fetchTopDestinations }
+)(RootComponent);
