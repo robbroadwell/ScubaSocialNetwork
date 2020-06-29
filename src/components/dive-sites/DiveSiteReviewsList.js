@@ -40,9 +40,9 @@ class DiveSiteReviewsList extends Component {
             <Text style={{fontSize: 14, marginVertical: 20, maxWidth: 500}}>{review.comment}</Text>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <View style={{flex: 1}} />
-              <View style={{width: 40, height: 40, borderRadius: 20, borderColor: 'grey', borderWidth: 1}}>
-
-              </View>
+              {/* <View style={{width: 40, height: 40, borderRadius: 20, borderColor: 'grey', borderWidth: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Image style={{height: 25, width: 15, tintColor: 'black'}} source={require('../../assets/d_logo.svg')} />
+              </View> */}
               <View style={{marginHorizontal: 15}}>
                 <Text>{review.user.name}</Text> 
                 <Text>{new Date(review.timestamp).toLocaleDateString("en-US", options)}</Text> 
