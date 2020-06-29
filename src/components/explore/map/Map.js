@@ -101,7 +101,7 @@ class Map extends Component {
         [SWCorner.lng(), NECorner.lat()]
       ]
 
-      if (this.props.country && this.props.country.geojson && !this.isPolygonLoaded) {
+      if (this.props.country && !this.isPolygonLoaded) {
         return  // wait until polygon loads to perfom search
       }
 
@@ -142,77 +142,73 @@ class Map extends Component {
 
   createPolygon = () => {
 
-    if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country ) {
-      if (this.props.country.geojson) {
-        window.google.maps.Polygon.prototype.getBounds = function() {
-          var bounds = new window.google.maps.LatLngBounds();
-          var paths = this.getPaths();
-          var path;        
-          for (var i = 0; i < paths.getLength(); i++) {
-              path = paths.getAt(i);
-              for (var ii = 0; ii < path.getLength(); ii++) {
-                  bounds.extend(path.getAt(ii));
-              }
-          }
-          return bounds;
-        }
-  
-        let allCoordinates = this.props.country.geojson.geometry.coordinates;
-  
-        var latMin;
-        var latMax;
-        var lngMin;
-        var lngMax;
-        
-        for(var i=0; i < allCoordinates.length; i++) {
-          let coordinates = allCoordinates[i][0]
-          let array = []
-          coordinates.map(coordinate => array.push({lat: coordinate[1], lng: coordinate[0]}))
-          
-          let polygon = new window.google.maps.Polygon({
-            paths: array,
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.1
-          })
-  
-          polygon.setMap(this.googleMap)
-          
-          let polygonBounds = polygon.getBounds()
-          let northeast = polygonBounds.getNorthEast()
-          let southwest = polygonBounds.getSouthWest()
-          
-          latMin = (!latMin || latMin > northeast.lat()) ? northeast.lat() : latMin
-          latMin = (!latMin || latMin > southwest.lat()) ? southwest.lat() : latMin
-          latMax = (!latMax || latMax < northeast.lat()) ? northeast.lat() : latMax
-          latMax = (!latMax || latMax < southwest.lat()) ? southwest.lat() : latMax
-          
-          lngMin = (!lngMin || lngMin > northeast.lng()) ? northeast.lng() : lngMin
-          lngMin = (!lngMin || lngMin > southwest.lng()) ? southwest.lng() : lngMin
-          lngMax = (!lngMax || lngMax < northeast.lng()) ? northeast.lng() : lngMax
-          lngMax = (!lngMax || lngMax < southwest.lng()) ? southwest.lng() : lngMax        
-        }
-  
+    if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country && this.props.country.geojson) {
+
+      window.google.maps.Polygon.prototype.getBounds = function() {
         var bounds = new window.google.maps.LatLngBounds();
-        var coordinates = [
-          new window.google.maps.LatLng(latMin, lngMin),
-          new window.google.maps.LatLng(latMin, lngMax),
-          new window.google.maps.LatLng(latMax, lngMax),
-          new window.google.maps.LatLng(latMax, lngMin),
-        ]
-  
-        for (i = 0; i < coordinates.length; i++) {
-          bounds.extend(coordinates[i]);
+        var paths = this.getPaths();
+        var path;        
+        for (var i = 0; i < paths.getLength(); i++) {
+            path = paths.getAt(i);
+            for (var ii = 0; ii < path.getLength(); ii++) {
+                bounds.extend(path.getAt(ii));
+            }
         }
-  
-        this.googleMap.fitBounds(bounds);
-        this.isPolygonLoaded = true
-      } else {
-        // TODO: handle scenarios where we don't have a polygon
-        console.log(this.props.country)
+        return bounds;
       }
+
+      let allCoordinates = this.props.country.geojson.geometry.coordinates;
+
+      var latMin;
+      var latMax;
+      var lngMin;
+      var lngMax;
+      
+      for(var i=0; i < allCoordinates.length; i++) {
+        let coordinates = allCoordinates[i][0]
+        let array = []
+        coordinates.map(coordinate => array.push({lat: coordinate[1], lng: coordinate[0]}))
+        
+        let polygon = new window.google.maps.Polygon({
+          paths: array,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.1
+        })
+
+        polygon.setMap(this.googleMap)
+        
+        let polygonBounds = polygon.getBounds()
+        let northeast = polygonBounds.getNorthEast()
+        let southwest = polygonBounds.getSouthWest()
+        
+        latMin = (!latMin || latMin > northeast.lat()) ? northeast.lat() : latMin
+        latMin = (!latMin || latMin > southwest.lat()) ? southwest.lat() : latMin
+        latMax = (!latMax || latMax < northeast.lat()) ? northeast.lat() : latMax
+        latMax = (!latMax || latMax < southwest.lat()) ? southwest.lat() : latMax
+        
+        lngMin = (!lngMin || lngMin > northeast.lng()) ? northeast.lng() : lngMin
+        lngMin = (!lngMin || lngMin > southwest.lng()) ? southwest.lng() : lngMin
+        lngMax = (!lngMax || lngMax < northeast.lng()) ? northeast.lng() : lngMax
+        lngMax = (!lngMax || lngMax < southwest.lng()) ? southwest.lng() : lngMax        
+      }
+
+      var bounds = new window.google.maps.LatLngBounds();
+      var coordinates = [
+        new window.google.maps.LatLng(latMin, lngMin),
+        new window.google.maps.LatLng(latMin, lngMax),
+        new window.google.maps.LatLng(latMax, lngMax),
+        new window.google.maps.LatLng(latMax, lngMin),
+      ]
+
+      for (i = 0; i < coordinates.length; i++) {
+        bounds.extend(coordinates[i]);
+      }
+
+      this.googleMap.fitBounds(bounds);
+      this.isPolygonLoaded = true
     }
   }
 
