@@ -31,7 +31,7 @@ class AddPhoto extends Component {
             <ImageUpload diveSite={this.props.diveSite} reload={(this.props.close)} />
 
             <TouchableOpacity onPress={this.props.close} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
-              <Image style={{width: 30, height: 30, tintColor: 'black'}} source={require('../../../assets/close.png')} />
+              <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../../assets/close.png')} />
             </TouchableOpacity>
           </View>
         </View>

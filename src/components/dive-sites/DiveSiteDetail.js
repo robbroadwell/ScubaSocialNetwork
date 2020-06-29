@@ -75,7 +75,7 @@ class DiveSiteDetail extends Component {
 function DiveSiteDescription({ diveSite }) {
   return (
     <View>
-      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 10, alignItems: 'center'}}>
+      <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
         <EditButton />
       </View>
@@ -100,7 +100,7 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive }) {
 
 function DiveSiteAverages({ diveSite, openLogDive }) {
   return (
-    <View style={{flexDirection: 'row', flexWrap: 'wrap', marginTop: 20}}>
+    <View style={{flexDirection: 'row', flexWrap: 'wrap', marginVertical: 40}}>
       <VisibilityCard diveSite={diveSite} openLogDive={openLogDive} />
       <DepthCard diveSite={diveSite} openLogDive={openLogDive} />
       <WaterTemperatureCard diveSite={diveSite} openLogDive={openLogDive} />
@@ -137,10 +137,10 @@ function DiveSiteLocation({diveSite}) {
 
 function VisibilityCard({ diveSite, openLogDive }) {
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Visibility</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Visibility</Text>
           <View style={{flex: 1}} />
           <LogButton onPress={openLogDive} />
         </View>
@@ -157,10 +157,10 @@ function VisibilityCard({ diveSite, openLogDive }) {
 
 function DepthCard({ diveSite, openLogDive }){
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, backgroundColor: '#FEFEFE', borderColor: '#EEEEEE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Depth</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Depth</Text>
           <View style={{flex: 1}} />
           <LogButton onPress={openLogDive} />
         </View>
@@ -180,10 +180,10 @@ function DepthCard({ diveSite, openLogDive }){
 
 function WaterTemperatureCard({ diveSite, openLogDive }) {
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Water Temperature</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Water Temperature</Text>
           <View style={{flex: 1}} />
           <LogButton onPress={openLogDive} />
         </View>
@@ -200,10 +200,10 @@ function WaterTemperatureCard({ diveSite, openLogDive }) {
 
 function CurrentsCard({ diveSite, openLogDive }) {
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 80}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Currents</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Currents</Text>
           <View style={{flex: 1}} />
           <LogButton onPress={openLogDive} />
         </View>
@@ -220,10 +220,10 @@ function CurrentsCard({ diveSite, openLogDive }) {
 
 function AccessCard({ diveSite }) {
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 60}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Access</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Access</Text>
           <View style={{flex: 1}} />
           <EditButton />
         </View>
@@ -238,10 +238,10 @@ function AccessCard({ diveSite }) {
 
 function DiveTypeCard({ diveSite }) {
   return (
-    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#DDDDDD', borderWidth: 1}}>
+    <View style={{flexBasis: '33.3%', marginBottom: 0, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
       <ReactPlaceholder type='rect' style={{height: 60}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{flexDirection: 'row', margin: 10, marginBottom: 3, alignItems: 'center'}}>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>Dive Type</Text>
+          <Text style={{fontSize: 16, fontWeight: '600'}}>Dive Type</Text>
           <View style={{flex: 1}} />
           <EditButton />
         </View>

@@ -126,9 +126,9 @@ class ImageUpload extends Component {
       return ( // ready for drop
         <View style={{position: 'absolute', height: '100%', width: '100%'}}>
           <DragAndDrop handleDrop={this.handleDrop}>
-            <View style={{position: 'absolute', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
-              <Image style={{width: 50, height: 50, tintColor: 'black'}} source={require('../../../assets/add_photo.svg')} />
-              <Text style={{textAlign: 'center', marginTop: 10, color: 'black', fontSize: 16}}>Drag Photo Here</Text>
+            <View style={{position: 'absolute', backgroundColor: 'black', height: '100%', width: '100%', alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20, justifyContent: 'center'}}>
+              <Image style={{width: 50, height: 50, tintColor: 'white'}} source={require('../../../assets/add_photo.svg')} />
+              <Text style={{textAlign: 'center', marginTop: 10, color: 'white', fontSize: 16}}>Drag Photo Here</Text>
             </View>
           </DragAndDrop>
         </View>
@@ -137,7 +137,7 @@ class ImageUpload extends Component {
 
     
     return (
-      <View style={{position: 'absolute', height: '100%', width: '100%'}}>
+      <View style={{position: 'absolute', height: '100%', width: '100%', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>
         
         <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={this.state.previews[this.state.selectedIndex]} />
         <View style={{flex: 1, justifyContent: 'flex-end'}}>
