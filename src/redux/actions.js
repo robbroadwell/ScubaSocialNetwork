@@ -111,9 +111,9 @@ export function fetchTopDestinations() {
 
     console.log(process.env.NODE_ENV === "development")
 
-    if (getState().topDestinations.length !== 0) {
-      return
-    }
+    // if (getState().topDestinations.length !== 0) {
+    //   return
+    // }
 
     return fetch(BaseURL() + '/api/destinations/top')
       .then((response) => response.json())
