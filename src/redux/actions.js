@@ -115,6 +115,7 @@ export function fetchTopDestinations() {
     // if (getState().topDestinations.length !== 0) {
     //   return
     // }
+    
 
     return fetch(BaseURL() + '/api/destinations/top')
       .then((response) => response.json())
