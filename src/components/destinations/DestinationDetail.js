@@ -26,7 +26,6 @@ class DestinationDetail extends Component {
   // }
 
   fetchDestination = () => {
-    console.log(this.props.match.params.id)
     fetch(BaseURL() + '/api/destinations/'+ this.props.match.params.id )
       .then((response) => response.json())
       .then((json) => {

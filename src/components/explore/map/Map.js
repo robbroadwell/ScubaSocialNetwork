@@ -64,7 +64,6 @@ class Map extends Component {
       window.document.body.appendChild(googleMapScript);
       googleMapScript.addEventListener("load", () => {
         this.googleMap = this.createGoogleMap();
-        console.log(this.googleMap)
         this.addBoundsListener();
       })
 

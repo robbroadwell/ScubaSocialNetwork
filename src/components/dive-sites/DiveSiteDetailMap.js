@@ -27,10 +27,12 @@ class DiveSiteMap extends Component {
       window.document.body.appendChild(googleMapScript);
       googleMapScript.addEventListener("load", () => {
         this.googleMap = this.createGoogleMap();
+        this.createMarkers()
       })
 
     } else {
       this.googleMap = this.createGoogleMap();
+      this.createMarkers()
     }
   }
 
@@ -49,6 +51,9 @@ class DiveSiteMap extends Component {
 
   createMarkers = () => {
     console.log(this.props.diveSite)
+    console.log(window.google)
+    console.log(this.googleMap)
+    console.log(this.markers)
     if (this.props.diveSite && window.google && this.googleMap) {
       const { diveSite } = this.props;
 
@@ -69,7 +74,6 @@ class DiveSiteMap extends Component {
   }
 
   render() {
-    this.createMarkers()
 
     return (
       <View style={{flexDirection: "row", flex: 1}}>
@@ -86,7 +90,6 @@ class DiveSiteMap extends Component {
 }
 
 function DiveSiteDetailMap({ style, diveSite }) {
-  console.log(diveSite)
   return (
     <View>
       <View style={{width: '100%', height: 300}}>

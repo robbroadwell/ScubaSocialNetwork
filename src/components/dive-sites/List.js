@@ -43,7 +43,6 @@ class List extends Component {
 }
 
 function ResultsView({ diveSites, style, history, country }) {
-  console.log(country)
   return (
     <View style={{backgroundColor: style.colors.secondary, width: 350}}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>

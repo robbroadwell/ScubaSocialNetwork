@@ -21,11 +21,6 @@ class OverlayActionsRoot extends Component {
 
   render() {
 
-    console.log(this.props.diveSite)
-    console.log("logDiveMode:" + this.props.logDiveMode)
-    console.log("addPhotoMode:" + this.props.addPhotoMode)
-    console.log("addReviewMode:" + this.props.addReviewMode)
-
     if (this.props.logDiveMode) {
       window.scrollTo(0, 0) // figure out another way to do this
       return <LogDive diveSite={this.props.diveSite} user={this.props.user} close={this.closeOverlays} />

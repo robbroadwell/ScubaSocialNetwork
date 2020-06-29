@@ -12,10 +12,6 @@ import Register from './Register';
 class AccountRoot extends Component {
   render() {
 
-    console.log("accountMode:" + this.props.accountMode)
-    console.log("loginMode:" + this.props.loginMode)
-    console.log("registerMode:" + this.props.registerMode)
-
     if (this.props.accountMode) {
       return <Account />
     }

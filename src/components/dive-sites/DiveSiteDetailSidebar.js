@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { StickyContainer } from 'react-sticky';
-import ReactPlaceholder from 'react-placeholder';
-import "react-placeholder/lib/reactPlaceholder.css";
 import EditButton from '../buttons/EditButton';
 import DiveSiteReviewsList from './DiveSiteReviewsList';
 

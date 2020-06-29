@@ -35,7 +35,6 @@ class DiveSiteAddView extends Component {
         value: this.props.destinations[i]
       })
     }
-    console.log(this.props.destinations)
     this.setState({ countryList: list });
   }
 

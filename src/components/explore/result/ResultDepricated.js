@@ -39,7 +39,6 @@ class Result extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      console.log("fetch")
       this.fetchDiveSite()
     }
   }

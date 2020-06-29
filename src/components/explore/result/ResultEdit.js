@@ -45,7 +45,6 @@ class ResultEdit extends Component {
   };
 
   onPressSubmit = () => {
-    console.log(this.props.site._id)
     axios({
       method: 'put',
       url: BaseURL() + '/api/dive-sites',
