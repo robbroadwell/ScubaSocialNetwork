@@ -90,7 +90,7 @@ class DiveSiteDescription extends Component {
       return // can't be empty
     }
 
-    if (this.props.diveSite.description && this.props.diveSite.description.length > 0 && this.props.diveSite.description[0] === this.state.description) {
+    if (this.props.diveSite.description && this.props.diveSite.description.length > 0 && this.props.diveSite.description[0].content === this.state.description) {
       this.cancelEdit()
       return // must change it
     }
