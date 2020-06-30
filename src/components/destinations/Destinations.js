@@ -4,7 +4,6 @@ import DestinationCard from './DestinationCard';
 import { fetchTopDestinations } from "../../redux/actions";
 import { getTopDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
-import shuffle from '../../utility/shuffle';
 
 class Destinations extends Component {
   componentWillMount() {
@@ -32,7 +31,6 @@ function DestinationContent({ destinations, navigateDestination }) {
 
   return (
     <View style={{margin: 10}}>
-      {/* <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Top Destinations</Text>  */}
       <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginHorizontal: 5}}>
         {views}
       </View>
