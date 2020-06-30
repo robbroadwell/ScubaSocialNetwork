@@ -133,7 +133,10 @@ class DiveSiteDescription extends Component {
 
   
   enableEdit = () => {
-    this.setState({ isEditing: true })
+    this.setState({ 
+      isEditing: true,
+      description: this.props.diveSite && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "",
+    })
   }
   
   cancelEdit = () => {
