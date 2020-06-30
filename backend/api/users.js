@@ -17,7 +17,9 @@ router.post('/login', (req, res, next) => {
     if (info !== undefined) {
       console.error(info.message);
       if (info.message === 'bad username') {
-        res.status(401).send(info.message);
+        res.status(401).send({
+
+        });
       } else {
         res.status(403).send(info.message);
       }
@@ -41,42 +43,37 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
-    passport.authenticate('register', (err, user, info) => {
+  User.findOne({ username: req.body.username }).then(user => {
+    if (user !== null) {
+      res.status(409).send({
+        "Error": "Username already taken."
+      });
+    } else {
+      bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
+        const newUser = new User({
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: hashedPassword,
+        photos: [],
+        loggedDives: [],
+        diveSitesAdded: [],
+        comments: [],
+        likes: []
+      })
 
-      if (info !== undefined) {
-        console.log(err)
-            console.error(info.message);
-            if (info.message === 'bad username') {
-              res.status(401).send(info.message);
-            } else {
-              res.status(403).send(info.message);
-            }
-          } else {
-            bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
-                const newUser = new User({
-                username: req.body.username,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: hashedPassword,
-                photos: [],
-                loggedDives: [],
-                diveSitesAdded: [],
-                comments: [],
-                likes: []
-            })
-
-            newUser.save()
-                .then(() => res.json({
-                    message: "Created account successfully"
-                }))
-                .catch(err => res.status(400).json({
-                    "error": err,
-                    "message": "Error creating account"
-                }))
-            })
-          }
-    })(req, res, next);
+      newUser.save()
+        .then(() => res.json({
+            message: "Created account successfully"
+        }))
+        .catch(err => res.status(400).json({
+            "error": err,
+            "message": "Error creating account"
+        }))
+      })
+    }
+  })
 })
 
 module.exports = router

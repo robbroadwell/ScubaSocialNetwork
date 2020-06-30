@@ -28,7 +28,9 @@ class Register extends Component {
       isUsernameMissing: false,
       isPasswordMissing: false,
       isPasswordMismatch: false,
-      isPasswordNotMatchingRequirements: false
+      isPasswordNotMatchingRequirements: false,
+      onUsernameConflict: false,
+      onSomethingWentWrong: false
     };
   }
 
@@ -45,7 +47,7 @@ class Register extends Component {
   };
 
   onChangeTextUsername = input => {
-    this.setState({ username: input, isUsernameMissing: false });
+    this.setState({ username: input, isUsernameMissing: false, onUsernameConflict: false });
   };
 
   onChangeTextPassword = input => {
@@ -117,13 +119,7 @@ class Register extends Component {
         password: this.state.password,
         email: this.state.email
       })
-      .then(function (response) {        
-        if (response.status !== 200) {
-          console.log('something went wrong')
-          this.setState({ isLoading: false });
-          return
-        }
-
+      .then((response) => {        
         axios.post(BaseURL() + '/api/users/login', {
           username: this.state.username,
           password: this.state.password
@@ -142,7 +138,14 @@ class Register extends Component {
           this.props.setUser(response.data.user);
           this.props.setRegisterMode(false);
         }.bind(this));
-      }.bind(this));
+      }).catch(error => {
+        console.log(error.response)
+        if (error.response.status === 409) {
+          this.setState({ onUsernameConflict: true, isLoading: false });
+        } else {
+          this.setState({ onSomethingWentWrong: true, isLoading: false   });
+        }
+      });
     }
   }
 
@@ -269,6 +272,8 @@ class Register extends Component {
             {this.state.isPasswordMissing ? <Text style={{color: 'red'}}>Password is required.</Text> : <View/>}
             {this.state.isPasswordMismatch ? <Text style={{color: 'red'}}>Passwords do not match.</Text> : <View/>}
             {this.state.isPasswordNotMatchingRequirements ? <View><Text style={{color: 'red', textAlign: 'center'}}>Passwords require: an uppercase, lowercase,</Text><Text style={{color: 'red', textAlign: 'center'}}>number and a special character.</Text></View> : <View/>}
+            {this.state.onUsernameConflict ? <Text style={{color: 'red'}}>Username already in use.</Text> : <View/>}
+            {this.state.onSomethingWentWrong ? <Text style={{color: 'red'}}>Sorry, something went wrong. Try again.</Text> : <View/>}
 
             <View style={{flexDirection: 'row', marginTop: 20}}>
               <TouchableOpacity onPress={this.onToggleTermsAccepted} activeOpacity={1.0} style={{marginHorizontal: 5}} >
