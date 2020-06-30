@@ -15,7 +15,7 @@ import CancelButton from '../buttons/CancelButton';
 
 import { connect } from "react-redux";
 import { getDiveSite, getUser } from "../../redux/selectors";
-import { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite } from '../../redux/actions';
+import { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite, setRegisterMode } from '../../redux/actions';
 
 const axios = require('axios')
 
@@ -43,15 +43,27 @@ class DiveSiteDetail extends Component {
   }
 
   openLogDive = () => {
-    this.props.setLogDiveMode(true);
+    if (this.props.user.token) {
+      this.props.setLogDiveMode(true);
+    } else {
+      this.props.setRegisterMode(true);
+    }
   }
 
   openAddReview = () => {
-    this.props.setAddReviewMode(true);
+    if (this.props.user.token) {
+      this.props.setAddReviewMode(true);
+    } else {
+      this.props.setRegisterMode(true);
+    }
   }
 
   openAddPhoto = () => {
-    this.props.setAddPhotoMode(true);
+    if (this.props.user.token) {
+      this.props.setAddPhotoMode(true);
+    } else {
+      this.props.setRegisterMode(true);
+    }
   }
 
   render() {
@@ -297,5 +309,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite }
+  { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite, setRegisterMode }
 )(DiveSiteDetail);

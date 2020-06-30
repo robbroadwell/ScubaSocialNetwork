@@ -214,10 +214,12 @@ class Register extends Component {
         <FullScreenConfetti />
         <View style={{zIndex: 1000, alignItems: 'center', marginBottom: 10}}>
           <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>
+            
             <TouchableOpacity onPress={this.onPressClose} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
-            <Image style={{height: 80, width: 50, margin: 20, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
+            <Image style={{height: 80, width: 50, margin: 20, marginBottom: 5, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
+            <Text style={{color: 'white', fontWeight: '600', marginBottom: 10}}>Welcome to the world's premier diving community.</Text>
             <View style={{flexDirection: 'row'}}>
               <TextInput
                 style={{ height: 40, width: 145, marginRight: 10, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          

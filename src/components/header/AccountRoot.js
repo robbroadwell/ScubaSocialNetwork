@@ -13,14 +13,17 @@ class AccountRoot extends Component {
   render() {
 
     if (this.props.accountMode) {
+      window.scrollTo(0, 0)
       return <Account />
     }
 
     if (this.props.loginMode) {
+      window.scrollTo(0, 0)
       return <Login />
     }
     
     if (this.props.registerMode) {
+      window.scrollTo(0, 0)
       return <Register />
     }
 
