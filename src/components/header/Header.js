@@ -17,6 +17,7 @@ class Header extends Component {
   };
 
   render() {
+    console.log(this.props.user)
     return (
       <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', alignItems: 'center', height: 60}}>
         
@@ -60,7 +61,7 @@ class Header extends Component {
         </View> */}
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={this.props.user.name ? "Good morning, " + this.props.user.name : "Join Diving Collective"} action={this.showLogin} />
+          <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} />
         </View>
       </View>
     )

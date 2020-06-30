@@ -13,13 +13,22 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      firstName: "",
+      lastName: "",
       username: "",
       password: "",
       confirmPassword: "",
       email: "",
       termsAccepted: false,
-      loading: false
+      isLoading: false,
+      isFirstNameMissing: false,
+      isLastNameMissing: false,
+      isEmailMissing: false,
+      isEmailInvalid: false,
+      isUsernameMissing: false,
+      isPasswordMissing: false,
+      isPasswordMismatch: false,
+      isPasswordNotMatchingRequirements: false
     };
   }
 
@@ -27,24 +36,28 @@ class Register extends Component {
     document.body.style.overflow = "hidden"
   }
 
-  onChangeTextName = input => {
-    this.setState({ name: input });
+  onChangeTextFirstName = input => {
+    this.setState({ firstName: input, isFirstNameMissing: false });
+  };
+
+  onChangeTextLastName = input => {
+    this.setState({ lastName: input, isLastNameMissing: false });
   };
 
   onChangeTextUsername = input => {
-    this.setState({ username: input });
+    this.setState({ username: input, isUsernameMissing: false });
   };
 
   onChangeTextPassword = input => {
-    this.setState({ password: input });
+    this.setState({ password: input, isPasswordMismatch: false, isPasswordMissing: false, isPasswordNotMatchingRequirements: false });
   };
 
   onChangeTextConfirmPassword = input => {
-    this.setState({ confirmPassword: input });
+    this.setState({ confirmPassword: input, isPasswordMismatch: false });
   };
 
   onChangeTextEmail = input => {
-    this.setState({ email: input });
+    this.setState({ email: input, isEmailMissing: false, isEmailInvalid: false });
   };
 
   onToggleTermsAccepted = () => {
@@ -54,21 +67,61 @@ class Register extends Component {
   }
 
   onPressSubmit = () => {
-    // handle error cases
+
+    if (this.state.firstName === "") {
+      this.setState({ isFirstNameMissing: true })
+      return
+    }
+
+    if (this.state.lastName === "") {
+      this.setState({ isLastNameMissing: true })
+      return
+    }
+
+    if (this.state.email === "") {
+      this.setState({ isEmailMissing: true })
+      return
+    }
+
+    if (!this.validateEmail(this.state.email)) {
+      this.setState({ isEmailInvalid: true })
+      return
+    }
+
+    if (this.state.username === "") {
+      this.setState({ isUsernameMissing: true })
+      return
+    }
+
+    if (this.state.password === "") {
+      this.setState({ isPasswordMissing: true })
+      return
+    }
+
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState({ isPasswordMismatch: true })
+      return
+    }
+
+    if (!this.validatePassword(this.state.password).result) {
+      this.setState({ isPasswordNotMatchingRequirements: true })
+      return
+    }
 
     if (this.state.username !== "" && this.state.password !== "") {
-      this.setState({ loading: true });
+      this.setState({ isLoading: true });
       axios.post(BaseURL() + '/api/users/register', {
-        name: this.state.name,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
         username: this.state.username,
         password: this.state.password,
         email: this.state.email
       })
-      .then(function (response) {
-
+      .then(function (response) {        
         if (response.status !== 200) {
           console.log('something went wrong')
-          this.setState({ loading: false });
+          this.setState({ isLoading: false });
+          return
         }
 
         axios.post(BaseURL() + '/api/users/login', {
@@ -83,7 +136,7 @@ class Register extends Component {
             confirmPassword: "",
             email: "",
             termsAccepted: false,
-            loading: false
+            isLoading: false
            });
            
           this.props.setUser(response.data.user);
@@ -103,6 +156,48 @@ class Register extends Component {
     this.props.setRegisterMode(false)
   }
 
+  validateEmail = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  validatePassword = (p) => {
+    var anUpperCase = /[A-Z]/;
+    var aLowerCase = /[a-z]/; 
+    var aNumber = /[0-9]/;
+    var aSpecial = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
+    var obj = {};
+    obj.result = true;
+
+    // if(p.length < 15){
+    //     obj.result=false;
+    //     obj.error="Not long enough!"
+    //     return obj;
+    // }
+
+    var numUpper = 0;
+    var numLower = 0;
+    var numNums = 0;
+    var numSpecials = 0;
+    for(var i=0; i<p.length; i++){
+        if(anUpperCase.test(p[i]))
+            numUpper++;
+        else if(aLowerCase.test(p[i]))
+            numLower++;
+        else if(aNumber.test(p[i]))
+            numNums++;
+        else if(aSpecial.test(p[i]))
+            numSpecials++;
+    }
+
+    if(numUpper < 1 || numLower < 1 || numNums < 1 || numSpecials < 1){
+        obj.result=false;
+        obj.error="Wrong Format!";
+        return obj;
+    }
+    return obj;
+}
+
   render() {
 
     if (process.env.NODE_ENV !== "development") {
@@ -118,14 +213,23 @@ class Register extends Component {
             <TouchableOpacity onPress={this.onPressClose} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
-            <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
-            <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
-              placeholderTextColor={'#CCCCCC'}
-              onChangeText={text => this.onChangeTextName(text)}
-              placeholder={'Your Name'}
-              value={this.state.name}
-              />
+            <Image style={{height: 80, width: 50, margin: 20, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
+            <View style={{flexDirection: 'row'}}>
+              <TextInput
+                style={{ height: 40, width: 145, marginRight: 10, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                placeholderTextColor={'#CCCCCC'}
+                onChangeText={text => this.onChangeTextFirstName(text)}
+                placeholder={'First Name'}
+                value={this.state.firstName}
+                />
+              <TextInput
+                style={{ height: 40, width: 145, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                placeholderTextColor={'#CCCCCC'}
+                onChangeText={text => this.onChangeTextLastName(text)}
+                placeholder={'Last Name'}
+                value={this.state.lastName}
+                />
+            </View>
             <TextInput
               style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
@@ -157,7 +261,24 @@ class Register extends Component {
               value={this.state.confirmPassword}
             />
 
-            <TouchableOpacity  onPress={() => this.onPressSubmit()}>
+            {this.state.isFirstNameMissing ? <Text style={{color: 'red'}}>First name is required.</Text> : <View/>}
+            {this.state.isLastNameMissing ? <Text style={{color: 'red'}}>Last name is required.</Text> : <View/>}
+            {this.state.isEmailMissing ? <Text style={{color: 'red'}}>Email is required.</Text> : <View/>}
+            {this.state.isEmailInvalid ? <Text style={{color: 'red'}}>Email appears to invalid.</Text> : <View/>}
+            {this.state.isUsernameMissing ? <Text style={{color: 'red'}}>Username is required.</Text> : <View/>}
+            {this.state.isPasswordMissing ? <Text style={{color: 'red'}}>Password is required.</Text> : <View/>}
+            {this.state.isPasswordMismatch ? <Text style={{color: 'red'}}>Passwords do not match.</Text> : <View/>}
+            {this.state.isPasswordNotMatchingRequirements ? <View><Text style={{color: 'red', textAlign: 'center'}}>Passwords require: an uppercase, lowercase,</Text><Text style={{color: 'red', textAlign: 'center'}}>number and a special character.</Text></View> : <View/>}
+
+            <View style={{flexDirection: 'row', marginTop: 20}}>
+              <TouchableOpacity onPress={this.onToggleTermsAccepted} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+                <View style={{width: 18, height: 18, marginHorizontal: 5, borderColor: 'white', borderWidth: 1}} />
+                {!this.state.termsAccepted ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 7, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
+              </TouchableOpacity>
+              <Text style={{color: 'white'}}>I agree to <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>the Conditions of Use.</span></TouchableOpacity></Text>
+            </View>
+
+            <TouchableOpacity disabled={!this.state.termsAccepted} style={{opacity: this.state.termsAccepted ? 1 : 0.5}} onPress={() => this.onPressSubmit()}>
               <Text style={{textAlign: 'center', borderColor: '#CCCCCC', borderWidth: 1, padding: 10, margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Register</Text>
             </TouchableOpacity>
 
@@ -165,7 +286,7 @@ class Register extends Component {
               <Text style={{textAlign: 'center', margin: 5, color: 'white', fontSize: 14}}>Already have an account? Login.</Text>
             </TouchableOpacity>
 
-            {this.state.loading ? <Loading /> : <View></View>}
+            {this.state.isLoading ? <Loading /> : <View></View>}
           </View>
         </View> 
       </View>

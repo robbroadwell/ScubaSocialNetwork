@@ -29,8 +29,9 @@ router.post('/login', (req, res, next) => {
             auth: true,
             user: {
               username: user.username,
+              firstName: user.firstName,
+              lastName: user.lastName,
               email: user.email,
-              name: user.name,
               token: token
             },
             message: 'user found & logged in',
@@ -43,6 +44,7 @@ router.post('/register', (req, res, next) => {
     passport.authenticate('register', (err, user, info) => {
 
       if (info !== undefined) {
+        console.log(err)
             console.error(info.message);
             if (info.message === 'bad username') {
               res.status(401).send(info.message);
@@ -53,7 +55,8 @@ router.post('/register', (req, res, next) => {
             bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
                 const newUser = new User({
                 username: req.body.username,
-                name: req.body.name,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashedPassword,
                 photos: [],

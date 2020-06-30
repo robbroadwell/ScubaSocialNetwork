@@ -136,7 +136,16 @@ class DiveSiteDescription extends Component {
   };
 
   render() {
-    if (this.state.isEditing) {
+    if (!this.props.diveSite) {
+      return (
+        <View>
+          <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
+          </View>
+          <ReactPlaceholder type='rect' style={{height: 120}} showLoadingAnimation={true} />
+        </View>
+      )
+    } else if (this.state.isEditing) {
       return (
         <View>
           <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
@@ -154,7 +163,6 @@ class DiveSiteDescription extends Component {
         </View>
       )
     } else {
-      console.log(this.props.diveSite.description[0])
       return (
         <View>
           <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
