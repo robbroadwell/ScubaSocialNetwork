@@ -16,7 +16,7 @@ passport.use(
     },
     (username, password, done) => {
       try {
-        User.findOne({ username: username }, function (err, user) {
+        User.findOne({ username: username.toLowerCase() }, function (err, user) {
 
           if (user === null) {
             return done(null, false, { message: 'bad username' });

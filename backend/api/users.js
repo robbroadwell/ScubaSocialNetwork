@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
           res.status(200).send({
             auth: true,
             user: {
-              username: user.username,
+              username: user.username.charAt(0).toUpperCase() + user.username.slice(1),
               firstName: user.firstName,
               lastName: user.lastName,
               email: user.email,
@@ -43,14 +43,14 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
-  User.findOne({ username: req.body.username }).then(user => {
+  User.findOne({ username: req.body.username.toLowerCase() }).then(user => {
     if (user !== null) {
       res.status(409).send({
         "error": "Username already in use."
       });
     } else {
 
-      User.findOne({ email: req.body.email }).then(user => {
+      User.findOne({ email: req.body.email.toLowerCase() }).then(user => {
         if (user !== null) {
           res.status(409).send({
             "error": "Email already in use."
@@ -59,10 +59,10 @@ router.post('/register', (req, res, next) => {
           
           bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
             const newUser = new User({
-            username: req.body.username,
+            username: req.body.username.toLowerCase(),
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            email: req.body.email,
+            email: req.body.email.toLowerCase(),
             password: hashedPassword,
             photos: [],
             loggedDives: [],
