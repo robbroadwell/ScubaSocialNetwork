@@ -170,115 +170,20 @@ router.put('/', (req, res, next) => {
 
     } else {
 
-        DiveSite.findById(req.body.id).then(diveSite => {
+        DiveSiteDetails.findById(req.body.id).then(diveSite => {
 
-          // description
-          if (req.body.description && req.body.description !== '') {
-            if (diveSite.details.description.length > 0) {
-              var last = diveSite.details.description[diveSite.details.description.length - 1]
-              if (req.body.description !== last.content) {
-                diveSite.details.description.push({
-                  author: user.username,
-                  content: req.body.description
-                })
-              }
-            } else {
-              diveSite.details.description.push({
-                author: user.username,
-                content: req.body.description
-              })
-            }
+          console.log(req.body.description)
+          console.log(diveSite.description)
+          if (!diveSite.description) {
+            diveSite.description = []
           }
 
-          // depth
-          if (req.body.depth && req.body.depth !== '') {
-            if (diveSite.details.depth.length > 0) {
-              var last = diveSite.details.depth[diveSite.details.depth.length - 1]
-              if (req.body.depth !== last.content) {
-                diveSite.details.depth.push({
-                  author: user.username,
-                  content: req.body.depth
-                })
-              }
-            } else {
-              diveSite.details.depth.push({
-                author: user.username,
-                content: req.body.depth
-              })
-            }
-          }
+          diveSite.description.unshift({
+            author: user.username,
+            content: req.body.description
+          })
 
-          // visibility
-          if (req.body.visibility && req.body.visibility !== '') {
-            if (diveSite.details.visibility.length > 0) {
-              var last = diveSite.details.visibility[diveSite.details.visibility.length - 1]
-              if (req.body.visibility !== last.content) {
-                diveSite.details.visibility.push({
-                  author: user.username,
-                  content: req.body.visibility
-                })
-              }
-            } else {
-              diveSite.details.visibility.push({
-                author: user.username,
-                content: req.body.visibility
-              })
-            }
-          }
-
-          // difficulty
-          if (req.body.difficulty && req.body.difficulty !== '') {
-            if (diveSite.details.difficulty.length > 0) {
-              var last = diveSite.details.difficulty[diveSite.details.difficulty.length - 1]
-              if (req.body.difficulty !== last.content) {
-                diveSite.details.difficulty.push({
-                  author: user.username,
-                  content: req.body.difficulty
-                })
-              }
-            } else {
-              diveSite.details.difficulty.push({
-                author: user.username,
-                content: req.body.difficulty
-              })
-            }
-          }
-
-          // access
-          if (req.body.access && req.body.access !== '') {
-            if (diveSite.details.access.length > 0) {
-              var last = diveSite.details.access[diveSite.details.access.length - 1]
-              if (req.body.access !== last.content) {
-                diveSite.details.access.push({
-                  author: user.username,
-                  content: req.body.access
-                })
-              }
-            } else {
-              diveSite.details.access.push({
-                author: user.username,
-                content: req.body.access
-              })
-            }
-          }
-
-          // currents
-          if (req.body.currents && req.body.currents !== '') {
-            if (diveSite.details.currents.length > 0) {
-              var last = diveSite.details.currents[diveSite.details.currents.length - 1]
-              if (req.body.currents !== last.content) {
-                diveSite.details.currents.push({
-                  author: user.username,
-                  content: req.body.currents
-                })
-              }
-            } else {
-              diveSite.details.currents.push({
-                author: user.username,
-                content: req.body.currents
-              })
-            }
-          }
+          console.log(diveSite)
 
           diveSite.save().then(() => res.json({
               message: "Updated dive site successfully"

@@ -18,6 +18,10 @@ const diveSiteDetailsSchema = new Schema({
         type: Object,
         required: true
     },
+    description: {
+        type: Array,
+        required: false
+    },
     visibility: {
         type: Array,
         required: true

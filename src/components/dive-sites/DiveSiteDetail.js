@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TextInput } from 'react-native';
 import DiveSiteDetailMap from './DiveSiteDetailMap';
 import DiveSiteDetailHeader from './DiveSiteDetailHeader';
 import DiveSiteDetailSidebar from './DiveSiteDetailSidebar';
@@ -10,10 +10,14 @@ import "react-placeholder/lib/reactPlaceholder.css";
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
 import EditButton from '../buttons/EditButton';
+import SaveButton from '../buttons/SaveButton';
+import CancelButton from '../buttons/CancelButton';
 
 import { connect } from "react-redux";
-import { getDiveSite } from "../../redux/selectors";
+import { getDiveSite, getUser } from "../../redux/selectors";
 import { fetchDiveSite, setLogDiveMode, setAddPhotoMode, setAddReviewMode, setDiveSite } from '../../redux/actions';
+
+const axios = require('axios')
 
 class DiveSiteDetail extends Component {
   constructor(props) {
@@ -56,7 +60,7 @@ class DiveSiteDetail extends Component {
         <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} />
+          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} user={this.props.user} />
           <DiveSiteDetailSidebar diveSite={this.props.diveSite} openAddReview={this.openAddReview} />
         </View>
 
@@ -66,25 +70,111 @@ class DiveSiteDetail extends Component {
   }
 }
 
-function DiveSiteDescription({ diveSite }) {
-  return (
-    <View>
-      <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
-        <EditButton />
-      </View>
-      <Text>
-      SS Thistlegorm rests in the Sha'ab Ali's shallows in the Northern Red Sea, since its sinking back in 1941. Discovered by Jacques Cousteau, it quickly gained a reputation as the world's best wreck site among recreational divers during the early '90s. A dive on the Thistlegorm will let you explore the remnants of the Great War while being immersed in the vibrant marine life of the northern Red Sea such as dolphins and turtles. The Thistlegorm offers divers a unique blend of historical value and aquatic life at a depth that can be easily reached by most divers. Visit the famous Captain's room, the holds containing supplies destined for the British war effort, the locomotives. Finish the dive with a five-metre safety stop surrounded by curious napoleon wrasses, batfish, and dolphins.
-      </Text>
-    </View>
-  )
+class DiveSiteDescription extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      description: props.diveSite && props.diveSite.description.length > 0 ? props.diveSite.description[0].content : "",
+    };
+  }
+
+  onChangeTextDescription = input => {
+    console.log(input)
+    this.setState({ description: input });
+  };
+
+  onPressSubmit = () => {
+    if (this.state.description === "") {
+      this.cancelEdit()
+      return // can't be empty
+    }
+
+    if (this.props.diveSite.description && this.props.diveSite.description.length > 0 && this.props.diveSite.description[0] === this.state.description) {
+      this.cancelEdit()
+      return // must change it
+    }
+
+    if (!this.props.user || !this.props.user.token) {
+      return // force login
+    }
+    
+    axios({
+      method: 'put',
+      url: BaseURL() + '/api/dive-sites',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + this.props.user.token
+      },
+      data: {
+          id: this.props.diveSite._id,
+          description: this.state.description
+      }
+
+    }).then(function (response) {
+      this.setState({ 
+        isEditing: false
+      })
+      this.props.reload()
+    }.bind(this));
+  }
+
+  
+  enableEdit = () => {
+    this.setState({ isEditing: true })
+  }
+  
+  cancelEdit = () => {
+    this.setState({ 
+      isEditing: false,
+      description: this.props.diveSite && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "",
+    })
+  }
+
+  onChangeTextDescription = input => {
+    this.setState({ description: input });
+  };
+
+  render() {
+    if (this.state.isEditing) {
+      return (
+        <View>
+          <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
+            <SaveButton onPress={this.onPressSubmit} />
+            <CancelButton onPress={this.cancelEdit} />
+          </View>
+          <TextInput
+            style={{height: 200, padding: 7, marginTop: 5, borderColor: '#DDDDDD', borderWidth: 1 }}
+            multiline={true}
+            onChangeText={text => this.onChangeTextDescription(text)}
+            placeholder={"Add a description..."}
+            value={this.state.description}
+          /> 
+        </View>
+      )
+    } else {
+      console.log(this.props.diveSite.description[0])
+      return (
+        <View>
+          <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
+            <EditButton onPress={this.enableEdit} />
+          </View>
+          <Text>
+            {this.props.diveSite && this.props.diveSite.description && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "No description yet." }
+          </Text>
+        </View>
+      )
+    }
+  }
 }
 
-function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
-      <DiveSiteDescription diveSite={diveSite} />
+      <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} />
       <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
       <View style={{flex: 1}}></View>
       <DiveSiteLocation diveSite={diveSite} />
@@ -193,7 +283,8 @@ function DiveTypeCard({ diveSite }) {
 
 const mapStateToProps = state => {
   const diveSite = getDiveSite(state);
-  return { diveSite };
+  const user = getUser(state);
+  return { diveSite, user };
 };
 
 export default connect(

@@ -130,9 +130,6 @@ export function fetchTopDestinations() {
 
 export function fetchDiveSite(id) {
   return function(dispatch, getState) {
-
-    console.log(id)
-
     return fetch(BaseURL() + '/api/dive-sites/details/' + id)
       .then((response) => response.json())
       .then((json) => {

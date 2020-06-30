@@ -50,10 +50,6 @@ class DiveSiteMap extends Component {
   })
 
   createMarkers = () => {
-    console.log(this.props.diveSite)
-    console.log(window.google)
-    console.log(this.googleMap)
-    console.log(this.markers)
     if (this.props.diveSite && window.google && this.googleMap) {
       const { diveSite } = this.props;
 

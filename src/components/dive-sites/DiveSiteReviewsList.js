@@ -52,8 +52,6 @@ class DiveSiteReviewsList extends Component {
         )
       }
     }
-
-    console.log(views)
   
     return (
       <View>        
