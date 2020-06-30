@@ -72,7 +72,7 @@ class DiveSiteDetail extends Component {
         <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
-          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} user={this.props.user} />
+          <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} openRegister={() => this.props.setRegisterMode(true)} user={this.props.user} />
           <DiveSiteDetailSidebar diveSite={this.props.diveSite} openAddReview={this.openAddReview} />
         </View>
 
@@ -133,10 +133,14 @@ class DiveSiteDescription extends Component {
 
   
   enableEdit = () => {
-    this.setState({ 
-      isEditing: true,
-      description: this.props.diveSite && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "",
-    })
+    if (!this.props.user.token) {
+      this.props.openRegister()
+    } else {
+      this.setState({ 
+        isEditing: true,
+        description: this.props.diveSite && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "",
+      })
+    }
   }
   
   cancelEdit = () => {
@@ -193,11 +197,11 @@ class DiveSiteDescription extends Component {
   }
 }
 
-function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user }) {
+function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user, openRegister }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
-      <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} />
+      <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
       <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
       <View style={{flex: 1}}></View>
       <DiveSiteLocation diveSite={diveSite} />
