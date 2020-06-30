@@ -43,12 +43,10 @@ class Login extends Component {
         password: this.state.password
       })
       .then(function (response) {
-        this.setState({ username: "", password: "" });
+        this.setState({ username: "", password: "", loading: false });
         this.props.setUser(response.data.user);
-        console.log(response.data.user)
         this.props.setLoginMode(false);
         document.body.style.overflow = "visible"
-        this.setState({ loading: false });
       }.bind(this)
       );
     }

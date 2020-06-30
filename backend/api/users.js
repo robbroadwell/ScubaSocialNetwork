@@ -46,31 +46,42 @@ router.post('/register', (req, res, next) => {
   User.findOne({ username: req.body.username }).then(user => {
     if (user !== null) {
       res.status(409).send({
-        "Error": "Username already taken."
+        "error": "Username already in use."
       });
     } else {
-      bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
-        const newUser = new User({
-        username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: hashedPassword,
-        photos: [],
-        loggedDives: [],
-        diveSitesAdded: [],
-        comments: [],
-        likes: []
-      })
 
-      newUser.save()
-        .then(() => res.json({
-            message: "Created account successfully"
-        }))
-        .catch(err => res.status(400).json({
-            "error": err,
-            "message": "Error creating account"
-        }))
+      User.findOne({ email: req.body.email }).then(user => {
+        if (user !== null) {
+          res.status(409).send({
+            "error": "Email already in use."
+          });
+        } else {
+          
+          bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
+            const newUser = new User({
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: hashedPassword,
+            photos: [],
+            loggedDives: [],
+            diveSitesAdded: [],
+            comments: [],
+            likes: []
+          })
+    
+          newUser.save()
+            .then(() => res.json({
+                message: "Created account successfully"
+            }))
+            .catch(err => res.status(400).json({
+                "error": err,
+                "message": "Error creating account"
+            }))
+          })
+
+        }
       })
     }
   })
