@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, ScrollView } from 'react-native';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import useConstant from 'use-constant';
 import { useAsync } from 'react-async-hook';
@@ -71,27 +71,32 @@ const SearchStarwarsHeroExample = () => {
   const { inputText, setInputText, searchResults } = useSearchStarwarsHero();
   console.log(searchResults)
   return (
-    <View>
+    <View style={{position: 'absolute'}}>
       <TextInput
-        style={{width: 300, outlineWidth: 0, padding: 15, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20 }}
+        style={{width: 250, outlineWidth: 0, padding: 12, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20 }}
         onChangeText={text => setInputText(text)}
-        placeholder={'Find dive sites, destinations, etc.'}
+        placeholder={'Search'}
         value={inputText}
         />
-      <View>
-        {searchResults.loading && <div>...</div>}
-          {searchResults.error && <div>Error: {searchResults.error.message}</div>}
-          {searchResults.result && (
-            <div>
-              <div>Results: {searchResults.length}</div>
-              <ul>
-                {searchResults.result.map(album => (
-                  <li key={album.title}>{album.title}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-      </View>
+        {inputText === "" ? <View /> : 
+        
+        <ScrollView style={{height: 300, width: 250, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+          <View style={{padding: 12}}>
+            {searchResults.loading && <div>...</div>}
+              {searchResults.error && <div>Error: {searchResults.error.message}</div>}
+              {searchResults.result && (
+                <div>
+                  {/* <div>Results: {searchResults.length}</div> */}
+                  <ul>
+                    {searchResults.result.map(album => (
+                      <li key={album.title}>{album.title}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+          </View>
+        </ScrollView>
+        }
     </View>
 
   );

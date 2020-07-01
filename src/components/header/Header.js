@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUser } from "../../redux/selectors";
 import { setAccountMode, setLoginMode, setRegisterMode } from '../../redux/actions';
 import PrimaryButton from '../buttons/PrimaryButton';
+import Search from '../home/Search';
 import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
@@ -53,6 +54,9 @@ class Header extends Component {
         </View>
 
         <View style={{flex: 1}} ></View>
+        <View style={{width: 300, top: -40, right: -25}}>
+          <Search />
+        </View>
 
         {/* <View style={{width: 200, height: '100%'}}>
           <View style={{flex: 1, marginVertical: 13, padding: 10, backgroundColor: 'white', justifyContent: 'center'}}>

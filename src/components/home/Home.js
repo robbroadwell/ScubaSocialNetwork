@@ -22,40 +22,47 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{height: 500, justifyContent: 'center', alignItems: 'center'}}>
-          <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={require('../../assets/reef.jpg')} />
-          <View style={{marginBottom: 30}}>
-            <Text style={{fontSize: 50, fontWeight: '700', color: 'white', textShadowColor: '#555555', textShadowRadius: 10}}>
-              Plan your next Scuba adventure
-            </Text>
-            <Text style={{fontSize: 20, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
-              Get information from fellow divers just like you.
-            </Text>
-            <Search />
-          </View>
-          
-        </View>
-
-        <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
-
-        <View style={{height: 500, margin: 20}}>
-          <View style={{flexDirection: 'row', marginBottom: 20, alignItems: 'center'}}>
-            <Text style={{fontSize: 18, fontWeight: '700', color: '#222222'}}>Explore 4,340 Dive Sites</Text> 
-            <View style={{flex: 1}} />
-            {/* <MapFilters /> */}
-          </View>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Map style={this.props.style} history={this.props.history} />
-          </View>
-        </View>
-
+      <View style={{flex: 1, flexDirection: 'column-reverse'}}>
         <Directory destinations={this.props.destinations} navigateDestination={this.navigateDestination} addDiveSite={this.navigateAddDiveSite} />
-
+        <HomeMap style={this.props.style} history={this.props.history} />
+        <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
+        <Header />
         {/* <FooterActions /> */}
       </View>
     )
   }
+}
+
+function Header() {
+  return (
+    <View style={{height: 500, justifyContent: 'center', alignItems: 'center'}}>
+      <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={require('../../assets/reef.jpg')} />
+      <View style={{marginBottom: 70}}>
+        <Text style={{fontSize: 50, fontWeight: '700', color: 'white', textShadowColor: '#555555', textShadowRadius: 10}}>
+          Plan your next Scuba adventure
+        </Text>
+        <Text style={{fontSize: 20, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
+          Get information from fellow divers just like you.
+        </Text>
+        <Search />
+      </View>
+    </View>
+  )
+}
+
+function HomeMap({ style, history }) {
+  return (
+    <View style={{height: 500, margin: 20}}>
+      <View style={{flexDirection: 'row', marginBottom: 20, alignItems: 'center'}}>
+        <Text style={{fontSize: 18, fontWeight: '700', color: '#222222'}}>Explore 4,340 Dive Sites</Text> 
+        <View style={{flex: 1}} />
+        {/* <MapFilters /> */}
+      </View>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <Map style={style} history={history} />
+      </View>
+    </View>
+  )
 }
 
 function Featured({ destinations, navigateDestination }) {
