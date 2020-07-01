@@ -173,7 +173,7 @@ class DiveSiteDescription extends Component {
             <CancelButton onPress={this.cancelEdit} />
           </View>
           <TextInput
-            style={{height: 200, padding: 7, marginTop: 5, borderColor: '#DDDDDD', borderWidth: 1 }}
+            style={{height: 200, outlineWidth: 0, padding: 7, marginTop: 5, borderColor: '#DDDDDD', borderWidth: 1 }}
             multiline={true}
             onChangeText={text => this.onChangeTextDescription(text)}
             placeholder={"Add a description..."}

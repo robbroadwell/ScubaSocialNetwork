@@ -74,14 +74,14 @@ class Login extends Component {
             </TouchableOpacity>
             <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
               onChangeText={text => this.onChangeTextUsername(text)}
               placeholder={'Username'}
               value={this.state.username}
               />
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
               secureTextEntry={true} 
               onChangeText={text => this.onChangeTextPassword(text)}

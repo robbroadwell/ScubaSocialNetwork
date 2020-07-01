@@ -78,7 +78,7 @@ class ResultEdit extends Component {
             <PrimaryButton action={this.props.toggleEdit} title={"Cancel"} />
           </View>
           <TextInput
-            style={{ height: 340, borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}
+            style={{ height: 340, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}
             onChangeText={text => this.onChangeTextDescription(text)}
             placeholder={'Description'}
             multiline={true}
@@ -89,31 +89,31 @@ class ResultEdit extends Component {
         <View style={{width: 320, margin: 20, marginTop: 45, marginLeft: 0}}>
           <View style={{borderColor: "#DDDDDD", padding: 20}}>
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+              style={{ height: 40, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextDepth(text)}
               placeholder={'Depth'}
               value={this.state.depth}
               />
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+              style={{ height: 40, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextAccess(text)}
               placeholder={'Access'}
               value={this.state.access}
               />
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+              style={{ height: 40, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextVisibility(text)}
               placeholder={'Visibility'}
               value={this.state.visibility}
               />
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+              style={{ height: 40, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextCurrents(text)}
               placeholder={'Currents'}
               value={this.state.currents}
               />
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
+              style={{ height: 40, outlineWidth: 0, borderColor: 'gray', borderWidth: 1, padding: 10, marginBottom: 10 }}
               onChangeText={text => this.onChangeTextDifficulty(text)}
               placeholder={'Difficulty'}
               value={this.state.difficulty}

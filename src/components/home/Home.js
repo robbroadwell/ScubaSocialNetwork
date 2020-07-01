@@ -1,13 +1,41 @@
 import React, {Component} from 'react';
-import { View, Image, Text, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+import { View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
 import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
 import { getDestinations, getTopDestinations, getFeaturedDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
+import debounce from '../../utility/debounce';
 
 import Map from '../explore/map/Map';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
 import PrimaryButton from '../buttons/PrimaryButton';
+
+class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        search: ""
+    };
+  }
+
+onChangeTextSearch = input => {
+  this.setState({ search: input });
+  debounce((input) => console.log(input), 250)
+};
+
+  render() {
+    return (
+      <View style={{alignItems: 'center'}}>
+        <TextInput
+          style={{width: 300, outlineWidth: 0, padding: 15, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20 }}
+          onChangeText={text => this.onChangeTextSearch(text)}
+          placeholder={'Find dive sites, destinations, etc.'}
+          value={this.state.search}
+          />
+      </View>
+    )
+  }
+}
 
 class Home extends Component {
 
@@ -31,10 +59,9 @@ class Home extends Component {
             <Text style={{fontSize: 20, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
               Get information from fellow divers just like you.
             </Text>
+            <Search />
           </View>
-          <View style={{width: 400, height: 50, backgroundColor: 'white', justifyContent: 'center'}}>
-            <Text style={{padding: 20}}>Find dive sites, destinations, etc.</Text>
-          </View>
+          
         </View>
 
         <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />

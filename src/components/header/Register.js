@@ -222,14 +222,14 @@ class Register extends Component {
             <Text style={{color: 'white', fontWeight: '600', marginBottom: 10}}>Welcome to the world's premier diving community.</Text>
             <View style={{flexDirection: 'row'}}>
               <TextInput
-                style={{ height: 40, width: 145, marginRight: 10, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                style={{ height: 40, outlineWidth: 0, width: 145, marginRight: 10, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
                 placeholderTextColor={'#CCCCCC'}
                 onChangeText={text => this.onChangeTextFirstName(text)}
                 placeholder={'First Name'}
                 value={this.state.firstName}
                 />
               <TextInput
-                style={{ height: 40, width: 145, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+                style={{ height: 40, outlineWidth: 0, width: 145, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
                 placeholderTextColor={'#CCCCCC'}
                 onChangeText={text => this.onChangeTextLastName(text)}
                 placeholder={'Last Name'}
@@ -237,21 +237,21 @@ class Register extends Component {
                 />
             </View>
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
               onChangeText={text => this.onChangeTextEmail(text)}
               placeholder={'Your Email'}
               value={this.state.email}
             />
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5, marginTop: 20 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5, marginTop: 20 }}          
               placeholderTextColor={'#CCCCCC'}
               onChangeText={text => this.onChangeTextUsername(text)}
               placeholder={'Choose a Username'}
               value={this.state.username}
               />
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
               secureTextEntry={true} 
               onChangeText={text => this.onChangeTextPassword(text)}
@@ -259,7 +259,7 @@ class Register extends Component {
               value={this.state.password}
             />
             <TextInput
-              style={{ height: 40, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
+              style={{ height: 40, outlineWidth: 0, width: 300, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 5 }}          
               placeholderTextColor={'#CCCCCC'}
               secureTextEntry={true} 
               onChangeText={text => this.onChangeTextConfirmPassword(text)}

@@ -183,7 +183,7 @@ function CoordinatesPicker({ mapCenter, isFreeEntry, toggleFreeEntry, freeEntryL
         <View style={{backgroundColor: '#CCCCCC', flex: 1, justifyContent: 'center', height: 50, margin: 10}}>
           {isFreeEntry ? 
           <TextInput
-            style={{backgroundColor: '#CCCCCC', flex: 1, fontSize: 20, textAlign: 'center' }}
+            style={{backgroundColor: '#CCCCCC', outlineWidth: 0, flex: 1, fontSize: 20, textAlign: 'center' }}
             onChangeText={text => onChangeTextLatitude(text)}
             value={freeEntryLatitude}
           /> : <Text style={{fontSize: 18, textAlign: 'center'}}>{Number((mapCenter[0]).toFixed(5))}</Text>}
@@ -191,7 +191,7 @@ function CoordinatesPicker({ mapCenter, isFreeEntry, toggleFreeEntry, freeEntryL
         <View style={{backgroundColor: '#CCCCCC', flex: 1, justifyContent: 'center', height: 50, margin: 10}}>
           {isFreeEntry ? 
             <TextInput
-              style={{backgroundColor: '#CCCCCC', flex: 1, fontSize: 20, textAlign: 'center' }}
+              style={{backgroundColor: '#CCCCCC', outlineWidth: 0, flex: 1, fontSize: 20, textAlign: 'center' }}
               onChangeText={text => onChangeTextLongitude(text)}
               value={freeEntryLongitude}
             /> : <Text style={{fontSize: 18, textAlign: 'center'}}>{Number((mapCenter[1]).toFixed(5))}</Text>}
@@ -208,7 +208,7 @@ function NamePicker({ onChangeName, name }) {
         <View style={{flex: 1, justifyContent: 'center'}}>
           <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 16}}>Name</Text>
           <TextInput
-            style={{backgroundColor: '#CCCCCC', padding: 7, fontSize: 20, margin: 20, marginTop: 5, textAlign: 'center' }}
+            style={{backgroundColor: '#CCCCCC', outlineWidth: 0, padding: 7, fontSize: 20, margin: 20, marginTop: 5, textAlign: 'center' }}
             onChangeText={text => onChangeName(text)}
             value={name}
             />
