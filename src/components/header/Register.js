@@ -274,7 +274,7 @@ class Register extends Component {
             {this.state.isUsernameMissing ? <Text style={{color: 'red'}}>Username is required.</Text> : <View/>}
             {this.state.isPasswordMissing ? <Text style={{color: 'red'}}>Password is required.</Text> : <View/>}
             {this.state.isPasswordMismatch ? <Text style={{color: 'red'}}>Passwords do not match.</Text> : <View/>}
-            {this.state.isPasswordNotMatchingRequirements ? <View><Text style={{color: 'red', textAlign: 'center'}}>Passwords require: an uppercase, lowercase,</Text><Text style={{color: 'red', textAlign: 'center'}}>number and a special character.</Text></View> : <View/>}
+            {this.state.isPasswordNotMatchingRequirements ? <View><Text style={{color: 'red', textAlign: 'center'}}>Passwords require an uppercase and lowercase</Text><Text style={{color: 'red', textAlign: 'center'}}>letter, a number, and a special character.</Text></View> : <View/>}
             {this.state.onSomethingWentWrong ? <Text style={{color: 'red'}}>{this.state.onSomethingWentWrongError}</Text> : <View/>}
 
             <View style={{flexDirection: 'row', marginTop: 20}}>
