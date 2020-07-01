@@ -43,7 +43,7 @@ class AddReview extends Component {
       comment: this.state.review,
       user: {
         id: this.props.user.id,
-        name: this.props.user.name
+        name: this.props.user.firstName
       },
       timestamp: Date.now()
     }

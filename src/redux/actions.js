@@ -89,9 +89,9 @@ export function setDiveSite(site) {
 
 export function fetchDestinations() {
   return function(dispatch, getState) {
-    if (getState().destinations.length !== 0) {
-      return
-    }
+    // if (getState().destinations.length !== 0) {
+    //   return
+    // }
     return fetch(BaseURL() + '/api/destinations')
       .then((response) => response.json())
       .then((json) => {
