@@ -3,39 +3,12 @@ import { View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
 import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
 import { getDestinations, getTopDestinations, getFeaturedDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
-import debounce from '../../utility/debounce';
 
+import Search from './Search';
 import Map from '../explore/map/Map';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
 import PrimaryButton from '../buttons/PrimaryButton';
-
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        search: ""
-    };
-  }
-
-onChangeTextSearch = input => {
-  this.setState({ search: input });
-  debounce((input) => console.log(input), 250)
-};
-
-  render() {
-    return (
-      <View style={{alignItems: 'center'}}>
-        <TextInput
-          style={{width: 300, outlineWidth: 0, padding: 15, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20 }}
-          onChangeText={text => this.onChangeTextSearch(text)}
-          placeholder={'Find dive sites, destinations, etc.'}
-          value={this.state.search}
-          />
-      </View>
-    )
-  }
-}
 
 class Home extends Component {
 
