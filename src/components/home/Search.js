@@ -90,7 +90,10 @@ const SearchStarwarsHeroExample = () => {
                 <div>
                   {/* <div>Results: {searchResults.length}</div> */}
                   <ul>
-                    {searchResults.result.map(site => (
+                    {searchResults.result.destinations && searchResults.result.destinations.map(site => (
+                      <li key={site.name}>{site.name}</li>
+                    ))}
+                    {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
                       <li key={site.name}>{site.name}</li>
                     ))}
                   </ul>

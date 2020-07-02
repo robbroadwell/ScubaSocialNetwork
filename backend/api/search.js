@@ -4,6 +4,7 @@ const passport = require('passport');
 const DiveSite = require('../models/diveSite');
 const Destination = require('../models/destination');
 var aws = require('aws-sdk'); 
+const destination = require('../models/destination');
 
 router.get('/', (req, res) => {
   if (!req || !req.query || !req.query.term) {
@@ -15,13 +16,11 @@ router.get('/', (req, res) => {
     return
   }
 
-  const search = req.query.term
-
   DiveSite.aggregate([
     {
       $search: {
         "autocomplete": {
-          "query": search,
+          "query": req.query.term,
           "path": "name",
           "fuzzy": {
             "maxEdits": 1,
@@ -32,9 +31,38 @@ router.get('/', (req, res) => {
       }
     }
   ])
-  .then(diveSites => res.json(diveSites))
+  .then(diveSites => {
+    Destination.aggregate([
+      {
+        $search: {
+          "autocomplete": {
+            "query": req.query.term,
+            "path": "name",
+            "fuzzy": {
+              "maxEdits": 1,
+              "prefixLength": 1,
+              "maxExpansions": 256
+            }
+          }
+        }
+      },{
+        $project: {
+          // "_id": 1,
+          "name": 1,
+          "diveSiteCount": 2,
+          "urlThumbnail": 3
+        }
+      }
+    ])
+    .then(destinations => {
+      res.json({
+        destinations: destinations,
+        diveSites: diveSites
+      })
+    })
+    .catch(err => console.log(err))
+  })
   .catch(err => console.log(err))
-  
 })
 
 module.exports = router
