@@ -69,7 +69,6 @@ class DiveSiteDetail extends Component {
   render() {
     return (
       <View>
-        <DiveSiteDetailHeader diveSite={this.props.diveSite} />
 
         <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
           <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} openRegister={() => this.props.setRegisterMode(true)} user={this.props.user} />
@@ -200,6 +199,7 @@ class DiveSiteDescription extends Component {
 function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user, openRegister }) {
   return (
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
+      <DiveSiteDetailHeader diveSite={diveSite} />
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
       <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />

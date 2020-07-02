@@ -7,31 +7,9 @@ import Ratings from 'react-ratings-declarative';
 
 function DiveSiteDetailHeader({ diveSite }) {
 
-  function rating() {
-    if (!diveSite || !diveSite.reviews || diveSite.reviews.length === 0) {
-      return 0
-    }
-
-    var total = 0;
-    var x;
-
-    for (x in diveSite.reviews) {
-      total = total + diveSite.reviews[x].rating
-    }
-
-    return total / diveSite.reviews.length
-  }
-
-  function reviews() {
-    if (!diveSite || !diveSite.reviews) {
-      return 0
-    }
-    return diveSite.reviews.length
-  }
-
   return (
-    <View style={{flex: 1, flexDirection: 'row'}}>
-      <View style={{flex: 1, margin: 20, marginBottom: 10}}>
+    <View style={{marginTop: 10, marginBottom: 20}}>
+      <View>
 
         <View style={{flexDirection: 'row'}}>
           <ReactPlaceholder type='rect' style={{width: 300, height: 35}} ready={diveSite} showLoadingAnimation={true}>
@@ -69,30 +47,6 @@ function DiveSiteDetailHeader({ diveSite }) {
             
           </ReactPlaceholder>
 
-        </View>
-      </View>
-      <View style={{width: 450, backgroundColor: '#EFEFEF'}}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ReactPlaceholder type='rect' style={{width: 80, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-            <Ratings
-              rating={rating()}
-              widgetRatedColors={"#DD0000"}
-              widgetDimensions="20px"
-              widgetSpacings="1px">
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-              <Ratings.Widget />
-            </Ratings>
-          </ReactPlaceholder>
-          
-          <ReactPlaceholder type='rect' style={{width: 70, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{fontSize: 16, fontWeight: '600'}}>{Number(rating()).toFixed(2)} ( {reviews()} reviews )</Text>
-              {/* {reviews() === 0 ? <View /> : <Image style={{width: 20, height: 20}} source={require('../../assets/drop_down.svg')} />} */}
-            </View>
-          </ReactPlaceholder>
         </View>
       </View>
     </View>

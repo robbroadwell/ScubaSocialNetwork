@@ -61,14 +61,9 @@ class DestinationDetail extends Component {
                 <StyledLink to="/destinations">Destinations</StyledLink>
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
                 {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">{this.state.data.name}</StyledLink> : <Text style={{fontSize: 16}}>{this.state.data.name}</Text>}
-                {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-                {this.props.match.params.idRegion ? <Text style={{fontSize: 16}}>Lighthouse Reef</Text> : <StyledLink to="/destinations/belize/lighthouse-reef">Select Region</StyledLink>} */}
               </View>
             </View>
             
-            {/* <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-              <MapFilters />
-            </View> */}
           </View>
 
           <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
@@ -82,33 +77,6 @@ class DestinationDetail extends Component {
             </TouchableOpacity>
           </View>
         </View>
-
-        <View style={{margin: 20, marginTop: 20}}>
-          {/* <Text style={{fontSize: 20, fontWeight: '700', color: 'black', marginBottom: 10}}>Recent Photos in {this.state.data.name}</Text> 
-          <PhotosContent /> */}
-        </View>
-
-        {/* <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Animals Seen in Belize</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-          </View>
-        </View> */}
-
-        {/* <View style={{margin: 20}}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Top Liveaboards in Belize</Text> 
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 10}}>
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-            <View style={{margin: 10, minWidth: 200, minHeight: 200, backgroundColor: 'grey'}} />
-          </View>
-        </View> */}
       </View>
     )
   }
