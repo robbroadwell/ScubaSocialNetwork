@@ -27,6 +27,9 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
   });
 
+const search = require('./api/search');
+app.use('/api/search', search);
+
 const destinations = require('./api/destinations');
 app.use('/api/destinations', destinations);
 
