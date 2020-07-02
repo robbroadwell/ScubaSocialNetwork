@@ -20,12 +20,13 @@ const AutocompleteSearch = ({ header }) => {
   const { inputText, setInputText, searchResults } = useAutocomplete();
   return (
     <View style={{position: 'absolute', width: '100%', alignItems: 'center'}}>
-      <Image style={{position: 'absolute', top: 10, right: 10, width: 25, height: 25, tintColor: 'black'}} source={require('../../assets/search.svg')} />
+      <Image style={{position: 'absolute', top: 10, right: 10, width: 25, height: 25, tintColor: header ? '#555555' : 'black'}} source={require('../../assets/search.svg')} />
       <TextInput
-        style={{width: '100%', outlineWidth: 0, padding: 12, fontSize: 18, color: 'black', backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginBottom: 0 }}
+        style={{width: '100%', outlineWidth: 0, padding: 12, fontSize: 18, color: header ? 'white' : 'black', borderColor: '#555555', borderWidth: header ? 1 : 0, backgroundColor: header ? '#20232a' : 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 5, shadowColor: '#000', marginBottom: 0 }}
+        spellCheck={false}
         onChangeText={text => setInputText(text)}
         placeholder={'Search'}
-        placeholderTextColor={'#444444'}
+        placeholderTextColor={header ? '#888888' : '#444444'}
         value={inputText}
         />
 

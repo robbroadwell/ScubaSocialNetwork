@@ -2,27 +2,26 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import List from '../../dive-sites/List';
 import BaseURL from '../../../utility/BaseURL';
-
 import debounce from '../../../utility/debounce';
 import { connect } from "react-redux";
 import { setMapCenter, setMapRect } from "../../../redux/actions";
 import { getAddDiveSiteMode, getMapRect } from "../../../redux/selectors";
 import { withRouter } from 'react-router-dom'
-import { Polygon } from 'google-maps-react';
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
         isLoading: true,
-        isPolygonLoaded: false,
         diveSites: [],
     };
   }
 
   googleMapRef = React.createRef()
   markers = []; // prevent duplicates
+  overlays = []
   isPolygonLoaded = false;
+  polygonCountry = "";
 
   fetchDiveSites = () => {
     var url = BaseURL() + '/api/dive-sites?polygon='+`${this.props.mapRect}`
@@ -141,8 +140,17 @@ class Map extends Component {
   }
 
   createPolygon = () => {
+    if (this.polygonCountry !== this.props.country._id) {
+      this.isPolygonLoaded = false
+      this.polygonCountry = ""
+
+      while (this.overlays[0]) {
+        this.overlays.pop().setMap(null);
+      }
+    }
 
     if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country && this.props.country.geojson) {
+      console.log('inside if')
 
       window.google.maps.Polygon.prototype.getBounds = function() {
         var bounds = new window.google.maps.LatLngBounds();
@@ -179,6 +187,7 @@ class Map extends Component {
         })
 
         polygon.setMap(this.googleMap)
+        this.overlays.push(polygon)
         
         let polygonBounds = polygon.getBounds()
         let northeast = polygonBounds.getNorthEast()
@@ -209,6 +218,7 @@ class Map extends Component {
 
       this.googleMap.fitBounds(bounds);
       this.isPolygonLoaded = true
+      this.polygonCountry = this.props.country._id
     }
   }
 

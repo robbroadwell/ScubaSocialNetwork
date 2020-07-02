@@ -19,11 +19,11 @@ class DestinationDetail extends Component {
     this.fetchDestination()
   }
 
-  // componentDidUpdate = (prevProps) => {
-  //   if (this.props.location.pathname !== prevProps.location.pathname) {
-  //     this.fetchDestination()
-  //   }
-  // }
+  componentDidUpdate = (prevProps) => {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.fetchDestination()
+    }
+  }
 
   fetchDestination = () => {
     fetch(BaseURL() + '/api/destinations/'+ this.props.match.params.id )
