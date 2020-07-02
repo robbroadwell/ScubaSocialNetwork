@@ -3,6 +3,7 @@ import { View, TextInput, ScrollView } from 'react-native';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import useConstant from 'use-constant';
 import { useAsync } from 'react-async-hook';
+import BaseURL from '../../utility/BaseURL';
 
 class Search extends Component {
   constructor(props) {
@@ -60,12 +61,13 @@ const useDebouncedSearch = (searchFunction) => {
 
 const axios = require('axios');
 
-async function getFirstAlbumTitle() {
-  const response = await axios.get('https://jsonplaceholder.typicode.com/albums');
+async function autocomplete(text) {
+  const response = await axios.get(BaseURL() + '/api/search?term=' + text);
+  console.log(response)
   return response.data;
 }
 
-const useSearchStarwarsHero = () => useDebouncedSearch(text => getFirstAlbumTitle(text))
+const useSearchStarwarsHero = () => useDebouncedSearch(text => autocomplete(text))
 
 const SearchStarwarsHeroExample = () => {
   const { inputText, setInputText, searchResults } = useSearchStarwarsHero();
@@ -88,8 +90,8 @@ const SearchStarwarsHeroExample = () => {
                 <div>
                   {/* <div>Results: {searchResults.length}</div> */}
                   <ul>
-                    {searchResults.result.map(album => (
-                      <li key={album.title}>{album.title}</li>
+                    {searchResults.result.map(site => (
+                      <li key={site.name}>{site.name}</li>
                     ))}
                   </ul>
                 </div>
