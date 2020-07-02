@@ -77,14 +77,14 @@ const SearchStarwarsHeroExample = () => {
   return (
     <View style={{position: 'absolute'}}>
       <TextInput
-        style={{width: 400, outlineWidth: 0, padding: 12, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 10 }}
+        style={{width: 400, outlineWidth: 0, padding: 12, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 0 }}
         onChangeText={text => setInputText(text)}
         placeholder={'Search'}
         value={inputText}
         />
         {inputText === "" ? <View /> : 
         
-        <ScrollView style={{height: 300, width: 400, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+        <View style={{height: 300, overflow: 'hidden', width: 400, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
           <View style={{padding: 12}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
@@ -94,14 +94,15 @@ const SearchStarwarsHeroExample = () => {
                   {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
                       <DiveSiteCard site={site} />
                     ))}
-                  <Text>Destinations</Text>
+                  {/* <Text>Destinations</Text> */}
                   {searchResults.result.destinations && searchResults.result.destinations.map(destination => (
+                      // <DestinationCard destination={destination} />
                       <Text>{destination.name}</Text>
                     ))}
                 </View>
               )}
           </View>
-        </ScrollView>
+        </View>
         }
     </View>
 
