@@ -1,9 +1,11 @@
 import React, {Component, useState} from 'react';
-import { View, TextInput, ScrollView } from 'react-native';
+import { View, TextInput, ScrollView, Text } from 'react-native';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import useConstant from 'use-constant';
 import { useAsync } from 'react-async-hook';
 import BaseURL from '../../utility/BaseURL';
+import DestinationCard from '../destinations/DestinationCard';
+import DiveSiteCard from '../dive-sites/DiveSiteCard';
 
 class Search extends Component {
   constructor(props) {
@@ -82,22 +84,21 @@ const SearchStarwarsHeroExample = () => {
         />
         {inputText === "" ? <View /> : 
         
-        <ScrollView style={{height: 300, width: 250, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+        <ScrollView style={{height: 300, width: 400, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
           <View style={{padding: 12}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
               {searchResults.result && (
-                <div>
-                  {/* <div>Results: {searchResults.length}</div> */}
-                  <ul>
-                    {searchResults.result.destinations && searchResults.result.destinations.map(site => (
-                      <li key={site.name}>{site.name}</li>
+                <View>
+                  <Text>Dive Sites</Text>
+                  {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
+                      <DiveSiteCard site={site} />
                     ))}
-                    {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
-                      <li key={site.name}>{site.name}</li>
+                  <Text>Destinations</Text>
+                  {searchResults.result.destinations && searchResults.result.destinations.map(destination => (
+                      <Text>{destination.name}</Text>
                     ))}
-                  </ul>
-                </div>
+                </View>
               )}
           </View>
         </ScrollView>
