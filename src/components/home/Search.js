@@ -4,9 +4,9 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import useConstant from 'use-constant';
 import { useAsync } from 'react-async-hook';
 import BaseURL from '../../utility/BaseURL';
-import DiveSiteReviews from '../explore/list/DiveSiteReviews';
 import BaseHoverableView from '../buttons/BaseHoverableView';
 import Ratings from 'react-ratings-declarative';
+import { useHistory } from "react-router-dom";
 
 
 class Search extends Component {
@@ -24,7 +24,7 @@ onChangeTextSearch = input => {
   render() {
     return (
       <View style={{alignItems: 'center'}}>
-        <SearchStarwarsHeroExample />
+        <AutocompleteSearch />
       </View>
     )
   }
@@ -71,10 +71,10 @@ async function autocomplete(text) {
   return response.data;
 }
 
-const useSearchStarwarsHero = () => useDebouncedSearch(text => autocomplete(text))
+const useAutocomplete = () => useDebouncedSearch(text => autocomplete(text))
 
-const SearchStarwarsHeroExample = () => {
-  const { inputText, setInputText, searchResults } = useSearchStarwarsHero();
+const AutocompleteSearch = () => {
+  const { inputText, setInputText, searchResults } = useAutocomplete();
   console.log(searchResults)
   return (
     <View style={{position: 'absolute', alignItems: 'center'}}>
@@ -82,12 +82,13 @@ const SearchStarwarsHeroExample = () => {
         style={{width: 400, outlineWidth: 0, padding: 12, fontSize: 18, color: 'white', backgroundColor: 'black', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 10 }}
         onChangeText={text => setInputText(text)}
         placeholder={'Search'}
+        placeholderTextColor={'#DDDDDD'}
         value={inputText}
         />
         {inputText === "" ? <View /> : 
         
-        <View style={{height: 335, width: 600, overflow: 'hidden', backgroundColor: 'black', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
-          <View style={{padding: 8}}>
+        <View style={{height: 329, width: 600, overflow: 'hidden', backgroundColor: 'black', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+          <View style={{padding: 10}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
               {searchResults.result && (
@@ -100,7 +101,6 @@ const SearchStarwarsHeroExample = () => {
                   <View style={{width: 250}}>
                     {searchResults.result.destinations && searchResults.result.destinations.map(destination => (
                       <SearchDestinationCard destination={destination} />
-                      // <Text>{destination.name}</Text>
                     ))}
                   </View>
                 </View>
@@ -113,31 +113,31 @@ const SearchStarwarsHeroExample = () => {
   );
 };
 
-class SearchDiveSiteCard extends Component {
+function SearchDiveSiteCard({ site }) {
+  let history = useHistory();
 
-  render() {
-    return (
-      <View style={{marginRight: 8}}>
-          <TouchableOpacity onPress={this.props.onPress} activeOpacity={1.0} >
-            <BaseHoverableView
-              style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', padding: this.props.selected ? 9 : 10, borderColor: this.props.selected ? '#555555' : '#cccccc', borderWidth: this.props.selected ? 2 : 1 }}
-              onHover={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', padding: this.props.selected ? 9 : 10, borderColor: this.props.selected ? '#555555' : '#aaaaaa', borderWidth: this.props.selected ? 2 : 1 }}
-            >
+  return (
+    <View style={{marginRight: 8}}>
+        <TouchableOpacity onPress={() => history.push(`/dive-sites/${site.destination.id}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)} activeOpacity={1.0} >
+          <BaseHoverableView
+            style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', padding: 10, borderColor: '#cccccc', borderWidth: 1 }}
+            onHover={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', padding: 10, borderColor: '#aaaaaa', borderWidth: 1 }}
+          >
 
-            <View style={{flexDirection: 'row'}}>
-                <View style={{marginRight: 20}}>
-                  <Text style={{fontSize: 16, fontWeight: '500', color: 'white'}}>{this.props.site.name}</Text>
-                  <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 2}}>
-                    <Text style={{fontSize: 13, color: 'white'}}>{this.props.site.destination.name} </Text>
-                  </View>
+          <View style={{flexDirection: 'row'}}>
+              <View style={{marginRight: 20}}>
+                <Text style={{fontSize: 16, fontWeight: '500', color: 'white'}}>{site.name}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 2}}>
+                  <Text style={{fontSize: 13, color: 'white'}}>{site.destination.name} </Text>
                 </View>
-                <SearchDiveSiteReviews reviews={this.props.site.ratingCount} rating={this.props.site.rating} />
-            </View>
-          </BaseHoverableView>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+              </View>
+              <SearchDiveSiteReviews reviews={site.ratingCount} rating={site.rating} />
+          </View>
+        </BaseHoverableView>
+      </TouchableOpacity>
+    </View>
+  );
+  
 }
 
 function SearchDiveSiteReviews({ reviews, rating }) {
@@ -164,9 +164,11 @@ function SearchDiveSiteReviews({ reviews, rating }) {
   )
 }
 
-function SearchDestinationCard({ destination, navigateDestination }) {
+function SearchDestinationCard({ destination }) {
+  let history = useHistory();
+
   return (
-    <TouchableOpacity onPress={() => navigateDestination(destination)}  style={{flex: 1, width: 250, height: 100, marginBottom: 10, borderColor: '#CCCCCC', borderWidth: 1}}>
+    <TouchableOpacity onPress={() => history.push(`/destinations/` + destination._id)}  style={{flex: 1, width: 250, height: 100, marginBottom: 5, borderColor: '#CCCCCC', borderWidth: 1}}>
       <Image style={{flex: 1}} source={destination.urlThumbnail} />
       <View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
         {!destination.isTop ? <View></View> : 

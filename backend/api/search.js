@@ -45,7 +45,11 @@ router.get('/', (req, res) => {
             }
           }
         }
-      },{
+      },
+      {
+        $limit: 3
+      },
+      {
         $project: {
           // "_id": 1,
           "name": 1,
