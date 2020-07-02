@@ -20,7 +20,7 @@ class DiveSiteReviewsList extends Component {
         const review = diveSite.reviews[i]
     
         views.push(
-          <View key={i} style={{marginBottom: 10, padding: 15, backgroundColor: '#FEFEFE', borderColor: '#DDDDDD', borderWidth: 1}}>
+          <View key={i} style={{marginBottom: 10, padding: 15, backgroundColor: '#FEFEFE', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.15, shadowRadius: 5, shadowColor: '#000'}}>
 
             <View style={{flex: 1, alignItems: 'center'}}>
               <Text style={{fontWeight: '600', fontSize: 18, marginVertical: 5}}>{review.title}</Text>

@@ -258,7 +258,7 @@ function DiveSiteLocation({diveSite}) {
 
 function DetailCard({ name, value, diveSite }) {
   return (
-    <View style={{flex: 1, marginHorizontal: 5, borderColor: '#EEEEEE', backgroundColor: '#FEFEFE', borderWidth: 1}}>
+    <View style={{flex: 1, marginHorizontal: 5, backgroundColor: '#FEFEFE', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.15, shadowRadius: 5, shadowColor: '#000'}}>
       <ReactPlaceholder type='rect' style={{height: 120}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: 16, fontWeight: '600'}}>{name}</Text>

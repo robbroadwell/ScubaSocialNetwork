@@ -41,7 +41,7 @@ class DiveSitePhotos extends Component {
     const {diveSite, reload} = this.props
 
     return (
-      <View style={{backgroundColor: '#FEFEFE', borderWidth: 1, borderColor: "#DDDDDD", height: 400}}>     
+      <View style={{backgroundColor: '#FEFEFE', height: 400, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>     
         <View style={{flex: 1}}>
           <Image style={{flex: 1}} source={diveSite.photos[this.state.photoSelectedIndex].url} />
           <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', backgroundColor: 'black'}}>
