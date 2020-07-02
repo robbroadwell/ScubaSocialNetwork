@@ -29,6 +29,9 @@ router.get('/', (req, res) => {
           }
         }
       }
+    },
+    {
+      $limit: 5
     }
   ])
   .then(diveSites => {
