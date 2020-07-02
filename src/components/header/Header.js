@@ -38,6 +38,10 @@ class Header extends Component {
 
         <View style={{flex: 1}}></View>
 
+        <View style={{width: 250, height: '100%', justifyContent: 'center'}}>
+          <AutocompleteSearch header={true} />
+        </View>
+
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
           <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} />
         </View>
