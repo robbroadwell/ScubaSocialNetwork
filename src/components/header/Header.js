@@ -54,9 +54,7 @@ class Header extends Component {
         </View>
 
         <View style={{flex: 1}} ></View>
-        {/* <View style={{width: 300, top: -40, right: -25}}>
-          <Search />
-        </View> */}
+        
 
         {/* <View style={{width: 200, height: '100%'}}>
           <View style={{flex: 1, marginVertical: 13, padding: 10, backgroundColor: 'white', justifyContent: 'center'}}>

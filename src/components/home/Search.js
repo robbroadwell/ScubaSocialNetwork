@@ -78,17 +78,18 @@ const AutocompleteSearch = () => {
   console.log(searchResults)
   return (
     <View style={{position: 'absolute', alignItems: 'center'}}>
+      <Image style={{position: 'absolute', top: 30, right: 10, width: 25, height: 25, tintColor: 'black'}} source={require('../../assets/search.svg')} />
       <TextInput
-        style={{width: 400, outlineWidth: 0, padding: 12, fontSize: 18, color: 'white', backgroundColor: 'black', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 10 }}
+        style={{width: 600, outlineWidth: 0, padding: 12, fontSize: 18, color: 'black', backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 0 }}
         onChangeText={text => setInputText(text)}
         placeholder={'Search'}
-        placeholderTextColor={'#DDDDDD'}
+        placeholderTextColor={'#444444'}
         value={inputText}
         />
         {inputText === "" ? <View /> : 
         
-        <View style={{height: 329, width: 600, overflow: 'hidden', backgroundColor: 'black', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
-          <View style={{padding: 10}}>
+        <View style={{height: 302, width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+          <View style={{padding: 15}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
               {searchResults.result && (
@@ -117,7 +118,7 @@ function SearchDiveSiteCard({ site }) {
   let history = useHistory();
 
   return (
-    <View style={{marginRight: 8}}>
+    <View style={{marginRight: 15}}>
         <TouchableOpacity onPress={() => history.push(`/dive-sites/${site.destination.id}/${site.name.replace(/\s+/g, '-').toLowerCase()}?id=${site._id}`)} activeOpacity={1.0} >
           <BaseHoverableView
             style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', padding: 10, borderColor: '#cccccc', borderWidth: 1 }}
@@ -125,10 +126,10 @@ function SearchDiveSiteCard({ site }) {
           >
 
           <View style={{flexDirection: 'row'}}>
-              <View style={{marginRight: 20}}>
-                <Text style={{fontSize: 16, fontWeight: '500', color: 'white'}}>{site.name}</Text>
+              <View>
+                <Text style={{fontSize: 16, fontWeight: '500', color: 'black'}}>{site.name}</Text>
                 <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 2}}>
-                  <Text style={{fontSize: 13, color: 'white'}}>{site.destination.name} </Text>
+                  <Text style={{fontSize: 13, color: 'black'}}>{site.destination.name} </Text>
                 </View>
               </View>
               <SearchDiveSiteReviews reviews={site.ratingCount} rating={site.rating} />
@@ -156,8 +157,8 @@ function SearchDiveSiteReviews({ reviews, rating }) {
           <Ratings.Widget widgetHoverColor="#FFB400"  />
         </Ratings>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 13, fontWeight: '600', color: 'white'}}>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
-            <Text style={{marginLeft: 5, fontSize: 13, color: 'white' }}>({reviews} review{reviews == 1 ? '' : 's'})</Text>
+            <Text style={{fontSize: 13, fontWeight: '600', color: 'black'}}>{(Math.round(rating * 100) / 100).toFixed(2)}</Text>
+            <Text style={{marginLeft: 5, fontSize: 13, color: 'black' }}>({reviews} review{reviews == 1 ? '' : 's'})</Text>
         </View>
       </View>
     </View>
@@ -168,7 +169,7 @@ function SearchDestinationCard({ destination }) {
   let history = useHistory();
 
   return (
-    <TouchableOpacity onPress={() => history.push(`/destinations/` + destination._id)}  style={{flex: 1, width: 250, height: 100, marginBottom: 5, borderColor: '#CCCCCC', borderWidth: 1}}>
+    <TouchableOpacity onPress={() => history.push(`/destinations/` + destination._id)}  style={{flex: 1, width: 250, height: 80, marginBottom: 15, borderColor: '#CCCCCC', borderWidth: 1}}>
       <Image style={{flex: 1}} source={destination.urlThumbnail} />
       <View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
         {!destination.isTop ? <View></View> : 
