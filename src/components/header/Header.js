@@ -38,7 +38,7 @@ class Header extends Component {
 
         <View style={{flex: 1}}></View>
 
-        <View style={{width: 250, height: '100%', justifyContent: 'center'}}>
+        <View style={{width: 245, height: '100%', justifyContent: 'center'}}>
           <AutocompleteSearch header={true} />
         </View>
 
