@@ -32,18 +32,18 @@ const AutocompleteSearch = ({ header }) => {
 
         {inputText === "" ? <View /> : 
         
-        <View style={{height: 302, position: 'absolute', top: header ? 55 : 45, width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>
-          <View style={{padding: 15}}>
+        <View style={{position: 'absolute', top: header ? 55 : 45, width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>
+          <View style={{padding: 10}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
               {searchResults.result && (
                 <View style={{flexDirection: 'row'}}>
-                  <View style={{flex: 1}}>
+                  <View style={{flex: 1, marginBottom: -5}}>
                     {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
                       <SearchDiveSiteCard site={site} close={() => setInputText("")} />
                     ))}
                   </View>
-                  <View style={{width: 250}}>
+                  <View style={{width: 250, marginBottom: -10}}>
                     {searchResults.result.destinations && searchResults.result.destinations.map(destination => (
                       <SearchDestinationCard destination={destination} close={() => setInputText("")} />
                     ))}
@@ -66,7 +66,7 @@ function SearchDiveSiteCard({ site, close }) {
   }
 
   return (
-    <View style={{marginRight: 15}}>
+    <View style={{marginRight: 10, marginBottom: 5}}>
         <TouchableOpacity onPress={() => onPress()} activeOpacity={1.0} >
           <BaseHoverableView
             style={{ shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.0, shadowRadius: 5, shadowColor: '#000', padding: 10, borderColor: '#cccccc', borderWidth: 1 }}
@@ -122,7 +122,7 @@ function SearchDestinationCard({ destination, close }) {
   }
 
   return (
-    <TouchableOpacity onPress={() => onPress()}  style={{flex: 1, width: 250, height: 80, marginBottom: 15, borderColor: '#CCCCCC', borderWidth: 1}}>
+    <TouchableOpacity onPress={() => onPress()}  style={{flex: 1, width: 250, height: 80, marginBottom: 10, borderColor: '#CCCCCC', borderWidth: 1}}>
       <Image style={{flex: 1}} source={destination.urlThumbnail} />
       <View style={{position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
         {!destination.isTop ? <View></View> : 
