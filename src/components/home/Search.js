@@ -77,7 +77,7 @@ const SearchStarwarsHeroExample = () => {
   return (
     <View style={{position: 'absolute'}}>
       <TextInput
-        style={{width: 250, outlineWidth: 0, padding: 12, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 10 }}
+        style={{width: 400, outlineWidth: 0, padding: 12, backgroundColor: 'white', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000', marginVertical: 20, marginBottom: 10 }}
         onChangeText={text => setInputText(text)}
         placeholder={'Search'}
         value={inputText}
@@ -90,7 +90,7 @@ const SearchStarwarsHeroExample = () => {
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
               {searchResults.result && (
                 <View>
-                  <Text>Dive Sites</Text>
+                  {/* <Text>Dive Sites</Text> */}
                   {searchResults.result.diveSites && searchResults.result.diveSites.map(site => (
                       <DiveSiteCard site={site} />
                     ))}
