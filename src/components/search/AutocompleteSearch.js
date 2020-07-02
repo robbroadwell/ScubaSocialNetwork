@@ -50,6 +50,7 @@ const AutocompleteSearch = ({ header }) => {
                   </View>
                 </View>
               )}
+              {searchResults.result && searchResults.result.diveSites && searchResults.result.diveSites.length === 0 && searchResults.result.destinations && searchResults.result.destinations.length === 0 ? <Text>No results.</Text>: <View />}
           </View>
         </View>
         }
