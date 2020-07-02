@@ -140,7 +140,7 @@ class Map extends Component {
   }
 
   createPolygon = () => {
-    if (this.polygonCountry !== this.props.country._id) {
+    if (this.props.country && this.polygonCountry !== this.props.country._id) {
       this.isPolygonLoaded = false
       this.polygonCountry = ""
 
@@ -150,7 +150,6 @@ class Map extends Component {
     }
 
     if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country && this.props.country.geojson) {
-      console.log('inside if')
 
       window.google.maps.Polygon.prototype.getBounds = function() {
         var bounds = new window.google.maps.LatLngBounds();
