@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getUser } from "../../redux/selectors";
 import { setAccountMode, setLoginMode, setRegisterMode } from '../../redux/actions';
 import PrimaryButton from '../buttons/PrimaryButton';
-import Search from '../home/Search';
+import AutocompleteSearch from '../search/AutocompleteSearch';
 import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
@@ -33,34 +33,10 @@ class Header extends Component {
           <TouchableOpacity onPress={() => this.props.history.push(`/destinations`)}>
             <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Destinations</Text>
           </TouchableOpacity>
-
-          {/* <TouchableOpacity onPress={() => this.props.history.push(`/dive-sites`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Top Dive Sites</Text>
-          </TouchableOpacity> */}
-
-          {/* <TouchableOpacity onPress={() => this.props.history.push(`/photos`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Best Photos</Text>
-          </TouchableOpacity> */}
-
-          {/* <TouchableOpacity onPress={() => this.props.history.push(`/leaderboard`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Leaderboard</Text>
-          </TouchableOpacity> */}
-{/* 
-          <TouchableOpacity onPress={() => this.props.history.push(`/explore`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Explore</Text>
-          </TouchableOpacity> */}
-
           
         </View>
 
-        <View style={{flex: 1}} ></View>
-        
-
-        {/* <View style={{width: 200, height: '100%'}}>
-          <View style={{flex: 1, marginVertical: 13, padding: 10, backgroundColor: 'white', justifyContent: 'center'}}>
-            <Text>Search</Text>
-          </View>
-        </View> */}
+        <View style={{flex: 1}}></View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
           <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} />

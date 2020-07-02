@@ -4,7 +4,7 @@ import { fetchDestinations, fetchTopDestinations } from "../../redux/actions";
 import { getDestinations, getTopDestinations, getFeaturedDestinations } from '../../redux/selectors';
 import { connect } from "react-redux";
 
-import Search from './Search';
+import AutocompleteSearch from '../search/AutocompleteSearch';
 import Map from '../explore/map/Map';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
@@ -44,7 +44,9 @@ function Header() {
         <Text style={{fontSize: 20, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
           Get information from fellow divers just like you.
         </Text>
-        <Search />
+        <View style={{marginTop: 10, alignItems: 'center'}}>
+          <AutocompleteSearch />
+        </View>
       </View>
     </View>
   )

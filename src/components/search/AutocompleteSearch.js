@@ -1,67 +1,10 @@
 import React, {Component, useState} from 'react';
 import { View, TextInput, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
-import useConstant from 'use-constant';
-import { useAsync } from 'react-async-hook';
 import BaseURL from '../../utility/BaseURL';
 import BaseHoverableView from '../buttons/BaseHoverableView';
 import Ratings from 'react-ratings-declarative';
 import { useHistory } from "react-router-dom";
-
-
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        search: ""
-    };
-  }
-
-onChangeTextSearch = input => {
-  this.setState({ search: input });
-};
-
-  render() {
-    return (
-      <View style={{alignItems: 'center'}}>
-        <AutocompleteSearch />
-      </View>
-    )
-  }
-}
-
-// Generic reusable hook
-const useDebouncedSearch = (searchFunction) => {
-
-  // Handle the input text state
-  const [inputText, setInputText] = useState('');
-
-  // Debounce the original search async function
-  const debouncedSearchFunction = useConstant(() =>
-    AwesomeDebouncePromise(searchFunction, 300)
-  );
-
-  // The async callback is run each time the text changes,
-  // but as the search function is debounced, it does not
-  // fire a new request on each keystroke
-  const searchResults = useAsync(
-    async () => {
-      if (inputText.length === 0) {
-        return [];
-      } else {
-        return debouncedSearchFunction(inputText);
-      }
-    },
-    [debouncedSearchFunction, inputText]
-  );
-
-  // Return everything needed for the hook consumer
-  return {
-    inputText,
-    setInputText,
-    searchResults,
-  };
-};
+import useDebouncedSearch from './useDebouncedSearch';
 
 const axios = require('axios');
 
@@ -75,7 +18,6 @@ const useAutocomplete = () => useDebouncedSearch(text => autocomplete(text))
 
 const AutocompleteSearch = () => {
   const { inputText, setInputText, searchResults } = useAutocomplete();
-  console.log(searchResults)
   return (
     <View style={{position: 'absolute', alignItems: 'center'}}>
       <Image style={{position: 'absolute', top: 30, right: 10, width: 25, height: 25, tintColor: 'black'}} source={require('../../assets/search.svg')} />
@@ -86,6 +28,7 @@ const AutocompleteSearch = () => {
         placeholderTextColor={'#444444'}
         value={inputText}
         />
+
         {inputText === "" ? <View /> : 
         
         <View style={{height: 302, width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
@@ -110,7 +53,6 @@ const AutocompleteSearch = () => {
         </View>
         }
     </View>
-
   );
 };
 
@@ -183,4 +125,4 @@ function SearchDestinationCard({ destination }) {
   )
 }
 
-export default Search;
+export default AutocompleteSearch;
