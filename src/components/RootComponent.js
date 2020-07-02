@@ -57,10 +57,11 @@ class RootComponent extends Component {
             <Route path='/animals' exact={true} render={(props) => <Animals {...props} style={this.props.style} />} />
             <Route path='/leaderboard' exact={true} render={(props) => <Leaderboard {...props} style={this.props.style} />} />
             <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
-            <Route path='/' render={(props) => <AccountRoot {...props} style={this.props.style} />} />
-            <Route path='/' render={(props) => <OverlayActionsRoot {...props} style={this.props.style} />} />
             <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           </View>
+
+          <Route path='/' render={(props) => <OverlayActionsRoot {...props} style={this.props.style} />} />
+          <Route path='/' render={(props) => <AccountRoot {...props} style={this.props.style} />} />
           
         </ScrollToTop>
       </Router>

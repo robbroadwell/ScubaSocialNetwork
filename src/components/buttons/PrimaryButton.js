@@ -6,10 +6,10 @@ class PrimaryButton extends React.Component {
   render() {
     const { action, title, icon, popoverIcon, ...passThrough } = this.props
     return (
-      <TouchableOpacity onPress={action} activeOpacity={1.0} style={{marginHorizontal: 5}} >
+      <TouchableOpacity onPress={action} activeOpacity={1.0} style={{marginHorizontal: 2}} >
         <BaseHoverableView
-          style={{ backgroundColor: 'red', paddingVertical: 8, paddingHorizontal: 12, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}
-          onHover={{ flexDirection: 'row', paddingVertical: 8, paddingHorizontal: 12, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}
+          style={{ backgroundColor: 'red', paddingVertical: 14, paddingHorizontal: 12, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}
+          onHover={{ flexDirection: 'row', paddingVertical: 14, paddingHorizontal: 12, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}
           >
           <Text style={{color: '#FFFFFF', fontWeight: '500', fontSize: 16}}>{title}</Text>
           {!icon ? <View></View> :
