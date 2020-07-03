@@ -26,7 +26,7 @@ function DiveSiteDetailHeader({ diveSite }) {
         <View style={{flexDirection: 'row', marginTop: 5}}>
           
           <ReactPlaceholder type='rect' style={{width: 400, height: 20}} ready={diveSite} showLoadingAnimation={true}>
-            {!diveSite ? <View></View> :
+            {!diveSite || !diveSite.destination ? <View></View> :
 
             <View style={{flexDirection: 'row', marginRight: 10}}>
               <StyledLink to="/destinations">Destinations</StyledLink>

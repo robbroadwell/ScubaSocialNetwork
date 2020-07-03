@@ -86,7 +86,7 @@ class DiveSiteDescription extends Component {
     super(props);
     this.state = {
       isEditing: false,
-      description: props.diveSite && props.diveSite.description.length > 0 ? props.diveSite.description[0].content : "",
+      description: !props.diveSite || !props.diveSite.description || props.diveSite.description.length === 0 ? "" : props.diveSite.description[0].content,
     };
   }
 
@@ -240,7 +240,7 @@ function DiveSiteLocation({diveSite}) {
         {/* <EditButton /> */}
       </View>
       <View style={{flexDirection: 'row', marginTop: 5}}>
-        {!diveSite ? <View /> : 
+        {!diveSite || !diveSite.destination ? <View /> : 
           <Text style={{fontSize: 15}}>{diveSite.destination.name}</Text>
         }
         {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />

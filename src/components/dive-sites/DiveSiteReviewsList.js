@@ -14,7 +14,7 @@ class DiveSiteReviewsList extends Component {
 
     var views = []
 
-    if (diveSite && diveSite.reviews.length > 0) {
+    if (diveSite && diveSite.reviews && diveSite.reviews.length > 0) {
 
       for (var i = 0; i < diveSite.reviews.length; i++) {
         const review = diveSite.reviews[i]
