@@ -15,7 +15,9 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      loading: false
+      loading: false,
+      onSomethingWentWrong: false,
+      onSomethingWentWrongError: ""
     };
   }
 
@@ -28,11 +30,11 @@ class Login extends Component {
   }
 
   onChangeTextUsername = input => {
-    this.setState({ username: input });
+    this.setState({ username: input, onSomethingWentWrong: false });
   };
 
   onChangeTextPassword = input => {
-    this.setState({ password: input });
+    this.setState({ password: input, onSomethingWentWrong: false });
   };
 
   onPressSubmit = () => {
@@ -42,13 +44,15 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
       })
-      .then(function (response) {
+      .then((response) => {
         this.setState({ username: "", password: "", loading: false });
         this.props.setUser(response.data.user);
         this.props.setLoginMode(false);
         document.body.style.overflow = "visible"
-      }.bind(this)
-      );
+      }).catch(error => {
+        console.log(error.response.data.error)
+        this.setState({ loading: false, onSomethingWentWrong: true, onSomethingWentWrongError: error.response.data.error, isLoading: false });
+      });
     }
   }
 
@@ -68,7 +72,7 @@ class Login extends Component {
       <View style={{position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', top: 0}}>
         <View style={{position: 'absolute', height: '100%', width: '100%', backgroundColor: 'black', opacity: 0.8}} />
         <View style={{alignItems: 'center', marginBottom: 10}}>
-          <View style={{backgroundColor: 'black', padding: 30, paddingTop: 0, alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>
+          <View style={{backgroundColor: 'black', padding: 50, paddingTop: 0, alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>
             <TouchableOpacity onPress={this.onPressClose} activeOpacity={1.0} style={{position: 'absolute', top: 0, right: 0}} >
               <Image style={{width: 30, height: 30, tintColor: 'white'}} source={require('../../assets/close.png')} />
             </TouchableOpacity>
@@ -88,6 +92,9 @@ class Login extends Component {
               placeholder={'Password'}
               value={this.state.password}
             />
+
+            {this.state.onSomethingWentWrong ? <Text style={{color: 'red', marginHorizontal: -20}}>{this.state.onSomethingWentWrongError}</Text> : <View/>}
+
             <TouchableOpacity onPress={() => this.onPressSubmit()}>
               <Text style={{textAlign: 'center', borderColor: '#CCCCCC', borderWidth: 1, padding: 10, margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Login</Text>
             </TouchableOpacity>

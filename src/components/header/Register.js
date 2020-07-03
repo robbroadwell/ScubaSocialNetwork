@@ -140,12 +140,7 @@ class Register extends Component {
           this.props.setRegisterMode(false);
         }.bind(this));
       }).catch(error => {
-        console.log(error.response)
-        if (error.response.status === 409) {
-          this.setState({ onSomethingWentWrong: true, onSomethingWentWrongError: error.response.data.error, isLoading: false });
-        } else {
-          this.setState({ onSomethingWentWrong: true, onSomethingWentWrongError: error.response.data.error, isLoading: false   });
-        }
+        this.setState({ onSomethingWentWrong: true, onSomethingWentWrongError: error.response.data.error, isLoading: false });
       });
     }
   }
