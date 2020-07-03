@@ -12,7 +12,9 @@ class AddReview extends Component {
     this.state = {
       rating: 0,
       title: "",
-      review: ""
+      review: "",
+      onSomethingWentWrong: false,
+      onSomethingWentWrongError: ""
     };
   }
 
@@ -25,18 +27,42 @@ class AddReview extends Component {
   }
 
   onChangeRating = input => {
-    this.setState({ rating: input });
+    this.setState({ rating: input, onSomethingWentWrong: false });
   };
 
   onChangeTextTitle = input => {
-    this.setState({ title: input });
+    this.setState({ title: input, onSomethingWentWrong: false });
   };
 
   onChangeTextReview = input => {
-    this.setState({ review: input });
+    this.setState({ review: input, onSomethingWentWrong: false });
   };
 
   addReview = () => {
+    if (this.state.rating === 0) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please select a rating."
+       });
+       return
+    }
+
+    if (this.state.title.length < 3) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please add a bit more to your title."
+       });
+       return
+    }
+
+    if (this.state.review.length < 100) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please add a bit more detail to your comment."
+       });
+       return
+    }
+
     var review = {
       rating: this.state.rating,
       title: this.state.title,
@@ -93,20 +119,21 @@ class AddReview extends Component {
               <Ratings.Widget widgetHoverColor="#FFB400"  />
             </Ratings>
             <TextInput
-              style={{ height: 40, width: 400, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}          
+              style={{ height: 40, width: 400, outlineWidth: 0, color: 'white', backgroundColor: 'gray', borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}          
               placeholderTextColor={'#CCCCCC'}
               onChangeText={text => this.onChangeTextTitle(text)}
               placeholder={'Title for your review'}
               value={this.state.title}
               />
             <TextInput
-              style={{ height: 200, width: 400,  color: 'white', backgroundColor: 'gray', textAlignVertical: 'top',borderColor: 'gray', padding: 10, borderWidth: 1 }}
+              style={{ height: 200, width: 400, outlineWidth: 0, color: 'white', backgroundColor: 'gray', textAlignVertical: 'top',borderColor: 'gray', padding: 10, borderWidth: 1 }}
               multiline={true}
               placeholderTextColor={'#CCCCCC'}
               onChangeText={text => this.onChangeTextReview(text)}
               placeholder={'How was it? What did you see?'}
               value={this.state.review}
             />
+            {this.state.onSomethingWentWrong ? <Text style={{color: 'red', marginTop: 10, marginHorizontal: -20}}>{this.state.onSomethingWentWrongError}</Text> : <View/>}
             <TouchableOpacity onPress={() => this.addReview()}>
               <Text style={{textAlign: 'center', marginTop: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Submit</Text>
             </TouchableOpacity>

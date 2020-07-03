@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
         }
       }
     },
-    { $sort : { rating : -1 } },
+    { $sort : { ratingCount : -1 } },
     { $limit: 5 }
   ])
   .then(diveSites => {

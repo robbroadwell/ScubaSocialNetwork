@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { connect } from "react-redux";
 import Select from 'react-select';
 import 'react-dropdown/style.css';
-import { setAddDiveSiteMode } from '../../redux/actions';
+import { setRegisterMode } from '../../redux/actions';
 import { getUser, getMapCenter, getDestinations } from '../../redux/selectors';
 import BaseURL from '../../utility/BaseURL';
 const axios = require('axios')
@@ -39,21 +39,31 @@ class DiveSiteAddView extends Component {
   }
 
   handleNextStep = () => {
-    if(this.state.step === 3) {
-      this.createDiveSite()
-    } else {
-      if(this.state.step === 1) {
-        this.lookupCountryName()
-      }
-      this.setState(prevState => ({
-        step: prevState.step + 1
-      }))
+    if (this.state.step === 1) {
+      this.lookupCountryName()
     }
+
+    if (this.state.step === 2 && !this.state.countrySelected) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please select a country."
+        });
+      return
+    }
+
+    if (this.state.step === 3) {
+      this.createDiveSite()
+      return
+    }
+
+    this.setState(prevState => ({
+      step: prevState.step + 1
+    }))
   }
 
   handleCountrySelect = (countrySelected) => {
     this.setState(
-      { countrySelected }
+      { countrySelected, onSomethingWentWrong: false }
     );
   };
 
@@ -72,7 +82,7 @@ class DiveSiteAddView extends Component {
   }
 
   onChangeTextName = input => {
-    this.setState({ name: input });
+    this.setState({ name: input, onSomethingWentWrong: false });
   };
 
   lookupCountryName = () => {
@@ -97,6 +107,28 @@ class DiveSiteAddView extends Component {
   }
 
   createDiveSite = () => {
+
+    if (!this.props.user.token) {
+      this.props.setRegisterMode(true);
+      return
+    }
+
+    if (!this.state.countrySelected) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please select a country."
+       });
+       return
+    }
+
+    if (!this.state.name || this.state.name.length < 3) {
+      this.setState({ 
+        onSomethingWentWrong: true,
+        onSomethingWentWrongError: "Please add a bit more to the name."
+       });
+       return
+    }
+
     const latitude = this.state.isFreeEntry ? Number(this.state.freeEntryLatitude) : this.props.mapCenter[0]
     const longitude = this.state.isFreeEntry ? Number(this.state.freeEntryLongitude) : this.props.mapCenter[1]
     const name = this.state.countrySelected.value.name
@@ -133,6 +165,7 @@ class DiveSiteAddView extends Component {
     return (
       <View style={{width: 320, marginTop: 20, flexDirection: 'column-reverse', justifyContent: 'flex-end'}}>
         <NextButton onPress={this.handleNextStep} step={this.state.step} />
+        {this.state.onSomethingWentWrong ? <Text style={{color: 'red', textAlign: 'center'}}>{this.state.onSomethingWentWrongError}</Text> : <View/>}
         {this.state.step > 2 ? <NamePicker onChangeName={this.onChangeTextName} name={this.state.name} /> : <View></View>}
         {this.state.step > 1 ? <CountryPicker selected={this.state.countrySelected} onChange={this.handleCountrySelect} list={this.state.countryList} /> : <View></View>}
         <CoordinatesPicker mapCenter={this.props.mapCenter} isFreeEntry={this.state.isFreeEntry} toggleFreeEntry={this.toggleFreeEntry} freeEntryLatitude={this.state.freeEntryLatitude} freeEntryLongitude={this.state.freeEntryLongtiude} onChangeTextLatitude={this.onChangeTextLatitude} onChangeTextLongitude={this.onChangeTextLongitude} />
@@ -227,5 +260,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setAddDiveSiteMode }
+  { setRegisterMode }
 )(DiveSiteAddView);
