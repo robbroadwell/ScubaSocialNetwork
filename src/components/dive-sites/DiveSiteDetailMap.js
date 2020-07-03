@@ -50,7 +50,7 @@ class DiveSiteMap extends Component {
   })
 
   createMarkers = () => {
-    if (this.props.diveSite && window.google && this.googleMap) {
+    if (this.props.diveSite && this.props.diveSite.location && window.google && this.googleMap) {
       const { diveSite } = this.props;
 
       if (this.markers.includes(diveSite._id)) {
