@@ -247,7 +247,7 @@ function DiveSiteLocation({diveSite}) {
         <Text style={{fontSize: 15}}>Lighthouse Reef</Text> */}
         <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
 
-        {!diveSite ? <View /> : 
+        {!diveSite || !diveSite.location || !diveSite.location.coordinates || diveSite.location.coordinates.length === 0 ? <View /> : 
           <Text style={{fontSize: 15}}>{diveSite.location.coordinates[1]}, {diveSite.location.coordinates[0]}</Text>
         }
       </View>
