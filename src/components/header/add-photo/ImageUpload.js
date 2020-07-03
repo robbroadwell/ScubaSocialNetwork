@@ -6,6 +6,7 @@ import BaseURL from '../../../utility/BaseURL';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
+import { setRegisterMode } from '../../../redux/actions';
 
 const axios = require('axios')
 
@@ -60,6 +61,12 @@ class ImageUpload extends Component {
   }
 
   upload = () => {
+
+    if (!this.props.user || !this.props.user.token) {
+      this.props.setRegisterMode(true);
+      return
+    }
+
     console.log(this.state.files[0])
     console.log(this.state.previews[0])
     const file = this.state.files[0];
@@ -139,6 +146,11 @@ class ImageUpload extends Component {
       )
     }
 
+    console.log(this.props.user)
+
+    if (!this.props.user || !this.props.user.token) {
+      this.props.setRegisterMode(true);
+    }
     
     return (
       <View style={{position: 'absolute', height: '100%', width: '100%', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20}}>
@@ -181,5 +193,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {  }
+  { setRegisterMode }
 )(ImageUpload);
