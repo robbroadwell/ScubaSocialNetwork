@@ -31,8 +31,7 @@ const AutocompleteSearch = ({ header }) => {
         />
 
         {inputText === "" ? <View /> : 
-        
-        <View style={{position: 'absolute', top: header ? 55 : 45, width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>
+        <View style={{position: 'absolute', top: header ? 55 : 45, right: header ? 0 : "auto", width: 600, borderTopColor: '#EEEEEE', borderTopWidth: 1, overflow: 'hidden', backgroundColor: 'white', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>
           <View style={{padding: 10}}>
             {searchResults.loading && <div>...</div>}
               {searchResults.error && <div>Error: {searchResults.error.message}</div>}
