@@ -11,7 +11,8 @@ class Header extends Component {
 
   showLogin = () => {
     if (this.props.user.username) {
-      this.props.setAccountMode(true);
+      this.props.history.push(`/account`)
+      // this.props.setAccountMode(true);
     } else {
       this.props.setRegisterMode(true);
     }

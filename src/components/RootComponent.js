@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Helmet } from "react-helmet";
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 
-import Alert from './header/Alert';
+import Account from './account/Account';
 import AccountRoot from './header/AccountRoot';
 import Contact from './legal/Contact';
 import Conditions from './legal/Conditions';
@@ -27,8 +27,10 @@ import { connect } from "react-redux";
 
 import {
   BrowserRouter as Router,
+  Redirect,
   Route
 } from "react-router-dom";
+import { getUser } from '../redux/selectors';
 
 class RootComponent extends Component {
 
@@ -53,6 +55,7 @@ class RootComponent extends Component {
             <Route path='/contact' exact={true} render={(props) => <Contact {...props} style={this.props.style} />} />
             <Route path='/conditions' exact={true} render={(props) => <Conditions {...props} style={this.props.style} />} />
             <Route path='/privacy' exact={true} render={(props) => <Privacy {...props} style={this.props.style} />} />
+            <PrivateRoute path='/account' exact={true} user={this.props.user} render={(props) => <Account {...props} style={this.props.style} />} />
             <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
             <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
             <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
@@ -76,8 +79,32 @@ class RootComponent extends Component {
   }
 }
 
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute({ user, render, ...rest }) {
+  console.log(user.token)
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        user.token ? (
+          render()
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
 const mapStateToProps = state => {
-  return {  };
+  const user = getUser(state);
+  return { user };
 };
 
 export default connect(
