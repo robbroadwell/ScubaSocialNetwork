@@ -44,8 +44,7 @@ class Header extends Component {
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          {this.props.user.token ? <View></View> : <PrimaryButton title={"Join Diving Collective"} action={this.showLogin} />}
-          
+          <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} />
         </View>
       </View>
     )
