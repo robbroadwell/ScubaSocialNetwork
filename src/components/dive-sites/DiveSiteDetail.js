@@ -202,7 +202,7 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
       <DiveSiteDetailHeader diveSite={diveSite} />
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
-      <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
+      {/* <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} /> */}
       <View style={{flex: 1}}></View>
       <DiveSiteLocation diveSite={diveSite} />
     </View>

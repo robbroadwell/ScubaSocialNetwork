@@ -17,22 +17,17 @@ class Account extends Component {
   }
 
   render() {
-    if (process.env.NODE_ENV !== "development") {
-      ReactGA.pageview('/account');
-    }
-    
     return (
-      <View style={{justifyContent: 'center', margin: 20}}>
-        <View style={{alignItems: 'center'}}>
-          <View style={{backgroundColor: 'black', padding: 50, alignItems: 'center'}}>
-            <Image style={{height: 80, width: 50, margin: 20, marginBottom: 10, tintColor: '#FFFFFF'}} source={require('../../assets/d_logo.svg')} />
-            <Text style={{textAlign: 'center', fontSize: 24, color: 'white', marginBottom: 2}}>{this.props.user.username}</Text>
-            <Text style={{textAlign: 'center', fontSize: 18, color: 'white', marginBottom: 10}}>{this.props.user.email}</Text>
-            <TouchableOpacity onPress={() => this.onPressLogout()}>
-              <Text style={{textAlign: 'center', margin: 20, color: 'white', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
-            </TouchableOpacity>
+      <View style={{flexDirection: 'row', margin: 20}}>
+        <View>
+          <Text style={{textAlign: 'center', fontSize: 24, color: 'black', marginBottom: 2}}>{this.props.user.username}</Text>
+          <Text style={{textAlign: 'center', fontSize: 18, color: 'black', marginBottom: 10}}>{this.props.user.email}</Text>
+          <TouchableOpacity onPress={() => this.onPressLogout()}>
+            <Text style={{textAlign: 'center', margin: 20, color: 'black', fontWeight: 'bold', fontSize: 18}}>Logout</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{flex: 1}}>
 
-          </View>
         </View>
       </View>
     )
