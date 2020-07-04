@@ -165,7 +165,7 @@ class ImageUpload extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: 'white', borderWidth: 1}} />
                 {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>DivingCollective's Conditions of Use.</span></TouchableOpacity></Text>
+                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to DivingCollective's <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>Terms and Conditions.</span></TouchableOpacity></Text>
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>

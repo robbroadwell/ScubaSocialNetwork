@@ -277,7 +277,7 @@ class Register extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 5, borderColor: 'white', borderWidth: 1}} />
                 {!this.state.termsAccepted ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 7, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-              <Text style={{color: 'white'}}>I agree to <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>the Conditions of Use.</span></TouchableOpacity></Text>
+              <Text style={{color: 'white'}}>I agree to the <TouchableOpacity onPress={this.props.navigateTerms}><span style={{textDecorationLine: 'underline'}}>Terms and Conditions.</span></TouchableOpacity></Text>
             </View>
 
             <TouchableOpacity disabled={!this.state.termsAccepted} style={{opacity: this.state.termsAccepted ? 1 : 0.5}} onPress={() => this.onPressSubmit()}>
