@@ -31,7 +31,7 @@ class Header extends Component {
 
         <View style={{flexDirection: 'row', marginHorizontal: 30}}>
           <TouchableOpacity onPress={() => this.props.history.push(`/destinations`)}>
-            <Text style={{color: 'white', fontSize: 15, fontWeight: '500', marginRight: 20}}>Destinations</Text>
+            <Text style={{color: 'white', fontSize: 16, fontWeight: '500', marginRight: 20}}>Destinations</Text>
           </TouchableOpacity>
           
         </View>

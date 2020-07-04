@@ -39,7 +39,7 @@ class Footer extends Component {
           <View style={{marginTop: 50, marginBottom: 50}}>
             <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#DDDDDD'}}>© 2020, Broadwell LLC, or its affiliates</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.props.history.push(`/terms`)}>
+              <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
                 <Text style={{fontSize: 12, textAlign: 'center',color: '#DDDDDD', marginLeft: 10}}>Terms and Conditions</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>

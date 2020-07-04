@@ -5,7 +5,7 @@ import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import Alert from './header/Alert';
 import AccountRoot from './header/AccountRoot';
 import Contact from './legal/Contact';
-import Terms from './legal/Terms';
+import Conditions from './legal/Conditions';
 import Privacy from './legal/Privacy';
 import OverlayActionsRoot from './header/OverlayActionsRoot';
 import Header from './header/Header';
@@ -51,7 +51,7 @@ class RootComponent extends Component {
             {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
             <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
             <Route path='/contact' exact={true} render={(props) => <Contact {...props} style={this.props.style} />} />
-            <Route path='/terms' exact={true} render={(props) => <Terms {...props} style={this.props.style} />} />
+            <Route path='/conditions' exact={true} render={(props) => <Conditions {...props} style={this.props.style} />} />
             <Route path='/privacy' exact={true} render={(props) => <Privacy {...props} style={this.props.style} />} />
             <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
             <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />

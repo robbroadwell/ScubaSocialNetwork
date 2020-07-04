@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
-class Terms extends Component {
+class Conditions extends Component {
   render() {
     return (
       <View style={{alignItems: 'center'}}>
@@ -229,4 +229,4 @@ Your statement must be sent to the Company by US mail or email, to:</Text>
   }
 }
 
-export default Terms;
+export default Conditions;
