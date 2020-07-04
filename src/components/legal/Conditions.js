@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { connect } from "react-redux";
+import { setAddPhotoMode, setRegisterMode } from '../../redux/actions';
 
 class Conditions extends Component {
+  componentDidMount() {
+    this.props.setAddPhotoMode(false);
+    this.props.setRegisterMode(false);
+  }
+
   render() {
     return (
       <View style={{alignItems: 'center'}}>
@@ -229,4 +236,11 @@ Your statement must be sent to the Company by US mail or email, to:</Text>
   }
 }
 
-export default Conditions;
+const mapStateToProps = state => {
+  return { };
+};
+
+export default connect(
+  mapStateToProps,
+  { setRegisterMode, setAddPhotoMode }
+)(Conditions);
