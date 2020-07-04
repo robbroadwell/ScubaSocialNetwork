@@ -11,7 +11,7 @@ class Header extends Component {
 
   showLogin = () => {
     if (this.props.user.username) {
-      this.props.history.push(`/account`)
+      // this.props.history.push(`/account`)
       // this.props.setAccountMode(true);
     } else {
       this.props.setRegisterMode(true);
@@ -44,7 +44,8 @@ class Header extends Component {
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} />
+          {this.props.user.token ? <View></View> : <PrimaryButton title={"Join Diving Collective"} action={this.showLogin} />}
+          
         </View>
       </View>
     )
