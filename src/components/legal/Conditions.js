@@ -7,6 +7,7 @@ class Conditions extends Component {
   componentDidMount() {
     this.props.setAddPhotoMode(false);
     this.props.setRegisterMode(false);
+    document.body.style.overflow = "visible"
   }
 
   render() {
