@@ -13,6 +13,7 @@ import AddButton from '../buttons/AddButton';
 import EditButton from '../buttons/EditButton';
 import SaveButton from '../buttons/SaveButton';
 import CancelButton from '../buttons/CancelButton';
+import UserBadge from './UserBadge';
 
 import { connect } from "react-redux";
 import { getDiveSite, getUser } from "../../redux/selectors";
@@ -206,15 +207,7 @@ class DiveSiteDescription extends Component {
               <Text style={{fontWeight: '900', paddingHorizontal: 5}}>2 more...</Text>
             </View>
             <View style={{flex: 1}} />
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View style={{width: 40, height: 40, borderRadius: 20, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center'}}>
-                <Image style={{height: 28, width: 18, marginRight: 2, tintColor: 'white'}} source={require('../../assets/d_logo.svg')} />
-              </View>
-              <View style={{marginHorizontal: 10}}>
-                <Text style={{fontWeight: '600'}}>Rob</Text> 
-                <Text>January 20, 2020</Text> 
-              </View>
-            </View>
+            <UserBadge user={{name: "Rob"}} timestamp={1234567} />
           </View>
         </View>
       )

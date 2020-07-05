@@ -13,8 +13,10 @@ class Conditions extends Component {
   render() {
     return (
       <View style={{alignItems: 'center'}}>
-        <View style={{margin: 20, padding: 20, backgroundColor: '#FAFAFA', borderColor: '#DDDDDD', borderWidth: 1}}>
+        <View style={{margin: 20, padding: 20, backgroundColor: '#FDFDFD', borderColor: '#DDDDDD', borderWidth: 1, shadowColor: '#000000', shadowOpacity: 0.2, shadowRadius: 15}}>
           <Text style={{fontSize: 20, fontWeight: '800', textAlign: 'center'}}>Terms and Conditions</Text>
+          <Text style={{textAlign: 'center'}}>Last Updated on July 3, 2020.</Text>
+
           <Text style={{marginBottom: 10, marginTop: 20}}>These terms and conditions (the “Terms“) govern your access to and use of Broadwell LLC's websites and mobile applications that link to or reference these Terms (collectively, the “Service“). By accessing or using the Service, you are agreeing to these Terms and concluding a legally binding contract with Broadwell LLC and any affiliated corporate entities that are controlled by, or in common control with, Broadwell LLC (the “Company“). You are also agreeing to the Company’s separately published Privacy Policy, which is available at https://www.divingcollective.com/privacy.</Text>
           <Text style={{marginBottom: 10}}>“You” and “your” refer to you, as a user of the Service. A “user” is someone who accesses, browses, crawls, scrapes, or in any way uses the Service. “We“, “us“, and “our” refer to the Company.</Text>
           <Text style={{marginBottom: 10}}>The Terms and Privacy Policy contain the entire agreement between you and us regarding the use of the Service, and supersede any prior agreement between you and us on such subject matter.</Text>
@@ -229,8 +231,6 @@ Your statement must be sent to the Company by US mail or email, to:</Text>
 <Text style={{marginBottom: 10}}>These Terms, and the Privacy Policy, may change from time to time. The Company may modify these Terms and/or the Privacy Policy effective immediately upon notice to you either by (1) electronic mail or (2) posting the modifications to the Service (which shall be deemed constructive notice). Your continued use of the Service following notice of any modifications shall be conclusively deemed an acceptance of all such modifications.</Text>
 
 <Text style={{marginBottom: 10}}>All feedback, comments, requests for technical support, and other communications relating to the Services should be directed to: rob@divingcollective.com.</Text>
-
-<Text style={{marginBottom: 10}}>These Terms and Conditions were Last Updated on July 3, 2020.</Text>
         </View>
       </View>
     )
