@@ -48,13 +48,21 @@ function DiveSiteDetailHeader({ diveSite }) {
             </ReactPlaceholder>
           </View>
         </View>
-        {/* <View style={{flex: 1}} />
+        <View style={{flex: 1}} />
+        {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginRight: 10}}>Submitted by</Text>
+          <View style={{width: 40, height: 40, borderRadius: 20, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center'}}>
+            <Image style={{height: 28, width: 18, marginRight: 2, tintColor: 'white'}} source={require('../../assets/d_logo.svg')} />
+          </View>
+          <View style={{marginHorizontal: 10}}>
+            <Text style={{fontWeight: '600'}}>Rob</Text> 
+            <Text>January 20, 2020</Text> 
+          </View>
+        </View> */}
         <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
           <HeaderTag title="Night" />
-          <HeaderTag title="Access: Boat" />
           <HeaderTag title="Pinnacle" />
-          <HeaderTag title="Type: Drift" />
-        </View> */}
+        </View>
       </View>
     </View>
   )

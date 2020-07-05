@@ -120,9 +120,9 @@ function Directory({ destinations, navigateDestination, addDiveSite }) {
   return (
     <View style={{margin: 20, marginBottom: 50}}>
       <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
-      <View style={{flexDirection: 'row'}}>
-        <Text style={{fontSize: 14, color: 'black', marginTop: 2}}>4,340 dive sites added by users from all over the world. </Text>
-        <TouchableOpacity onPress={addDiveSite}><Text style={{fontSize: 14, color: 'black', marginTop: 2, textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</Text></TouchableOpacity>
+      <View style={{flexDirection: 'row', marginTop: 2}}>
+        <Text style={{fontSize: 14, color: 'black'}}>4,340 dive sites added by users from all over the world. </Text>
+        <TouchableOpacity onPress={addDiveSite}><Text style={{fontSize: 14, color: 'black', textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</Text></TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', marginTop: 20}}>
         <View style={{flex: 1, marginRight: 20}}>
