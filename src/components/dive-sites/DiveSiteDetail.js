@@ -202,7 +202,7 @@ class DiveSiteDescription extends Component {
             </View>
             
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+          <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 10}}>
             <View style={{borderColor: '#CCCCCC', borderWidth: 1, borderRadius: 5, padding: 5}}>
               <Text style={{fontWeight: '900', paddingHorizontal: 5}}>2 more...</Text>
             </View>

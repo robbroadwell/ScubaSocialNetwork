@@ -88,11 +88,11 @@ function AccountDropdown() {
       <View style={{height: 1, backgroundColor: '#CCCCCC'}} />
       <View style={{marginVertical: 10}}>
         <AccountLink to="/users/Rob">Your Profile</AccountLink>
-        <AccountLink to="/users/Rob/logged-dives">Your Logged Dives</AccountLink>
+        <AccountLink to="/users/Rob/dive-log">Your Dive Log</AccountLink>
         <AccountLink to="/users/Rob/photos">Your Photos</AccountLink>
         <AccountLink to="/users/Rob/reviews">Your Reviews</AccountLink>
         <AccountLink to="/users/Rob/dive-sites">Your Dive Sites</AccountLink>
-        <AccountLink to="/users/Rob/favorites">Your Favorites</AccountLink>
+        {/* <AccountLink to="/users/Rob/favorites">Your Favorites</AccountLink> */}
       </View>
       <View style={{height: 1, backgroundColor: '#CCCCCC'}} />
       <View style={{marginVertical: 10}}>

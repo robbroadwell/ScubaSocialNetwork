@@ -10,6 +10,7 @@ import Privacy from './legal/Privacy';
 import OverlayActionsRoot from './header/OverlayActionsRoot';
 import Header from './header/Header';
 import Footer from './footer/Footer';
+import Users from './users/Users';
 import Home from './home/Home';
 import Destinations from './destinations/Destinations';
 import DestinationDetail from './destinations/DestinationDetail';
@@ -52,6 +53,7 @@ class RootComponent extends Component {
           <View style={{flexDirection: 'column-reverse'}}>
             {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
             <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
+            <Route path='/users/:id/:tab?' render={(props) => <Users {...props} style={this.props.style} />} />
             <Route path='/contact' exact={true} render={(props) => <Contact {...props} style={this.props.style} />} />
             <Route path='/conditions' exact={true} render={(props) => <Conditions {...props} style={this.props.style} />} />
             <Route path='/privacy' exact={true} render={(props) => <Privacy {...props} style={this.props.style} />} />
