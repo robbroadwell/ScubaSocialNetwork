@@ -77,8 +77,8 @@ class Map extends Component {
       zoom: 5,
       minZoom: 4,
       center: {
-          lat: 25.618760268337972,
-          lng: -79.08256345614791
+          lat: 12.194579138488749,
+          lng: 112.27164246413588
       },
       disableDefaultUI: true,
       zoomControl: true,
@@ -150,6 +150,7 @@ class Map extends Component {
     }
 
     if (this.googleMap && window.google.maps && !this.isPolygonLoaded && this.props.country && this.props.country.geojson) {
+      console.log('inside if')
 
       window.google.maps.Polygon.prototype.getBounds = function() {
         var bounds = new window.google.maps.LatLngBounds();

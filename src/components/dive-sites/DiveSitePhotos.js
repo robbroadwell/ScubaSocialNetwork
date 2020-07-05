@@ -44,16 +44,18 @@ class DiveSitePhotos extends Component {
       <View style={{backgroundColor: '#FEFEFE', height: 400, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>     
         <View style={{flex: 1}}>
           <Image style={{flex: 1}} source={diveSite.photos[this.state.photoSelectedIndex].url} />
-          <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', backgroundColor: 'black'}}>
+          <View style={{position: 'absolute', opacity: 0.6, right: 15, bottom: 15, paddingVertical: 12, paddingHorizontal: 20, backgroundColor: 'black', borderRadius: 10, borderColor: 'white', borderWidth: 1, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 10, shadowColor: '#000'}}>
+            <Text style={{color: 'white', fontWeight: '500', fontSize: 18}}>All Photos</Text>
+          </View>
+          {/* <View style={{position: 'absolute', bottom: 0, left: 0, alignItems: 'center', backgroundColor: 'black'}}>
             <PhotoNavigation previewBack={this.previewBack} previewForward={this.previewForward} selectedIndex={this.state.photoSelectedIndex} length={diveSite.photos.length} />
-            {/* <PhotoCredits photo={diveSite.photos[this.state.photoSelectedIndex]} /> */}
           </View>
           <TouchableOpacity onPress={this.props.openAddPhoto} style={{backgroundColor: 'black', position: 'absolute', right: 0, bottom: 0}}>
             <View style={{flexDirection: 'row', padding: 7.5, marginHorizontal: 5}}>
               <Text style={{color: 'white'}}>Add a Photo</Text>
               <Image style={{width: 15, height: 15, marginLeft: 5, tintColor: 'white'}} source={require('../../assets/edit.svg')} />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     )

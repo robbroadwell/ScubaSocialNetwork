@@ -9,6 +9,7 @@ import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
 import qs from 'qs';
 import BaseURL from '../../utility/BaseURL';
+import AddButton from '../buttons/AddButton';
 import EditButton from '../buttons/EditButton';
 import SaveButton from '../buttons/SaveButton';
 import CancelButton from '../buttons/CancelButton';
@@ -182,14 +183,39 @@ class DiveSiteDescription extends Component {
       )
     } else {
       return (
-        <View>
-          <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
+        <View style={{borderColor: '#CCCCCC', borderWidth: 1, marginTop: 20, padding: 20, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
+          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 20}}>
             <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
-            <EditButton onPress={this.enableEdit} />
+            <AddButton onPress={this.enableEdit} />
           </View>
-          <Text>
-            {this.props.diveSite && this.props.diveSite.description && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "No description yet." }
-          </Text>
+          <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{marginRight: 20}}>
+              <Image style={{height: 28, width: 18, tintColor: '#CCCCCC'}} source={require('../../assets/arrow_up.svg')} />
+              <Text style={{fontWeight: '900'}}>12</Text>
+              <Image style={{height: 28, width: 18, tintColor: '#CCCCCC'}} source={require('../../assets/arrow_down.svg')} />
+            </View>
+            <View style={{flex: 1, marginRight: 10}}>
+              <Text style={{fontSize: 15}}>
+                {this.props.diveSite && this.props.diveSite.description && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "No description yet." }
+              </Text>
+            </View>
+            
+          </View>
+          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+            <View style={{borderColor: '#CCCCCC', borderWidth: 1, borderRadius: 5, padding: 5, marginLeft: -5}}>
+              <Text style={{fontWeight: '900'}}>2 more...</Text>
+            </View>
+            <View style={{flex: 1}} />
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View style={{width: 40, height: 40, borderRadius: 20, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center'}}>
+                <Image style={{height: 28, width: 18, marginRight: 2, tintColor: 'white'}} source={require('../../assets/d_logo.svg')} />
+              </View>
+              <View style={{marginHorizontal: 10}}>
+                <Text style={{fontWeight: '600'}}>Rob</Text> 
+                <Text>January 20, 2020</Text> 
+              </View>
+            </View>
+          </View>
         </View>
       )
     }
@@ -201,26 +227,22 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSiteDetailHeader diveSite={diveSite} />
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
+      <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
       <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
-      {/* <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} /> */}
       <View style={{flex: 1}}></View>
-      <DiveSiteLocation diveSite={diveSite} />
+      {/* <DiveSiteLocation diveSite={diveSite} /> */}
     </View>
   )
 }
 
 function DiveSiteAverages({ diveSite, openLogDive }) {
   return (
-    <View>
-      <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 40, marginBottom: 15}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Details</Text>
-        <LogButton onPress={openLogDive} />
-      </View>
-      <View style={{flexDirection: 'row', marginBottom: 40, marginHorizontal: -5}}>
+    <View style={{borderColor: '#CCCCCC', borderWidth: 1, marginTop: 20, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
+      <View style={{flexDirection: 'row'}}>
         <DetailCard name={"Visibility"} value={"100+ meters"} diveSite={diveSite} />
         <DetailCard name={"Depth"} value={"70-80 meters"} diveSite={diveSite} />
         <DetailCard name={"Water Temperature"} value={"80°F"} diveSite={diveSite} />
-        <DetailCard name={"Currents"} value={"None"} diveSite={diveSite} />
+        <DetailCard name={"Currents"} value={"None"} diveSite={diveSite} noBorder={true} />
 
       </View>
       {/* <View style={{flexDirection: 'row', flexWrap: 'wrap', marginBottom: 40}}>
@@ -232,33 +254,9 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
   )
 }
 
-function DiveSiteLocation({diveSite}) {
+function DetailCard({ name, value, diveSite, noBorder }) {
   return (
-    <View>
-      <View style={{flexDirection: 'row', marginTop: 20, alignItems: 'center'}}>
-        <Text style={{fontSize: 18, fontWeight: '600'}}>Location</Text>
-        {/* <EditButton /> */}
-      </View>
-      <View style={{flexDirection: 'row', marginTop: 5}}>
-        {!diveSite || !diveSite.destination ? <View /> : 
-          <Text style={{fontSize: 15}}>{diveSite.destination.name}</Text>
-        }
-        {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-        <Text style={{fontSize: 15}}>Lighthouse Reef</Text> */}
-        <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
-
-        {!diveSite || !diveSite.location || !diveSite.location.coordinates || diveSite.location.coordinates.length === 0 ? <View /> : 
-          <Text style={{fontSize: 15}}>{diveSite.location.coordinates[1]}, {diveSite.location.coordinates[0]}</Text>
-        }
-      </View>
-    </View>
-
-  )
-}
-
-function DetailCard({ name, value, diveSite }) {
-  return (
-    <View style={{flex: 1, marginHorizontal: 5, backgroundColor: '#FEFEFE', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.15, shadowRadius: 5, shadowColor: '#000'}}>
+    <View style={{flex: 1, paddingVertical: 5, marginHorizontal: 5, backgroundColor: '#FEFEFE', borderRightColor: "#DEDEDE", borderRightWidth: noBorder ? 0 : 1}}>
       <ReactPlaceholder type='rect' style={{height: 120}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: 16, fontWeight: '600'}}>{name}</Text>

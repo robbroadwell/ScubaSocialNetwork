@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const passport = require('passport');
 const DiveSite = require('../models/diveSite');
+const User = require('../models/user');
 const Destination = require('../models/destination');
 const DiveSiteDetails = require('../models/diveSiteDetails');
 var aws = require('aws-sdk'); 
@@ -110,6 +111,18 @@ router.post('/', (req, res, next) => {
       destination.diveSiteCount = destination.diveSiteCount + 1
       destination.save()
     })
+
+    User.findById(user._id).then(user => {
+      user.diveSitesAdded.unshift({
+        id: newDiveSite._id,
+        name: newDiveSite.name,
+        location: newDiveSite.location,
+        destination: newDiveSite.destination
+      })
+      user.save()
+    })
+
+    console.log(user._id)
 
     newDiveSite.save()
       .then(diveSite => {

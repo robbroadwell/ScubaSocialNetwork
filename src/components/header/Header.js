@@ -9,14 +9,6 @@ import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
 
-  showLogin = () => {
-    if (this.props.user.username) {
-      // this.props.history.push(`/account`)
-      // this.props.setAccountMode(true);
-    } else {
-      this.props.setRegisterMode(true);
-    }
-  };
 
   render() {
     console.log(this.props.user)
@@ -30,11 +22,16 @@ class Header extends Component {
           </View>
         </TouchableOpacity>
 
-        <View style={{flexDirection: 'row', marginHorizontal: 30}}>
+        <View style={{flexDirection: 'row', marginLeft: 30}}>
           <TouchableOpacity onPress={() => this.props.history.push(`/destinations`)}>
-            <Text style={{color: 'white', fontSize: 16, fontWeight: '500', marginRight: 20}}>Destinations</Text>
+            <Text style={{color: 'white', fontSize: 16, fontWeight: '500'}}>Destinations</Text>
           </TouchableOpacity>
-          
+        </View>
+
+        <View style={{flexDirection: 'row', marginLeft: 30}}>
+          <TouchableOpacity onPress={() => this.props.history.push(`/photos`)}>
+            <Text style={{color: 'white', fontSize: 16, fontWeight: '500'}}>Photos</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={{flex: 1}}></View>
@@ -44,11 +41,22 @@ class Header extends Component {
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 10}}>
-          {this.props.user.token ? <View></View> : <PrimaryButton title={this.props.user.firstName ? "Good morning, " + this.props.user.firstName : "Join Diving Collective"} action={this.showLogin} /> }
+          {this.props.user.token ? <AccountButton /> : <PrimaryButton title={"Join Diving Collective"} action={() => this.props.setRegisterMode(true)} /> }
         </View>
       </View>
     )
   }
+}
+
+function AccountButton() {
+  return (
+    <View style={{flexDirection: 'row', marginLeft: 15, marginRight: 5, alignItems: 'center'}}>
+      <View style={{width: 30, height: 30, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#CCCCCC'}}>
+        <Image style={{height: 20, width: 12, marginRight: 2, tintColor: 'white'}} source={require('../../assets/d_logo.svg')} />
+      </View>
+      <Image style={{width: 25, height: 15, tintColor: '#CCCCCC'}} source={require('../../assets/arrow_down.svg')} />
+    </View>
+  )
 }
 
 const mapStateToProps = state => {

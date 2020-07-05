@@ -85,12 +85,33 @@ class DiveSiteMap extends Component {
   }
 }
 
+function DiveSiteLocation({diveSite}) {
+  return (
+    <View style={{position: 'absolute', top: 0, left: 0}}>
+      <View style={{paddingHorizontal: 20, paddingVertical: 10, backgroundColor: 'black', flexDirection: 'row'}}>
+        {!diveSite || !diveSite.destination ? <View /> : 
+          <Text style={{color: '#FFFFFF', fontSize: 17, fontWeight: '600'}}>{diveSite.destination.name}</Text>
+        }
+        {/* <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
+        <Text style={{fontSize: 15}}>Lighthouse Reef</Text> */}
+        <Image style={{tintColor: '#FFFFFF', width: 20, height: 20}} source={require('../../assets/right.svg')} />
+
+        {!diveSite || !diveSite.location || !diveSite.location.coordinates || diveSite.location.coordinates.length === 0 ? <View /> : 
+          <Text style={{color: '#FFFFFF', fontSize: 17, fontWeight: '600'}}>{diveSite.location.coordinates[1]}, {diveSite.location.coordinates[0]}</Text>
+        }
+      </View>
+    </View>
+
+  )
+}
+
 function DiveSiteDetailMap({ style, diveSite }) {
   return (
     <View>
       <View style={{width: '100%', height: 300}}>
         <DiveSiteMap diveSite={diveSite} style={style} />
       </View>
+      <DiveSiteLocation diveSite={diveSite} />
     </View>
   )
 }

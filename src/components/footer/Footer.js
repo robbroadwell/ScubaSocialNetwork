@@ -32,11 +32,11 @@ class Footer extends Component {
     return (
       <View>
         <View style={{backgroundColor: 'black'}}>
-          {/* <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 40}}>
+          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 50}}>
             <Image style={{width: 150, height: 45, marginRight: 10}} source={require('../../assets/appStoreIos.gif')} />
             <Image style={{width: 150, height: 45}} source={require('../../assets/appStoreAndroid.gif')} />
-          </View> */}
-          <View style={{marginTop: 50, marginBottom: 50}}>
+          </View>
+          <View style={{marginTop: 20, marginBottom: 50}}>
             <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#DDDDDD'}}>© 2020, Broadwell LLC, or its affiliates</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>

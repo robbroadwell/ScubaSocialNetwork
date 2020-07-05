@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from './DragAndDrop'
 import Loading from '../../misc/Loading';
 import BaseURL from '../../../utility/BaseURL';
-import StyledLink from '../../buttons/StyledLink';
+import StyledLinkAlt from '../../buttons/StyledLinkAlt';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
@@ -58,7 +58,7 @@ class ImageUpload extends Component {
   }
 
   cancelUpload = () => {
-    this.setState({ files: [], previews: [] })
+    this.setState({ checkmark: false, files: [], previews: [] })
   }
 
   upload = () => {
@@ -138,7 +138,7 @@ class ImageUpload extends Component {
       return ( // ready for drop
         <View style={{position: 'absolute', height: '100%', width: '100%'}}>
           <DragAndDrop handleDrop={this.handleDrop}>
-            <View style={{position: 'absolute', backgroundColor: 'black', height: '100%', width: '100%', alignItems: 'center', shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 20, justifyContent: 'center'}}>
+            <View style={{position: 'absolute', backgroundColor: 'black', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
               <Image style={{width: 50, height: 50, tintColor: 'white'}} source={require('../../../assets/add_photo.svg')} />
               <Text style={{textAlign: 'center', marginTop: 10, color: 'white', fontSize: 16}}>Drag Photo Here</Text>
             </View>
@@ -166,7 +166,7 @@ class ImageUpload extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: 'white', borderWidth: 1}} />
                 {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to DivingCollective's <StyledLink to="/conditions">Terms and Conditions</StyledLink></Text>
+                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to DivingCollective's <StyledLinkAlt to="/conditions">Terms and Conditions</StyledLinkAlt>.</Text>
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
