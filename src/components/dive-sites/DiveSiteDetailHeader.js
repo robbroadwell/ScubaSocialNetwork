@@ -50,17 +50,17 @@ function DiveSiteDetailHeader({ diveSite }) {
         </View>
         {/* <View style={{flex: 1}} />
         <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-          <HeaderButton title="Log Dive" />
-          <HeaderButton title="Add Review" />
-          <HeaderButton title="Add Description" />
-          <HeaderButton title="Add Photo" />
+          <HeaderTag title="Night" />
+          <HeaderTag title="Access: Boat" />
+          <HeaderTag title="Pinnacle" />
+          <HeaderTag title="Type: Drift" />
         </View> */}
       </View>
     </View>
   )
 }
 
-function HeaderButton({ title }) {
+function HeaderTag({ title }) {
   return (
     <View style={{paddingVertical: 5, paddingHorizontal: 10, marginHorizontal: 5, borderRadius: 5, borderWidth: 1, borderColor: '#CCCCCC'}}>
       <Text style={{fontSize: 16, fontWeight: '500'}}>{title}</Text>
