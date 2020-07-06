@@ -222,6 +222,7 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
       <DiveSiteAnimals />
+      {/* <DiveSitePromo /> */}
       {/* <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} /> */}
       <View style={{flex: 1}}></View>
       {/* <DiveSiteLocation diveSite={diveSite} /> */}
@@ -229,10 +230,27 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
   )
 }
 
+function DiveSitePromo() {
+  return (
+    <View style={{flexDirection: 'row', height: 200, marginTop: 20}}>
+      <View style={{flex: 1, marginRight: 10, backgroundColor: 'black'}}>
+        <Image style={{flex: 1}} source={require('../../assets/black_pearl.jpg')} />
+        <View style={{position: 'absolute', width: '100%', height: '100%', borderColor: 'black', borderWidth: 3, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+          {/* <Text style={{color: 'white', fontSize: 20, fontWeight: '900', textShadowColor: '#000000', textShadowRadius: 5}}>Featured Liveaboard:</Text> */}
+          <Text style={{color: 'white', fontSize: 25, fontWeight: '900', textShadowColor: '#000000', textShadowRadius: 5}}>The Black Pearl</Text>
+        </View>
+      </View>
+      <View style={{flex: 1, marginRight: 10}}>
+        
+      </View>
+    </View>
+  )
+}
+
 function DiveSiteAnimals({ name, image }) {
 
   return (
-    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: -5, marginTop: 15}}>
+    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: -5, marginTop: 15}}>
       <AnimalCard name={"Clownfish"} image={require('../../assets/animals/clownfish.jpg')} />
       <AnimalCard name={"Reef Shark"} image={require('../../assets/animals/reef_shark.jpg')} />
       <AnimalCard name={"Reef Lobster"} image={require('../../assets/animals/reef_lobster.jpg')} />
@@ -275,11 +293,6 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
         <DetailCard name={"Currents"} value={"None"} diveSite={diveSite} noBorder={true} />
 
       </View>
-      {/* <View style={{flexDirection: 'row', flexWrap: 'wrap', marginBottom: 40}}>
-
-        <AccessCard diveSite={diveSite} />
-        <DiveTypeCard diveSite={diveSite} />
-      </View> */}
     </View>
   )
 }
