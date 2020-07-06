@@ -33,7 +33,7 @@ function DiveSiteDetailSidebar({ diveSite, openAddReview }) {
       {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
         <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
       </View> */}
-      <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 29}}>
+      <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 7}}>
         <ReactPlaceholder type='rect' style={{width: 80, height: 20}} ready={diveSite} showLoadingAnimation={true}>
           <Ratings
             rating={rating()}
