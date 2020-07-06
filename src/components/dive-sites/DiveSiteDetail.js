@@ -233,15 +233,15 @@ function DiveSiteAnimals({ name, image }) {
 
   return (
     <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: -5, marginTop: 15}}>
-      <AnimalCard image={require('../../assets/animals/clownfish.jpg')} />
-      <AnimalCard image={require('../../assets/animals/reef_shark.jpg')} />
-      <AnimalCard image={require('../../assets/animals/reef_lobster.jpg')} />
-      <AnimalCard image={require('../../assets/animals/eagle_ray.jpg')} />
-      <AnimalCard image={require('../../assets/animals/turtle.jpg')} />
-      <AnimalCard image={require('../../assets/animals/sea_cucumber.jpeg')} />
-      <AnimalCard image={require('../../assets/animals/seahorse.jpg')} />
-      <AnimalCard image={require('../../assets/animals/barracuda.jpg')} />
-      <AnimalCard image={require('../../assets/animals/manta_ray.jpg')} />
+      <AnimalCard name={"Clownfish"} image={require('../../assets/animals/clownfish.jpg')} />
+      <AnimalCard name={"Reef Shark"} image={require('../../assets/animals/reef_shark.jpg')} />
+      <AnimalCard name={"Reef Lobster"} image={require('../../assets/animals/reef_lobster.jpg')} />
+      <AnimalCard name={"Eagle Ray"} image={require('../../assets/animals/eagle_ray.jpg')} />
+      <AnimalCard name={"Giant Sea Turtle"} image={require('../../assets/animals/turtle.jpg')} />
+      <AnimalCard name={"Sea Cucumber"} image={require('../../assets/animals/sea_cucumber.jpeg')} />
+      <AnimalCard name={"Seahorse"} image={require('../../assets/animals/seahorse.jpg')} />
+      <AnimalCard name={"Barracuda"} image={require('../../assets/animals/barracuda.jpg')} />
+      <AnimalCard name={"Manta Ray"} image={require('../../assets/animals/manta_ray.jpg')} />
     </View>
   )
 }
@@ -250,6 +250,17 @@ function AnimalCard({ name, image }) {
   return (
     <View style={{flex: 1, minWidth: 250, height: 200, margin: 5, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 5, shadowColor: '#000'}}>
       <Image style={{flex: 1}} source={image} />
+      <View style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: 30}}>
+        <View style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, backgroundColor: 'black', opacity: 0.7}} />
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginHorizontal: 10}}>
+          <Text style={{color: 'white', fontSize: 17, fontWeight: '500'}}>{name}</Text>
+          <View style={{flex: 1}} />
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{color: 'white', marginRight: 5}}>18</Text>
+            <Image style={{width: 20, height: 17, tintColor: 'white'}} source={require('../../assets/eye.svg')} />
+          </View>
+        </View>
+      </View>
     </View>
   )
 }
