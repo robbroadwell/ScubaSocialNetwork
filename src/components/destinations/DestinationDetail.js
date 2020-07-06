@@ -63,6 +63,10 @@ class DestinationDetail extends Component {
                 {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">{this.state.data.name}</StyledLink> : <Text style={{fontSize: 16}}>{this.state.data.name}</Text>}
               </View>
             </View>
+
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+              <MapFilters />
+            </View>
             
           </View>
 
@@ -76,6 +80,9 @@ class DestinationDetail extends Component {
               <Text style={{textDecorationLine: 'underline', color: '#A00000'}}>Add a dive site</Text>
             </TouchableOpacity>
           </View>
+        </View>
+        <View style={{margin: 15}}>
+          <PhotosContent count={20} onPress={() => this.props.history.push(`/photos/418596049`)} />
         </View>
       </View>
     )

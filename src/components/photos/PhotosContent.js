@@ -3,9 +3,7 @@ import { View, TouchableOpacity, Text, Image } from 'react-native';
 import ReactPlaceholder from 'react-placeholder';
 import "react-placeholder/lib/reactPlaceholder.css";
 
-function PhotosContent({ onPress }) {
-  const count = 12;
-
+function PhotosContent({ onPress, count }) {
   var views = []
   for (var i = 0; i < count; i++) {
     views.push(

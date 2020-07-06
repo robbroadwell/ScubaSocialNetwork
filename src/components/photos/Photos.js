@@ -38,7 +38,7 @@ class Photos extends Component {
           
         </View>
         <View style={{flex: 1}}>
-          <PhotosContent onPress={() => this.props.history.push(`/photos/418596049`)} />
+          <PhotosContent count={12} onPress={() => this.props.history.push(`/photos/418596049`)} />
         </View>
       </View>
     )

@@ -9,14 +9,13 @@ function MapFilters() {
         <FilterButton filter={"Depth"} />
         <FilterButton filter={"Water Temperature"} />
         <FilterButton filter={"Currents"} />
-        <FilterButton filter={"Access"} />
-        {/* <FilterButton filter={"Animals"} /> */}
+        <FilterButton filter={"Animals"} premium={true} />
       </View>
  
   )
 }
 
-function FilterButton({ filter }) {
+function FilterButton({ filter, premium }) {
   return (
     <View style={{borderColor: '#DDDDDD', borderWidth: 1, borderRadius: 7, marginRight: 10}}>
       <Text style={{padding: 10}}>{filter}</Text>

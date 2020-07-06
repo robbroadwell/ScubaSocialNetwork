@@ -55,10 +55,10 @@ function Header() {
 function HomeMap({ style, history }) {
   return (
     <View style={{height: 500, margin: 20}}>
-      <View style={{flexDirection: 'row', marginBottom: 20, alignItems: 'center'}}>
+      <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '700', color: '#222222'}}>Explore 4,340 Dive Sites</Text> 
         <View style={{flex: 1}} />
-        {/* <MapFilters /> */}
+        <MapFilters />
       </View>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <Map style={style} history={history} />
