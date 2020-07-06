@@ -256,8 +256,8 @@ function AnimalCard({ name, image }) {
           <Text style={{color: 'white', fontSize: 17, fontWeight: '500'}}>{name}</Text>
           <View style={{flex: 1}} />
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: 'white', marginRight: 5}}>18</Text>
-            <Image style={{width: 20, height: 17, tintColor: 'white'}} source={require('../../assets/eye.svg')} />
+            <Image style={{width: 20, height: 17, tintColor: 'white'}} source={require('../../assets/eye_outline.svg')} />
+            <Text style={{color: 'white', marginLeft: 3}}>18</Text>
           </View>
         </View>
       </View>
@@ -271,7 +271,7 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
       <View style={{flexDirection: 'row'}}>
         <DetailCard name={"Visibility"} value={"100+ meters"} diveSite={diveSite} />
         <DetailCard name={"Depth"} value={"70-80 meters"} diveSite={diveSite} />
-        <DetailCard name={"Water Temperature"} value={"80°F"} diveSite={diveSite} />
+        <DetailCard name={"Water Temp"} value={"80°F"} diveSite={diveSite} />
         <DetailCard name={"Currents"} value={"None"} diveSite={diveSite} noBorder={true} />
 
       </View>

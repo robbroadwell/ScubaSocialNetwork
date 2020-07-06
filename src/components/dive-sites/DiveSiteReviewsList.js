@@ -19,7 +19,7 @@ class DiveSiteReviewsList extends Component {
         const review = diveSite.reviews[i]
     
         views.push(
-          <View key={i} style={{borderColor: '#CCCCCC', borderWidth: 1, marginBottom: 10, padding: 15, backgroundColor: '#FEFEFE', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
+          <View key={i} style={{marginBottom: 10, paddingVertical: 15, paddingHorizontal: 25, borderBottomColor: '#DEDEDE', borderBottomWidth: 1}}>
 
             <View style={{flex: 1, alignItems: 'center'}}>
               <Text style={{fontWeight: '600', fontSize: 18, marginVertical: 5}}>{review.title}</Text>
@@ -37,9 +37,15 @@ class DiveSiteReviewsList extends Component {
             </View>
             
             <Text style={{fontSize: 14, marginVertical: 20, maxWidth: 500}}>{review.comment}</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View style={{flex: 1}} />
-              <UserBadge user={review.user} timestamp={review.timestamp} />
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
+                <Image style={{width: 20, height: 20, marginRight: 3}} source={require('../../assets/heart_outline.svg')} />
+                <Text style={{fontSize: 15, fontWeight: '800', marginBottom: 2}}>24</Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center', marginRight: -10}}>
+                <View style={{flex: 1}} />
+                <UserBadge user={review.user} timestamp={review.timestamp} />
+              </View>
             </View>
           </View>
         )
@@ -47,8 +53,12 @@ class DiveSiteReviewsList extends Component {
     }
   
     return (
-      <View>        
-        <View style={{flex: 1}}>
+      <View>
+        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginRight: 10, marginBottom: 5}}>
+          <Text style={{fontWeight: '600'}}>Top Reviews</Text>  
+          <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/drop_down.svg')} />
+        </View>        
+        <View style={{flex: 1, borderTopWidth: 1, borderTopColor: '#DEDEDE'}}>
           {views}
         </View>
 
