@@ -23,7 +23,7 @@ class Home extends Component {
   render() {
     return (
       <View style={{flex: 1, flexDirection: 'column-reverse'}}>
-        {/* <FooterActions /> */}
+        <FooterActions />
         <Directory destinations={this.props.destinations} navigateDestination={this.navigateDestination} addDiveSite={this.navigateAddDiveSite} />
         <HomeMap style={this.props.style} history={this.props.history} />
         <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
@@ -118,7 +118,7 @@ function Directory({ destinations, navigateDestination, addDiveSite }) {
   }
 
   return (
-    <View style={{margin: 20, marginBottom: 50}}>
+    <View style={{margin: 20, marginBottom: 20}}>
       <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
       <View style={{flexDirection: 'row', marginTop: 2}}>
         <Text style={{fontSize: 14, color: 'black'}}>4,340 dive sites added by users from all over the world. </Text>
