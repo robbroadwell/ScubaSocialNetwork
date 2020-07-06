@@ -108,7 +108,7 @@ function DiveSiteLocation({diveSite}) {
 function DiveSiteDetailMap({ style, diveSite }) {
   return (
     <View>
-      <View style={{width: '100%', height: 300}}>
+      <View style={{width: '100%', height: 300, shadowOffset: { width: 0, height: -5 }, shadowOpacity: 0.2, shadowRadius: 10, shadowColor: '#000'}}>
         <DiveSiteMap diveSite={diveSite} style={style} />
       </View>
       <DiveSiteLocation diveSite={diveSite} />

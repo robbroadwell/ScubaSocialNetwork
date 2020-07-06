@@ -236,7 +236,7 @@ class Map extends Component {
         <List style={this.props.style} country={this.props.country} history={this.props.history} diveSites={this.state.diveSites} country={this.props.country}/>
         }
 
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 10, shadowColor: '#000'}}>
           <div
             id="google-map"
             ref={this.googleMapRef}
