@@ -221,16 +221,42 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
       <DiveSiteDetailHeader diveSite={diveSite} />
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
       <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
-      <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
+      <DiveSiteAnimals />
+      {/* <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} /> */}
       <View style={{flex: 1}}></View>
       {/* <DiveSiteLocation diveSite={diveSite} /> */}
     </View>
   )
 }
 
+function DiveSiteAnimals({ name, image }) {
+
+  return (
+    <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: -5, marginTop: 15}}>
+      <AnimalCard image={require('../../assets/animals/clownfish.jpg')} />
+      <AnimalCard image={require('../../assets/animals/reef_shark.jpg')} />
+      <AnimalCard image={require('../../assets/animals/reef_lobster.jpg')} />
+      <AnimalCard image={require('../../assets/animals/eagle_ray.jpg')} />
+      <AnimalCard image={require('../../assets/animals/turtle.jpg')} />
+      <AnimalCard image={require('../../assets/animals/sea_cucumber.jpeg')} />
+      <AnimalCard image={require('../../assets/animals/seahorse.jpg')} />
+      <AnimalCard image={require('../../assets/animals/barracuda.jpg')} />
+      <AnimalCard image={require('../../assets/animals/manta_ray.jpg')} />
+    </View>
+  )
+}
+
+function AnimalCard({ name, image }) {
+  return (
+    <View style={{flex: 1, minWidth: 250, height: 200, margin: 5, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 5, shadowColor: '#000'}}>
+      <Image style={{flex: 1}} source={image} />
+    </View>
+  )
+}
+
 function DiveSiteAverages({ diveSite, openLogDive }) {
   return (
-    <View style={{borderColor: '#CCCCCC', borderWidth: 1, marginTop: 20, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
+    <View style={{borderColor: '#CCCCCC', backgroundColor: '#FEFEFE',  borderWidth: 1, marginTop: 0, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 10, shadowColor: '#000'}}>
       <View style={{flexDirection: 'row'}}>
         <DetailCard name={"Visibility"} value={"100+ meters"} diveSite={diveSite} />
         <DetailCard name={"Depth"} value={"70-80 meters"} diveSite={diveSite} />
@@ -249,7 +275,7 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
 
 function DetailCard({ name, value, diveSite, noBorder }) {
   return (
-    <View style={{flex: 1, paddingVertical: 5, marginHorizontal: 5, backgroundColor: '#FEFEFE', borderRightColor: "#DEDEDE", borderRightWidth: noBorder ? 0 : 1}}>
+    <View style={{flex: 1, paddingVertical: 5, marginHorizontal: 5, borderRightColor: "#DEDEDE", borderRightWidth: noBorder ? 0 : 1}}>
       <ReactPlaceholder type='rect' style={{height: 120}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: 16, fontWeight: '600'}}>{name}</Text>
