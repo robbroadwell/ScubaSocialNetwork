@@ -58,7 +58,7 @@ function HomeMap({ style, history }) {
       <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center'}}>
         <Text style={{fontSize: 18, fontWeight: '700', color: '#222222'}}>Explore 4,340 Dive Sites</Text> 
         <View style={{flex: 1}} />
-        <MapFilters />
+        {/* <MapFilters /> */}
       </View>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <Map style={style} history={history} />
@@ -80,7 +80,7 @@ function Featured({ destinations, navigateDestination }) {
 
   return (
     <View style={{margin: 10}}>
-      <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10}}>Featured Destinations</Text> 
+      <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10, marginBottom: 5}}>Featured Destinations</Text> 
       <View style={{flexDirection: 'row', justifyContent: 'center', marginHorizontal: 5}}>
         {views}
       </View>

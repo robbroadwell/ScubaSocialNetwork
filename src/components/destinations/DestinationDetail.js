@@ -64,9 +64,9 @@ class DestinationDetail extends Component {
               </View>
             </View>
 
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+            {/* <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
               <MapFilters />
-            </View>
+            </View> */}
             
           </View>
 
