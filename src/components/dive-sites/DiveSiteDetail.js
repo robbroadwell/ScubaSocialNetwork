@@ -286,12 +286,12 @@ function DiveSiteAverages({ diveSite, openLogDive }) {
 
 function DetailCard({ name, value, diveSite, noBorder }) {
   return (
-    <View style={{flex: 1, paddingVertical: 5, marginHorizontal: 5, borderRightColor: "#DEDEDE", borderRightWidth: noBorder ? 0 : 1}}>
+    <View style={{flex: 1, marginHorizontal: 5, borderRightColor: "#DEDEDE", borderRightWidth: noBorder ? 0 : 1}}>
       <ReactPlaceholder type='rect' style={{height: 120}} ready={diveSite} showLoadingAnimation={true}>
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: 16, fontWeight: '600'}}>{name}</Text>
           <Image style={{width: 50, height: 30, marginTop: 15}} source={require('../../assets/dial.svg')} />
-          <Text style={{fontWeight: '600', marginBottom: 15}}>{value}</Text>
+          <Text style={{fontSize: 15, fontWeight: '700', marginBottom: 10}}>{value}</Text>
           <Text style={{color: '#A00000'}}>See history</Text>
         </View>
       </ReactPlaceholder>
