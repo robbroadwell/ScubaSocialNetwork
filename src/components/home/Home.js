@@ -23,7 +23,7 @@ class Home extends Component {
   render() {
     return (
       <View style={{flex: 1, flexDirection: 'column-reverse'}}>
-        <FooterActions />
+        {/* <FooterActions /> */}
         <Directory destinations={this.props.destinations} navigateDestination={this.navigateDestination} addDiveSite={this.navigateAddDiveSite} />
         <HomeMap style={this.props.style} history={this.props.history} />
         <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
