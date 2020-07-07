@@ -81,9 +81,9 @@ class DestinationDetail extends Component {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{margin: 15}}>
+        {/* <View style={{margin: 15}}>
           <PhotosContent count={20} onPress={() => this.props.history.push(`/photos/418596049`)} />
-        </View>
+        </View> */}
       </View>
     )
   }
