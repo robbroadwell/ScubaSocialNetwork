@@ -13,19 +13,19 @@ class Destinations extends Component {
   render() {
     return (
       <View style={{margin: 10}}>
-        <DestinationContent destinations={this.props.destinations} navigateDestination={(destination) => this.props.history.push(`/destinations/` + destination._id)} />
+        <DestinationContent destinations={this.props.destinations} />
       </View>
     )
   }
 }
 
-function DestinationContent({ destinations, navigateDestination }) {
+function DestinationContent({ destinations }) {
 
   var views = []
 
   for (var i = 0; i < destinations.length; i++) {
     views.push(
-      <DestinationCard destination={destinations[i]} navigateDestination={navigateDestination} />
+      <DestinationCard destination={destinations[i]} />
     )
   }
 

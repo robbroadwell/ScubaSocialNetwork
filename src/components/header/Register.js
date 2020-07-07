@@ -4,7 +4,7 @@ import Loading from '../misc/Loading';
 import { connect } from "react-redux";
 import { setUser, setLoginMode, setRegisterMode } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
-import StyledLinkAlt from '../buttons/StyledLinkAlt';
+import StyledLinkWhite from '../buttons/StyledLinkWhite';
 import ReactGA from 'react-ga';
 import BaseURL from '../../utility/BaseURL';
 import FullScreenConfetti from '../../utility/FullScreenConfetti';
@@ -278,7 +278,7 @@ class Register extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 5, borderColor: 'white', borderWidth: 1}} />
                 {!this.state.termsAccepted ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 7, tintColor: 'white'}} source={require('../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-              <Text style={{color: 'white'}}>I agree to the <StyledLinkAlt to="/conditions">Terms and Conditions</StyledLinkAlt>.</Text>
+              <Text style={{color: 'white'}}>I agree to the <StyledLinkWhite to="/conditions">Terms and Conditions</StyledLinkWhite>.</Text>
             </View>
 
             <TouchableOpacity disabled={!this.state.termsAccepted} style={{opacity: this.state.termsAccepted ? 1 : 0.5}} onPress={() => this.onPressSubmit()}>

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledLinkAlt = styled(Link)`
-    text-decoration: underline;
+const StyledLinkWhite = styled(Link)`
+    text-decoration: none;
     color: #FFFFFF;
 
     &:hover {
@@ -11,4 +11,4 @@ const StyledLinkAlt = styled(Link)`
     }
 `;
 
-export default (props) => <StyledLinkAlt {...props} />;
+export default (props) => <StyledLinkWhite {...props} />;

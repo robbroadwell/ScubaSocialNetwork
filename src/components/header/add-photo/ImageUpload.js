@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import DragAndDrop from './DragAndDrop'
 import Loading from '../../misc/Loading';
 import BaseURL from '../../../utility/BaseURL';
-import StyledLinkAlt from '../../buttons/StyledLinkAlt';
+import StyledLinkWhite from '../../buttons/StyledLinkWhite';
 
 import { connect } from "react-redux";
 import { getUser } from '../../../redux/selectors';
@@ -166,7 +166,7 @@ class ImageUpload extends Component {
                 <View style={{width: 18, height: 18, marginHorizontal: 10, borderColor: 'white', borderWidth: 1}} />
                 {!this.state.checkmark ? <View></View> : <Image style={{height: 20, width: 14, position: 'absolute', top: -1, left: 12, tintColor: 'white'}} source={require('../../../assets/checkmark.svg')} />}
               </TouchableOpacity>
-                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to DivingCollective's <StyledLinkAlt to="/conditions">Terms and Conditions</StyledLinkAlt>.</Text>
+                <Text style={{color: 'white'}}>I certify that I own the rights to this photograph, and agree to DivingCollective's <StyledLinkWhite to="/conditions">Terms and Conditions</StyledLinkWhite>.</Text>
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>

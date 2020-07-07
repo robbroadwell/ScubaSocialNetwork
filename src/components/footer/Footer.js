@@ -5,6 +5,7 @@ import ReactGA from 'react-ga';
 import qs from 'qs';
 import { setDiveSite } from '../../redux/actions';
 import { connect } from "react-redux";
+import StyledLinkWhite from '../buttons/StyledLinkWhite';
 
 ReactGA.initialize('UA-88100612-2');
 
@@ -39,15 +40,11 @@ class Footer extends Component {
           <View style={{marginTop: 20, marginBottom: 50}}>
             <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center', color: '#DDDDDD'}}>© 2020, Broadwell LLC, or its affiliates</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.props.history.push(`/conditions`)}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#DDDDDD', marginLeft: 10}}>Terms and Conditions</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.history.push(`/privacy`)}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#DDDDDD', marginLeft: 10}}>Privacy Notice</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.history.push(`/contact`)}>
-                <Text style={{fontSize: 12, textAlign: 'center',color: '#DDDDDD', marginLeft: 10}}>Contact Us</Text>
-              </TouchableOpacity>
+              
+              <StyledLinkWhite to="/conditions" style={{fontSize: 12, color: '#DDDDDD', marginLeft: 10}}>Terms and Conditions</StyledLinkWhite>
+              <StyledLinkWhite to="/privacy" style={{fontSize: 12, color: '#DDDDDD', marginLeft: 10}}>Privacy Notice</StyledLinkWhite>
+              <StyledLinkWhite to="/contact" style={{fontSize: 12, color: '#DDDDDD', marginLeft: 10}}>Contact Us</StyledLinkWhite>
+              
             </View>
           </View>
         </View>

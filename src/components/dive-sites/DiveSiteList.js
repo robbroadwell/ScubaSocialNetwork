@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import DiveSiteCard from './DiveSiteCard';
+import StyledLinkNone from '../buttons/StyledLinkNone';
 
 function DiveSiteList({ diveSites, history, country }) {
   
@@ -10,8 +11,10 @@ function DiveSiteList({ diveSites, history, country }) {
       data={diveSites}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
-
-        <DiveSiteCard site={item} country={country} onPress={() => history.push(`/dive-sites/${item.destination.id.replace(/\s+/g, '-').toLowerCase()}/${item.name.replace(/\s+/g, '-').toLowerCase()}?id=${item._id}`)} />
+        
+        <StyledLinkNone to={`/dive-sites/${item.destination.id.replace(/\s+/g, '-').toLowerCase()}/${item.name.replace(/\s+/g, '-').toLowerCase()}?id=${item._id}`}>
+          <DiveSiteCard site={item} country={country} />
+        </StyledLinkNone>
 
       )}
     />

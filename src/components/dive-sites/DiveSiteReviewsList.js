@@ -5,6 +5,8 @@ import AddButton from '../buttons/AddButton';
 import { getUser } from '../../redux/selectors';
 import { connect } from "react-redux";
 import UserBadge from './UserBadge';
+import { Link } from 'react-router-dom';
+import StyledLinkNone from '../buttons/StyledLinkNone';
 
 class DiveSiteReviewsList extends Component {
 
@@ -44,7 +46,9 @@ class DiveSiteReviewsList extends Component {
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center', marginRight: -10}}>
                 <View style={{flex: 1}} />
-                <UserBadge user={review.user} timestamp={review.timestamp} />
+                <StyledLinkNone to={`/users/${review.user.name}`}>
+                  <UserBadge user={review.user} timestamp={review.timestamp} />
+                </StyledLinkNone>
               </View>
             </View>
           </View>
@@ -72,6 +76,10 @@ class DiveSiteReviewsList extends Component {
     )
   }
 }
+
+const FancyLink = React.forwardRef((props, ref) => (
+  <a ref={ref}>💅 {props.children}</a>
+))
 
 const mapStateToProps = state => {
   const user = getUser(state);

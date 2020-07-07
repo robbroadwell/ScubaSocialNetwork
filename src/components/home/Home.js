@@ -9,13 +9,9 @@ import Map from '../explore/map/Map';
 import DestinationCard from '../destinations/DestinationCard';
 import MapFilters from '../explore/map/MapFilters';
 import PrimaryButton from '../buttons/PrimaryButton';
+import StyledLink from '../buttons/StyledLink';
 
 class Home extends Component {
-
-  navigateDestination = (destination) => {
-    this.props.history.push(`/destinations/` + destination._id)
-  }
-
   navigateAddDiveSite = () => {
     this.props.history.push(`/add-dive-site`)
   }
@@ -24,9 +20,9 @@ class Home extends Component {
     return (
       <View style={{flex: 1, flexDirection: 'column-reverse'}}>
         {/* <FooterActions /> */}
-        <Directory destinations={this.props.destinations} navigateDestination={this.navigateDestination} addDiveSite={this.navigateAddDiveSite} />
+        <Directory destinations={this.props.destinations} addDiveSite={this.navigateAddDiveSite} />
         <HomeMap style={this.props.style} history={this.props.history} />
-        <Featured destinations={this.props.featuredDestinations} navigateDestination={this.navigateDestination}  />
+        <Featured destinations={this.props.featuredDestinations} />
         <Header />
       </View>
     )
@@ -67,14 +63,14 @@ function HomeMap({ style, history }) {
   )
 }
 
-function Featured({ destinations, navigateDestination }) {
+function Featured({ destinations}) {
   console.log(destinations)
   var views = []
   var max = 4
 
   for (var i = 0; i < destinations.length && i < max; i++) {
     views.push(
-      <DestinationCard key={i} destination={destinations[i]} navigateDestination={navigateDestination} />
+      <DestinationCard key={i} destination={destinations[i]} />
     )
   }
 
@@ -88,7 +84,7 @@ function Featured({ destinations, navigateDestination }) {
   )
 }
 
-function Directory({ destinations, navigateDestination, addDiveSite }) {
+function Directory({ destinations }) {
   var restrictedList = []
   
   for (var i = 0; i < destinations.length; i++) {
@@ -104,15 +100,15 @@ function Directory({ destinations, navigateDestination, addDiveSite }) {
   for (var i = 0; i < restrictedList.length; i++) {
     if (i < restrictedList.length / 3) {
       col1.push(
-        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} />
       )
     } else if (i < (restrictedList.length / 3) * 2) {
       col2.push(
-        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} />
       )
     } else {
       col3.push(
-        <DirectoryLocation key={i} destination={restrictedList[i]} navigateDestination={navigateDestination} />
+        <DirectoryLocation key={i} destination={restrictedList[i]} />
       )
     }
   }
@@ -122,7 +118,7 @@ function Directory({ destinations, navigateDestination, addDiveSite }) {
       <Text style={{fontSize: 20, fontWeight: '700', color: 'black'}}>Dive Directory</Text>
       <View style={{flexDirection: 'row', marginTop: 2}}>
         <Text style={{fontSize: 14, color: 'black'}}>4,340 dive sites added by users from all over the world. </Text>
-        <TouchableOpacity onPress={addDiveSite}><Text style={{fontSize: 14, color: 'black', textDecorationLine: 'underline', color: "#A00000"}}>Submit your favorite dive site.</Text></TouchableOpacity>
+        <StyledLink to="/add-dive-site" style={{fontSize: 14}}>Submit your favorite dive site.</StyledLink>
       </View>
       <View style={{flexDirection: 'row', marginTop: 20}}>
         <View style={{flex: 1, marginRight: 20}}>
@@ -148,12 +144,10 @@ function FilterButton({ filter }) {
   )
 }
 
-function DirectoryLocation({ destination, navigateDestination }) {
+function DirectoryLocation({ destination }) {
   return (
     <View style={{flexDirection: 'row', marginBottom: 2}}>
-      <TouchableOpacity onPress={() => navigateDestination(destination)}>
-        <Text style={{color: '#0000A5'}}>{destination.name}</Text>
-      </TouchableOpacity>
+      <StyledLink to={`/destinations/` + destination._id} style={{fontSize: 14}}>{destination.name}</StyledLink>
       <View style={{flex: 1}}>
         <Text numberOfLines={1}>............................................................................................................................................................</Text>
       </View>

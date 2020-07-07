@@ -207,7 +207,7 @@ class DiveSiteDescription extends Component {
               <Text style={{fontWeight: '900', paddingHorizontal: 5}}>2 more...</Text>
             </View>
             <View style={{flex: 1}} />
-            <UserBadge user={{name: "Rob"}} timestamp={1234567} />
+            {/* <UserBadge user={{name: "Rob"}} timestamp={1234567} /> */}
           </View>
         </View>
       )
