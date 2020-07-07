@@ -38,7 +38,7 @@ class Users extends Component {
         <View style={{flex: 8}}>
           <View style={{height: 66, borderBottomWidth: 1, borderBottomColor: "#CCCCCC", flexDirection: 'row', alignItems: 'flex-end'}}>
             {/* <MenuItem title={"Overview"} onPress={() => this.props.history.push(`/users/${this.props.match.params.id}`)} selected={!this.props.match.params.tab} icon={require('../../assets/account.svg')} /> */}
-            <MenuItem title={"Dive Log"} id={this.props.match.params.id} selected={!this.props.match.params.tab} icon={require('../../assets/numbered.png')} />
+            <MenuItem title={"Dive Log"} id={this.props.match.params.id} selected={!this.props.match.params.tab} icon={require('../../assets/history.svg')} />
             <MenuItem title={"Photos"} id={this.props.match.params.id} section={"photos"} selected={this.props.match.params.tab === "photos"} icon={require('../../assets/camera.png')} />
             <MenuItem title={"Reviews"} id={this.props.match.params.id} section={"reviews"} selected={this.props.match.params.tab === "reviews"} icon={require('../../assets/review.svg')} />
             <MenuItem title={"Dive Sites"} id={this.props.match.params.id} section={"dive-sites"} selected={this.props.match.params.tab === "dive-sites"} icon={require('../../assets/pin.png')} />
@@ -65,7 +65,7 @@ function DiveLogContent() {
   }
 
   return (
-    <View style={{margin: 5, borderBottomWidth: 2, borderBottomColor: '#EEEEEE'}}>
+    <View style={{alignItems: 'flex-start', margin: 5, borderBottomWidth: 2, borderBottomColor: '#EEEEEE'}}>
       {/* <DiveLogHeader /> */}
       {views}
     </View>
@@ -94,14 +94,14 @@ function DiveLogHeader() {
 
 function DiveLogRow({ i }) {
   return (
-    <View key={i} style={{flexDirection: 'row', backgroundColor: i % 2 === 0 ? '#EEEEEE' : '#FFFFFF', alignItems: 'center'}}>
+    <View key={i} style={{flexDirection: 'row', backgroundColor: i % 2 === 0 ? '#EEEEEE' : '#FFFFFF', alignItems: 'center', paddingRight: 20}}>
       <View style={{minWidth: 30, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center', padding: 5, margin: 10}}>
         <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>{i}</Text>
       </View>
-      <View style={{width: 150, alignItems: 'center'}}>
+      <View style={{width: 140, alignItems: 'center'}}>
         <Text style={{fontWeight: '500', fontSize: 15}}>July 20, 2020</Text>
       </View>
-      <View style={{flex: 1, marginLeft: 10}}>
+      <View style={{flex: 1, alignItems: 'center'}}>
         <Text style={{fontWeight: '300', fontSize: 15}}>Sail Rock, Thailand</Text>
       </View>
       {/* <View style={{flex: 1}}>
