@@ -10,6 +10,7 @@ import BaseURL from '../../utility/BaseURL';
 import PhotosContent from '../photos/PhotosContent';
 import Ratings from 'react-ratings-declarative';
 import StyledLinkNone from '../buttons/StyledLinkNone';
+import StyledLink from '../buttons/StyledLink';
 const axios = require('axios')
 
 class Users extends Component {
@@ -31,7 +32,8 @@ class Users extends Component {
             <Image style={{height: '100%', width: '100%'}} source={require('../../assets/you.jpg')} />
           </View>
           <Text style={{marginTop: 10, fontWeight: '700', fontSize: 28}}>Rob Broadwell</Text>
-          <Text style={{fontSize: 16}}>Joined July 20, 2020</Text>
+          <Text style={{fontWeight: '400', fontSize: 18, color: '#333333'}}>@Rob</Text>
+          <Text style={{marginTop: 10, fontSize: 16}}>Joined July 20, 2020</Text>
         </View>
         <View style={{flex: 8}}>
           <View style={{height: 66, borderBottomWidth: 1, borderBottomColor: "#CCCCCC", flexDirection: 'row', alignItems: 'flex-end'}}>
@@ -42,6 +44,7 @@ class Users extends Component {
             <MenuItem title={"Dive Sites"} id={this.props.match.params.id} section={"dive-sites"} selected={this.props.match.params.tab === "dive-sites"} icon={require('../../assets/pin.png')} />
           </View>
           <View style={{flex: 1, margin: 10}}>
+            {!this.props.match.params.tab ? <DiveLogContent /> : <View />}
             {this.props.match.params.tab === "photos" ? <PhotosContent count={12} onPress={() => this.props.history.push(`/photos/418596049`)} /> : <View />}
             {this.props.match.params.tab === "reviews" ? <UserReviewsContent /> : <View />}
           </View>
@@ -49,6 +52,69 @@ class Users extends Component {
       </View>
     )
   }
+}
+
+function DiveLogContent() {
+  const number = 20
+
+  var views = []
+  for (var i = number; i > 0; i--) {
+    views.push(
+      <DiveLogRow i={i} />
+    )
+  }
+
+  return (
+    <View style={{margin: 5, borderBottomWidth: 2, borderBottomColor: '#EEEEEE'}}>
+      {/* <DiveLogHeader /> */}
+      {views}
+    </View>
+  )
+}
+
+function DiveLogHeader() {
+  return (
+    <View style={{flexDirection: 'row', backgroundColor: '#000000', alignItems: 'center', height: 30}}>
+      <View style={{width: 200}} />
+      <View style={{flex: 1}}>
+        <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>Location</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>Depth</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>Water Temp</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>Visibility</Text>
+      </View>
+    </View>
+  )
+}
+
+function DiveLogRow({ i }) {
+  return (
+    <View key={i} style={{flexDirection: 'row', backgroundColor: i % 2 === 0 ? '#EEEEEE' : '#FFFFFF', alignItems: 'center'}}>
+      <View style={{minWidth: 30, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center', padding: 5, margin: 10}}>
+        <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>{i}</Text>
+      </View>
+      <View style={{width: 150, alignItems: 'center'}}>
+        <Text style={{fontWeight: '500', fontSize: 15}}>July 20, 2020</Text>
+      </View>
+      <View style={{flex: 1, marginLeft: 10}}>
+        <Text style={{fontWeight: '300', fontSize: 15}}>Sail Rock, Thailand</Text>
+      </View>
+      {/* <View style={{flex: 1}}>
+        <Text style={{fontWeight: '300', fontSize: 15}}>40-90 Meters</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={{fontWeight: '300', fontSize: 15}}>81°F</Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={{fontWeight: '300', fontSize: 15}}>100+ Meters</Text>
+      </View> */}
+    </View>
+  )
 }
 
 function UserReviewsContent() {
@@ -72,7 +138,7 @@ function UserReview({ review }) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   return (
-    <View style={{ margin: 10, paddingVertical: 15, paddingHorizontal: 25, borderColor: '#DEDEDE', borderWidth: 1}}>
+    <View style={{ margin: 5, paddingVertical: 15, paddingHorizontal: 25, borderColor: '#DEDEDE', borderWidth: 1}}>
       <View style={{alignItems: 'center'}}>
         <Text style={{fontWeight: '600', fontSize: 18, marginVertical: 5}}>{review.title}</Text>
         <Ratings
