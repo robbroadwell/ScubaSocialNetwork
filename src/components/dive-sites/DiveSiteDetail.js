@@ -72,7 +72,7 @@ class DiveSiteDetail extends Component {
     return (
       <View>
 
-        <View style={{flexDirection: 'row', margin: 10, marginTop: 0}}>
+        <View style={{flexDirection: 'row', marginHorizontal: 10, marginTop: 0, marginBottom: 20}}>
           <DiveSiteDetailBody diveSite={this.props.diveSite} reload={this.fetchDiveSite} openAddReview={this.openAddReview} openLogDive={this.openLogDive} openAddPhoto={this.openAddPhoto} openRegister={() => this.props.setRegisterMode(true)} user={this.props.user} />
           <DiveSiteDetailSidebar diveSite={this.props.diveSite} openAddReview={this.openAddReview} />
         </View>

@@ -29,7 +29,7 @@ function DiveSiteDetailSidebar({ diveSite, openAddReview }) {
   }
 
   return (
-    <View style={{width: 400, paddingTop: 28, marginRight: -10, marginBottom: -10, backgroundColor: '#FEFEFE', flexDirection: 'column', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
+    <View style={{width: 400, paddingTop: 28, marginRight: -10, marginBottom: -20, backgroundColor: '#FEFEFE', flexDirection: 'column', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 5, shadowColor: '#000'}}>
       {/* <View style={{height: 200, borderColor: '#DDDDDD', borderWidth: 1, margin: 10}}>
         <Image style={{flex: 1}} source={require('../../assets/weather_placeholder2.png')} />
       </View> */}

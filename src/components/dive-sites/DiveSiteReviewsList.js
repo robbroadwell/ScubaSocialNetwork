@@ -77,10 +77,6 @@ class DiveSiteReviewsList extends Component {
   }
 }
 
-const FancyLink = React.forwardRef((props, ref) => (
-  <a ref={ref}>💅 {props.children}</a>
-))
-
 const mapStateToProps = state => {
   const user = getUser(state);
   return { user };
