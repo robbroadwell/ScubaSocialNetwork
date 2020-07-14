@@ -11,9 +11,45 @@ import styled from 'styled-components';
 import StyledLinkNone from '../buttons/StyledLinkNone';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobileMenuOpen: false
+    };
+  }
 
   render() {
-    console.log(this.props.user)
+    if (this.props.style.mobile) {
+      return (
+        <View>
+          <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', alignItems: 'center', height: 60}}>
+            <View style={{height: '100%', justifyContent: 'center'}}>
+              <StyledLinkNone to="/">
+                <View style={{alignItems: 'center', flexDirection: 'row'}}>
+                  <Image style={{width: 30, height: 20, marginLeft: 15, marginRight: 10}} source={require('../../assets/flag2.svg')} />
+                  <Image style={{width: 200, height: 32, marginTop: 2}} source={require('../../assets/logo_light3.svg')} />
+                </View>
+              </StyledLinkNone>
+            </View>
+            <View style={{flex: 1}} />
+            <TouchableOpacity onPress={() => this.setState(prevState => ({ isMobileMenuOpen: !prevState.isMobileMenuOpen}))}>
+              <Image style={{width: 30, height: 30, tintColor: 'white', marginRight: 10}} source={this.state.isMobileMenuOpen ? require('../../assets/close.png') : require('../../assets/menu.svg')} />
+            </TouchableOpacity>
+          </View>
+          {this.state.isMobileMenuOpen && (
+            <View style={{backgroundColor: 'white'}}>
+              <View style={{borderBottomColor: '#CCCCCC', borderBottomWidth: 1}}>
+                <StyledLinkNone to="/" style={{color: 'black', padding: 20, fontSize: 16, fontWeight: '500'}}>Home</StyledLinkNone>
+              </View>
+              <View style={{borderBottomColor: '#CCCCCC', borderBottomWidth: 1}}>
+                <StyledLinkNone to="/destinations" style={{color: 'black', padding: 20, fontSize: 16, fontWeight: '500'}}>Destinations</StyledLinkNone>
+              </View>
+            </View>
+          )}
+        </View>
+      )
+    }
+
     return (
       <View style={{backgroundColor: this.props.style.colors.primary, flexDirection: 'row', alignItems: 'center', height: 60}}>
         

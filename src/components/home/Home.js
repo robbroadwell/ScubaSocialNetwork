@@ -20,16 +20,34 @@ class Home extends Component {
     return (
       <View style={{flex: 1, flexDirection: 'column-reverse'}}>
         {/* <FooterActions /> */}
-        <Directory destinations={this.props.destinations} addDiveSite={this.navigateAddDiveSite} />
+        <Directory style={this.props.style} destinations={this.props.destinations} addDiveSite={this.navigateAddDiveSite} />
         <HomeMap style={this.props.style} history={this.props.history} />
         <Featured destinations={this.props.featuredDestinations} />
-        <Header />
+        <Header style={this.props.style} />
       </View>
     )
   }
 }
 
-function Header() {
+function Header({ style }) {
+  if (style.mobile) {
+    return (
+      <View>
+        <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={require('../../assets/reef.jpg')} />
+        <View style={{flex: 1, marginVertical: 100}}>
+          <Text style={{fontSize: 40, fontWeight: '700', textAlign: 'center', color: 'white', textShadowColor: '#555555', textShadowRadius: 10}}>
+            Plan your next Scuba adventure
+          </Text>
+          <Text style={{fontSize: 25, marginHorizontal: 20, marginTop: 10, color: 'white', textAlign: 'center', textShadowColor: '#333333', textShadowRadius: 10}}>
+            Get information from fellow divers just like you.
+          </Text>
+          <View style={{margin: 20, alignItems: 'center'}}>
+            <AutocompleteSearch />
+          </View>
+        </View>
+      </View>
+    )
+  }
   return (
     <View style={{height: 500, justifyContent: 'center', alignItems: 'center'}}>
       <Image style={{position: 'absolute', height: '100%', width: '100%'}} source={require('../../assets/reef.jpg')} />
@@ -77,14 +95,14 @@ function Featured({ destinations}) {
   return (
     <View style={{margin: 10}}>
       <Text style={{fontSize: 18, fontWeight: '700', color: '#222222', margin: 10, marginBottom: 5}}>Featured Destinations</Text> 
-      <View style={{flexDirection: 'row', justifyContent: 'center', marginHorizontal: 5}}>
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginHorizontal: 5}}>
         {views}
       </View>
     </View>
   )
 }
 
-function Directory({ destinations }) {
+function Directory({ destinations, style }) {
   var restrictedList = []
   
   for (var i = 0; i < destinations.length; i++) {
@@ -98,6 +116,13 @@ function Directory({ destinations }) {
   var col3 = []
   
   for (var i = 0; i < restrictedList.length; i++) {
+    if (style.mobile) {
+      col1.push(
+        <DirectoryLocation key={i} destination={restrictedList[i]} />
+      )
+      continue
+    }
+
     if (i < restrictedList.length / 3) {
       col1.push(
         <DirectoryLocation key={i} destination={restrictedList[i]} />
@@ -120,17 +145,25 @@ function Directory({ destinations }) {
         <Text style={{fontSize: 14, color: 'black'}}>4,340 dive sites added by users from all over the world. </Text>
         <StyledLink to="/add-dive-site" style={{fontSize: 14}}>Submit your favorite dive site.</StyledLink>
       </View>
+      {style.mobile ? <View style={{flexDirection: 'row', marginTop: 20}}>
+        <View style={{flex: 1, marginRight: 20}}>
+          {col1}
+        </View>
+      </View> 
+      : 
       <View style={{flexDirection: 'row', marginTop: 20}}>
         <View style={{flex: 1, marginRight: 20}}>
           {col1}
         </View>
-        <View  style={{flex: 1, marginRight: 20}}>
+        <View style={{flex: 1, marginRight: 20}}>
           {col2}
-        </View>
+          </View>
         <View style={{flex: 1}}>
           {col3}
         </View>
       </View>
+      }
+      
     </View>
   
   )
