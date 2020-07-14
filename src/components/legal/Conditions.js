@@ -49,7 +49,7 @@ class Conditions extends Component {
 
 <Text style={{fontWeight: '600', marginBottom: 10}}>Closed, Unauthorized or Illegal Dive Sites</Text>
 
-<Text style={{marginBottom: 10}}>You may not submit any content related to a dive site that is not legally open. Report a closed, illegal or unauthorized dive site to rob@divingcollective.com and we will remove it from the Service.</Text>
+<Text style={{marginBottom: 10}}>You may not submit any content related to a dive site that is not legally open. Report a closed, illegal or unauthorized dive site to admin@divingcollective.com and we will remove it from the Service.</Text>
 
 <Text style={{fontWeight: '600', marginBottom: 10}}>Our Right to Use Your Content</Text>
 
@@ -140,12 +140,11 @@ A statement that you have a good faith belief that use of the material in the ma
 A statement that the information in the notification is accurate and under penalty of perjury, and that you are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.
 Your statement must be sent to the Company by US mail or email, to:</Text>
 
-<Text>Rob Broadwell</Text>
 <Text>Broadwell LLC</Text>
 <Text>8 The Green Suite A</Text>
 <Text style={{marginBottom: 10}}>Dover, DE 19901</Text>
 
-<Text style={{marginBottom: 10}}>Email: rob@divingcollective.com</Text>
+<Text style={{marginBottom: 10}}>Email: admin@divingcollective.com</Text>
 
 <Text style={{marginBottom: 10}}>You acknowledge that if you fail to comply with all of the requirements of this Paragraph 9, your DMCA notice may not be valid.</Text>
 
@@ -230,7 +229,7 @@ Your statement must be sent to the Company by US mail or email, to:</Text>
 
 <Text style={{marginBottom: 10}}>These Terms, and the Privacy Policy, may change from time to time. The Company may modify these Terms and/or the Privacy Policy effective immediately upon notice to you either by (1) electronic mail or (2) posting the modifications to the Service (which shall be deemed constructive notice). Your continued use of the Service following notice of any modifications shall be conclusively deemed an acceptance of all such modifications.</Text>
 
-<Text style={{marginBottom: 10}}>All feedback, comments, requests for technical support, and other communications relating to the Services should be directed to: rob@divingcollective.com.</Text>
+<Text style={{marginBottom: 10}}>All feedback, comments, requests for technical support, and other communications relating to the Services should be directed to: admin@divingcollective.com.</Text>
         </View>
       </View>
     )

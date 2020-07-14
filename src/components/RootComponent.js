@@ -53,21 +53,21 @@ class RootComponent extends Component {
           <View style={{flexDirection: 'column-reverse'}}>
             {/* <Route path='/' render={(props) => <Alert {...props} style={this.props.style} />} /> */}
             <Route path='/' render={(props) => <Footer {...props} style={this.props.style} />} />
-            <Route path='/users/:id/:tab?' render={(props) => <Users {...props} style={this.props.style} />} />
+            {/* <Route path='/users/:id/:tab?' render={(props) => <Users {...props} style={this.props.style} />} /> */}
             <Route path='/contact' exact={true} render={(props) => <Contact {...props} style={this.props.style} />} />
             <Route path='/conditions' exact={true} render={(props) => <Conditions {...props} style={this.props.style} />} />
             <Route path='/privacy' exact={true} render={(props) => <Privacy {...props} style={this.props.style} />} />
-            <PrivateRoute path='/account' exact={true} user={this.props.user} render={(props) => <Account {...props} style={this.props.style} />} />
+            {/* <PrivateRoute path='/account' exact={true} user={this.props.user} render={(props) => <Account {...props} style={this.props.style} />} /> */}
             <Route path='/' exact={true} render={(props) => <Home {...props} style={this.props.style} />} />
             <Route path='/destinations' exact={true} render={(props) => <Destinations {...props} style={this.props.style} />} />
             <Route path='/destinations/:id/:idRegion?' exact={true} render={(props) => <DestinationDetail {...props} style={this.props.style} map={this.map} />} />
             <Route path='/dive-sites' exact={true} render={(props) => <DiveSites {...props} style={this.props.style} />} />
             <Route path='/dive-sites/:id' render={(props) => <DiveSiteDetail {...props} style={this.props.style} />} />
             <Route path='/add-dive-site/' render={(props) => <DiveSiteAdd {...props} style={this.props.style} />} />
-            <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />
+            {/* <Route path='/photos' render={(props) => <Photos {...props} style={this.props.style} />} />
             <Route path='/animals' exact={true} render={(props) => <Animals {...props} style={this.props.style} />} />
             <Route path='/leaderboard' exact={true} render={(props) => <Leaderboard {...props} style={this.props.style} />} />
-            <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} />
+            <Route path='/photos/418596049' render={(props) => <PhotosOverlay {...props} style={this.props.style} />} /> */}
             <Route path='/' render={(props) => <Header {...props} style={this.props.style} />} />
           </View>
 
