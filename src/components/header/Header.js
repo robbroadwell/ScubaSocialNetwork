@@ -30,9 +30,9 @@ class Header extends Component {
           <StyledLinkNone to="/destinations" style={{color: 'white', fontSize: 16, fontWeight: '500'}}>Destinations</StyledLinkNone>
         </View>
 
-        <View style={{flexDirection: 'row', marginLeft: 30}}>
+        {/* <View style={{flexDirection: 'row', marginLeft: 30}}>
           <StyledLinkNone to="/photos" style={{color: 'white', fontSize: 16, fontWeight: '500'}}>Photos</StyledLinkNone>
-        </View>
+        </View> */}
 
         <View style={{flex: 1}}></View>
 
