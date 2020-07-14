@@ -249,18 +249,6 @@ class Map extends Component {
           </View>
           }
         </View>
-
-        <View style={{position: 'absolute', right: 0, top: 0, flexDirection: 'row'}}>
-            <View style={{backgroundColor: 'red', margin: 10, marginLeft: 0, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 5, shadowColor: '#000'}}>
-              <Text style={{fontSize: 17, color: '#FFFFFF', fontWeight: '600', paddingVertical: 7, paddingHorizontal: 10}}>Dive Sites</Text>
-            </View>
-            <View style={{backgroundColor: '#FEFEFE', margin: 10, marginLeft: 0, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 5, shadowColor: '#000'}}>
-              <Text style={{fontSize: 17, fontWeight: '600', paddingVertical: 7, paddingHorizontal: 10}}>Liveaboards</Text>
-            </View>
-            <View style={{backgroundColor: '#FEFEFE', margin: 10, marginLeft: 0, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 5, shadowColor: '#000'}}>
-              <Text style={{fontSize: 17, fontWeight: '600', paddingVertical: 7, paddingHorizontal: 10}}>Dive Shops</Text>
-            </View>
-          </View>
       </View>
     )
   }
