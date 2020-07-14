@@ -46,9 +46,9 @@ class DiveSiteReviewsList extends Component {
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center', marginRight: -10}}>
                 <View style={{flex: 1}} />
-                <StyledLinkNone to={`/users/${review.user.name}`}>
+                {/* <StyledLinkNone to={`/users/${review.user.name}`}> */}
                   <UserBadge user={review.user} timestamp={review.timestamp} />
-                </StyledLinkNone>
+                {/* </StyledLinkNone> */}
               </View>
             </View>
           </View>

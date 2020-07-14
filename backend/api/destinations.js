@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/top', (req, res) => {
-  Destination.find({"isTop": true})
+  Destination.find({"isTop": true}).select('name code diveSiteCount isTop urlThumbnail')
     .then(destinations => res.json(destinations))
     .catch(err => console.log(err))
 })
