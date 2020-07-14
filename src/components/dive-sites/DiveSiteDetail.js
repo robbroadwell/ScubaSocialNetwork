@@ -184,31 +184,14 @@ class DiveSiteDescription extends Component {
       )
     } else {
       return (
-        <View style={{borderColor: '#CCCCCC', borderWidth: 1, marginTop: 20, padding: 20, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
-          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 20}}>
+        <View>
+          <View style={{flexDirection: 'row', marginTop: 40, marginBottom: 10, alignItems: 'center'}}>
             <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
             <EditButton onPress={this.enableEdit} />
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-            <View style={{marginRight: 20}}>
-              <Image style={{height: 28, width: 18, tintColor: '#CCCCCC'}} source={require('../../assets/arrow_up.svg')} />
-              <Text style={{fontWeight: '900'}}>12</Text>
-              <Image style={{height: 28, width: 18, tintColor: '#CCCCCC'}} source={require('../../assets/arrow_down.svg')} />
-            </View>
-            <View style={{flex: 1, marginRight: 10}}>
-              <Text style={{fontSize: 15}}>
-                {this.props.diveSite && this.props.diveSite.description && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "No description yet." }
-              </Text>
-            </View>
-            
-          </View>
-          <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 10}}>
-            <View style={{borderColor: '#CCCCCC', borderWidth: 1, borderRadius: 5, padding: 5}}>
-              <Text style={{fontWeight: '900', paddingHorizontal: 5}}>2 more...</Text>
-            </View>
-            <View style={{flex: 1}} />
-            {/* <UserBadge user={{name: "Rob"}} timestamp={1234567} /> */}
-          </View>
+          <Text>
+            {this.props.diveSite && this.props.diveSite.description && this.props.diveSite.description.length > 0 ? this.props.diveSite.description[0].content : "No description yet." }
+          </Text>
         </View>
       )
     }
