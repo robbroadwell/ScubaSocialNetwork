@@ -41,8 +41,8 @@ class DiveSiteReviewsList extends Component {
             <Text style={{fontSize: 14, marginVertical: 20, maxWidth: 500}}>{review.comment}</Text>
             <View style={{flexDirection: 'row'}}>
               <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
-                <Image style={{width: 20, height: 20, marginRight: 3}} source={require('../../assets/heart_outline.svg')} />
-                <Text style={{fontSize: 15, fontWeight: '800', marginBottom: 2}}>24</Text>
+                {/* <Image style={{width: 20, height: 20, marginRight: 3}} source={require('../../assets/heart_outline.svg')} />
+                <Text style={{fontSize: 15, fontWeight: '800', marginBottom: 2}}>24</Text> */}
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center', marginRight: -10}}>
                 <View style={{flex: 1}} />
@@ -57,11 +57,11 @@ class DiveSiteReviewsList extends Component {
     }
   
     return (
-      <View>
-        <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginRight: 10, marginBottom: 5}}>
+      <View style={{marginTop: 22}}>
+        {/* <View style={{flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginRight: 10, marginBottom: 5}}>
           <Text style={{fontWeight: '600'}}>Top Reviews</Text>  
           <Image style={{width: 15, height: 15, marginLeft: 5}} source={require('../../assets/drop_down.svg')} />
-        </View>        
+        </View>         */}
         <View style={{flex: 1, borderTopWidth: 1, borderTopColor: '#DEDEDE'}}>
           {views}
         </View>

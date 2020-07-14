@@ -187,7 +187,7 @@ class DiveSiteDescription extends Component {
         <View style={{borderColor: '#CCCCCC', borderWidth: 1, marginTop: 20, padding: 20, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.1, shadowRadius: 5, shadowColor: '#000'}}>
           <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 20}}>
             <Text style={{fontSize: 18, fontWeight: '600'}}>Description</Text>
-            <AddButton onPress={this.enableEdit} />
+            <EditButton onPress={this.enableEdit} />
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
             <View style={{marginRight: 20}}>
@@ -220,10 +220,10 @@ function DiveSiteDetailBody({ diveSite, reload, openAddPhoto, openLogDive, user,
     <View style={{flex: 1, flexDirection: 'column', margin: 10, marginRight: 20}}>
       <DiveSiteDetailHeader diveSite={diveSite} />
       <DiveSitePhotos openAddPhoto={openAddPhoto} diveSite={diveSite} reload={reload} />
-      <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
-      <DiveSiteAnimals />
+      {/* <DiveSiteAverages diveSite={diveSite} openLogDive={openLogDive} />
+      <DiveSiteAnimals /> */}
       {/* <DiveSitePromo /> */}
-      {/* <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} /> */}
+      <DiveSiteDescription diveSite={diveSite} reload={reload} user={user} openRegister={openRegister} />
       <View style={{flex: 1}}></View>
       {/* <DiveSiteLocation diveSite={diveSite} /> */}
     </View>

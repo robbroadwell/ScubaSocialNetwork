@@ -59,12 +59,12 @@ function DiveSiteDetailHeader({ diveSite }) {
             <Text>January 20, 2020</Text> 
           </View>
         </View> */}
-        <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+        {/* <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
           <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{fontSize: 18, fontWeight: '600', marginRight: 10}}>71°F</Text>
             <Image style={{width: 40, height: 40}} source={require('../../assets/partly_cloudy.png')} />
           </View>
-        </View>
+        </View> */}
       </View>
     </View>
   )
