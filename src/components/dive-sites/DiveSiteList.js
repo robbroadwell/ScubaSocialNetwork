@@ -7,7 +7,6 @@ function DiveSiteList({ diveSites, history, country }) {
   
   return (
     <FlatList
-      style={{marginBottom: -5}}
       data={diveSites}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (

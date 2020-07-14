@@ -42,10 +42,14 @@ class DestinationDetail extends Component {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height: 700, margin: 20}}>
-          <View style={{flexDirection: 'row'}}>
+        <View style={{height: 1100}}>
+          <View>
+            <Image style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} source={require('../../assets/thailand.jpeg')} />
+            <View style={{height: 550, justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{fontSize: 70, fontWeight: '700', color: 'white', textShadowColor: '#00000070', textShadowRadius: 15}}>{this.state.data.name}</Text>
+            </View>
 
-            <View>
+            {/* <View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{fontSize: 30, fontWeight: '700', color: 'black'}}>{this.state.data.name}</Text>
                 {!this.state.data.isTop ? <View></View> :
@@ -62,7 +66,7 @@ class DestinationDetail extends Component {
                 <Image style={{width: 20, height: 20}} source={require('../../assets/right.svg')} />
                 {this.props.match.params.idRegion ? <StyledLink to="/destinations/belize">{this.state.data.name}</StyledLink> : <Text style={{fontSize: 16}}>{this.state.data.name}</Text>}
               </View>
-            </View>
+            </View> */}
 
             {/* <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
               <MapFilters />
@@ -70,15 +74,15 @@ class DestinationDetail extends Component {
             
           </View>
 
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
+          <View style={{flex: 1, flexDirection: 'row', margin: 20}}>
             <Map style={this.props.style} history={this.props.history} country={this.state.data} />
-          </View>
-          <View style={{flexDirection: 'row', marginTop: 5}}>
-            <View style={{flex: 1}} />
-            <Text style={{marginRight: 5}}>Are we missing something?</Text>
-            <TouchableOpacity onPress={() => this.props.history.push('/add-dive-site/')}>
-              <Text style={{textDecorationLine: 'underline', color: '#A00000'}}>Add a dive site</Text>
-            </TouchableOpacity>
+            <View style={{position: 'absolute', bottom: 15, right: 68, padding: 5, opacity: 0.85, backgroundColor: 'red', flexDirection: 'row', marginTop: 5}}>
+              <View style={{flex: 1}} />
+              <Text style={{marginRight: 5, color: 'white'}}>Are we missing something?</Text>
+              <TouchableOpacity onPress={() => this.props.history.push('/add-dive-site/')}>
+                <Text style={{textDecorationLine: 'underline', fontWeight: '700', color: 'white'}}>Add a dive site</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         {/* <View style={{margin: 15}}>
