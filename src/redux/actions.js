@@ -107,7 +107,7 @@ export function fetchDestinations() {
 
 export function fetchTopDestinations() {
   return function(dispatch, getState) {
-    if (getState().topDestinations.length !== 0) {
+    if (getState().topDestinations.length !== 0 && getState().featuredDestinations.length !== 0) {
       return
     }
     return fetch(BaseURL() + '/api/destinations/top')
